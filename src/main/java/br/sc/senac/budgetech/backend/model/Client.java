@@ -11,9 +11,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
-import org.hibernate.cfg.Environment;
-
 import antlr.collections.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -23,37 +20,32 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "woodwork")
-public class Woodwork extends User{
+@Table(name = "Client")
+public class Client extends User{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_woodwork")
+	@Column(name = "id_client")
 	private Long id;
 
-	@Column(name = "cnpj_woodwork", length = 14, nullable = false, unique = true)
-	private String cnpj;
+	@Column(name = "cpf_client", length = 15, nullable = false, unique = true)
+	private String cpf;
 
-	@Column(name = "name_woodwork", length = 14, nullable = false)
+	@Column(name = "name_client", nullable = false)
 	private String name;
 
-	@Column(name = "description_woodwork")
-	private String description;
+	@Column(name = "last_name_client", nullable = false)
+	private String lastName;
 
 	@OneToOne
 	@JoinColumn(name = "id_contact")
 	private Contact contact;
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "woodwork")
+	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "id_address")
 	private Address address;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "woodwork")
-	private List<Furniture> furnitures;
-
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "woodwork")
+	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "client")
 	private List<Budget> budgets;
-
-	@OneToMany(mappedBy = "woodwork")
-	private List<Environment> environments;
 
 }
