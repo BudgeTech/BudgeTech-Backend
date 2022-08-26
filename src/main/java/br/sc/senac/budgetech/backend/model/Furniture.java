@@ -9,10 +9,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
+import antlr.collections.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -35,23 +37,23 @@ public class Furniture {
 	@Column(name = "description_furniture")
 	private String description;
 
-	@Column(name = "footage_furniture", length = 45, nullable = false)
-	private double footage;
+	@Column(name = "furniture_size_furniture", length = 45, nullable = false)
+	private double furnitureSize;
 
 	@Column(name = "price_furniture", length = 20, nullable = false)
 	private double price;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_woodwork")
-	private Woodwork woodwork;
+	private List woodwork;
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToMany(fetch = FetchType.LAZY)
 	@JoinColumn(name = "id_color")
-	private Color color;
+	private List color;
 	
-	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_environment")
-	private Environment environment;
+	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@JoinColumn(name = "id_living_area")
+	private LivingArea livingArea;
 
 	@ManyToOne
 	@JoinColumn(name = "id_request")

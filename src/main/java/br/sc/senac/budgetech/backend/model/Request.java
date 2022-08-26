@@ -27,7 +27,7 @@ public class Request {
 	private Long id;
 
 	@OneToMany(orphanRemoval = true, mappedBy = "request")
-	private List<Furniture> furnitures;
+	private List furnitures;
 
 	@Column(name = "price_request", nullable = false)
 	private double price;

@@ -31,11 +31,11 @@ public class Woodwork extends User{
 	@Column(name = "id_woodwork")
 	private Long id;
 
+	@Column(name = "company_name_woodwork", length = 14, nullable = false)
+	private String companyName;
+	
 	@Column(name = "cnpj_woodwork", length = 14, nullable = false, unique = true)
 	private String cnpj;
-
-	@Column(name = "name_woodwork", length = 14, nullable = false)
-	private String name;
 
 	@Column(name = "description_woodwork")
 	private String description;
@@ -48,12 +48,9 @@ public class Woodwork extends User{
 	private Address address;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "woodwork")
-	private List<Furniture> furnitures;
-
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "woodwork")
-	private List<Budget> budgets;
+	private List budgets;
 
 	@OneToMany(mappedBy = "woodwork")
-	private List<Environment> environments;
+	private List livingArea;
 
 }

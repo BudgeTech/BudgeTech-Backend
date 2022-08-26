@@ -38,9 +38,6 @@ public class Budget {
 	@Column(name = "id_budget")
 	private Long id;
 
-	@Column(name = "price_budget", nullable = false)
-	private Double price;
-
 	@Enumerated(EnumType.ORDINAL)
 	@Column(name = "status_budget", nullable = false)
 	private Status status;
@@ -68,5 +65,5 @@ public class Budget {
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "budget_furniture", joinColumns = @JoinColumn(name = "id_budget"), inverseJoinColumns = @JoinColumn(name = "id_furniture"))
-	private List<Furniture> furnitures = new ArrayList<>();
+	private List furnitures;
 }

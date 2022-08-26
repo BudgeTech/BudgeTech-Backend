@@ -24,23 +24,26 @@ public class Address {
 	@Column(name = "id_address")
 	private Long id;
 
-	@Column(name = "cep_address", nullable = false)
-	private String cep;
+	@Column(name = "street_name_address", length = 45, nullable = false)
+	private String streetName;
 
 	@Column(name = "number_address", nullable = false)
 	private int number;
-
-	@Column(name = "province_address", length = 45, nullable = false)
-	private String district;
-
+	
+	@Column(name = "complement_address", length = 45, nullable = false)
+	private String complement;
+	
+	@Column(name = "neighbor_address", length = 45, nullable = false)
+	private String neighbor;
+	
 	@Column(name = "city_address", length = 45, nullable = false)
 	private String city;
 
-	@Column(name = "street_name_address", length = 45, nullable = false)
-	private String road;
+	@Column(name = "province_address", length = 45, nullable = false)
+	private String province;
 
-	@Column(name = "complement_address", length = 45, nullable = false)
-	private String complement;
+	@Column(name = "cep_address", nullable = false)
+	private String cep;
 
 	@OneToOne(mappedBy = "address")
 	private Client client;

@@ -28,14 +28,14 @@ public class Client extends User{
 	@Column(name = "id_client")
 	private Long id;
 
-	@Column(name = "cpf_client", length = 15, nullable = false, unique = true)
-	private String cpf;
-
 	@Column(name = "name_client", nullable = false)
 	private String name;
 
 	@Column(name = "last_name_client", nullable = false)
 	private String lastName;
+	
+	@Column(name = "cpf_client", length = 15, nullable = false, unique = true)
+	private String cpf;
 
 	@OneToOne
 	@JoinColumn(name = "id_contact")
@@ -46,6 +46,6 @@ public class Client extends User{
 	private Address address;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "client")
-	private List<Budget> budgets;
+	private List budgets;
 
 }
