@@ -43,6 +43,9 @@ public class Furniture {
 	@Column(name = "price_furniture", length = 20, nullable = false)
 	private double price;
 	
+	@Column(name = "quantity_request",nullable = false)
+	private int quantity;
+	
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_woodwork")
 	private List woodwork;

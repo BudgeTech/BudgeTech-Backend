@@ -46,6 +46,6 @@ public class Client extends User{
 	private Address address;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "client")
-	private List budgets;
+	private List request;
 
 }

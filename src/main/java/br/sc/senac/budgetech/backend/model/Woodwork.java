@@ -48,7 +48,7 @@ public class Woodwork extends User{
 	private Address address;
 
 	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "woodwork")
-	private List budgets;
+	private List request;
 
 	@OneToMany(mappedBy = "woodwork")
 	private List livingArea;
