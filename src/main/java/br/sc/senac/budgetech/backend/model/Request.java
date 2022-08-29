@@ -58,7 +58,7 @@ public class Request {
 	private Client client;
 
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "budget_furniture", joinColumns = @JoinColumn(name = "id_budget"), inverseJoinColumns = @JoinColumn(name = "id_furniture"))
+	@JoinTable(name = "request_furniture", joinColumns = @JoinColumn(name = "id_request"), inverseJoinColumns = @JoinColumn(name = "id_furniture"))
 	private List furnitures;
 		
 }
