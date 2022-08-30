@@ -12,10 +12,11 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import antlr.collections.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -32,11 +33,10 @@ public class LivingArea {
 	@Column(name = "name_living_area", length = 45, nullable = false)
 	private String name;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_furnitures")
-	private List furnitures;
+	@OneToMany(mappedBy = "livingArea")
+	private List<Furniture> furnitures;
 
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "id_woodwork")
-	private List woodworks;
+	private Woodwork woodwork;
 }

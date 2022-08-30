@@ -12,18 +12,18 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 
-import antlr.collections.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Furniture")
+@Table(name = "furniture")
 public class Furniture {
 
 	@Id
@@ -43,22 +43,21 @@ public class Furniture {
 	@Column(name = "price_furniture", length = 20, nullable = false)
 	private double price;
 	
-	@Column(name = "quantity_request",nullable = false)
+	@Column(name = "quantity_request", nullable = false)
 	private int quantity;
 	
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "id_woodwork")
-	private List woodwork;
+	private Woodwork woodwork;
 
-	@OneToMany(fetch = FetchType.LAZY)
-	@JoinColumn(name = "id_color")
-	private List color;
-	
-	@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "id_living_area")
 	private LivingArea livingArea;
 
 	@ManyToOne
 	@JoinColumn(name = "id_request")
 	private Request request;
+
+	@OneToMany(mappedBy = "furniture")
+	private List<Color> colors;
 }

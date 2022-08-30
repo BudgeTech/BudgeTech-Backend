@@ -1,26 +1,17 @@
 package br.sc.senac.budgetech.backend.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
-import antlr.collections.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Client")
+@Table(name = "client")
 public class Client extends User{
 
 	@Id
@@ -41,11 +32,11 @@ public class Client extends User{
 	@JoinColumn(name = "id_contact")
 	private Contact contact;
 
-	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
+	@OneToOne
 	@JoinColumn(name = "id_address")
 	private Address address;
 
-	@OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "client")
-	private List request;
+	@OneToMany(mappedBy = "client")
+	private List<Request> requests;
 
 }

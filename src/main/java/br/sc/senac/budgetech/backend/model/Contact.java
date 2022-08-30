@@ -1,23 +1,16 @@
 package br.sc.senac.budgetech.backend.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import javax.persistence.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Contact")
+@Table(name = "contact")
 public class Contact {
 
 	@Id
@@ -34,9 +27,9 @@ public class Contact {
 	@Column(name = "social_media_contact", length = 45)
 	private String socialNetwork;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "contact")
+	@OneToOne(mappedBy = "contact")
 	private Client client;
 
-	@OneToOne(fetch = FetchType.LAZY, mappedBy = "contact")
+	@OneToOne(mappedBy = "contact")
 	private Woodwork woodwork;
 }
