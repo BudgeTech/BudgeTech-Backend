@@ -43,9 +43,6 @@ public class Furniture {
 	@Column(name = "price_furniture", length = 20, nullable = false)
 	private double price;
 	
-	@Column(name = "quantity_request", nullable = false)
-	private int quantity;
-	
 	@ManyToOne
 	@JoinColumn(name = "id_woodwork")
 	private Woodwork woodwork;
@@ -60,4 +57,8 @@ public class Furniture {
 
 	@OneToMany(mappedBy = "furniture")
 	private List<Color> colors;
+
+	@ManyToOne
+	@JoinColumn(name = "id_item")
+	private Item item;
 }

@@ -24,7 +24,7 @@ public class Contact {
 	@Column(name = "phone_number_contact", length = 30, nullable = false, unique = true)
 	private String phoneNumber;
 
-	@Column(name = "social_media_contact", length = 45)
+	@Column(name = "social_network_contact", length = 45)
 	private String socialNetwork;
 
 	@OneToOne(mappedBy = "contact")
