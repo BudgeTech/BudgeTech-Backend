@@ -1,6 +1,6 @@
 package br.sc.senac.budgetech.backend.projection;
 
-public interface WoodoworkProfilePorjection {
+public interface WoodworkProfileProjection {
 
 	String getCompanyName();
 

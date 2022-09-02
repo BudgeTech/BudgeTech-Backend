@@ -1,6 +1,7 @@
 package br.sc.senac.budgetech.backend.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -30,15 +31,15 @@ public class Request {
 	@Column(name = "status_request", nullable = false)
 	private Status status;
 
-	@Column(name = "final_date_request", nullable = false)
-	private LocalDate finalDate;
+	@Enumerated(EnumType.ORDINAL)
+	@Column(name = "payment_request", nullable = false)
+	private Payment payment;
 
 	@Column(name = "initial_date_request", nullable = false)
 	private LocalDate initialDate;
 
-	@Enumerated(EnumType.ORDINAL)
-	@Column(name = "payment_request", nullable = false)
-	private Payment payment;
+	@Column(name = "final_date_request", nullable = false)
+	private LocalDate finalDate;
 
 	@ManyToOne
 	@JoinColumn(name = "id_woodwork")
@@ -50,6 +51,27 @@ public class Request {
 
 	@OneToMany(mappedBy = "request")
 	private List<Furniture> furnitures;
-		
+
+	public Request(Long id, double price, Status status, Payment payment, LocalDate initialDate, LocalDate finalDate) {
+		this.id = id;
+		this.price = price;
+		this.status = status;
+		this.payment = payment;
+		this.initialDate = initialDate;
+		this.finalDate = finalDate;
+		furnitures = new ArrayList<>();
+	}
+
+	public void addFurniture(Furniture furniture) {
+		this.furnitures.add(furniture);
+	}
+
+	public void removeFurniture(Furniture furniture) {
+		this.furnitures.remove(furniture);
+	}
+
+	public List<Furniture> getFurniture() {
+		return furnitures;
+	}
 }
 

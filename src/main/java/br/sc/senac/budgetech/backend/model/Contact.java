@@ -32,4 +32,11 @@ public class Contact {
 
 	@OneToOne(mappedBy = "contact")
 	private Woodwork woodwork;
+
+	public Contact(Long id, String email, String phoneNumber, String socialNetwork) {
+		this.id = id;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.socialNetwork = socialNetwork;
+	}
 }

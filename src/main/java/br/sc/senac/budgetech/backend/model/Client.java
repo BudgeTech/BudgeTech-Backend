@@ -1,15 +1,15 @@
 package br.sc.senac.budgetech.backend.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Blob;
+import java.util.ArrayList;
 import java.util.List;
 
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 @Entity
 @Table(name = "client")
 public class Client extends User{
@@ -39,4 +39,24 @@ public class Client extends User{
 	@OneToMany(mappedBy = "client")
 	private List<Request> requests;
 
+	public Client(String login, String password, Blob image, Long id, String name, String lastName, String cpf) {
+		super(login, password, image);
+		this.id = id;
+		this.name = name;
+		this.lastName = lastName;
+		this.cpf = cpf;
+		requests = new ArrayList<>();
+	}
+
+	public void addRequest(Request request) {
+		this.requests.add(request);
+	}
+
+	public void removeBudget(Request request) {
+		this.requests.remove(request);
+	}
+
+	public List<Request> getBudget() {
+		return requests;
+	}
 }

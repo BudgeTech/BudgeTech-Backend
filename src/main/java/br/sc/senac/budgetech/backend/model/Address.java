@@ -44,4 +44,15 @@ public class Address {
 
 	@OneToOne(mappedBy = "address")
 	private Woodwork woodwork;
+
+	public Address(Long id, String street, int number, String complement, String neighbor, String city, String province, String cep) {
+		this.id = id;
+		this.street = street;
+		this.number = number;
+		this.complement = complement;
+		this.neighbor = neighbor;
+		this.city = city;
+		this.province = province;
+		this.cep = cep;
+	}
 }

@@ -6,16 +6,5 @@ public interface WoodworkProjection {
 
 	String getDescription();
 
-	String getNeighbor();
-
-	String getCity();
-
-	String getPhoneNumber();
-
 	String getCnpj();
-
-	String getEmail();
-
-	String getSocialNetwork();
-
 }

@@ -8,9 +8,9 @@ public interface RequestBasicProjection {
 
 	Long getId();
 
-	LocalDate getDeliveryDate();
+	LocalDate getInitialDate();
 
-	Double getTotalPrice();
+	Double getPrice();
 
 	Status getStatus();
 

@@ -7,6 +7,6 @@ public interface ItemWithFurnitureProjection {
 
 	interface FurnitureBasicProjection{
 		Long getId();
-		Double getName();
+		String getName();
 	}
 } 

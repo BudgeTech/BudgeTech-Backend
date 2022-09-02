@@ -27,4 +27,10 @@ public class Color {
 	@ManyToOne
 	@JoinColumn(name = "id_furniture")
 	private Furniture furniture;
+
+	public Color(Long id, String name, String brand) {
+		this.id = id;
+		this.name = name;
+		this.brand = brand;
+	}
 }

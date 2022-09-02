@@ -1,22 +1,11 @@
 package br.sc.senac.budgetech.backend.model;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -55,10 +44,31 @@ public class Furniture {
 	@JoinColumn(name = "id_request")
 	private Request request;
 
-	@OneToMany(mappedBy = "furniture")
-	private List<Color> colors;
-
 	@ManyToOne
 	@JoinColumn(name = "id_item")
 	private Item item;
+
+	@OneToMany(mappedBy = "furniture")
+	private List<Color> colors;
+
+	public Furniture(Long id, String name, String description, double furnitureSize, double price) {
+		this.id = id;
+		this.name = name;
+		this.description = description;
+		this.furnitureSize = furnitureSize;
+		this.price = price;
+		colors = new ArrayList<>();
+	}
+
+	public void addColor(Color color) {
+		this.colors.add(color);
+	}
+
+	public void removeColor(Color color) {
+		this.colors.remove(color);
+	}
+
+	public List<Color> getColor() {
+		return colors;
+	}
 }

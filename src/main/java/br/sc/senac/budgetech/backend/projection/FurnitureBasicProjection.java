@@ -1,6 +1,6 @@
 package br.sc.senac.budgetech.backend.projection;
 
-public interface FrunitureBasicProjection {
+public interface FurnitureBasicProjection {
 
 	String getName();
 

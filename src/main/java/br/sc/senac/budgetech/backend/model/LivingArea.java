@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -21,11 +22,29 @@ public class LivingArea {
 
 	@Column(name = "name_living_area", length = 45, nullable = false)
 	private String name;
-	
-	@OneToMany(mappedBy = "livingArea")
-	private List<Furniture> furnitures;
 
 	@ManyToOne
 	@JoinColumn(name = "id_woodwork")
 	private Woodwork woodwork;
+
+	@OneToMany(mappedBy = "livingArea")
+	private List<Furniture> furnitures;
+
+	public LivingArea(Long id, String name) {
+		this.id = id;
+		this.name = name;
+		furnitures = new ArrayList<>();
+	}
+
+	public void addFurniture(Furniture furniture) {
+		this.furnitures.add(furniture);
+	}
+
+	public void removeFurniture(Furniture furniture) {
+		this.furnitures.remove(furniture);
+	}
+
+	public List<Furniture> getFurniture() {
+		return furnitures;
+	}
 }

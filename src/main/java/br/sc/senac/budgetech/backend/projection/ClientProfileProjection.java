@@ -1,10 +1,10 @@
 package br.sc.senac.budgetech.backend.projection;
 
-public interface ClientProfileProject {
+public interface ClientProfileProjection {
 
 	String getCpf();
 
 	String getName();
 
-	String getLestName();
+	String getLastName();
 }
