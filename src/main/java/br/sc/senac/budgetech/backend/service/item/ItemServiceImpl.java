@@ -1,7 +1,9 @@
 package br.sc.senac.budgetech.backend.service.item;
 
 import br.sc.senac.budgetech.backend.dto.ItemDTO;
+import br.sc.senac.budgetech.backend.exception.address.AddressInvalidException;
 import br.sc.senac.budgetech.backend.exception.client.ClientNotFoundException;
+import br.sc.senac.budgetech.backend.exception.item.ItemInvalidException;
 import br.sc.senac.budgetech.backend.exception.item.ItemNotFoundException;
 import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkNotFoundException;
@@ -39,6 +41,12 @@ public class ItemServiceImpl implements ItemService {
         Woodwork woodwork = woodworkRepository.findById(itemDTO.idWoodwork())
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + itemDTO.idWoodwork() + " was not found"));
 
+        if (itemDTO.totalPrice() < 0)
+            throw new ItemInvalidException("Total Price " + itemDTO.totalPrice() + " is invalid");
+
+        if (itemDTO.quantity() < 0)
+            throw new ItemInvalidException("Quantity " + itemDTO.quantity() + " is invalid");
+
         Item item = itemMapper.toEntity(itemDTO);
         item.setRequest(request);
         item.setClient(client);
@@ -51,6 +59,12 @@ public class ItemServiceImpl implements ItemService {
 
         Item item = itemRepository.findById(id)
                 .orElseThrow(() -> new ItemNotFoundException("Item " + id + " was not found"));
+
+        if (itemDTO.totalPrice() < 0)
+            throw new ItemInvalidException("Total Price " + itemDTO.totalPrice() + " is invalid");
+
+        if (itemDTO.quantity() < 0)
+            throw new ItemInvalidException("Quantity " + itemDTO.quantity() + " is invalid");
 
         item.setQuantity(itemDTO.quantity());
         item.setTotalPrice(itemDTO.totalPrice());

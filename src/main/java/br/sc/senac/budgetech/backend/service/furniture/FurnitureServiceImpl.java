@@ -1,6 +1,8 @@
 package br.sc.senac.budgetech.backend.service.furniture;
 
 import br.sc.senac.budgetech.backend.dto.FurnitureDTO;
+import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
+import br.sc.senac.budgetech.backend.exception.furniture.FurnitureInvalidException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNameRegisteredException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundException;
 import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundException;
@@ -29,6 +31,12 @@ public class FurnitureServiceImpl implements FurnitureService {
         LivingArea livingArea = livingAreaRepository.findById(furnitureDTO.idLivingArea())
                 .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + furnitureDTO.idLivingArea() + " was not found"));
 
+        if (furnitureDTO.furnitureSize() <= 0)
+            throw new FurnitureInvalidException("Furniture Size " + furnitureDTO.furnitureSize() + " is invalid");
+
+        if (furnitureDTO.price() < 0)
+            throw new FurnitureInvalidException("Price " + furnitureDTO.price() + " is invalid");
+
         Furniture furniture = furnitureMapper.toEntity(furnitureDTO);
         furniture.setLivingArea(livingArea);
         Furniture furnitureSaved = furnitureRepository.save(furniture);
@@ -42,6 +50,12 @@ public class FurnitureServiceImpl implements FurnitureService {
 
         if (furnitureRepository.existsByName(furnitureDTO.name()))
             throw new FurnitureNameRegisteredException("Name " + furnitureDTO.name() + " is already registered");
+
+        if (furnitureDTO.furnitureSize() <= 0)
+            throw new FurnitureInvalidException("Furniture Size " + furnitureDTO.furnitureSize() + " is invalid");
+
+        if (furnitureDTO.price() < 0)
+            throw new FurnitureInvalidException("Price " + furnitureDTO.price() + " is invalid");
 
         furniture.setName((furnitureDTO.name() != null && furnitureDTO.name().isBlank()) ? furnitureDTO.name() : furniture.getName());
         furniture.setDescription((furnitureDTO.description() != null && furnitureDTO.description().isBlank()) ? furnitureDTO.description() : furniture.getDescription());

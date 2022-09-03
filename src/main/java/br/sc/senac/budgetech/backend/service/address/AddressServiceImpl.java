@@ -2,6 +2,7 @@ package br.sc.senac.budgetech.backend.service.address;
 
 
 import br.sc.senac.budgetech.backend.dto.AddressDTO;
+import br.sc.senac.budgetech.backend.exception.address.AddressInvalidException;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
 import br.sc.senac.budgetech.backend.exception.address.AddressStreetAndNumberRegisteredException;
 import br.sc.senac.budgetech.backend.mapper.AddressMapper;
@@ -39,15 +40,15 @@ public class AddressServiceImpl implements AddressService {
         Address address = addressRepository.findById(id)
                 .orElseThrow(() -> new AddressNotFoundException("Address " + id + " was not found"));
 
+        if (addressDTO.number() <= 0)
+            throw new AddressInvalidException("Number " + addressDTO.number() + " is invalid");
+
         address.setNumber(addressDTO.number());
         address.setStreet((addressDTO.street() != null && !addressDTO.street().isBlank()) ? addressDTO.street() : address.getStreet());
         address.setNeighbor((addressDTO.neighbor() != null && !addressDTO.neighbor().isBlank()) ? addressDTO.neighbor() : address.getNeighbor());
         address.setCity((addressDTO.city() != null && !addressDTO.city().isBlank()) ? addressDTO.city() : address.getCity());
         address.setCep((addressDTO.cep() != null && !addressDTO.cep().isBlank()) ? addressDTO.cep() : address.getCep());
         address.setComplement((addressDTO.complement() != null && !addressDTO.complement().isBlank()) ? addressDTO.complement() : address.getComplement());
-
-        if (addressDTO.number() <= 0)
-            throw new AddressNotFoundException("Number " + addressDTO.number() + " is invalid");
 
         addressRepository.save(address);
     }

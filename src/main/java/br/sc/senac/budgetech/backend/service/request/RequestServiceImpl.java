@@ -2,6 +2,8 @@ package br.sc.senac.budgetech.backend.service.request;
 
 import br.sc.senac.budgetech.backend.dto.RequestCreateDTO;
 import br.sc.senac.budgetech.backend.dto.RequestListDTO;
+import br.sc.senac.budgetech.backend.exception.item.ItemInvalidException;
+import br.sc.senac.budgetech.backend.exception.request.RequestInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.RequestMapper;
 import br.sc.senac.budgetech.backend.model.Furniture;
@@ -28,14 +30,16 @@ public class RequestServiceImpl implements RequestService {
                 requestListDTO.status(), requestListDTO.payment(),
                 requestListDTO.initialDate(), requestListDTO.finalDate());
 
-        for (Long idFurniture:requestListDTO.idsFunitures()) {
+        for (Long idFurniture : requestListDTO.idsFunitures()) {
             Furniture furniture = furnitureRepository.findById(idFurniture)
                     .orElseThrow(() -> new RequestNotFoundException("Request " + idFurniture + " was not found"));
             request.getFurnitures().add(furniture);
         }
 
-        Request requestSaved = requestRepository.save(request);
+        if (requestListDTO.price() < 0)
+            throw new ItemInvalidException("Price " + requestListDTO.price() + " is invalid");
 
+        Request requestSaved = requestRepository.save(request);
         return requestMapper.toDTO(requestSaved);
     }
 
@@ -43,6 +47,9 @@ public class RequestServiceImpl implements RequestService {
 
         Request request = requestRepository.findById(id)
                 .orElseThrow(() -> new RequestNotFoundException("Request " + id + " was not found"));
+
+        if (requestListDTO.price() < 0)
+            throw new RequestInvalidException("Price " + requestListDTO.price() + " is invalid");
 
         request.setPrice(requestListDTO.price());
         request.setStatus(requestListDTO.status());
