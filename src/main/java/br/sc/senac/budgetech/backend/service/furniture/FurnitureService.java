@@ -1,8 +1,7 @@
 package br.sc.senac.budgetech.backend.service.furniture;
 
 import br.sc.senac.budgetech.backend.dto.FurnitureDTO;
-import br.sc.senac.budgetech.backend.model.Furniture;
-import br.sc.senac.budgetech.backend.projection.FurnitureBasicProjection;
+import br.sc.senac.budgetech.backend.projection.FurnitureProjection;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,11 +13,9 @@ public interface FurnitureService {
 
     void delete(Long id);
 
-    Furniture findById(Long id);
+    FurnitureProjection findById(Long id);
 
-    FurnitureBasicProjection findByName(String name);
+    FurnitureProjection findByName(String name);
 
-    Furniture findByFootage(double footage);
-
-    FurnitureBasicProjection findByPrice(double price);
+    FurnitureProjection findByPrice(double price);
 }

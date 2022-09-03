@@ -1,6 +1,7 @@
 package br.sc.senac.budgetech.backend.repository;
 
 import br.sc.senac.budgetech.backend.model.Contact;
+import br.sc.senac.budgetech.backend.projection.ContactProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
@@ -11,7 +12,7 @@ public interface ContactRepository extends JpaRepository<Contact, Long> {
 
     boolean existsByPhoneNumber(String phoneNumber);
 
-    Optional<Contact> findContactById(Long id);
+    Optional<ContactProjection> findContactById(Long id);
 
-    Optional<Contact> findContactByPhoneNumber(String phoneNumber);
+    Optional<ContactProjection> findContactByPhoneNumber(String phoneNumber);
 }

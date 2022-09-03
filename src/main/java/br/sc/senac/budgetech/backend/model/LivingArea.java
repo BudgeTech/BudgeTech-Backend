@@ -27,7 +27,7 @@ public class LivingArea {
 	@JoinColumn(name = "id_woodwork")
 	private Woodwork woodwork;
 
-	@OneToMany(mappedBy = "livingArea")
+	@OneToMany(mappedBy = "livingArea", cascade = CascadeType.ALL)
 	private List<Furniture> furnitures;
 
 	public LivingArea(Long id, String name) {

@@ -8,13 +8,13 @@ import org.springframework.stereotype.Service;
 @Service
 public interface LivingAreaService {
 
-    LivingAreaDTO save(LivingAreaDTO furnitureDTO);
+    LivingAreaDTO save(LivingAreaDTO livingAreaDTO);
 
-    void update(LivingAreaDTO furnitureDTO, Long id);
+    void update(LivingAreaDTO livingAreaDTO, Long id);
 
     void delete(Long id);
 
-    LivingArea findById(Long id);
+    LivingAreaProjection findById(Long id);
 
     LivingAreaProjection findByName(String name);
 }

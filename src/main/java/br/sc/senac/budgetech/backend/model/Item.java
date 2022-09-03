@@ -5,8 +5,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -26,29 +24,21 @@ public class Item {
     @Column(name = "total_price_item", length = 250, nullable = false)
     private double totalPrice;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_request")
     private Request request;
 
-    @OneToMany(mappedBy = "item")
-    private List<Furniture> furnitures;
+    @ManyToOne
+    @JoinColumn(name = "id_client")
+    private Client client;
+
+    @ManyToOne
+    @JoinColumn(name = "id_woodwork")
+    private Woodwork woodwork;
 
     public Item(Long id, int quantity, double totalPrice) {
         this.id = id;
         this.quantity = quantity;
         this.totalPrice = totalPrice;
-        furnitures = new ArrayList<>();
-    }
-
-    public void addFurniture(Furniture furniture) {
-        this.furnitures.add(furniture);
-    }
-
-    public void removeFurniture(Furniture furniture) {
-        this.furnitures.remove(furniture);
-    }
-
-    public List<Furniture> getFurniture() {
-        return furnitures;
     }
 }

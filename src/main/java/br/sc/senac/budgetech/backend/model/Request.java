@@ -38,18 +38,14 @@ public class Request {
 	@Column(name = "initial_date_request", nullable = false)
 	private LocalDate initialDate;
 
-	@Column(name = "final_date_request", nullable = false)
+	@Column(name = "final_date_request")
 	private LocalDate finalDate;
 
-	@ManyToOne
-	@JoinColumn(name = "id_woodwork")
-	private Woodwork woodwork;
+	@OneToOne(mappedBy = "request")
+	private Item item;
 
-	@ManyToOne
-	@JoinColumn(name = "id_client")
-	private Client client;
-
-	@OneToMany(mappedBy = "request")
+	@ManyToMany
+	@JoinTable(name = "request_furniture", joinColumns = @JoinColumn(name = "id_request"), inverseJoinColumns = @JoinColumn(name = "id_furniture"))
 	private List<Furniture> furnitures;
 
 	public Request(Long id, double price, Status status, Payment payment, LocalDate initialDate, LocalDate finalDate) {

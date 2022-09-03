@@ -1,10 +1,14 @@
 package br.sc.senac.budgetech.backend.service.living_area;
 
 import br.sc.senac.budgetech.backend.dto.LivingAreaDTO;
+import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundException;
+import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.LivingAreaMapper;
 import br.sc.senac.budgetech.backend.model.LivingArea;
+import br.sc.senac.budgetech.backend.model.Woodwork;
 import br.sc.senac.budgetech.backend.projection.LivingAreaProjection;
 import br.sc.senac.budgetech.backend.repository.LivingAreaRepository;
+import br.sc.senac.budgetech.backend.repository.WoodworkRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -14,29 +18,49 @@ public class LivingAreaServiceImpl implements LivingAreaService {
 
     private LivingAreaRepository livingAreaRepository;
     private LivingAreaMapper livingAreaMapper;
+    private WoodworkRepository woodworkRepository;
 
-    @Override
-    public LivingAreaDTO save(LivingAreaDTO furnitureDTO) {
-        return null;
+
+    public LivingAreaDTO save(LivingAreaDTO livingAreaDTO) {
+
+        Woodwork woodwork = woodworkRepository.findById(livingAreaDTO.idWoodwork())
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + livingAreaDTO.idWoodwork() + " was not found"));
+
+        LivingArea livingArea = livingAreaMapper.toEntity(livingAreaDTO);
+        livingArea.setWoodwork(woodwork);
+        LivingArea colorSaved = livingAreaRepository.save(livingArea);
+        return livingAreaMapper.toDTO(colorSaved);
     }
 
-    @Override
-    public void update(LivingAreaDTO furnitureDTO, Long id) {
+    public void update(LivingAreaDTO livingAreaDTO, Long id) {
+
+        LivingArea livingArea = livingAreaRepository.findById(id)
+                .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + id + " was not found"));
+
+        Woodwork woodwork = woodworkRepository.findById(livingAreaDTO.idWoodwork())
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + livingAreaDTO.idWoodwork() + " was not found"));
+
+        livingArea.setName(livingAreaDTO.name());
+        livingArea.setWoodwork(woodwork);
+        livingAreaRepository.save(livingArea);
 
     }
 
-    @Override
     public void delete(Long id) {
+        if (!livingAreaRepository.existsById(id))
+            throw new LivingAreaNotFoundException("Living Area " + id + " was not found");
+        livingAreaRepository.deleteById(id);
 
     }
 
-    @Override
-    public LivingArea findById(Long id) {
-        return null;
+    public LivingAreaProjection findById(Long id) {
+        return livingAreaRepository.findLivingAreaById(id)
+                .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + id + " was not found"));
+
     }
 
-    @Override
     public LivingAreaProjection findByName(String name) {
-        return null;
+        return livingAreaRepository.findLivingAreaByName(name)
+                .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + name + " was not found"));
     }
 }

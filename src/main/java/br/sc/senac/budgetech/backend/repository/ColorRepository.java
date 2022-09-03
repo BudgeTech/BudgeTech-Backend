@@ -1,15 +1,16 @@
 package br.sc.senac.budgetech.backend.repository;
 
 import br.sc.senac.budgetech.backend.model.Color;
+import br.sc.senac.budgetech.backend.projection.ColorProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
 public interface ColorRepository extends JpaRepository<Color, Long> {
 
-    Optional<Color> findColorById(Long id);
+    Optional<ColorProjection> findColorById(Long id);
 
-    Optional<Color> findColorByName(String name);
+    Optional<ColorProjection> findColorByName(String name);
 
-    Optional<Color> findColorByBrand(String brand);
+    Optional<ColorProjection> findColorByBrand(String brand);
 }

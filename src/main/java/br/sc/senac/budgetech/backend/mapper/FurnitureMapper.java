@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class FurnitureMapper {
 
     public FurnitureDTO toDTO(Furniture furniture) {
-        return new FurnitureDTO(furniture.getId(), furniture.getName(), furniture.getDescription(), furniture.getFurnitureSize(), furniture.getPrice(), furniture.getWoodwork().getId(), furniture.getLivingArea().getId(), furniture.getRequest().getId(), furniture.getItem().getId());
+        return new FurnitureDTO(furniture.getId(), furniture.getName(), furniture.getDescription(), furniture.getFurnitureSize(), furniture.getPrice(), furniture.getLivingArea().getId());
     }
 
     public Furniture toEntity(FurnitureDTO dto) {

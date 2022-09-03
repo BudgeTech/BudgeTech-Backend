@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 public class ItemMapper {
 
     public ItemDTO toDTO(Item item) {
-        return new ItemDTO(item.getId(), item.getQuantity(), item.getTotalPrice(), item.getRequest().getId());
+        return new ItemDTO(item.getId(), item.getQuantity(), item.getTotalPrice(), item.getRequest().getId(), item.getClient().getId(), item.getWoodwork().getId());
     }
 
     public Item toEntity(ItemDTO dto) {

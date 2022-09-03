@@ -28,16 +28,16 @@ public class Client extends User{
 	@Column(name = "cpf_client", length = 15, nullable = false, unique = true)
 	private String cpf;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_contact")
 	private Contact contact;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_address")
 	private Address address;
 
-	@OneToMany(mappedBy = "client")
-	private List<Request> requests;
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+	private List<Item> items;
 
 	public Client(String login, String password, Blob image, Long id, String name, String lastName, String cpf) {
 		super(login, password, image);
@@ -45,18 +45,18 @@ public class Client extends User{
 		this.name = name;
 		this.lastName = lastName;
 		this.cpf = cpf;
-		requests = new ArrayList<>();
+		items = new ArrayList<>();
 	}
 
-	public void addRequest(Request request) {
-		this.requests.add(request);
+	public void addItem(Item item) {
+		this.items.add(item);
 	}
 
-	public void removeBudget(Request request) {
-		this.requests.remove(request);
+	public void removeItem(Item item) {
+		this.items.remove(item);
 	}
 
-	public List<Request> getBudget() {
-		return requests;
+	public List<Item> getItem() {
+		return items;
 	}
 }

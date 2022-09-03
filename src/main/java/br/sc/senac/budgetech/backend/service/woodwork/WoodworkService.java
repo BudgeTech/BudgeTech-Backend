@@ -14,11 +14,11 @@ public interface WoodworkService {
 
     void delete(Long id);
 
-    Woodwork findById(Long id);
+    WoodworkProjection findById(Long id);
 
     WoodworkProjection findByCnpj(String cnpj);
 
     WoodworkProjection findByCompanyName(String companyName);
 
-    Woodwork findByLogin(String login);
+    WoodworkProjection findByLogin(String login);
 }

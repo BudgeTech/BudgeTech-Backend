@@ -2,6 +2,7 @@ package br.sc.senac.budgetech.backend.service.contact;
 
 import br.sc.senac.budgetech.backend.dto.ContactDTO;
 import br.sc.senac.budgetech.backend.model.Contact;
+import br.sc.senac.budgetech.backend.projection.ContactProjection;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,7 +14,7 @@ public interface ContactService {
 
     void delete(Long id);
 
-    Contact findById(Long id);
+    ContactProjection findById(Long id);
 
-    Contact findByPhoneNumber(String phoneNumber);
+    ContactProjection findByPhoneNumber(String phoneNumber);
 }

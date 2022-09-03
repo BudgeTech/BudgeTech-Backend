@@ -1,8 +1,7 @@
 package br.sc.senac.budgetech.backend.service.item;
 
 import br.sc.senac.budgetech.backend.dto.ItemDTO;
-import br.sc.senac.budgetech.backend.model.Item;
-import br.sc.senac.budgetech.backend.projection.ItemWithFurnitureProjection;
+import br.sc.senac.budgetech.backend.projection.ItemProjection;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,7 +13,7 @@ public interface ItemService {
 
     void delete(Long id);
 
-    Item findById(Long id);
+    ItemProjection findById(Long id);
 
-    ItemWithFurnitureProjection findByPrice(double totalPrice);
+    ItemProjection findByPrice(double totalPrice);
 }

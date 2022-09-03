@@ -2,6 +2,7 @@ package br.sc.senac.budgetech.backend.service.color;
 
 import br.sc.senac.budgetech.backend.dto.ColorDTO;
 import br.sc.senac.budgetech.backend.model.Color;
+import br.sc.senac.budgetech.backend.projection.ColorProjection;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,9 +14,9 @@ public interface ColorService {
 
     void delete(Long id);
 
-    Color findById(Long id);
+    ColorProjection findById(Long id);
 
-    Color findByName(String name);
+    ColorProjection findByName(String name);
 
-    Color findByBrand(String brand);
+    ColorProjection findByBrand(String brand);
 }

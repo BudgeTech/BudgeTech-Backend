@@ -19,31 +19,28 @@ public class Woodwork extends User{
 	@Column(name = "id_woodwork")
 	private Long id;
 
-	@Column(name = "company_name_woodwork", length = 14, nullable = false)
+	@Column(name = "company_name_woodwork", nullable = false)
 	private String companyName;
 	
-	@Column(name = "cnpj_woodwork", length = 14, nullable = false, unique = true)
+	@Column(name = "cnpj_woodwork", nullable = false, unique = true)
 	private String cnpj;
 
 	@Column(name = "description_woodwork")
 	private String description;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_contact")
 	private Contact contact;
 
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "id_address")
 	private Address address;
 
-	@OneToMany(mappedBy = "woodwork")
-	private List<Request> requests;
+	@OneToMany(mappedBy = "woodwork", cascade = CascadeType.ALL)
+	private List<Item> items;
 
-	@OneToMany(mappedBy = "woodwork")
+	@OneToMany(mappedBy = "woodwork", cascade = CascadeType.ALL)
 	private List<LivingArea> livingAreas;
-
-	@OneToMany(mappedBy = "woodwork")
-	private List<Furniture> furnitures;
 
 	public Woodwork(String login, String password, Blob image, Long id, String companyName, String cnpj, String description) {
 		super(login, password, image);
@@ -51,21 +48,20 @@ public class Woodwork extends User{
 		this.companyName = companyName;
 		this.cnpj = cnpj;
 		this.description = description;
-		requests = new ArrayList<>();
+		items = new ArrayList<>();
 		livingAreas = new ArrayList<>();
-		furnitures = new ArrayList<>();
 	}
 
-	public void addRequest(Request request) {
-		this.requests.add(request);
+	public void addItem(Item item) {
+		this.items.add(item);
 	}
 
-	public void removeBudget(Request request) {
-		this.requests.remove(request);
+	public void removeItem(Item item) {
+		this.items.remove(item);
 	}
 
-	public List<Request> getBudget() {
-		return requests;
+	public List<Item> getItem() {
+		return items;
 	}
 
 	public void addLivingArea(LivingArea livingArea) {
@@ -78,17 +74,5 @@ public class Woodwork extends User{
 
 	public List<LivingArea> getLivingArea() {
 		return livingAreas;
-	}
-
-	public void addFurniture(Furniture furniture) {
-		this.furnitures.add(furniture);
-	}
-
-	public void removeFurniture(Furniture furniture) {
-		this.furnitures.remove(furniture);
-	}
-
-	public List<Furniture> getFurniture() {
-		return furnitures;
 	}
 }

@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.service.client;
 
 import br.sc.senac.budgetech.backend.dto.ClientDTO;
-import br.sc.senac.budgetech.backend.projection.ClientBasicProjection;
+import br.sc.senac.budgetech.backend.projection.ClientProjection;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -13,9 +13,9 @@ public interface ClientService {
 
     void delete(Long id);
 
-    ClientBasicProjection findById(Long id);
+    ClientProjection findById(Long id);
 
-    ClientBasicProjection findByName(String name);
+    ClientProjection findByName(String name);
 
-    ClientBasicProjection findByCpf(String cpf);
+    ClientProjection findByCpf(String cpf);
 }

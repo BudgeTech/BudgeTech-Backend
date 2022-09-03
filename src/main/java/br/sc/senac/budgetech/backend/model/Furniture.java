@@ -31,24 +31,12 @@ public class Furniture {
 
 	@Column(name = "price_furniture", length = 20, nullable = false)
 	private double price;
-	
-	@ManyToOne
-	@JoinColumn(name = "id_woodwork")
-	private Woodwork woodwork;
 
 	@ManyToOne
 	@JoinColumn(name = "id_living_area")
 	private LivingArea livingArea;
 
-	@ManyToOne
-	@JoinColumn(name = "id_request")
-	private Request request;
-
-	@ManyToOne
-	@JoinColumn(name = "id_item")
-	private Item item;
-
-	@OneToMany(mappedBy = "furniture")
+	@OneToMany(mappedBy = "furniture", cascade = CascadeType.ALL)
 	private List<Color> colors;
 
 	public Furniture(Long id, String name, String description, double furnitureSize, double price) {

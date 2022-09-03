@@ -1,8 +1,11 @@
 package br.sc.senac.budgetech.backend.service.contact;
 
 import br.sc.senac.budgetech.backend.dto.ContactDTO;
+import br.sc.senac.budgetech.backend.exception.client.ClientCpfRegisteredException;
+import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.ContactMapper;
 import br.sc.senac.budgetech.backend.model.Contact;
+import br.sc.senac.budgetech.backend.projection.ContactProjection;
 import br.sc.senac.budgetech.backend.repository.ContactRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,28 +17,51 @@ public class ContactServiceImpl implements ContactService {
     private ContactRepository contactRepository;
     private ContactMapper contactMapper;
 
-    @Override
     public ContactDTO save(ContactDTO contactDTO) {
-        return null;
+
+        if (contactRepository.existsByEmail(contactDTO.email()))
+            throw new ClientCpfRegisteredException("Email " + contactDTO.email() + " is already registered");
+
+        if (contactRepository.existsByPhoneNumber(contactDTO.phoneNumber()))
+            throw new ClientCpfRegisteredException("Phone Number " + contactDTO.phoneNumber() + " is already registered");
+
+        Contact contact = contactMapper.toEntity(contactDTO);
+        Contact contactSaved = contactRepository.save(contact);
+        return contactMapper.toDTO(contactSaved);
+
     }
 
-    @Override
     public void update(ContactDTO contactDTO, Long id) {
 
+        Contact contact = contactRepository.findById(id)
+                .orElseThrow(() -> new ContactNotFoundException("Contact " + id + " was not found"));
+
+        if (contactRepository.existsByEmail(contactDTO.email()))
+            throw new ClientCpfRegisteredException("Email " + contactDTO.email() + " is already registered");
+
+        if (contactRepository.existsByPhoneNumber(contactDTO.phoneNumber()))
+            throw new ClientCpfRegisteredException("Phone Number " + contactDTO.phoneNumber() + " is already registered");
+
+        contact.setPhoneNumber(contactDTO.phoneNumber());
+        contact.setEmail(contactDTO.email());
+        contact.setSocialNetwork(contactDTO.socialNetwork());
+
+        contactRepository.save(contact);
     }
 
-    @Override
     public void delete(Long id) {
-
+        if (!contactRepository.existsById(id))
+            throw new ContactNotFoundException("Contact " + id + " was not found");
+        contactRepository.deleteById(id);
     }
 
-    @Override
-    public Contact findById(Long id) {
-        return null;
+    public ContactProjection findById(Long id) {
+        return contactRepository.findContactById(id)
+                .orElseThrow(() -> new ContactNotFoundException("Contact " + id + " was not found"));
     }
 
-    @Override
-    public Contact findByPhoneNumber(String phoneNumber) {
-        return null;
+    public ContactProjection findByPhoneNumber(String phoneNumber) {
+        return contactRepository.findContactByPhoneNumber(phoneNumber)
+                .orElseThrow(() -> new ContactNotFoundException("Contact " + phoneNumber + " was not found"));
     }
 }

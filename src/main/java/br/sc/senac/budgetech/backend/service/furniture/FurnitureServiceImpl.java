@@ -1,13 +1,15 @@
 package br.sc.senac.budgetech.backend.service.furniture;
 
 import br.sc.senac.budgetech.backend.dto.FurnitureDTO;
+import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNameRegisteredException;
+import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundException;
+import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.FurnitureMapper;
 import br.sc.senac.budgetech.backend.model.Furniture;
-import br.sc.senac.budgetech.backend.projection.FurnitureBasicProjection;
+import br.sc.senac.budgetech.backend.model.LivingArea;
+import br.sc.senac.budgetech.backend.projection.FurnitureProjection;
 import br.sc.senac.budgetech.backend.repository.FurnitureRepository;
-import br.sc.senac.budgetech.backend.repository.ItemRepository;
 import br.sc.senac.budgetech.backend.repository.LivingAreaRepository;
-import br.sc.senac.budgetech.backend.repository.RequestRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -18,42 +20,55 @@ public class FurnitureServiceImpl implements FurnitureService {
     private final FurnitureRepository furnitureRepository;
     private final FurnitureMapper furnitureMapper;
     private final LivingAreaRepository livingAreaRepository;
-    private final RequestRepository requestRepository;
-    private final ItemRepository itemRepository;
 
-
-    @Override
     public FurnitureDTO save(FurnitureDTO furnitureDTO) {
-        return null;
+
+        if (furnitureRepository.existsByName(furnitureDTO.name()))
+            throw new FurnitureNameRegisteredException("Furniture " + furnitureDTO.name() + " is already registered");
+
+        LivingArea livingArea = livingAreaRepository.findById(furnitureDTO.idLivingArea())
+                .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + furnitureDTO.idLivingArea() + " was not found"));
+
+        Furniture furniture = furnitureMapper.toEntity(furnitureDTO);
+        furniture.setLivingArea(livingArea);
+        Furniture furnitureSaved = furnitureRepository.save(furniture);
+
+        return furnitureMapper.toDTO(furnitureSaved);
     }
 
-    @Override
     public void update(FurnitureDTO furnitureDTO, Long id) {
+        Furniture furniture = furnitureRepository.findById(id)
+                .orElseThrow(() -> new FurnitureNotFoundException("Furniture " + id + " was not found"));
 
+        if (furnitureRepository.existsByName(furnitureDTO.name()))
+            throw new FurnitureNameRegisteredException("Name " + furnitureDTO.name() + " is already registered");
+
+        furniture.setName(furnitureDTO.name());
+        furniture.setDescription(furnitureDTO.description());
+        furniture.setFurnitureSize(furnitureDTO.furnitureSize());
+        furniture.setPrice(furnitureDTO.price());
+        furnitureRepository.save(furniture);
     }
 
-    @Override
+
     public void delete(Long id) {
-
+        if (!furnitureRepository.existsById(id))
+            throw new FurnitureNotFoundException("Furniture " + id + " was not found");
+        furnitureRepository.deleteById(id);
     }
 
-    @Override
-    public Furniture findById(Long id) {
-        return null;
+    public FurnitureProjection findById(Long id) {
+        return furnitureRepository.findFurnitureById(id)
+                .orElseThrow(() -> new FurnitureNotFoundException("Id " + id + " was not found"));
     }
 
-    @Override
-    public FurnitureBasicProjection findByName(String name) {
-        return null;
+    public FurnitureProjection findByName(String name) {
+        return furnitureRepository.findFurnitureByName(name)
+                .orElseThrow(() -> new FurnitureNotFoundException("Name " + name + " was not found"));
     }
 
-    @Override
-    public Furniture findByFootage(double footage) {
-        return null;
-    }
-
-    @Override
-    public FurnitureBasicProjection findByPrice(double price) {
-        return null;
+    public FurnitureProjection findByPrice(double price) {
+        return furnitureRepository.findFurnitureByPrice(price)
+                .orElseThrow(() -> new FurnitureNotFoundException("Price " + price + " was not found"));
     }
 }
