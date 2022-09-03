@@ -4,6 +4,7 @@ import br.sc.senac.budgetech.backend.dto.RequestCreateDTO;
 import br.sc.senac.budgetech.backend.dto.RequestListDTO;
 import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.RequestMapper;
+import br.sc.senac.budgetech.backend.model.Furniture;
 import br.sc.senac.budgetech.backend.model.Request;
 import br.sc.senac.budgetech.backend.projection.RequestProjection;
 import br.sc.senac.budgetech.backend.repository.FurnitureRepository;
@@ -28,7 +29,7 @@ public class RequestServiceImpl implements RequestService {
                 requestListDTO.initialDate(), requestListDTO.finalDate());
 
         for (Long idFurniture:requestListDTO.idsFunitures()) {
-            var furniture = furnitureRepository.findById(idFurniture)
+            Furniture furniture = furnitureRepository.findById(idFurniture)
                     .orElseThrow(() -> new RequestNotFoundException("Request " + idFurniture + " was not found"));
             request.getFurnitures().add(furniture);
         }

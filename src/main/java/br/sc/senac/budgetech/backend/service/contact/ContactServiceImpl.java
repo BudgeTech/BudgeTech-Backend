@@ -42,9 +42,9 @@ public class ContactServiceImpl implements ContactService {
         if (contactRepository.existsByPhoneNumber(contactDTO.phoneNumber()))
             throw new ClientCpfRegisteredException("Phone Number " + contactDTO.phoneNumber() + " is already registered");
 
-        contact.setPhoneNumber(contactDTO.phoneNumber());
-        contact.setEmail(contactDTO.email());
-        contact.setSocialNetwork(contactDTO.socialNetwork());
+        contact.setPhoneNumber((contactDTO.phoneNumber() != null && !contactDTO.phoneNumber().isBlank()) ? contactDTO.phoneNumber() : contact.getPhoneNumber());
+        contact.setEmail((contactDTO.email() != null && !contactDTO.email().isBlank()) ? contactDTO.email() : contact.getEmail());
+        contact.setSocialNetwork((contactDTO.socialNetwork() != null && !contactDTO.socialNetwork().isBlank()) ? contactDTO.socialNetwork() : contact.getSocialNetwork());
 
         contactRepository.save(contact);
     }

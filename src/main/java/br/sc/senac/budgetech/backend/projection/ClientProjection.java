@@ -9,4 +9,6 @@ public interface ClientProjection {
     String getLastName();
 
     String getCpf();
+
+    String getLogin();
 }

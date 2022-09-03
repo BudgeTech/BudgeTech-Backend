@@ -37,13 +37,8 @@ public class LivingAreaServiceImpl implements LivingAreaService {
         LivingArea livingArea = livingAreaRepository.findById(id)
                 .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + id + " was not found"));
 
-        Woodwork woodwork = woodworkRepository.findById(livingAreaDTO.idWoodwork())
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + livingAreaDTO.idWoodwork() + " was not found"));
-
-        livingArea.setName(livingAreaDTO.name());
-        livingArea.setWoodwork(woodwork);
+        livingArea.setName((livingAreaDTO.name() != null && !livingAreaDTO.name().isBlank()) ? livingAreaDTO.name() : livingArea.getName());
         livingAreaRepository.save(livingArea);
-
     }
 
     public void delete(Long id) {

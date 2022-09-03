@@ -43,13 +43,12 @@ public class FurnitureServiceImpl implements FurnitureService {
         if (furnitureRepository.existsByName(furnitureDTO.name()))
             throw new FurnitureNameRegisteredException("Name " + furnitureDTO.name() + " is already registered");
 
-        furniture.setName(furnitureDTO.name());
-        furniture.setDescription(furnitureDTO.description());
+        furniture.setName((furnitureDTO.name() != null && furnitureDTO.name().isBlank()) ? furnitureDTO.name() : furniture.getName());
+        furniture.setDescription((furnitureDTO.description() != null && furnitureDTO.description().isBlank()) ? furnitureDTO.description() : furniture.getDescription());
         furniture.setFurnitureSize(furnitureDTO.furnitureSize());
         furniture.setPrice(furnitureDTO.price());
         furnitureRepository.save(furniture);
     }
-
 
     public void delete(Long id) {
         if (!furnitureRepository.existsById(id))

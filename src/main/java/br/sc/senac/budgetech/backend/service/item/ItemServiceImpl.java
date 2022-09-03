@@ -40,13 +40,10 @@ public class ItemServiceImpl implements ItemService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + itemDTO.idWoodwork() + " was not found"));
 
         Item item = itemMapper.toEntity(itemDTO);
-        item.setQuantity(item.getQuantity());
-        item.setTotalPrice(item.getTotalPrice());
         item.setRequest(request);
         item.setClient(client);
         item.setWoodwork(woodwork);
         Item itemSaved = itemRepository.save(item);
-
         return itemMapper.toDTO(itemSaved);
     }
 

@@ -2,14 +2,10 @@ package br.sc.senac.budgetech.backend.service.color;
 
 import br.sc.senac.budgetech.backend.dto.ColorDTO;
 import br.sc.senac.budgetech.backend.exception.color.ColorNotFoundException;
-import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundException;
-import br.sc.senac.budgetech.backend.exception.item.ItemNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.ColorMapper;
 import br.sc.senac.budgetech.backend.model.Color;
-import br.sc.senac.budgetech.backend.model.Contact;
 import br.sc.senac.budgetech.backend.model.Furniture;
-import br.sc.senac.budgetech.backend.model.Item;
 import br.sc.senac.budgetech.backend.projection.ColorProjection;
 import br.sc.senac.budgetech.backend.repository.ColorRepository;
 import br.sc.senac.budgetech.backend.repository.FurnitureRepository;
@@ -41,8 +37,8 @@ public class ColorServiceImpl implements ColorService {
         Color color = colorRepository.findById(id)
                 .orElseThrow(() -> new ColorNotFoundException("Color " + id + " was not found"));
 
-        color.setName(colorDTO.name());
-        color.setBrand(colorDTO.brand());
+        color.setName((colorDTO.name() != null && !colorDTO.name().isBlank()) ? colorDTO.name() : color.getName());
+        color.setBrand((colorDTO.brand() != null && !colorDTO.brand().isBlank()) ? colorDTO.brand() : color.getBrand());
         colorRepository.save(color);
     }
 

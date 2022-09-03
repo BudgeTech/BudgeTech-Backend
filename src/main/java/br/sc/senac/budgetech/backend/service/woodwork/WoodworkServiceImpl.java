@@ -36,12 +36,10 @@ public class WoodworkServiceImpl implements WoodworkService {
         Address address = addressRepository.findById(woodworkDTO.idAddress())
                 .orElseThrow(() -> new AddressNotFoundException("Address " + woodworkDTO.idAddress() + " was not found"));
 
-
         Woodwork woodwork = woodworkMapper.toEntity(woodworkDTO);
         woodwork.setContact(contact);
         woodwork.setAddress(address);
         Woodwork woodworkSaved = woodworkRepository.save(woodwork);
-
         return woodworkMapper.toDTO(woodworkSaved);
     }
 
@@ -53,20 +51,12 @@ public class WoodworkServiceImpl implements WoodworkService {
         if (woodworkRepository.existsByCnpj(woodworkDTO.cnpj()))
             throw new WoodworkCnpjRegisteredException("Cnpj " + woodworkDTO.cnpj() + " is already registered");
 
-        Contact contact = contactRepository.findById(woodworkDTO.idContact())
-                .orElseThrow(() -> new ContactNotFoundException("Contact " + woodworkDTO.idContact() + " was not found"));
-
-        Address address = addressRepository.findById(woodworkDTO.idAddress())
-                .orElseThrow(() -> new AddressNotFoundException("Address " + woodworkDTO.idAddress() + " was not found"));
-
-        woodwork.setAddress(address);
-        woodwork.setContact(contact);
-        woodwork.setCompanyName(woodworkDTO.companyName());
-        woodwork.setDescription(woodworkDTO.description());
         woodwork.setImage(woodworkDTO.image());
-        woodwork.setCnpj(woodworkDTO.cnpj());
-        woodwork.setLogin(woodworkDTO.login());
-        woodwork.setPassword(woodworkDTO.password());
+        woodwork.setCompanyName((woodworkDTO.companyName() != null && !woodworkDTO.companyName().isBlank()) ? woodworkDTO.companyName() : woodwork.getCompanyName());
+        woodwork.setDescription((woodworkDTO.description() != null && !woodworkDTO.description().isBlank()) ? woodworkDTO.description() : woodwork.getDescription());
+        woodwork.setCnpj((woodworkDTO.cnpj() != null && !woodworkDTO.cnpj().isBlank()) ? woodworkDTO.cnpj() : woodwork.getCnpj());
+        woodwork.setLogin((woodworkDTO.login() != null && !woodworkDTO.login().isBlank()) ? woodworkDTO.login() : woodwork.getLogin());
+        woodwork.setPassword((woodworkDTO.password() != null && !woodworkDTO.password().isBlank()) ? woodworkDTO.password() : woodwork.getPassword());
         woodworkRepository.save(woodwork);
     }
 

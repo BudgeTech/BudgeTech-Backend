@@ -46,7 +46,6 @@ public class ClientServiceImpl implements ClientService {
         client.setContact(contact);
         client.setAddress(address);
         Client clientSaved = clientRepository.save(client);
-
         return clientMapper.toDTO(clientSaved);
     }
 
@@ -54,7 +53,6 @@ public class ClientServiceImpl implements ClientService {
 
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
-
 
         Contact contact = contactRepository.findById(clientDTO.idContact())
                 .orElseThrow(() -> new ContactNotFoundException("Contact " + clientDTO.idContact() + " was not found"));
