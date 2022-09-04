@@ -1,5 +1,6 @@
 package br.sc.senac.budgetech.backend.error;
 
+import br.sc.senac.budgetech.backend.exception.address.AddressInvalidException;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
 import br.sc.senac.budgetech.backend.exception.address.AddressStreetAndNumberRegisteredException;
 import br.sc.senac.budgetech.backend.exception.client.ClientCpfInvalidException;
@@ -9,10 +10,13 @@ import br.sc.senac.budgetech.backend.exception.color.ColorNotFoundException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactEmailRegisteredException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactPhoneNumberRegisteredException;
+import br.sc.senac.budgetech.backend.exception.furniture.FurnitureInvalidException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNameRegisteredException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundException;
+import br.sc.senac.budgetech.backend.exception.item.ItemInvalidException;
 import br.sc.senac.budgetech.backend.exception.item.ItemNotFoundException;
 import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundException;
+import br.sc.senac.budgetech.backend.exception.request.RequestInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkCnpjRegisteredException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkNotFoundException;
@@ -32,6 +36,12 @@ public class CustomControllerAdvice {
     public ResponseEntity<ErrorResponse> handleAddressRoadAndNumberRegisteredExceptions(Exception exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(new ErrorResponse(HttpStatus.CONFLICT, exception.getMessage()));
+    }
+
+    @ExceptionHandler(AddressInvalidException.class)
+    public ResponseEntity<ErrorResponse> handleAddressInvalidExceptions(Exception exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage()));
     }
 
     @ExceptionHandler(ClientNotFoundException.class)
@@ -87,10 +97,22 @@ public class CustomControllerAdvice {
                 .body(new ErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage()));
     }
 
+    @ExceptionHandler(FurnitureInvalidException.class)
+    public ResponseEntity<ErrorResponse> handleFurnitureInvalidExceptions(Exception exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage()));
+    }
+
     @ExceptionHandler(ItemNotFoundException.class)
     public ResponseEntity<ErrorResponse> handleItemNotFoundExceptions(Exception exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new ErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage()));
+    }
+
+    @ExceptionHandler(ItemInvalidException.class)
+    public ResponseEntity<ErrorResponse> handleItemInvalidExceptions(Exception exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage()));
     }
 
     @ExceptionHandler(LivingAreaNotFoundException.class)
@@ -103,6 +125,12 @@ public class CustomControllerAdvice {
     public ResponseEntity<ErrorResponse> handleRequestNotFoundExceptions(Exception exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new ErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage()));
+    }
+
+    @ExceptionHandler(RequestInvalidException.class)
+    public ResponseEntity<ErrorResponse> handleRequestInvalidExceptions(Exception exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage()));
     }
 
     @ExceptionHandler(WoodworkCnpjRegisteredException.class)
