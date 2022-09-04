@@ -1,9 +1,11 @@
 package br.sc.senac.budgetech.backend.service.woodwork;
 
 import br.sc.senac.budgetech.backend.dto.WoodworkDTO;
-import br.sc.senac.budgetech.backend.model.Woodwork;
+import br.sc.senac.budgetech.backend.projection.WoodworkAllProjection;
 import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
 import org.springframework.stereotype.Service;
+
+import java.util.Optional;
 
 @Service
 public interface WoodworkService {
@@ -18,7 +20,14 @@ public interface WoodworkService {
 
     WoodworkProjection findByCnpj(String cnpj);
 
+    WoodworkProjection findByAddressNeighbor(String neighbor);
+
+    WoodworkProjection findByContactPhoneNumber(String phoneNumber);
+
     WoodworkProjection findByCompanyName(String companyName);
 
     WoodworkProjection findByLogin(String login);
+
+    WoodworkAllProjection findWithAddressAndContactById(Long id);
+
 }

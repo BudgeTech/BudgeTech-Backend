@@ -1,7 +1,10 @@
 package br.sc.senac.budgetech.backend.controller;
 
 import br.sc.senac.budgetech.backend.dto.ClientDTO;
+import br.sc.senac.budgetech.backend.projection.ClientAllProjection;
 import br.sc.senac.budgetech.backend.projection.ClientProjection;
+import br.sc.senac.budgetech.backend.projection.WoodworkAllProjection;
+import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
 import br.sc.senac.budgetech.backend.service.client.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -46,5 +49,15 @@ public class ClientController {
     @GetMapping("name/{name}")
     public ResponseEntity<ClientProjection> getProjectionByName(@PathVariable(value = "name") String name) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findByName(name));
+    }
+
+    @GetMapping("phoneNumber/{phoneNumber}")
+    public ResponseEntity<ClientProjection> getProjectionByContactPhoneNumber(@PathVariable(value = "phoneNumber") String phoneNumber) {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findByContactPhoneNumber(phoneNumber));
+    }
+
+    @GetMapping("/{id}/all")
+    public ResponseEntity<ClientAllProjection> getProjectionWithAddressAndContact(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithAddressAndContactById(id));
     }
 }

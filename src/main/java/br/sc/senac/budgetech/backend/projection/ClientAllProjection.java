@@ -1,12 +1,14 @@
 package br.sc.senac.budgetech.backend.projection;
 
-public interface ClientProjection {
+public interface ClientAllProjection {
 
     Long getId();
 
     String getName();
 
     String getLastName();
+
+    String getCpf();
 
     String getLogin();
 
@@ -16,13 +18,27 @@ public interface ClientProjection {
 
     interface AddressProjection {
 
+        String getStreet();
+
+        int getNumber();
+
+        String getComplement();
+
         String getNeighbor();
 
         String getCity();
+
+        String getProvince();
+
+        String getCep();
     }
 
-    interface ContactProjection{
+    interface ContactProjection {
+
+        String getEmail();
 
         String getPhoneNumber();
+
+        String getSocialNetwork();
     }
 }

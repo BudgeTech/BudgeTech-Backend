@@ -8,7 +8,17 @@ public interface WoodworkProjection {
 
 	String getCompanyName();
 
-	String getDescription();
+	AddressProjection getAddress();
 
-	String getCnpj();
+	ContactProjection getContact();
+
+	interface AddressProjection {
+
+		String getNeighbor();
+	}
+
+	interface ContactProjection {
+
+		String getPhoneNumber();
+	}
 }

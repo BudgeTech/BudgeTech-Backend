@@ -1,6 +1,7 @@
 package br.sc.senac.budgetech.backend.controller;
 
 import br.sc.senac.budgetech.backend.dto.WoodworkDTO;
+import br.sc.senac.budgetech.backend.projection.WoodworkAllProjection;
 import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
 import br.sc.senac.budgetech.backend.service.woodwork.WoodworkService;
 import lombok.AllArgsConstructor;
@@ -51,5 +52,20 @@ public class WoodworkController {
     @GetMapping("login/{login}")
     public ResponseEntity<WoodworkProjection> getProjectionByLogin(@PathVariable(value = "login") String login) {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findByLogin(login));
+    }
+
+    @GetMapping("neighbor/{neighbor}")
+    public ResponseEntity<WoodworkProjection> getProjectionByAddressNeighbor(@PathVariable(value = "neighbor") String neighbor) {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findByAddressNeighbor(neighbor));
+    }
+
+    @GetMapping("phoneNumber/{phoneNumber}")
+    public ResponseEntity<WoodworkProjection> getProjectionByContactPhoneNumber(@PathVariable(value = "phoneNumber") String phoneNumber) {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findByContactPhoneNumber(phoneNumber));
+    }
+
+    @GetMapping("/{id}/all")
+    public ResponseEntity<WoodworkAllProjection> getProjectionWithAddressAndContact(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findWithAddressAndContactById(id));
     }
 }
