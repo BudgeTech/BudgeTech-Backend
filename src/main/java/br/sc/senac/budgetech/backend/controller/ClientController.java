@@ -1,8 +1,10 @@
 package br.sc.senac.budgetech.backend.controller;
 
 import br.sc.senac.budgetech.backend.dto.ClientDTO;
-import br.sc.senac.budgetech.backend.projection.ClientAllProjection;
+import br.sc.senac.budgetech.backend.projection.ClientWithAddressAndContactProjection;
 import br.sc.senac.budgetech.backend.projection.ClientProjection;
+import br.sc.senac.budgetech.backend.projection.ClientWithAll;
+import br.sc.senac.budgetech.backend.projection.ClientWithItemProjection;
 import br.sc.senac.budgetech.backend.service.client.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -54,8 +56,18 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findByContactPhoneNumber(phoneNumber));
     }
 
-    @GetMapping("/{id}/all")
-    public ResponseEntity<ClientAllProjection> getProjectionWithAddressAndContact(@PathVariable(value = "id") Long id) {
+    @GetMapping("/{id}/address/contact")
+    public ResponseEntity<ClientWithAddressAndContactProjection> getProjectionWithAddressAndContact(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithAddressAndContactById(id));
+    }
+
+    @GetMapping("/{id}/items")
+    public ResponseEntity<ClientWithItemProjection> getProjectionWithItem(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithItemById(id));
+    }
+
+    @GetMapping("/{id}/all")
+    public ResponseEntity<ClientWithAll> getProjectionWithAll(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithAddressAndContactAndItemById(id));
     }
 }

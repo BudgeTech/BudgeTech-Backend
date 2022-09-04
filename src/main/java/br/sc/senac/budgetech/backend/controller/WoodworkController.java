@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.controller;
 
 import br.sc.senac.budgetech.backend.dto.WoodworkDTO;
-import br.sc.senac.budgetech.backend.projection.WoodworkAllProjection;
+import br.sc.senac.budgetech.backend.projection.WoodworkWithAddressAndContactProjection;
 import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
 import br.sc.senac.budgetech.backend.service.woodwork.WoodworkService;
 import lombok.AllArgsConstructor;
@@ -65,7 +65,7 @@ public class WoodworkController {
     }
 
     @GetMapping("/{id}/all")
-    public ResponseEntity<WoodworkAllProjection> getProjectionWithAddressAndContact(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<WoodworkWithAddressAndContactProjection> getProjectionWithAddressAndContact(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findWithAddressAndContactById(id));
     }
 }

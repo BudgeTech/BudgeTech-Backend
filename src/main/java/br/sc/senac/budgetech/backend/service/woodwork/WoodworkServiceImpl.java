@@ -9,7 +9,7 @@ import br.sc.senac.budgetech.backend.mapper.WoodworkMapper;
 import br.sc.senac.budgetech.backend.model.Address;
 import br.sc.senac.budgetech.backend.model.Contact;
 import br.sc.senac.budgetech.backend.model.Woodwork;
-import br.sc.senac.budgetech.backend.projection.WoodworkAllProjection;
+import br.sc.senac.budgetech.backend.projection.WoodworkWithAddressAndContactProjection;
 import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
 import br.sc.senac.budgetech.backend.repository.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.ContactRepository;
@@ -97,7 +97,7 @@ public class WoodworkServiceImpl implements WoodworkService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + phoneNumber + " was not found"));
     }
 
-    public WoodworkAllProjection findWithAddressAndContactById(Long id) {
+    public WoodworkWithAddressAndContactProjection findWithAddressAndContactById(Long id) {
         return woodworkRepository.findWoodworkWithAddressAndContactById(id).orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
     }
 }

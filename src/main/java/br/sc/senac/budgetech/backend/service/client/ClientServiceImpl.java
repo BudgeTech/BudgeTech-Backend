@@ -10,8 +10,10 @@ import br.sc.senac.budgetech.backend.mapper.ClientMapper;
 import br.sc.senac.budgetech.backend.model.Address;
 import br.sc.senac.budgetech.backend.model.Client;
 import br.sc.senac.budgetech.backend.model.Contact;
-import br.sc.senac.budgetech.backend.projection.ClientAllProjection;
+import br.sc.senac.budgetech.backend.projection.ClientWithAddressAndContactProjection;
 import br.sc.senac.budgetech.backend.projection.ClientProjection;
+import br.sc.senac.budgetech.backend.projection.ClientWithAll;
+import br.sc.senac.budgetech.backend.projection.ClientWithItemProjection;
 import br.sc.senac.budgetech.backend.repository.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.ContactRepository;
@@ -106,7 +108,15 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + phoneNumber + " was not found"));
     }
 
-    public ClientAllProjection findWithAddressAndContactById(Long id) {
+    public ClientWithAddressAndContactProjection findWithAddressAndContactById(Long id) {
         return clientRepository.findClientWithAddressAndContactById(id).orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
+    }
+
+    public ClientWithItemProjection findWithItemById(Long id) {
+        return clientRepository.findClientWithItemById(id).orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
+    }
+
+    public ClientWithAll findWithAddressAndContactAndItemById(Long id) {
+        return clientRepository.findClientWithAddressAndContactAndItemById(id).orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
     }
 }

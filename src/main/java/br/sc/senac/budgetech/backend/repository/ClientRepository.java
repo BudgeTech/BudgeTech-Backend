@@ -1,9 +1,10 @@
 package br.sc.senac.budgetech.backend.repository;
 
 import br.sc.senac.budgetech.backend.model.Client;
-import br.sc.senac.budgetech.backend.projection.ClientAllProjection;
+import br.sc.senac.budgetech.backend.projection.ClientWithAddressAndContactProjection;
 import br.sc.senac.budgetech.backend.projection.ClientProjection;
-import br.sc.senac.budgetech.backend.projection.WoodworkAllProjection;
+import br.sc.senac.budgetech.backend.projection.ClientWithAll;
+import br.sc.senac.budgetech.backend.projection.ClientWithItemProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -22,5 +23,9 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Optional<ClientProjection> findClientByContactPhoneNumber(String phoneNumber);
 
-    Optional<ClientAllProjection> findClientWithAddressAndContactById(Long id);
+    Optional<ClientWithAddressAndContactProjection> findClientWithAddressAndContactById(Long id);
+
+    Optional<ClientWithItemProjection> findClientWithItemById(Long id);
+
+    Optional<ClientWithAll> findClientWithAddressAndContactAndItemById(Long id);
 }

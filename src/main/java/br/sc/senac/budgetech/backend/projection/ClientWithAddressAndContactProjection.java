@@ -1,16 +1,16 @@
 package br.sc.senac.budgetech.backend.projection;
 
-public interface WoodworkAllProjection {
+public interface ClientWithAddressAndContactProjection {
 
     Long getId();
 
+    String getName();
+
+    String getLastName();
+
+    String getCpf();
+
     String getLogin();
-
-    String getCompanyName();
-
-    String getDescription();
-
-    String getCnpj();
 
     AddressProjection getAddress();
 

@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.repository;
 
 import br.sc.senac.budgetech.backend.model.Woodwork;
-import br.sc.senac.budgetech.backend.projection.WoodworkAllProjection;
+import br.sc.senac.budgetech.backend.projection.WoodworkWithAddressAndContactProjection;
 import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
@@ -25,6 +25,6 @@ public interface WoodworkRepository extends JpaRepository<Woodwork, Long> {
 
     Optional<WoodworkProjection> findWoodworkByLogin(String login);
 
-    Optional<WoodworkAllProjection> findWoodworkWithAddressAndContactById(Long id);
+    Optional<WoodworkWithAddressAndContactProjection> findWoodworkWithAddressAndContactById(Long id);
 
 }
