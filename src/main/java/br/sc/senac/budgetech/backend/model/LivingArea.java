@@ -1,16 +1,14 @@
 package br.sc.senac.budgetech.backend.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @AllArgsConstructor
-@NoArgsConstructor
 @Entity
 @Table(name = "living_area")
 public class LivingArea {
@@ -29,6 +27,10 @@ public class LivingArea {
 
 	@OneToMany(mappedBy = "livingArea", cascade = CascadeType.ALL)
 	private List<Furniture> furnitures;
+
+	public LivingArea() {
+		furnitures = new ArrayList<>();
+	}
 
 	public LivingArea(Long id, String name) {
 		this.id = id;

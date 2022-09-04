@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.backend.service.furniture;
 
 import br.sc.senac.budgetech.backend.dto.FurnitureDTO;
-import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureInvalidException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNameRegisteredException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundException;

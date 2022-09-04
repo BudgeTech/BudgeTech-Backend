@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.backend.service.color;
 
 import br.sc.senac.budgetech.backend.dto.ColorDTO;
-import br.sc.senac.budgetech.backend.model.Color;
 import br.sc.senac.budgetech.backend.projection.ColorProjection;
 import org.springframework.stereotype.Service;
 

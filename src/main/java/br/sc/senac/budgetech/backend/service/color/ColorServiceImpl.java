@@ -18,7 +18,6 @@ public class ColorServiceImpl implements ColorService {
 
     private final ColorRepository colorRepository;
     private final ColorMapper colorMapper;
-
     private final FurnitureRepository furnitureRepository;
 
     public ColorDTO save(ColorDTO colorDTO) {

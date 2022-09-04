@@ -85,6 +85,7 @@ public class CustomControllerAdvice {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(new ErrorResponse(HttpStatus.CONFLICT, exception.getMessage()));
     }
+
     @ExceptionHandler(FurnitureNameRegisteredException.class)
     public ResponseEntity<ErrorResponse> handleFurnitureNameRegisteredExceptions(Exception exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT)

@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.service.request;
 
 import br.sc.senac.budgetech.backend.dto.RequestCreateDTO;
-import br.sc.senac.budgetech.backend.dto.RequestListDTO;
+import br.sc.senac.budgetech.backend.dto.RequestDTO;
 import br.sc.senac.budgetech.backend.exception.item.ItemInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
@@ -24,7 +24,7 @@ public class RequestServiceImpl implements RequestService {
     private FurnitureRepository furnitureRepository;
     private RequestMapper requestMapper;
 
-    public RequestListDTO save(RequestCreateDTO requestListDTO) {
+    public RequestDTO save(RequestCreateDTO requestListDTO) {
 
         Request request = new Request(requestListDTO.id(), requestListDTO.price(),
                 requestListDTO.status(), requestListDTO.payment(),
@@ -43,19 +43,19 @@ public class RequestServiceImpl implements RequestService {
         return requestMapper.toDTO(requestSaved);
     }
 
-    public void update(RequestListDTO requestListDTO, Long id) {
+    public void update(RequestDTO requestDTO, Long id) {
 
         Request request = requestRepository.findById(id)
                 .orElseThrow(() -> new RequestNotFoundException("Request " + id + " was not found"));
 
-        if (requestListDTO.price() < 0)
-            throw new RequestInvalidException("Price " + requestListDTO.price() + " is invalid");
+        if (requestDTO.price() < 0)
+            throw new RequestInvalidException("Price " + requestDTO.price() + " is invalid");
 
-        request.setPrice(requestListDTO.price());
-        request.setStatus(requestListDTO.status());
-        request.setPayment(requestListDTO.payment());
-        request.setInitialDate(requestListDTO.initialDate());
-        request.setFinalDate(requestListDTO.finalDate());
+        request.setPrice(requestDTO.price());
+        request.setStatus(requestDTO.status());
+        request.setPayment(requestDTO.payment());
+        request.setInitialDate(requestDTO.initialDate());
+        request.setFinalDate(requestDTO.finalDate());
         requestRepository.save(request);
     }
 

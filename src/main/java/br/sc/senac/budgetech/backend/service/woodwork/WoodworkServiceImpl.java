@@ -97,7 +97,7 @@ public class WoodworkServiceImpl implements WoodworkService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + phoneNumber + " was not found"));
     }
 
-    public WoodworkAllProjection findWithAddressAndContactById (Long id) {
+    public WoodworkAllProjection findWithAddressAndContactById(Long id) {
         return woodworkRepository.findWoodworkWithAddressAndContactById(id).orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
     }
 }

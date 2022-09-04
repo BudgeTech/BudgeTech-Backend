@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.backend.controller;
 
 import br.sc.senac.budgetech.backend.dto.ColorDTO;
-import br.sc.senac.budgetech.backend.model.Color;
 import br.sc.senac.budgetech.backend.projection.ColorProjection;
 import br.sc.senac.budgetech.backend.service.color.ColorService;
 import lombok.AllArgsConstructor;

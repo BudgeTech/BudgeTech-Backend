@@ -2,7 +2,7 @@ package br.sc.senac.budgetech.backend.enumeration;
 
 public enum Status {
 
-	IN_SCHEDULE,
+    IN_SCHEDULE,
     IN_BUDGET,
     APPROVED,
     DISAPPROVED,

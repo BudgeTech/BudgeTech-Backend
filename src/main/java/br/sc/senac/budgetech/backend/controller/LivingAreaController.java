@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.backend.controller;
 
 import br.sc.senac.budgetech.backend.dto.LivingAreaDTO;
-import br.sc.senac.budgetech.backend.model.LivingArea;
 import br.sc.senac.budgetech.backend.projection.LivingAreaProjection;
 import br.sc.senac.budgetech.backend.service.living_area.LivingAreaService;
 import lombok.AllArgsConstructor;

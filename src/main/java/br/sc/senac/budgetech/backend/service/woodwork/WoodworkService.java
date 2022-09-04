@@ -5,8 +5,6 @@ import br.sc.senac.budgetech.backend.projection.WoodworkAllProjection;
 import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 public interface WoodworkService {
 

@@ -1,6 +1,8 @@
 package br.sc.senac.budgetech.backend.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -8,55 +10,59 @@ import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "client")
-public class Client extends User{
+public class Client extends User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "id_client")
-	private Long id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_client")
+    private Long id;
 
-	@Column(name = "name_client", nullable = false)
-	private String name;
+    @Column(name = "name_client", nullable = false)
+    private String name;
 
-	@Column(name = "last_name_client", nullable = false)
-	private String lastName;
-	
-	@Column(name = "cpf_client", length = 15, nullable = false, unique = true)
-	private String cpf;
+    @Column(name = "last_name_client", nullable = false)
+    private String lastName;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_contact")
-	private Contact contact;
+    @Column(name = "cpf_client", length = 15, nullable = false, unique = true)
+    private String cpf;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "id_address")
-	private Address address;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_contact")
+    private Contact contact;
 
-	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
-	private List<Item> items;
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_address")
+    private Address address;
 
-	public Client(String login, String password, Blob image, Long id, String name, String lastName, String cpf) {
-		super(login, password, image);
-		this.id = id;
-		this.name = name;
-		this.lastName = lastName;
-		this.cpf = cpf;
-		items = new ArrayList<>();
-	}
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    private List<Item> items;
 
-	public void addItem(Item item) {
-		this.items.add(item);
-	}
+    public Client() {
+        items = new ArrayList<>();
+    }
 
-	public void removeItem(Item item) {
-		this.items.remove(item);
-	}
+    public Client(String login, String password, Blob image, Long id, String name, String lastName, String cpf) {
+        super(login, password, image);
+        this.id = id;
+        this.name = name;
+        this.lastName = lastName;
+        this.cpf = cpf;
+        items = new ArrayList<>();
+    }
 
-	public List<Item> getItem() {
-		return items;
-	}
+    public void addItem(Item item) {
+        this.items.add(item);
+    }
+
+    public void removeItem(Item item) {
+        this.items.remove(item);
+    }
+
+    public List<Item> getItem() {
+        return items;
+    }
 }

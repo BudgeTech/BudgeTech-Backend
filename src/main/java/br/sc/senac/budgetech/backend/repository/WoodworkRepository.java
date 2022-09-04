@@ -4,9 +4,11 @@ import br.sc.senac.budgetech.backend.model.Woodwork;
 import br.sc.senac.budgetech.backend.projection.WoodworkAllProjection;
 import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
+@Repository
 public interface WoodworkRepository extends JpaRepository<Woodwork, Long> {
 
     boolean existsByCnpj(String cnpj);

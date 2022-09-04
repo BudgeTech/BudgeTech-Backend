@@ -1,6 +1,8 @@
 package br.sc.senac.budgetech.backend.model;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Blob;
@@ -8,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
-@NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "woodwork")
 public class Woodwork extends User{
@@ -41,6 +43,11 @@ public class Woodwork extends User{
 
 	@OneToMany(mappedBy = "woodwork", cascade = CascadeType.ALL)
 	private List<LivingArea> livingAreas;
+
+	public Woodwork() {
+		items = new ArrayList<>();
+		livingAreas = new ArrayList<>();
+	}
 
 	public Woodwork(String login, String password, Blob image, Long id, String companyName, String cnpj, String description) {
 		super(login, password, image);

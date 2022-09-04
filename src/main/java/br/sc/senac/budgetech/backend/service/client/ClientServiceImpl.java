@@ -6,15 +6,12 @@ import br.sc.senac.budgetech.backend.exception.client.ClientCpfInvalidException;
 import br.sc.senac.budgetech.backend.exception.client.ClientCpfRegisteredException;
 import br.sc.senac.budgetech.backend.exception.client.ClientNotFoundException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
-import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.ClientMapper;
 import br.sc.senac.budgetech.backend.model.Address;
 import br.sc.senac.budgetech.backend.model.Client;
 import br.sc.senac.budgetech.backend.model.Contact;
 import br.sc.senac.budgetech.backend.projection.ClientAllProjection;
 import br.sc.senac.budgetech.backend.projection.ClientProjection;
-import br.sc.senac.budgetech.backend.projection.WoodworkAllProjection;
-import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
 import br.sc.senac.budgetech.backend.repository.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.ContactRepository;
@@ -109,7 +106,7 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + phoneNumber + " was not found"));
     }
 
-    public ClientAllProjection findWithAddressAndContactById (Long id) {
+    public ClientAllProjection findWithAddressAndContactById(Long id) {
         return clientRepository.findClientWithAddressAndContactById(id).orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
     }
 }

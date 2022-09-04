@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.backend.controller;
 
 import br.sc.senac.budgetech.backend.dto.AddressDTO;
-import br.sc.senac.budgetech.backend.model.Address;
 import br.sc.senac.budgetech.backend.projection.AddressProjection;
 import br.sc.senac.budgetech.backend.service.address.AddressService;
 import lombok.AllArgsConstructor;

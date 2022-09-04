@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.backend.service.item;
 
 import br.sc.senac.budgetech.backend.dto.ItemDTO;
-import br.sc.senac.budgetech.backend.exception.address.AddressInvalidException;
 import br.sc.senac.budgetech.backend.exception.client.ClientNotFoundException;
 import br.sc.senac.budgetech.backend.exception.item.ItemInvalidException;
 import br.sc.senac.budgetech.backend.exception.item.ItemNotFoundException;

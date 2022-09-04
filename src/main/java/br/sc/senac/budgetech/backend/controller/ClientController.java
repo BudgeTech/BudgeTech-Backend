@@ -3,8 +3,6 @@ package br.sc.senac.budgetech.backend.controller;
 import br.sc.senac.budgetech.backend.dto.ClientDTO;
 import br.sc.senac.budgetech.backend.projection.ClientAllProjection;
 import br.sc.senac.budgetech.backend.projection.ClientProjection;
-import br.sc.senac.budgetech.backend.projection.WoodworkAllProjection;
-import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
 import br.sc.senac.budgetech.backend.service.client.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
