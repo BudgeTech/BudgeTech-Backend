@@ -1,4 +1,4 @@
-package br.sc.senac.budgetech.backend.budgetech;
+package br.sc.senac.budgetech;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

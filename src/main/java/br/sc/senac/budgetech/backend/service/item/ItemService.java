@@ -1,0 +1,19 @@
+package br.sc.senac.budgetech.backend.service.item;
+
+import br.sc.senac.budgetech.backend.dto.ItemDTO;
+import br.sc.senac.budgetech.backend.projection.ItemProjection;
+import org.springframework.stereotype.Service;
+
+@Service
+public interface ItemService {
+
+    ItemDTO save(ItemDTO itemDTO);
+
+    void update(ItemDTO itemDTO, Long id);
+
+    void delete(Long id);
+
+    ItemProjection findById(Long id);
+
+    ItemProjection findByPrice(double totalPrice);
+}
