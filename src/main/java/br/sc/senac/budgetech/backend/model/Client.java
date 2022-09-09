@@ -54,6 +54,11 @@ public class Client extends User {
         items = new ArrayList<>();
     }
 
+    public Client(String password, String email) {
+        super(password);
+        email = getContact().getEmail();
+    }
+
     public void addItem(Item item) {
         this.items.add(item);
     }
@@ -64,5 +69,13 @@ public class Client extends User {
 
     public List<Item> getItem() {
         return items;
+    }
+
+    public Contact getContact() {
+        return contact;
+    }
+
+    public void setContact(Contact contact) {
+        this.contact = contact;
     }
 }

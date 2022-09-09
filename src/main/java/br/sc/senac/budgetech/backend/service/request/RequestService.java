@@ -10,9 +10,9 @@ import java.time.LocalDate;
 @Service
 public interface RequestService {
 
-    RequestDTO save(RequestCreateDTO requestListDTO);
+    RequestDTO save(RequestCreateDTO requestCreateDTO);
 
-    void update(RequestDTO requestDTO, Long id);
+    void update(RequestCreateDTO requestCreateDTO, Long id);
 
     void delete(Long id);
 

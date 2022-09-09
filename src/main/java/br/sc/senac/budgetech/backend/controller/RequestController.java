@@ -20,13 +20,13 @@ public class RequestController {
     private final RequestService requestService;
 
     @PostMapping
-    public ResponseEntity<RequestDTO> addRequest(@RequestBody RequestCreateDTO requestListDTO) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(requestService.save(requestListDTO));
+    public ResponseEntity<RequestDTO> addRequest(@RequestBody RequestCreateDTO requestCreateDTO) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(requestService.save(requestCreateDTO));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<String> updateRequest(@RequestBody RequestDTO requestDTO, @PathVariable(value = "id") Long id) {
-        requestService.update(requestDTO, id);
+    public ResponseEntity<String> updateRequest(@RequestBody RequestCreateDTO requestCreateDTO, @PathVariable(value = "id") Long id) {
+        requestService.update(requestCreateDTO, id);
         return ResponseEntity.status(HttpStatus.OK).body("Request updated successfully");
     }
 

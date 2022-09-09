@@ -24,38 +24,45 @@ public class RequestServiceImpl implements RequestService {
     private FurnitureRepository furnitureRepository;
     private RequestMapper requestMapper;
 
-    public RequestDTO save(RequestCreateDTO requestListDTO) {
+    public RequestDTO save(RequestCreateDTO requestCreateDTO) {
 
-        Request request = new Request(requestListDTO.id(), requestListDTO.price(),
-                requestListDTO.status(), requestListDTO.payment(),
-                requestListDTO.initialDate(), requestListDTO.finalDate());
+        Request request = new Request(requestCreateDTO.id(), requestCreateDTO.price(),
+                requestCreateDTO.status(), requestCreateDTO.payment(),
+                requestCreateDTO.initialDate(), requestCreateDTO.finalDate());
 
-        for (Long idFurniture : requestListDTO.idsFunitures()) {
+        for (Long idFurniture : requestCreateDTO.idsFunitures()) {
             Furniture furniture = furnitureRepository.findById(idFurniture)
                     .orElseThrow(() -> new RequestNotFoundException("Request " + idFurniture + " was not found"));
             request.getFurnitures().add(furniture);
         }
 
-        if (requestListDTO.price() < 0)
-            throw new ItemInvalidException("Price " + requestListDTO.price() + " is invalid");
+        if (requestCreateDTO.price() < 0)
+            throw new ItemInvalidException("Price " + requestCreateDTO.price() + " is invalid");
 
+        request.setInitialDate(LocalDate.now());
         Request requestSaved = requestRepository.save(request);
         return requestMapper.toDTO(requestSaved);
     }
 
-    public void update(RequestDTO requestDTO, Long id) {
+    public void update(RequestCreateDTO requestCreateDTO, Long id) {
 
         Request request = requestRepository.findById(id)
                 .orElseThrow(() -> new RequestNotFoundException("Request " + id + " was not found"));
 
-        if (requestDTO.price() < 0)
-            throw new RequestInvalidException("Price " + requestDTO.price() + " is invalid");
+        if (requestCreateDTO.price() < 0)
+            throw new RequestInvalidException("Price " + requestCreateDTO.price() + " is invalid");
 
-        request.setPrice(requestDTO.price());
-        request.setStatus(requestDTO.status());
-        request.setPayment(requestDTO.payment());
-        request.setInitialDate(requestDTO.initialDate());
-        request.setFinalDate(requestDTO.finalDate());
+        for (Long idFurniture : requestCreateDTO.idsFunitures()) {
+            Furniture furniture = furnitureRepository.findById(idFurniture)
+                    .orElseThrow(() -> new RequestNotFoundException("Request " + idFurniture + " was not found"));
+            request.getFurnitures().add(furniture);
+        }
+
+        request.setPrice(requestCreateDTO.price());
+        request.setStatus(requestCreateDTO.status());
+        request.setPayment(requestCreateDTO.payment());
+        request.setInitialDate(requestCreateDTO.initialDate());
+        request.setFinalDate(requestCreateDTO.finalDate());
         requestRepository.save(request);
     }
 

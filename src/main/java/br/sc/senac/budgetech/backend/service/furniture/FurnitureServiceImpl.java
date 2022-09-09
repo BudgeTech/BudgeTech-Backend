@@ -44,6 +44,7 @@ public class FurnitureServiceImpl implements FurnitureService {
     }
 
     public void update(FurnitureDTO furnitureDTO, Long id) {
+
         Furniture furniture = furnitureRepository.findById(id)
                 .orElseThrow(() -> new FurnitureNotFoundException("Furniture " + id + " was not found"));
 
@@ -56,8 +57,8 @@ public class FurnitureServiceImpl implements FurnitureService {
         if (furnitureDTO.price() < 0)
             throw new FurnitureInvalidException("Price " + furnitureDTO.price() + " is invalid");
 
-        furniture.setName((furnitureDTO.name() != null && furnitureDTO.name().isBlank()) ? furnitureDTO.name() : furniture.getName());
-        furniture.setDescription((furnitureDTO.description() != null && furnitureDTO.description().isBlank()) ? furnitureDTO.description() : furniture.getDescription());
+        furniture.setName((furnitureDTO.name() != null && !furnitureDTO.name().isBlank()) ? furnitureDTO.name() : furniture.getName());
+        furniture.setDescription((furnitureDTO.description() != null && !furnitureDTO.description().isBlank()) ? furnitureDTO.description() : furniture.getDescription());
         furniture.setFurnitureSize(furnitureDTO.furnitureSize());
         furniture.setPrice(furnitureDTO.price());
         furnitureRepository.save(furniture);

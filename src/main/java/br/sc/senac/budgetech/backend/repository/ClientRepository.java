@@ -15,11 +15,15 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     boolean existsByCpf(String cpf);
 
+    boolean existsByLogin(String login);
+
     Optional<ClientProjection> findClientById(Long id);
 
     Optional<ClientProjection> findClientByName(String name);
 
     Optional<ClientProjection> findClientByCpf(String cpf);
+
+    Optional<ClientProjection> findClientByLogin(String login);
 
     Optional<ClientProjection> findClientByContactPhoneNumber(String phoneNumber);
 

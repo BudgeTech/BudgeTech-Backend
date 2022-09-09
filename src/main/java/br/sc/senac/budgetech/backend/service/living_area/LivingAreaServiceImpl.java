@@ -20,7 +20,6 @@ public class LivingAreaServiceImpl implements LivingAreaService {
     private LivingAreaMapper livingAreaMapper;
     private WoodworkRepository woodworkRepository;
 
-
     public LivingAreaDTO save(LivingAreaDTO livingAreaDTO) {
 
         Woodwork woodwork = woodworkRepository.findById(livingAreaDTO.idWoodwork())
@@ -28,8 +27,8 @@ public class LivingAreaServiceImpl implements LivingAreaService {
 
         LivingArea livingArea = livingAreaMapper.toEntity(livingAreaDTO);
         livingArea.setWoodwork(woodwork);
-        LivingArea colorSaved = livingAreaRepository.save(livingArea);
-        return livingAreaMapper.toDTO(colorSaved);
+        LivingArea livingSaved = livingAreaRepository.save(livingArea);
+        return livingAreaMapper.toDTO(livingSaved);
     }
 
     public void update(LivingAreaDTO livingAreaDTO, Long id) {
@@ -45,7 +44,6 @@ public class LivingAreaServiceImpl implements LivingAreaService {
         if (!livingAreaRepository.existsById(id))
             throw new LivingAreaNotFoundException("Living Area " + id + " was not found");
         livingAreaRepository.deleteById(id);
-
     }
 
     public LivingAreaProjection findById(Long id) {

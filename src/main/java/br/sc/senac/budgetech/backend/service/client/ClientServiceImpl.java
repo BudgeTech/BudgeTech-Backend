@@ -4,14 +4,15 @@ import br.sc.senac.budgetech.backend.dto.ClientDTO;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
 import br.sc.senac.budgetech.backend.exception.client.ClientCpfInvalidException;
 import br.sc.senac.budgetech.backend.exception.client.ClientCpfRegisteredException;
+import br.sc.senac.budgetech.backend.exception.client.ClientLoginRegisteredException;
 import br.sc.senac.budgetech.backend.exception.client.ClientNotFoundException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.ClientMapper;
 import br.sc.senac.budgetech.backend.model.Address;
 import br.sc.senac.budgetech.backend.model.Client;
 import br.sc.senac.budgetech.backend.model.Contact;
-import br.sc.senac.budgetech.backend.projection.ClientWithAddressAndContactProjection;
 import br.sc.senac.budgetech.backend.projection.ClientProjection;
+import br.sc.senac.budgetech.backend.projection.ClientWithAddressAndContactProjection;
 import br.sc.senac.budgetech.backend.projection.ClientWithAll;
 import br.sc.senac.budgetech.backend.projection.ClientWithItemProjection;
 import br.sc.senac.budgetech.backend.repository.AddressRepository;
@@ -38,12 +39,14 @@ public class ClientServiceImpl implements ClientService {
         if (clientRepository.existsByCpf(clientDTO.cpf()))
             throw new ClientCpfRegisteredException("Cpf " + clientDTO.cpf() + " is already registered");
 
+        if (clientRepository.existsByLogin(clientDTO.login()))
+            throw new ClientLoginRegisteredException("Login " + clientDTO.login() + " is already registered");
+
         Contact contact = contactRepository.findById(clientDTO.idContact())
                 .orElseThrow(() -> new ContactNotFoundException("Contact " + clientDTO.idContact() + " was not found"));
 
         Address address = addressRepository.findById(clientDTO.idAddress())
                 .orElseThrow(() -> new AddressNotFoundException("Address " + clientDTO.idAddress() + " was not found"));
-
 
         Client client = clientMapper.toEntity(clientDTO);
         client.setContact(contact);
@@ -72,10 +75,14 @@ public class ClientServiceImpl implements ClientService {
         client.setContact(contact);
         client.setAddress(address);
 
-        var existCpf = clientRepository.findClientByCpf(clientDTO.cpf());
+        var existsCpf = clientRepository.findClientByCpf(clientDTO.cpf());
+        var existsLogin = clientRepository.findClientByLogin(clientDTO.login());
 
-        if (existCpf.isPresent() && (existCpf.get().getId().equals(id)))
+        if (existsCpf.isPresent() && (existsCpf.get().getId().equals(id)))
             throw new ClientCpfRegisteredException("Cpf " + clientDTO.cpf() + " is already registered");
+
+        if (existsLogin.isPresent() && (existsLogin.get().getId().equals(id)))
+            throw new ClientLoginRegisteredException("Login " + clientDTO.login() + " is already registered");
 
         if (ValidateCPF.isCPF(client.getCpf()))
             throw new ClientCpfInvalidException("Cpf " + clientDTO.cpf() + " is invalid");

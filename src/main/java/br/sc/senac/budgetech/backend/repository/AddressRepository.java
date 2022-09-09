@@ -12,7 +12,15 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 
     boolean existsByStreetAndNumber(String street, int number);
 
+    boolean existsByStreet(String street);
+
+    boolean existsByNumber(int number);
+
     Optional<AddressProjection> findAddressById(Long id);
+
+    Optional<AddressProjection> findAddressByStreet(String street);
+
+    Optional<AddressProjection> findAddressByNumber(int number);
 
     Optional<AddressProjection> findAddressByCity(String city);
 

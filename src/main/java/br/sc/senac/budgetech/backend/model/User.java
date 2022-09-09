@@ -21,4 +21,8 @@ public abstract class User {
 
     @Column(name = "image_user")
     private Blob image;
+
+    protected User(String password) {
+        this.password =password;
+    }
 }

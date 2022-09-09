@@ -43,11 +43,19 @@ public class AddressServiceImpl implements AddressService {
             throw new AddressInvalidException("Number " + addressDTO.number() + " is invalid");
 
         address.setNumber(addressDTO.number());
+        address.setProvince((addressDTO.province() != null && !addressDTO.province().isBlank()) ? addressDTO.province() : address.getProvince());
         address.setStreet((addressDTO.street() != null && !addressDTO.street().isBlank()) ? addressDTO.street() : address.getStreet());
         address.setNeighbor((addressDTO.neighbor() != null && !addressDTO.neighbor().isBlank()) ? addressDTO.neighbor() : address.getNeighbor());
         address.setCity((addressDTO.city() != null && !addressDTO.city().isBlank()) ? addressDTO.city() : address.getCity());
         address.setCep((addressDTO.cep() != null && !addressDTO.cep().isBlank()) ? addressDTO.cep() : address.getCep());
         address.setComplement((addressDTO.complement() != null && !addressDTO.complement().isBlank()) ? addressDTO.complement() : address.getComplement());
+
+        var existsNumber = addressRepository.findAddressByStreet(addressDTO.street());
+        var existsStreet = addressRepository.findAddressByNumber(addressDTO.number());
+
+        if (existsNumber.isPresent() && existsStreet.isPresent() && (existsNumber.get().getId().equals(id)))
+            throw new AddressStreetAndNumberRegisteredException
+                    ("Road " + addressDTO.street() + " and Number " + addressDTO.number() + " are already registered");
 
         addressRepository.save(address);
     }
