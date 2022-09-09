@@ -1,10 +1,9 @@
 package br.sc.senac.budgetech.backend.service.woodwork;
 
-import br.sc.senac.budgetech.backend.dto.WoodworkProfileDTO;
 import br.sc.senac.budgetech.backend.dto.WoodworkDTO;
-import br.sc.senac.budgetech.backend.projection.WoodworkProfileProjection;
-import br.sc.senac.budgetech.backend.projection.WoodworkWithAddressAndContactProjection;
+import br.sc.senac.budgetech.backend.dto.WoodworkProfileDTO;
 import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
+import br.sc.senac.budgetech.backend.projection.WoodworkWithAddressAndContactProjection;
 import org.springframework.stereotype.Service;
 
 @Service

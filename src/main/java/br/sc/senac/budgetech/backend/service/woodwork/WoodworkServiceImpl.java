@@ -3,7 +3,6 @@ package br.sc.senac.budgetech.backend.service.woodwork;
 import br.sc.senac.budgetech.backend.dto.WoodworkDTO;
 import br.sc.senac.budgetech.backend.dto.WoodworkProfileDTO;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
-import br.sc.senac.budgetech.backend.exception.client.ClientCpfRegisteredException;
 import br.sc.senac.budgetech.backend.exception.client.ClientLoginRegisteredException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkCnpjRegisteredException;

@@ -15,6 +15,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 @AllArgsConstructor
 @Service
@@ -53,6 +54,7 @@ public class RequestServiceImpl implements RequestService {
             throw new RequestInvalidException("Price " + requestCreateDTO.price() + " is invalid");
 
         for (Long idFurniture : requestCreateDTO.idsFunitures()) {
+            request.setFurnitures(new ArrayList<>());
             Furniture furniture = furnitureRepository.findById(idFurniture)
                     .orElseThrow(() -> new RequestNotFoundException("Request " + idFurniture + " was not found"));
             request.getFurnitures().add(furniture);

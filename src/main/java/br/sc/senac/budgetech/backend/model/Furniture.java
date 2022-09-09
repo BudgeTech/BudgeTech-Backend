@@ -39,8 +39,13 @@ public class Furniture {
 	@OneToMany(mappedBy = "furniture", cascade = CascadeType.ALL)
 	private List<Color> colors;
 
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@JoinTable(name = "request_furniture", joinColumns = @JoinColumn(name = "id_furniture"), inverseJoinColumns = @JoinColumn(name = "id_request"))
+	private List<Request> requests;
+
 	public Furniture() {
 		colors = new ArrayList<>();
+		requests = new ArrayList<>();
 	}
 
 	public Furniture(Long id, String name, String description, double furnitureSize, double price) {
@@ -50,6 +55,7 @@ public class Furniture {
 		this.furnitureSize = furnitureSize;
 		this.price = price;
 		colors = new ArrayList<>();
+		requests = new ArrayList<>();
 	}
 
 	public void addColor(Color color) {
@@ -62,5 +68,17 @@ public class Furniture {
 
 	public List<Color> getColor() {
 		return colors;
+	}
+
+	public void addColor(Request request) {
+		this.requests.add(request);
+	}
+
+	public void removeColor(Request request) {
+		this.requests.remove(request);
+	}
+
+	public List<Request> getRequest() {
+		return requests;
 	}
 }
