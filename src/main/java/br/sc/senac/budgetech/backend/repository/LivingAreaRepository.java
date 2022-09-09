@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.repository;
 
 import br.sc.senac.budgetech.backend.model.LivingArea;
-import br.sc.senac.budgetech.backend.projection.LivingAreaProjection;
+import br.sc.senac.budgetech.backend.projection.livingArea.LivingAreaProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

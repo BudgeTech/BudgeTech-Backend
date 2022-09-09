@@ -1,10 +1,7 @@
 package br.sc.senac.budgetech.backend.repository;
 
 import br.sc.senac.budgetech.backend.model.Client;
-import br.sc.senac.budgetech.backend.projection.ClientWithAddressAndContactProjection;
-import br.sc.senac.budgetech.backend.projection.ClientProjection;
-import br.sc.senac.budgetech.backend.projection.ClientWithAll;
-import br.sc.senac.budgetech.backend.projection.ClientWithItemProjection;
+import br.sc.senac.budgetech.backend.projection.client.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -18,6 +15,8 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     boolean existsByLogin(String login);
 
     Optional<ClientProjection> findClientById(Long id);
+
+    Optional<ClientProfileEditProjection> findClientProfileEditById(Long id);
 
     Optional<ClientProjection> findClientByName(String name);
 

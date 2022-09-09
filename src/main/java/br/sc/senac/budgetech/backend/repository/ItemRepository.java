@@ -1,11 +1,10 @@
 package br.sc.senac.budgetech.backend.repository;
 
 import br.sc.senac.budgetech.backend.model.Item;
-import br.sc.senac.budgetech.backend.projection.ItemProjection;
+import br.sc.senac.budgetech.backend.projection.item.ItemProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Repository

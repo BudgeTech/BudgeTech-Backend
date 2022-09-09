@@ -1,8 +1,8 @@
 package br.sc.senac.budgetech.backend.controller;
 
-import br.sc.senac.budgetech.backend.dto.RequestCreateDTO;
-import br.sc.senac.budgetech.backend.dto.RequestDTO;
-import br.sc.senac.budgetech.backend.projection.RequestProjection;
+import br.sc.senac.budgetech.backend.dto.request.RequestCreateDTO;
+import br.sc.senac.budgetech.backend.dto.request.RequestDTO;
+import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
 import br.sc.senac.budgetech.backend.service.request.RequestService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

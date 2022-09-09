@@ -1,6 +1,6 @@
 package br.sc.senac.budgetech.backend.mapper;
 
-import br.sc.senac.budgetech.backend.dto.ItemDTO;
+import br.sc.senac.budgetech.backend.dto.item.ItemDTO;
 import br.sc.senac.budgetech.backend.model.Item;
 import org.springframework.stereotype.Service;
 

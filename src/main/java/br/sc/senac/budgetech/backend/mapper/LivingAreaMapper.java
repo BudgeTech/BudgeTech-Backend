@@ -1,17 +1,23 @@
 package br.sc.senac.budgetech.backend.mapper;
 
-import br.sc.senac.budgetech.backend.dto.LivingAreaDTO;
+import br.sc.senac.budgetech.backend.dto.livingArea.LivingAreaDTO;
+import br.sc.senac.budgetech.backend.dto.livingArea.LivingAreaTelaDTO;
 import br.sc.senac.budgetech.backend.model.LivingArea;
+import br.sc.senac.budgetech.backend.projection.livingArea.LivingAreaProjection;
 import org.springframework.stereotype.Service;
 
 @Service
 public class LivingAreaMapper {
 
     public LivingAreaDTO toDTO(LivingArea livingArea) {
-        return new LivingAreaDTO(livingArea.getId(), livingArea.getName(), livingArea.getWoodwork().getId());
+        return new LivingAreaDTO(livingArea.getId(), livingArea.getName(), livingArea.getImage(), livingArea.getWoodwork().getId());
+    }
+
+    public LivingAreaTelaDTO toDTO(LivingAreaProjection livingArea) {
+        return new LivingAreaTelaDTO(livingArea.getName(), livingArea.getImage());
     }
 
     public LivingArea toEntity(LivingAreaDTO dto) {
-        return new LivingArea(dto.id(), dto.name());
+        return new LivingArea(dto.id(), dto.name(), dto.image());
     }
 }

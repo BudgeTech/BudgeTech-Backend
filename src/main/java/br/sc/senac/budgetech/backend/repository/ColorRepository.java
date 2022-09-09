@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.repository;
 
 import br.sc.senac.budgetech.backend.model.Color;
-import br.sc.senac.budgetech.backend.projection.ColorProjection;
+import br.sc.senac.budgetech.backend.projection.color.ColorProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

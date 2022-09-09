@@ -1,14 +1,14 @@
 package br.sc.senac.budgetech.backend.service.request;
 
-import br.sc.senac.budgetech.backend.dto.RequestCreateDTO;
-import br.sc.senac.budgetech.backend.dto.RequestDTO;
+import br.sc.senac.budgetech.backend.dto.request.RequestCreateDTO;
+import br.sc.senac.budgetech.backend.dto.request.RequestDTO;
 import br.sc.senac.budgetech.backend.exception.item.ItemInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.RequestMapper;
 import br.sc.senac.budgetech.backend.model.Furniture;
 import br.sc.senac.budgetech.backend.model.Request;
-import br.sc.senac.budgetech.backend.projection.RequestProjection;
+import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
 import br.sc.senac.budgetech.backend.repository.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.RequestRepository;
 import lombok.AllArgsConstructor;
@@ -31,9 +31,9 @@ public class RequestServiceImpl implements RequestService {
                 requestCreateDTO.status(), requestCreateDTO.payment(),
                 requestCreateDTO.initialDate(), requestCreateDTO.finalDate());
 
-        for (Long idFurniture : requestCreateDTO.idsFunitures()) {
+        for (Long idFurniture : requestCreateDTO.idsFurnitures()) {
             Furniture furniture = furnitureRepository.findById(idFurniture)
-                    .orElseThrow(() -> new RequestNotFoundException("Request " + idFurniture + " was not found"));
+                    .orElseThrow(() -> new RequestNotFoundException("Furniture " + idFurniture + " was not found"));
             request.getFurnitures().add(furniture);
         }
 
@@ -53,7 +53,7 @@ public class RequestServiceImpl implements RequestService {
         if (requestCreateDTO.price() < 0)
             throw new RequestInvalidException("Price " + requestCreateDTO.price() + " is invalid");
 
-        for (Long idFurniture : requestCreateDTO.idsFunitures()) {
+        for (Long idFurniture : requestCreateDTO.idsFurnitures()) {
             request.setFurnitures(new ArrayList<>());
             Furniture furniture = furnitureRepository.findById(idFurniture)
                     .orElseThrow(() -> new RequestNotFoundException("Request " + idFurniture + " was not found"));

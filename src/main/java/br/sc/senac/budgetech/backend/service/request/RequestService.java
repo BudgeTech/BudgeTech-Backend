@@ -1,8 +1,8 @@
 package br.sc.senac.budgetech.backend.service.request;
 
-import br.sc.senac.budgetech.backend.dto.RequestCreateDTO;
-import br.sc.senac.budgetech.backend.dto.RequestDTO;
-import br.sc.senac.budgetech.backend.projection.RequestProjection;
+import br.sc.senac.budgetech.backend.dto.request.RequestCreateDTO;
+import br.sc.senac.budgetech.backend.dto.request.RequestDTO;
+import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

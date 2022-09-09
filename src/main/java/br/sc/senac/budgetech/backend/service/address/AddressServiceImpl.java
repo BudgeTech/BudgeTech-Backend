@@ -1,12 +1,12 @@
 package br.sc.senac.budgetech.backend.service.address;
 
-import br.sc.senac.budgetech.backend.dto.AddressDTO;
+import br.sc.senac.budgetech.backend.dto.address.AddressDTO;
 import br.sc.senac.budgetech.backend.exception.address.AddressInvalidException;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
 import br.sc.senac.budgetech.backend.exception.address.AddressStreetAndNumberRegisteredException;
 import br.sc.senac.budgetech.backend.mapper.AddressMapper;
 import br.sc.senac.budgetech.backend.model.Address;
-import br.sc.senac.budgetech.backend.projection.AddressProjection;
+import br.sc.senac.budgetech.backend.projection.address.AddressProjection;
 import br.sc.senac.budgetech.backend.repository.AddressRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;

@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,9 @@ public class Furniture {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_furniture")
 	private Long id;
+
+	@Column
+	private Blob image;
 
 	@Column(name = "name_furniture", length = 35, nullable = false)
 	private String name;

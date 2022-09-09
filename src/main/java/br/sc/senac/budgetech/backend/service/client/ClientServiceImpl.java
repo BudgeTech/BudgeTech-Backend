@@ -1,20 +1,21 @@
 package br.sc.senac.budgetech.backend.service.client;
 
-import br.sc.senac.budgetech.backend.dto.ClientDTO;
+import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
+import br.sc.senac.budgetech.backend.dto.client.ClientProfileEditDTO;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileEditDTO;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
 import br.sc.senac.budgetech.backend.exception.client.ClientCpfInvalidException;
 import br.sc.senac.budgetech.backend.exception.client.ClientCpfRegisteredException;
 import br.sc.senac.budgetech.backend.exception.client.ClientLoginRegisteredException;
 import br.sc.senac.budgetech.backend.exception.client.ClientNotFoundException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
+import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.ClientMapper;
 import br.sc.senac.budgetech.backend.model.Address;
 import br.sc.senac.budgetech.backend.model.Client;
 import br.sc.senac.budgetech.backend.model.Contact;
-import br.sc.senac.budgetech.backend.projection.ClientProjection;
-import br.sc.senac.budgetech.backend.projection.ClientWithAddressAndContactProjection;
-import br.sc.senac.budgetech.backend.projection.ClientWithAll;
-import br.sc.senac.budgetech.backend.projection.ClientWithItemProjection;
+import br.sc.senac.budgetech.backend.projection.client.*;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkProfileEditProjection;
 import br.sc.senac.budgetech.backend.repository.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.ContactRepository;
@@ -125,5 +126,11 @@ public class ClientServiceImpl implements ClientService {
 
     public ClientWithAll findWithAddressAndContactAndItemById(Long id) {
         return clientRepository.findClientWithAddressAndContactAndItemById(id).orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
+    }
+
+    public ClientProfileEditDTO findProfileEditById(Long id) {
+        ClientProfileEditProjection woodwork = clientRepository.findClientProfileEditById(id)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+        return clientMapper.toDTO(woodwork);
     }
 }

@@ -1,12 +1,13 @@
 package br.sc.senac.budgetech.backend.service.living_area;
 
-import br.sc.senac.budgetech.backend.dto.LivingAreaDTO;
+import br.sc.senac.budgetech.backend.dto.livingArea.LivingAreaDTO;
+import br.sc.senac.budgetech.backend.dto.livingArea.LivingAreaTelaDTO;
 import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.LivingAreaMapper;
 import br.sc.senac.budgetech.backend.model.LivingArea;
 import br.sc.senac.budgetech.backend.model.Woodwork;
-import br.sc.senac.budgetech.backend.projection.LivingAreaProjection;
+import br.sc.senac.budgetech.backend.projection.livingArea.LivingAreaProjection;
 import br.sc.senac.budgetech.backend.repository.LivingAreaRepository;
 import br.sc.senac.budgetech.backend.repository.WoodworkRepository;
 import lombok.AllArgsConstructor;
@@ -55,5 +56,11 @@ public class LivingAreaServiceImpl implements LivingAreaService {
     public LivingAreaProjection findByName(String name) {
         return livingAreaRepository.findLivingAreaByName(name)
                 .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + name + " was not found"));
+    }
+
+    public LivingAreaTelaDTO findByIdDTO(Long id) {
+        LivingAreaProjection livingArea = livingAreaRepository.findLivingAreaById(id)
+                .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + id + " was not found"));
+        return livingAreaMapper.toDTO(livingArea);
     }
 }

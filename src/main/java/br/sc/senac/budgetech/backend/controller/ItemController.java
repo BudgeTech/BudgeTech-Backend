@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.controller;
 
-import br.sc.senac.budgetech.backend.dto.ItemDTO;
-import br.sc.senac.budgetech.backend.projection.ItemProjection;
+import br.sc.senac.budgetech.backend.dto.item.ItemDTO;
+import br.sc.senac.budgetech.backend.projection.item.ItemProjection;
 import br.sc.senac.budgetech.backend.service.item.ItemService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

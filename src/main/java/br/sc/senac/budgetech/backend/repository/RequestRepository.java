@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.repository;
 
 import br.sc.senac.budgetech.backend.model.Request;
-import br.sc.senac.budgetech.backend.projection.RequestProjection;
+import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

@@ -1,7 +1,9 @@
 package br.sc.senac.budgetech.backend.service.woodwork;
 
-import br.sc.senac.budgetech.backend.dto.WoodworkDTO;
-import br.sc.senac.budgetech.backend.dto.WoodworkProfileDTO;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkDTO;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileDTO;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileEditDTO;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileFullEditDTO;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
 import br.sc.senac.budgetech.backend.exception.client.ClientLoginRegisteredException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
@@ -12,9 +14,7 @@ import br.sc.senac.budgetech.backend.mapper.WoodworkMapper;
 import br.sc.senac.budgetech.backend.model.Address;
 import br.sc.senac.budgetech.backend.model.Contact;
 import br.sc.senac.budgetech.backend.model.Woodwork;
-import br.sc.senac.budgetech.backend.projection.WoodworkProfileProjection;
-import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
-import br.sc.senac.budgetech.backend.projection.WoodworkWithAddressAndContactProjection;
+import br.sc.senac.budgetech.backend.projection.woodwork.*;
 import br.sc.senac.budgetech.backend.repository.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.ContactRepository;
 import br.sc.senac.budgetech.backend.repository.WoodworkRepository;
@@ -128,6 +128,18 @@ public class WoodworkServiceImpl implements WoodworkService {
 
     public WoodworkProfileDTO findProfileById(Long id) {
         WoodworkProfileProjection woodwork = woodworkRepository.findWoodworkProfileById(id)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+        return woodworkMapper.toDTO(woodwork);
+    }
+
+    public WoodworkProfileEditDTO findProfileEditById(Long id) {
+        WoodworkProfileEditProjection woodwork = woodworkRepository.findWoodworkProfileEditById(id)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+        return woodworkMapper.toDTO(woodwork);
+    }
+
+    public WoodworkProfileFullEditDTO findProfileFullEditById(Long id) {
+        WoodworkProfileFullEditProjection woodwork = woodworkRepository.findWoodworkProfileFullEditById(id)
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
         return woodworkMapper.toDTO(woodwork);
     }

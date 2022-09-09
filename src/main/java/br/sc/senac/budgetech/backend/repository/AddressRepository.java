@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.repository;
 
 import br.sc.senac.budgetech.backend.model.Address;
-import br.sc.senac.budgetech.backend.projection.AddressProjection;
+import br.sc.senac.budgetech.backend.projection.address.AddressProjection;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

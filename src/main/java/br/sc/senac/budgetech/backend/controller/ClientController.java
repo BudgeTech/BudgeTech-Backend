@@ -1,10 +1,12 @@
 package br.sc.senac.budgetech.backend.controller;
 
-import br.sc.senac.budgetech.backend.dto.ClientDTO;
-import br.sc.senac.budgetech.backend.projection.ClientWithAddressAndContactProjection;
-import br.sc.senac.budgetech.backend.projection.ClientProjection;
-import br.sc.senac.budgetech.backend.projection.ClientWithAll;
-import br.sc.senac.budgetech.backend.projection.ClientWithItemProjection;
+import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
+import br.sc.senac.budgetech.backend.dto.client.ClientProfileEditDTO;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileEditDTO;
+import br.sc.senac.budgetech.backend.projection.client.ClientWithAddressAndContactProjection;
+import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
+import br.sc.senac.budgetech.backend.projection.client.ClientWithAll;
+import br.sc.senac.budgetech.backend.projection.client.ClientWithItemProjection;
 import br.sc.senac.budgetech.backend.service.client.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -69,5 +71,10 @@ public class ClientController {
     @GetMapping("/{id}/all")
     public ResponseEntity<ClientWithAll> getProjectionWithAll(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithAddressAndContactAndItemById(id));
+    }
+
+    @GetMapping("clientProfileEditDTO/{id}")
+    public ResponseEntity<ClientProfileEditDTO> getProjectionClientProfileEditDTO(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileEditById(id));
     }
 }

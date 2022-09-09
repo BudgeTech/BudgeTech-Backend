@@ -1,6 +1,6 @@
 package br.sc.senac.budgetech.backend.service.item;
 
-import br.sc.senac.budgetech.backend.dto.ItemDTO;
+import br.sc.senac.budgetech.backend.dto.item.ItemDTO;
 import br.sc.senac.budgetech.backend.exception.client.ClientNotFoundException;
 import br.sc.senac.budgetech.backend.exception.item.ItemInvalidException;
 import br.sc.senac.budgetech.backend.exception.item.ItemNotFoundException;
@@ -11,7 +11,7 @@ import br.sc.senac.budgetech.backend.model.Client;
 import br.sc.senac.budgetech.backend.model.Item;
 import br.sc.senac.budgetech.backend.model.Request;
 import br.sc.senac.budgetech.backend.model.Woodwork;
-import br.sc.senac.budgetech.backend.projection.ItemProjection;
+import br.sc.senac.budgetech.backend.projection.item.ItemProjection;
 import br.sc.senac.budgetech.backend.repository.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.ItemRepository;
 import br.sc.senac.budgetech.backend.repository.RequestRepository;

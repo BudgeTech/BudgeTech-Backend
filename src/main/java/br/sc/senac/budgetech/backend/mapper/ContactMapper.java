@@ -1,6 +1,6 @@
 package br.sc.senac.budgetech.backend.mapper;
 
-import br.sc.senac.budgetech.backend.dto.ContactDTO;
+import br.sc.senac.budgetech.backend.dto.contact.ContactDTO;
 import br.sc.senac.budgetech.backend.model.Contact;
 import org.springframework.stereotype.Service;
 

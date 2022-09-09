@@ -3,6 +3,7 @@ package br.sc.senac.budgetech.backend.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,9 @@ public class LivingArea {
 	@Column(name = "id_living_area")
 	private Long id;
 
+	@Column
+	private Blob image;
+
 	@Column(name = "name_living_area", length = 45, nullable = false)
 	private String name;
 
@@ -32,9 +36,10 @@ public class LivingArea {
 		furnitures = new ArrayList<>();
 	}
 
-	public LivingArea(Long id, String name) {
+	public LivingArea(Long id, String name, Blob image) {
 		this.id = id;
 		this.name = name;
+		this.image = image;
 		furnitures = new ArrayList<>();
 	}
 

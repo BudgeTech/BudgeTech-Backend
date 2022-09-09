@@ -1,9 +1,11 @@
 package br.sc.senac.budgetech.backend.controller;
 
-import br.sc.senac.budgetech.backend.dto.WoodworkProfileDTO;
-import br.sc.senac.budgetech.backend.dto.WoodworkDTO;
-import br.sc.senac.budgetech.backend.projection.WoodworkWithAddressAndContactProjection;
-import br.sc.senac.budgetech.backend.projection.WoodworkProjection;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileDTO;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkDTO;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileEditDTO;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileFullEditDTO;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkWithAddressAndContactProjection;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkProjection;
 import br.sc.senac.budgetech.backend.service.woodwork.WoodworkService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -73,5 +75,15 @@ public class WoodworkController {
     @GetMapping("woodworkProfile/{id}")
     public ResponseEntity<WoodworkProfileDTO> getProjectionWoodworkProfile(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileById(id));
+    }
+
+    @GetMapping("woodworkProfileEditDTO/{id}")
+    public ResponseEntity<WoodworkProfileEditDTO> getProjectionWoodworkProfileEditDTO(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileEditById(id));
+    }
+
+    @GetMapping("woodworkProfileFullEditDTO/{id}")
+    public ResponseEntity<WoodworkProfileFullEditDTO> getProjectionWoodworkProfileFullEditDTO(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileFullEditById(id));
     }
 }

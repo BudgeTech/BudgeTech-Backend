@@ -1,12 +1,12 @@
 package br.sc.senac.budgetech.backend.service.color;
 
-import br.sc.senac.budgetech.backend.dto.ColorDTO;
+import br.sc.senac.budgetech.backend.dto.color.ColorDTO;
 import br.sc.senac.budgetech.backend.exception.color.ColorNotFoundException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.ColorMapper;
 import br.sc.senac.budgetech.backend.model.Color;
 import br.sc.senac.budgetech.backend.model.Furniture;
-import br.sc.senac.budgetech.backend.projection.ColorProjection;
+import br.sc.senac.budgetech.backend.projection.color.ColorProjection;
 import br.sc.senac.budgetech.backend.repository.ColorRepository;
 import br.sc.senac.budgetech.backend.repository.FurnitureRepository;
 import lombok.AllArgsConstructor;

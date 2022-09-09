@@ -1,6 +1,6 @@
 package br.sc.senac.budgetech.backend.mapper;
 
-import br.sc.senac.budgetech.backend.dto.ColorDTO;
+import br.sc.senac.budgetech.backend.dto.color.ColorDTO;
 import br.sc.senac.budgetech.backend.model.Color;
 import org.springframework.stereotype.Service;
 

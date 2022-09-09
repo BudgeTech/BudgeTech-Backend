@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.controller;
 
-import br.sc.senac.budgetech.backend.dto.ColorDTO;
-import br.sc.senac.budgetech.backend.projection.ColorProjection;
+import br.sc.senac.budgetech.backend.dto.color.ColorDTO;
+import br.sc.senac.budgetech.backend.projection.color.ColorProjection;
 import br.sc.senac.budgetech.backend.service.color.ColorService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

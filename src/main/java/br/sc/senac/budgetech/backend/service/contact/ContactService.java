@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.service.contact;
 
-import br.sc.senac.budgetech.backend.dto.ContactDTO;
-import br.sc.senac.budgetech.backend.projection.ContactProjection;
+import br.sc.senac.budgetech.backend.dto.contact.ContactDTO;
+import br.sc.senac.budgetech.backend.projection.contact.ContactProjection;
 import org.springframework.stereotype.Service;
 
 @Service

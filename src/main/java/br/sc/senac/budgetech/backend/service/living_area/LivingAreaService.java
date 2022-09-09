@@ -1,7 +1,8 @@
 package br.sc.senac.budgetech.backend.service.living_area;
 
-import br.sc.senac.budgetech.backend.dto.LivingAreaDTO;
-import br.sc.senac.budgetech.backend.projection.LivingAreaProjection;
+import br.sc.senac.budgetech.backend.dto.livingArea.LivingAreaDTO;
+import br.sc.senac.budgetech.backend.dto.livingArea.LivingAreaTelaDTO;
+import br.sc.senac.budgetech.backend.projection.livingArea.LivingAreaProjection;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -14,6 +15,8 @@ public interface LivingAreaService {
     void delete(Long id);
 
     LivingAreaProjection findById(Long id);
+
+    LivingAreaTelaDTO findByIdDTO(Long id);
 
     LivingAreaProjection findByName(String name);
 }

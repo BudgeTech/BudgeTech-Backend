@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.service.item;
 
-import br.sc.senac.budgetech.backend.dto.ItemDTO;
-import br.sc.senac.budgetech.backend.projection.ItemProjection;
+import br.sc.senac.budgetech.backend.dto.item.ItemDTO;
+import br.sc.senac.budgetech.backend.projection.item.ItemProjection;
 import org.springframework.stereotype.Service;
 
 @Service

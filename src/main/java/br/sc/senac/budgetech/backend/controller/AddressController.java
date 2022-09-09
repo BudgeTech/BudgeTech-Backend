@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.controller;
 
-import br.sc.senac.budgetech.backend.dto.AddressDTO;
-import br.sc.senac.budgetech.backend.projection.AddressProjection;
+import br.sc.senac.budgetech.backend.dto.address.AddressDTO;
+import br.sc.senac.budgetech.backend.projection.address.AddressProjection;
 import br.sc.senac.budgetech.backend.service.address.AddressService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;

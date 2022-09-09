@@ -1,14 +1,18 @@
 package br.sc.senac.budgetech.backend.service.furniture;
 
-import br.sc.senac.budgetech.backend.dto.FurnitureDTO;
+import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
+import br.sc.senac.budgetech.backend.dto.furniture.FurnitureTelaDTO;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileDTO;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureInvalidException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNameRegisteredException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundException;
 import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundException;
+import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.FurnitureMapper;
 import br.sc.senac.budgetech.backend.model.Furniture;
 import br.sc.senac.budgetech.backend.model.LivingArea;
-import br.sc.senac.budgetech.backend.projection.FurnitureProjection;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkProfileProjection;
 import br.sc.senac.budgetech.backend.repository.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.LivingAreaRepository;
 import lombok.AllArgsConstructor;
@@ -83,5 +87,11 @@ public class FurnitureServiceImpl implements FurnitureService {
     public FurnitureProjection findByPrice(double price) {
         return furnitureRepository.findFurnitureByPrice(price)
                 .orElseThrow(() -> new FurnitureNotFoundException("Price " + price + " was not found"));
+    }
+
+    public FurnitureTelaDTO findByIdDTO(Long id) {
+        FurnitureProjection furniture = furnitureRepository.findFurnitureById(id)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+        return furnitureMapper.toDTO(furniture);
     }
 }

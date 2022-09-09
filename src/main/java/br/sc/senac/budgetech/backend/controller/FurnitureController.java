@@ -1,7 +1,8 @@
 package br.sc.senac.budgetech.backend.controller;
 
-import br.sc.senac.budgetech.backend.dto.FurnitureDTO;
-import br.sc.senac.budgetech.backend.projection.FurnitureProjection;
+import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
+import br.sc.senac.budgetech.backend.dto.furniture.FurnitureTelaDTO;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.service.furniture.FurnitureService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -46,5 +47,10 @@ public class FurnitureController {
     @GetMapping("price/{price}")
     public ResponseEntity<FurnitureProjection> getProjectionByPrice(@PathVariable(value = "id") double price) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findByPrice(price));
+    }
+
+    @GetMapping("furnitureDTO/{id}")
+    public ResponseEntity<FurnitureTelaDTO> getProjectionByIDTO(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findByIdDTO(id));
     }
 }
