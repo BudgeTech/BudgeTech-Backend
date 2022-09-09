@@ -86,4 +86,6 @@ public class WoodworkController {
     public ResponseEntity<WoodworkProfileFullEditDTO> getProjectionWoodworkProfileFullEditDTO(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileFullEditById(id));
     }
+
+    //asdad
 }
