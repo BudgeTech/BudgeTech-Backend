@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 public class ColorMapper {
 
     public ColorDTO toDTO(Color color) {
-        return new ColorDTO(color.getId(), color.getName(), color.getBrand(), color.getFurniture().getId());
+        return new ColorDTO(color.getId(), color.getNameColor(), color.getBrand(), color.getFurniture().getId());
     }
 
     public Color toEntity(ColorDTO dto) {
-        return new Color(dto.id(), dto.name(), dto.brand());
+        return new Color(dto.id(), dto.nameColor(), dto.brand());
     }
 }

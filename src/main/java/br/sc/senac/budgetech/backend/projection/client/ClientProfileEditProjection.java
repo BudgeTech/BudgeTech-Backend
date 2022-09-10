@@ -2,7 +2,7 @@ package br.sc.senac.budgetech.backend.projection.client;
 
 public interface ClientProfileEditProjection {
 
-    String getName();
+    String getNameClient();
 
     String getLastName();
 

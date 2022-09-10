@@ -18,7 +18,7 @@ public interface FurnitureService {
 
     FurnitureTelaDTO findByIdDTO(Long id);
 
-    FurnitureProjection findByName(String name);
+    FurnitureProjection findByNameFurniture(String nameFurniture);
 
-    FurnitureProjection findByPrice(double price);
+    FurnitureProjection findByPriceFurniture(double priceFurniture);
 }

@@ -8,6 +8,6 @@ import org.springframework.stereotype.Service;
 public class RequestMapper {
 
     public RequestDTO toDTO(Request request) {
-        return new RequestDTO(request.getId(), request.getPrice(), request.getStatus(), request.getPayment(), request.getInitialDate(), request.getFinalDate());
+        return new RequestDTO(request.getId(), request.getPriceRequest(), request.getStatus(), request.getPayment(), request.getInitialDate(), request.getFinalDate());
     }
 }

@@ -12,5 +12,5 @@ public interface LivingAreaRepository extends JpaRepository<LivingArea, Long> {
 
     Optional<LivingAreaProjection> findLivingAreaById(Long id);
 
-    Optional<LivingAreaProjection> findLivingAreaByName(String name);
+    Optional<LivingAreaProjection> findLivingAreaByNameLivingArea(String nameLivingArea);
 }

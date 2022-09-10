@@ -6,7 +6,7 @@ public interface LivingAreaProjection {
 
 	Long getId();
 
-	String getName();
+	String getNameLivingArea();
 
 	Blob getImage();
 

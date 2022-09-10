@@ -6,7 +6,7 @@ public interface ClientWithAll {
 
     Long getId();
 
-    String getName();
+    String getNameClient();
 
     String getLastName();
 

@@ -2,6 +2,7 @@ package br.sc.senac.budgetech.backend.service.client;
 
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
 import br.sc.senac.budgetech.backend.dto.client.ClientProfileEditDTO;
+import br.sc.senac.budgetech.backend.dto.client.ClientProfileFullEditDTO;
 import br.sc.senac.budgetech.backend.projection.client.ClientWithAddressAndContactProjection;
 import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
 import br.sc.senac.budgetech.backend.projection.client.ClientWithAll;
@@ -21,7 +22,9 @@ public interface ClientService {
 
     ClientProfileEditDTO findProfileEditById(Long id);
 
-    ClientProjection findByName(String name);
+    ClientProfileFullEditDTO findProfileFullEditById(Long id);
+
+    ClientProjection findByNameClient(String nameClient);
 
     ClientProjection findByCpf(String cpf);
 

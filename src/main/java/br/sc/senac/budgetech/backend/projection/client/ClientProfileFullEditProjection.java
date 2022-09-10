@@ -1,8 +1,8 @@
 package br.sc.senac.budgetech.backend.projection.client;
 
-public interface ClientWithAddressAndContactProjection {
+import java.sql.Blob;
 
-    Long getId();
+public interface ClientProfileFullEditProjection {
 
     String getNameClient();
 
@@ -10,7 +10,7 @@ public interface ClientWithAddressAndContactProjection {
 
     String getCpf();
 
-    String getLogin();
+    Blob getImage();
 
     AddressProjection getAddress();
 
@@ -28,16 +28,14 @@ public interface ClientWithAddressAndContactProjection {
 
         String getCity();
 
-        String getProvince();
-
         String getCep();
     }
 
     interface ContactProjection {
 
-        String getEmail();
-
         String getPhoneNumber();
+
+        String getEmail();
 
         String getSocialNetwork();
     }

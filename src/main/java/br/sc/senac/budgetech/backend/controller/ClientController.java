@@ -2,11 +2,9 @@ package br.sc.senac.budgetech.backend.controller;
 
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
 import br.sc.senac.budgetech.backend.dto.client.ClientProfileEditDTO;
+import br.sc.senac.budgetech.backend.dto.client.ClientProfileFullEditDTO;
 import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileEditDTO;
-import br.sc.senac.budgetech.backend.projection.client.ClientWithAddressAndContactProjection;
-import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
-import br.sc.senac.budgetech.backend.projection.client.ClientWithAll;
-import br.sc.senac.budgetech.backend.projection.client.ClientWithItemProjection;
+import br.sc.senac.budgetech.backend.projection.client.*;
 import br.sc.senac.budgetech.backend.service.client.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -48,9 +46,9 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findByCpf(cpf));
     }
 
-    @GetMapping("name/{name}")
-    public ResponseEntity<ClientProjection> getProjectionByName(@PathVariable(value = "name") String name) {
-        return ResponseEntity.status(HttpStatus.OK).body(clientService.findByName(name));
+    @GetMapping("name/{nameClient}")
+    public ResponseEntity<ClientProjection> getProjectionByName(@PathVariable(value = "nameClient") String nameClient) {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findByNameClient(nameClient));
     }
 
     @GetMapping("phoneNumber/{phoneNumber}")
@@ -76,5 +74,10 @@ public class ClientController {
     @GetMapping("clientProfileEditDTO/{id}")
     public ResponseEntity<ClientProfileEditDTO> getProjectionClientProfileEditDTO(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileEditById(id));
+    }
+
+    @GetMapping("clientProfileFullEditDTO/{id}")
+    public ResponseEntity<ClientProfileFullEditDTO> getProjectionClientProfileFullEditDTO(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileFullEditById(id));
     }
 }

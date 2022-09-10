@@ -12,7 +12,7 @@ public interface ColorRepository extends JpaRepository<Color, Long> {
 
     Optional<ColorProjection> findColorById(Long id);
 
-    Optional<ColorProjection> findColorByName(String name);
+    Optional<ColorProjection> findColorByNameColor(String nameColor);
 
     Optional<ColorProjection> findColorByBrand(String brand);
 }

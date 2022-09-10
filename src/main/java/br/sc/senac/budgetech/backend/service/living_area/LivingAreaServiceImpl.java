@@ -37,7 +37,7 @@ public class LivingAreaServiceImpl implements LivingAreaService {
         LivingArea livingArea = livingAreaRepository.findById(id)
                 .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + id + " was not found"));
 
-        livingArea.setName((livingAreaDTO.name() != null && !livingAreaDTO.name().isBlank()) ? livingAreaDTO.name() : livingArea.getName());
+        livingArea.setNameLivingArea((livingAreaDTO.nameLivingArea() != null && !livingAreaDTO.nameLivingArea().isBlank()) ? livingAreaDTO.nameLivingArea() : livingArea.getNameLivingArea());
         livingAreaRepository.save(livingArea);
     }
 
@@ -53,9 +53,9 @@ public class LivingAreaServiceImpl implements LivingAreaService {
 
     }
 
-    public LivingAreaProjection findByName(String name) {
-        return livingAreaRepository.findLivingAreaByName(name)
-                .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + name + " was not found"));
+    public LivingAreaProjection findByNameLivingArea(String nameLivingArea) {
+        return livingAreaRepository.findLivingAreaByNameLivingArea(nameLivingArea)
+                .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + nameLivingArea + " was not found"));
     }
 
     public LivingAreaTelaDTO findByIdDTO(Long id) {

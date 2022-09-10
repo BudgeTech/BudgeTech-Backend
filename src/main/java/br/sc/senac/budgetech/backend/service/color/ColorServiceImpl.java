@@ -36,7 +36,7 @@ public class ColorServiceImpl implements ColorService {
         Color color = colorRepository.findById(id)
                 .orElseThrow(() -> new ColorNotFoundException("Color " + id + " was not found"));
 
-        color.setName((colorDTO.name() != null && !colorDTO.name().isBlank()) ? colorDTO.name() : color.getName());
+        color.setNameColor((colorDTO.nameColor() != null && !colorDTO.nameColor().isBlank()) ? colorDTO.nameColor() : color.getNameColor());
         color.setBrand((colorDTO.brand() != null && !colorDTO.brand().isBlank()) ? colorDTO.brand() : color.getBrand());
         colorRepository.save(color);
     }
@@ -52,9 +52,9 @@ public class ColorServiceImpl implements ColorService {
                 .orElseThrow(() -> new ColorNotFoundException("Color " + id + " was not found"));
     }
 
-    public ColorProjection findByName(String name) {
-        return colorRepository.findColorByName(name)
-                .orElseThrow(() -> new ColorNotFoundException("Name " + name + " was not found"));
+    public ColorProjection findByNameColor(String nameColor) {
+        return colorRepository.findColorByNameColor(nameColor)
+                .orElseThrow(() -> new ColorNotFoundException("Name " + nameColor + " was not found"));
     }
 
     public ColorProjection findByBrand(String brand) {

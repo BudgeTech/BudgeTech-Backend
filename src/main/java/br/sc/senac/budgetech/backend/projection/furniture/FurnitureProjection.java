@@ -6,13 +6,13 @@ public interface FurnitureProjection {
 
     Long getId();
 
-    String getName();
+    String getNameFurniture();
 
     String getDescription();
 
     double getFurnitureSize();
 
-    double getPrice();
+    double getPriceFurniture();
 
     Blob getImage();
 }

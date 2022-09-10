@@ -22,7 +22,7 @@ public class Client extends User {
     private Long id;
 
     @Column(name = "name_client", nullable = false)
-    private String name;
+    private String nameClient;
 
     @Column(name = "last_name_client", nullable = false)
     private String lastName;
@@ -45,10 +45,10 @@ public class Client extends User {
         items = new ArrayList<>();
     }
 
-    public Client(String login, String password, Blob image, Long id, String name, String lastName, String cpf) {
+    public Client(String login, String password, Blob image, Long id, String nameClient, String lastName, String cpf) {
         super(login, password, image);
         this.id = id;
-        this.name = name;
+        this.nameClient = nameClient;
         this.lastName = lastName;
         this.cpf = cpf;
         items = new ArrayList<>();

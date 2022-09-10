@@ -4,7 +4,7 @@ public interface ColorProjection {
 
     Long getId();
 
-    String getName();
+    String getNameColor();
 
     String getBrand();
 }

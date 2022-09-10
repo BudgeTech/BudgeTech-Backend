@@ -39,9 +39,9 @@ public class LivingAreaController {
         return ResponseEntity.status(HttpStatus.OK).body(livingAreaService.findById(id));
     }
 
-    @GetMapping("name/{name}")
-    public ResponseEntity<LivingAreaProjection> getProjectionByName(@PathVariable(value = "name") String name) {
-        return ResponseEntity.status(HttpStatus.OK).body(livingAreaService.findByName(name));
+    @GetMapping("name/{nameLivingArea}")
+    public ResponseEntity<LivingAreaProjection> getProjectionByName(@PathVariable(value = "nameLivingArea") String nameLivingArea) {
+        return ResponseEntity.status(HttpStatus.OK).body(livingAreaService.findByNameLivingArea(nameLivingArea));
     }
 
     @GetMapping("livingAreaDTO/{id}")

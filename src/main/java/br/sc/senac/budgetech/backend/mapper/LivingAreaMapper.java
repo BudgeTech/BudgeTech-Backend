@@ -10,14 +10,14 @@ import org.springframework.stereotype.Service;
 public class LivingAreaMapper {
 
     public LivingAreaDTO toDTO(LivingArea livingArea) {
-        return new LivingAreaDTO(livingArea.getId(), livingArea.getName(), livingArea.getImage(), livingArea.getWoodwork().getId());
+        return new LivingAreaDTO(livingArea.getId(), livingArea.getNameLivingArea(), livingArea.getImage(), livingArea.getWoodwork().getId());
     }
 
     public LivingAreaTelaDTO toDTO(LivingAreaProjection livingArea) {
-        return new LivingAreaTelaDTO(livingArea.getName(), livingArea.getImage());
+        return new LivingAreaTelaDTO(livingArea.getNameLivingArea(), livingArea.getImage());
     }
 
     public LivingArea toEntity(LivingAreaDTO dto) {
-        return new LivingArea(dto.id(), dto.name(), dto.image());
+        return new LivingArea(dto.id(), dto.nameLivingArea(), dto.image());
     }
 }

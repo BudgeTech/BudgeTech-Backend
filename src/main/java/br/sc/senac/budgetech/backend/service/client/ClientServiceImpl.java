@@ -2,6 +2,7 @@ package br.sc.senac.budgetech.backend.service.client;
 
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
 import br.sc.senac.budgetech.backend.dto.client.ClientProfileEditDTO;
+import br.sc.senac.budgetech.backend.dto.client.ClientProfileFullEditDTO;
 import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileEditDTO;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
 import br.sc.senac.budgetech.backend.exception.client.ClientCpfInvalidException;
@@ -67,7 +68,7 @@ public class ClientServiceImpl implements ClientService {
         Address address = addressRepository.findById(clientDTO.idAddress())
                 .orElseThrow(() -> new AddressNotFoundException("Address " + clientDTO.idAddress() + " was not found"));
 
-        client.setName((clientDTO.name() != null && !clientDTO.name().isBlank()) ? clientDTO.name() : client.getName());
+        client.setNameClient((clientDTO.nameClient() != null && !clientDTO.nameClient().isBlank()) ? clientDTO.nameClient() : client.getNameClient());
         client.setCpf((clientDTO.cpf() != null && !clientDTO.cpf().isBlank()) ? clientDTO.cpf() : client.getCpf());
         client.setLogin((clientDTO.login() != null && !clientDTO.login().isBlank()) ? clientDTO.login() : client.getLogin());
         client.setPassword((clientDTO.password() != null && !clientDTO.password().isBlank()) ? clientDTO.password() : client.getPassword());
@@ -101,9 +102,9 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
     }
 
-    public ClientProjection findByName(String name) {
-        return clientRepository.findClientByName(name)
-                .orElseThrow(() -> new ClientNotFoundException("Client " + name + " was not found"));
+    public ClientProjection findByNameClient(String nameClient) {
+        return clientRepository.findClientByNameClient(nameClient)
+                .orElseThrow(() -> new ClientNotFoundException("Client " + nameClient + " was not found"));
     }
 
     public ClientProjection findByCpf(String cpf) {
@@ -132,5 +133,11 @@ public class ClientServiceImpl implements ClientService {
         ClientProfileEditProjection woodwork = clientRepository.findClientProfileEditById(id)
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
         return clientMapper.toDTO(woodwork);
+    }
+
+    public ClientProfileFullEditDTO findProfileFullEditById(Long id) {
+        ClientProfileFullEditProjection client = clientRepository.findClientProfileFullEditById(id)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+        return clientMapper.toDTO(client);
     }
 }

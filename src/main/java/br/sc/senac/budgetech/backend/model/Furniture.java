@@ -25,7 +25,7 @@ public class Furniture {
 	private Blob image;
 
 	@Column(name = "name_furniture", length = 35, nullable = false)
-	private String name;
+	private String nameFurniture;
 
 	@Column(name = "description_furniture")
 	private String description;
@@ -34,7 +34,7 @@ public class Furniture {
 	private double furnitureSize;
 
 	@Column(name = "price_furniture", length = 20, nullable = false)
-	private double price;
+	private double priceFurniture;
 
 	@ManyToOne
 	@JoinColumn(name = "id_living_area")
@@ -52,12 +52,12 @@ public class Furniture {
 		requests = new ArrayList<>();
 	}
 
-	public Furniture(Long id, String name, String description, double furnitureSize, double price) {
+	public Furniture(Long id, String nameFurniture, String description, double furnitureSize, double priceFurniture) {
 		this.id = id;
-		this.name = name;
+		this.nameFurniture = nameFurniture;
 		this.description = description;
 		this.furnitureSize = furnitureSize;
-		this.price = price;
+		this.priceFurniture = priceFurniture;
 		colors = new ArrayList<>();
 		requests = new ArrayList<>();
 	}

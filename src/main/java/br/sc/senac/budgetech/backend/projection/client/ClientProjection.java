@@ -4,7 +4,7 @@ public interface ClientProjection {
 
     Long getId();
 
-    String getName();
+    String getNameClient();
 
     String getLastName();
 

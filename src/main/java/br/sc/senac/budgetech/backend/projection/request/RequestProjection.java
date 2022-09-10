@@ -9,7 +9,7 @@ public interface RequestProjection {
 
     Long getId();
 
-    double getPrice();
+    double getPriceRequest();
 
     Status getStatus();
 

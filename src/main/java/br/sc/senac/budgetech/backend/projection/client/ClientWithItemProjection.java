@@ -4,7 +4,7 @@ import java.util.List;
 
 public interface ClientWithItemProjection {
 
-    String getName();
+    String getNameClient();
 
     List<ItemProjection> getItems();
 

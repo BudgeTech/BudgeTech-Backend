@@ -18,5 +18,5 @@ public interface LivingAreaService {
 
     LivingAreaTelaDTO findByIdDTO(Long id);
 
-    LivingAreaProjection findByName(String name);
+    LivingAreaProjection findByNameLivingArea(String nameLivingArea);
 }

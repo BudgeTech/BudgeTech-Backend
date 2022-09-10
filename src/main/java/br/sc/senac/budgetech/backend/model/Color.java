@@ -21,7 +21,7 @@ public class Color {
 	private Long id;
 
 	@Column(name = "name_color", length = 45, nullable = false)
-	private String name;
+	private String nameColor;
 
 	@Column(name = "brand_color", length = 45, nullable = false)
 	private String brand;
@@ -30,9 +30,9 @@ public class Color {
 	@JoinColumn(name = "id_furniture")
 	private Furniture furniture;
 
-	public Color(Long id, String name, String brand) {
+	public Color(Long id, String nameColor, String brand) {
 		this.id = id;
-		this.name = name;
+		this.nameColor = nameColor;
 		this.brand = brand;
 	}
 }

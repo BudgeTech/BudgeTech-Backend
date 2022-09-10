@@ -15,7 +15,7 @@ public interface ColorService {
 
     ColorProjection findById(Long id);
 
-    ColorProjection findByName(String name);
+    ColorProjection findByNameColor(String nameColor);
 
     ColorProjection findByBrand(String brand);
 }

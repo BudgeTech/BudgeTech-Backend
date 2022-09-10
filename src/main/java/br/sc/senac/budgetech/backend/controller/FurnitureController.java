@@ -39,14 +39,14 @@ public class FurnitureController {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findById(id));
     }
 
-    @GetMapping("name/{name}")
-    public ResponseEntity<FurnitureProjection> getProjectionByName(@PathVariable(value = "id") String name) {
-        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findByName(name));
+    @GetMapping("name/{nameFurniture}")
+    public ResponseEntity<FurnitureProjection> getProjectionByName(@PathVariable(value = "nameFurniture") String nameFurniture) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findByNameFurniture(nameFurniture));
     }
 
-    @GetMapping("price/{price}")
-    public ResponseEntity<FurnitureProjection> getProjectionByPrice(@PathVariable(value = "id") double price) {
-        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findByPrice(price));
+    @GetMapping("price/{priceFurniture}")
+    public ResponseEntity<FurnitureProjection> getProjectionByPrice(@PathVariable(value = "priceFurniture") double priceFurniture) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findByPriceFurniture(priceFurniture));
     }
 
     @GetMapping("furnitureDTO/{id}")

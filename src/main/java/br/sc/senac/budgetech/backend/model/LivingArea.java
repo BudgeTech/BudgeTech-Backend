@@ -23,7 +23,7 @@ public class LivingArea {
 	private Blob image;
 
 	@Column(name = "name_living_area", length = 45, nullable = false)
-	private String name;
+	private String nameLivingArea;
 
 	@ManyToOne
 	@JoinColumn(name = "id_woodwork")
@@ -36,9 +36,9 @@ public class LivingArea {
 		furnitures = new ArrayList<>();
 	}
 
-	public LivingArea(Long id, String name, Blob image) {
+	public LivingArea(Long id, String nameLivingArea, Blob image) {
 		this.id = id;
-		this.name = name;
+		this.nameLivingArea = nameLivingArea;
 		this.image = image;
 		furnitures = new ArrayList<>();
 	}

@@ -10,11 +10,11 @@ import java.util.Optional;
 @Repository
 public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
 
-    boolean existsByName(String name);
+    boolean existsByNameFurniture(String nameFurniture);
 
     Optional<FurnitureProjection> findFurnitureById(Long id);
 
-    Optional<FurnitureProjection> findFurnitureByName(String name);
+    Optional<FurnitureProjection> findFurnitureByNameFurniture(String nameFurniture);
 
-    Optional<FurnitureProjection> findFurnitureByPrice(double price);
+    Optional<FurnitureProjection> findFurnitureByPriceFurniture(double priceFurniture);
 }

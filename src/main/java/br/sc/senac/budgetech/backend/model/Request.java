@@ -24,7 +24,7 @@ public class Request {
     private Long id;
 
     @Column(name = "price_request")
-    private double price;
+    private double priceRequest;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "status_request", nullable = false)
@@ -51,9 +51,9 @@ public class Request {
         furnitures = new ArrayList<>();
     }
 
-    public Request(Long id, double price, Status status, Payment payment, LocalDate initialDate, LocalDate finalDate) {
+    public Request(Long id, double priceRequest, Status status, Payment payment, LocalDate initialDate, LocalDate finalDate) {
         this.id = id;
-        this.price = price;
+        this.priceRequest = priceRequest;
         this.status = status;
         this.payment = payment;
         this.initialDate = initialDate;
@@ -78,7 +78,7 @@ public class Request {
         double valor = 0;
 
         for (Furniture furniture : furnitures) {
-            valor += furniture.getPrice();
+            valor += furniture.getPriceFurniture();
         }
 
         return valor;
