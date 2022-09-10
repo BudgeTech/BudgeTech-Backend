@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.backend.controller;
 
-import br.sc.senac.budgetech.backend.dto.request.RequestCreateDTO;
-import br.sc.senac.budgetech.backend.dto.request.RequestDTO;
+import br.sc.senac.budgetech.backend.dto.request.*;
 import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
 import br.sc.senac.budgetech.backend.service.request.RequestService;
 import lombok.AllArgsConstructor;
@@ -44,5 +43,20 @@ public class RequestController {
     @GetMapping("initialDate/{initialDate}")
     public ResponseEntity<RequestProjection> getProjectionByInitialDate(@PathVariable(value = "initialDate") LocalDate initialDate) {
         return ResponseEntity.status(HttpStatus.OK).body(requestService.findByInitialDate(initialDate));
+    }
+
+    @GetMapping("request-profileDTO/{id}")
+    public ResponseEntity<RequestProfileDTO> getProjectionDTOById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(requestService.findRequestProfileById(id));
+    }
+
+    @GetMapping("request-list/{id}")
+    public ResponseEntity<RequestList2DTO> getProjectionRequestList2DTOById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(requestService.findRequestListById(id));
+    }
+
+    @GetMapping("request-with-furnitures/{id}")
+    public ResponseEntity<RequestWithFurnituresDTO> getProjectionRequestWithFurnituresById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(requestService.findRequestWithFurnituresById(id));
     }
 }

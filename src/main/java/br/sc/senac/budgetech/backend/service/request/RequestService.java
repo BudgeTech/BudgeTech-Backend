@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.backend.service.request;
 
-import br.sc.senac.budgetech.backend.dto.request.RequestCreateDTO;
-import br.sc.senac.budgetech.backend.dto.request.RequestDTO;
+import br.sc.senac.budgetech.backend.dto.request.*;
 import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,17 @@ public interface RequestService {
 
     void delete(Long id);
 
+    RequestProjection findByInitialDate(LocalDate initialDate);
+
     RequestProjection findById(Long id);
 
-    RequestProjection findByInitialDate(LocalDate initialDate);
+    //DTOS  ||
+    //      ||
+    //      vv
+
+    RequestProfileDTO findRequestProfileById(Long id);
+
+    RequestList2DTO findRequestListById(Long id);
+
+    RequestWithFurnituresDTO findRequestWithFurnituresById(Long id);
 }

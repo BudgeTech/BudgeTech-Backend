@@ -3,7 +3,6 @@ package br.sc.senac.budgetech.backend.controller;
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
 import br.sc.senac.budgetech.backend.dto.client.ClientProfileEditDTO;
 import br.sc.senac.budgetech.backend.dto.client.ClientProfileFullEditDTO;
-import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileEditDTO;
 import br.sc.senac.budgetech.backend.projection.client.*;
 import br.sc.senac.budgetech.backend.service.client.ClientService;
 import lombok.AllArgsConstructor;
@@ -67,7 +66,7 @@ public class ClientController {
     }
 
     @GetMapping("/{id}/all")
-    public ResponseEntity<ClientWithAll> getProjectionWithAll(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<ClientWithAllProjection> getProjectionWithAll(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithAddressAndContactAndItemById(id));
     }
 

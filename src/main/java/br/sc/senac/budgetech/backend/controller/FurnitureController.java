@@ -1,6 +1,7 @@
 package br.sc.senac.budgetech.backend.controller;
 
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
+import br.sc.senac.budgetech.backend.dto.furniture.FurnitureListDTO;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureTelaDTO;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.service.furniture.FurnitureService;
@@ -52,5 +53,10 @@ public class FurnitureController {
     @GetMapping("furnitureDTO/{id}")
     public ResponseEntity<FurnitureTelaDTO> getProjectionByIDTO(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findByIdDTO(id));
+    }
+
+    @GetMapping("furnitureListDTO/{id}")
+    public ResponseEntity<FurnitureListDTO> getProjectionDTOById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureListById(id));
     }
 }

@@ -1,14 +1,12 @@
 package br.sc.senac.budgetech.backend.service.request;
 
-import br.sc.senac.budgetech.backend.dto.request.RequestCreateDTO;
-import br.sc.senac.budgetech.backend.dto.request.RequestDTO;
+import br.sc.senac.budgetech.backend.dto.request.*;
 import br.sc.senac.budgetech.backend.exception.item.ItemInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.RequestMapper;
 import br.sc.senac.budgetech.backend.model.Furniture;
 import br.sc.senac.budgetech.backend.model.Request;
-import br.sc.senac.budgetech.backend.projection.request.RequestProfileProjection;
 import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
 import br.sc.senac.budgetech.backend.repository.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.RequestRepository;
@@ -83,5 +81,24 @@ public class RequestServiceImpl implements RequestService {
     public RequestProjection findByInitialDate(LocalDate initialDate) {
         return requestRepository.findRequestByInitialDate(initialDate)
                 .orElseThrow(() -> new RequestNotFoundException("Request " + initialDate + " was not found"));
+    }
+
+    public RequestProfileDTO findRequestProfileById(Long id) {
+        var request = requestRepository.findRequestProfileById(id)
+                .orElseThrow(() -> new RequestNotFoundException("Request " + id + " was not found"));
+        return requestMapper.toDTO(request);
+    }
+
+    public RequestList2DTO findRequestListById(Long id) {
+        var request = requestRepository.findRequestListById(id);
+        if(request.isEmpty())
+            throw new RequestNotFoundException("Request " + id + " was not found");
+        return requestMapper.toDTO(request);
+    }
+
+    public RequestWithFurnituresDTO findRequestWithFurnituresById(Long id) {
+        var request = requestRepository.findRequestWithFurnituresById(id)
+                .orElseThrow(() -> new RequestNotFoundException("Request " + id + " was not found"));
+        return requestMapper.toDTO(request);
     }
 }

@@ -16,10 +16,6 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Optional<ClientProjection> findClientById(Long id);
 
-    Optional<ClientProfileEditProjection> findClientProfileEditById(Long id);
-
-    Optional<ClientProfileFullEditProjection> findClientProfileFullEditById(Long id);
-
     Optional<ClientProjection> findClientByNameClient(String nameClient);
 
     Optional<ClientProjection> findClientByCpf(String cpf);
@@ -32,5 +28,13 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Optional<ClientWithItemProjection> findClientWithItemById(Long id);
 
-    Optional<ClientWithAll> findClientWithAddressAndContactAndItemById(Long id);
+    Optional<ClientWithAllProjection> findClientWithAddressAndContactAndItemById(Long id);
+
+    //DTOS  ||
+    //      ||
+    //      vv
+
+    Optional<ClientProfileEditProjection> findClientProfileEditById(Long id);
+
+    Optional<ClientProfileFullEditProjection> findClientProfileFullEditById(Long id);
 }

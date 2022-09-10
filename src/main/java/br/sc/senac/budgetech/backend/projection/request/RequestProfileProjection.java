@@ -15,7 +15,6 @@ public interface RequestProfileProjection {
 
     List<FurnitureProjection> getFurniture();
 
-
     interface ItemProjection {
 
         ClientProjection getClient();
@@ -49,7 +48,6 @@ public interface RequestProfileProjection {
             }
         }
     }
-
 
     interface FurnitureProjection {
 

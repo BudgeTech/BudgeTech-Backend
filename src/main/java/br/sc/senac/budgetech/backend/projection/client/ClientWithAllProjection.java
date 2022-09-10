@@ -2,7 +2,7 @@ package br.sc.senac.budgetech.backend.projection.client;
 
 import java.util.List;
 
-public interface ClientWithAll {
+public interface ClientWithAllProjection {
 
     Long getId();
 
