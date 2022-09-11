@@ -24,7 +24,7 @@ public interface ClientProfileFullEditProjection {
 
         String getComplement();
 
-        String getNeighbor();
+        String getNeighborhood();
 
         String getCity();
 

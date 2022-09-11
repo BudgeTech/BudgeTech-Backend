@@ -40,7 +40,7 @@ public interface RequestProfileProjection {
 
                 int getNumber();
 
-                String getNeighbor();
+                String getNeighborhood();
 
                 String getCity();
 

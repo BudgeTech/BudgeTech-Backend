@@ -14,7 +14,7 @@ public interface WoodworkProjection {
 
 	interface AddressProjection {
 
-		String getNeighbor();
+		String getNeighborhood();
 	}
 
 	interface ContactProjection {

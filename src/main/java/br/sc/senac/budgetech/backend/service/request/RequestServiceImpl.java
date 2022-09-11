@@ -7,7 +7,10 @@ import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.RequestMapper;
 import br.sc.senac.budgetech.backend.model.Furniture;
 import br.sc.senac.budgetech.backend.model.Request;
+import br.sc.senac.budgetech.backend.projection.request.RequestListProjection;
+import br.sc.senac.budgetech.backend.projection.request.RequestProfileProjection;
 import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
+import br.sc.senac.budgetech.backend.projection.request.RequestWithFurnituresProjection;
 import br.sc.senac.budgetech.backend.repository.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.RequestRepository;
 import lombok.AllArgsConstructor;
@@ -15,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.List;
 
 @AllArgsConstructor
 @Service
@@ -30,7 +34,7 @@ public class RequestServiceImpl implements RequestService {
                 requestCreateDTO.status(), requestCreateDTO.payment(),
                 requestCreateDTO.initialDate(), requestCreateDTO.finalDate());
 
-        for (Long idFurniture : requestCreateDTO.idsFurnitures()) {
+        for (Long idFurniture : requestCreateDTO.idFurnitures()) {
             Furniture furniture = furnitureRepository.findById(idFurniture)
                     .orElseThrow(() -> new RequestNotFoundException("Furniture " + idFurniture + " was not found"));
             request.getFurnitures().add(furniture);
@@ -52,7 +56,7 @@ public class RequestServiceImpl implements RequestService {
         if (requestCreateDTO.priceRequest() < 0)
             throw new RequestInvalidException("Price " + requestCreateDTO.priceRequest() + " is invalid");
 
-        for (Long idFurniture : requestCreateDTO.idsFurnitures()) {
+        for (Long idFurniture : requestCreateDTO.idFurnitures()) {
             request.setFurnitures(new ArrayList<>());
             Furniture furniture = furnitureRepository.findById(idFurniture)
                     .orElseThrow(() -> new RequestNotFoundException("Request " + idFurniture + " was not found"));
@@ -84,20 +88,20 @@ public class RequestServiceImpl implements RequestService {
     }
 
     public RequestProfileDTO findRequestProfileById(Long id) {
-        var request = requestRepository.findRequestProfileById(id)
+        RequestProfileProjection request = requestRepository.findRequestProfileById(id)
                 .orElseThrow(() -> new RequestNotFoundException("Request " + id + " was not found"));
         return requestMapper.toDTO(request);
     }
 
-    public RequestList2DTO findRequestListById(Long id) {
-        var request = requestRepository.findRequestListById(id);
+    public RequestListDTO findRequestListById(Long id) {
+        List<RequestListProjection> request = requestRepository.findRequestListById(id);
         if(request.isEmpty())
             throw new RequestNotFoundException("Request " + id + " was not found");
         return requestMapper.toDTO(request);
     }
 
     public RequestWithFurnituresDTO findRequestWithFurnituresById(Long id) {
-        var request = requestRepository.findRequestWithFurnituresById(id)
+        RequestWithFurnituresProjection request = requestRepository.findRequestWithFurnituresById(id)
                 .orElseThrow(() -> new RequestNotFoundException("Request " + id + " was not found"));
         return requestMapper.toDTO(request);
     }

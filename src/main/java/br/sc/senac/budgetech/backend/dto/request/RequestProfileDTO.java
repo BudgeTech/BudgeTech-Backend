@@ -8,13 +8,12 @@ import java.util.List;
 public record RequestProfileDTO(Long id,
                                 double priceRequest,
                                 LocalDate initialDate,
-                                List<RequestProfileProjection.FurnitureProjection> furnitureList,
+                                List<RequestProfileProjection.FurnitureProjection> furnitures,
                                 String nameClient,
                                 String cpf,
                                 String email,
                                 String phoneNumber,
                                 int number,
-                                String neighbor,
+                                String neighborhood,
                                 String city,
-                                String cep) {
-}
+                                String cep) {}

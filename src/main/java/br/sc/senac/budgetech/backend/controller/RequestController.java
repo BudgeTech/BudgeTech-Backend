@@ -4,6 +4,7 @@ import br.sc.senac.budgetech.backend.dto.request.*;
 import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
 import br.sc.senac.budgetech.backend.service.request.RequestService;
 import lombok.AllArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -41,17 +42,18 @@ public class RequestController {
     }
 
     @GetMapping("initialDate/{initialDate}")
-    public ResponseEntity<RequestProjection> getProjectionByInitialDate(@PathVariable(value = "initialDate") LocalDate initialDate) {
-        return ResponseEntity.status(HttpStatus.OK).body(requestService.findByInitialDate(initialDate));
+    public ResponseEntity<RequestProjection> getProjectionByInitialDate(@PathVariable(value = "initialDate") String initialDate) {
+        var data = LocalDate.parse(initialDate);
+        return ResponseEntity.status(HttpStatus.OK).body(requestService.findByInitialDate(data));
     }
 
-    @GetMapping("request-profileDTO/{id}")
+    @GetMapping("request-profile/{id}")
     public ResponseEntity<RequestProfileDTO> getProjectionDTOById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(requestService.findRequestProfileById(id));
     }
 
     @GetMapping("request-list/{id}")
-    public ResponseEntity<RequestList2DTO> getProjectionRequestList2DTOById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<RequestListDTO> getProjectionRequestListDTOById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(requestService.findRequestListById(id));
     }
 

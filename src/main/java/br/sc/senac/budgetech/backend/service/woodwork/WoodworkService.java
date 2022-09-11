@@ -1,12 +1,7 @@
 package br.sc.senac.budgetech.backend.service.woodwork;
 
-import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkDTO;
-import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileDTO;
-import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileEditDTO;
-import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileFullEditDTO;
-import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkProfileFullEditProjection;
+import br.sc.senac.budgetech.backend.dto.woodwork.*;
 import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkProjection;
-import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkWithAddressAndContactProjection;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -22,15 +17,13 @@ public interface WoodworkService {
 
     WoodworkProjection findByCnpj(String cnpj);
 
-    WoodworkProjection findByAddressNeighbor(String neighbor);
+    WoodworkProjection findByAddressNeighborhood(String neighborhood);
 
     WoodworkProjection findByContactPhoneNumber(String phoneNumber);
 
     WoodworkProjection findByCompanyName(String companyName);
 
-    WoodworkProjection findByLogin(String login);
-
-    WoodworkWithAddressAndContactProjection findWithAddressAndContactById(Long id);
+    WoodworkSearchDTO findSearchById(Long id);
 
     WoodworkProfileDTO findProfileById(Long id);
 

@@ -29,11 +29,11 @@ public class FurnitureServiceImpl implements FurnitureService {
 
     public FurnitureDTO save(FurnitureDTO furnitureDTO) {
 
-        if (furnitureRepository.existsByNameFurniture(furnitureDTO.nameFurniture()))
-            throw new FurnitureNameRegisteredException("Furniture " + furnitureDTO.nameFurniture() + " is already registered");
-
         LivingArea livingArea = livingAreaRepository.findById(furnitureDTO.idLivingArea())
                 .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + furnitureDTO.idLivingArea() + " was not found"));
+
+        if (furnitureRepository.existsByNameFurniture(furnitureDTO.nameFurniture()))
+            throw new FurnitureNameRegisteredException("Furniture " + furnitureDTO.nameFurniture() + " is already registered");
 
         if (furnitureDTO.furnitureSize() <= 0)
             throw new FurnitureInvalidException("Furniture Size " + furnitureDTO.furnitureSize() + " is invalid");

@@ -21,6 +21,8 @@ import br.sc.senac.budgetech.backend.utils.ValidateCPF;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
 public class ClientServiceImpl implements ClientService {
@@ -32,14 +34,14 @@ public class ClientServiceImpl implements ClientService {
 
     public ClientDTO save(ClientDTO clientDTO) {
 
-        if (ValidateCPF.isCPF(clientDTO.cpf()))
-            throw new ClientCpfInvalidException("Cpf " + clientDTO.cpf() + " is invalid");
-
         if (clientRepository.existsByCpf(clientDTO.cpf()))
             throw new ClientCpfRegisteredException("Cpf " + clientDTO.cpf() + " is already registered");
 
         if (clientRepository.existsByLogin(clientDTO.login()))
             throw new ClientLoginRegisteredException("Login " + clientDTO.login() + " is already registered");
+
+        if (ValidateCPF.isCPF(clientDTO.cpf()))
+            throw new ClientCpfInvalidException("Cpf " + clientDTO.cpf() + " is invalid");
 
         Contact contact = contactRepository.findById(clientDTO.idContact())
                 .orElseThrow(() -> new ContactNotFoundException("Contact " + clientDTO.idContact() + " was not found"));
@@ -74,8 +76,8 @@ public class ClientServiceImpl implements ClientService {
         client.setContact(contact);
         client.setAddress(address);
 
-        var existsCpf = clientRepository.findClientByCpf(clientDTO.cpf());
-        var existsLogin = clientRepository.findClientByLogin(clientDTO.login());
+        Optional<ClientProjection> existsCpf = clientRepository.findClientByCpf(clientDTO.cpf());
+        Optional<ClientProjection> existsLogin = clientRepository.findClientByLogin(clientDTO.login());
 
         if (existsCpf.isPresent() && (existsCpf.get().getId().equals(id)))
             throw new ClientCpfRegisteredException("Cpf " + clientDTO.cpf() + " is already registered");
@@ -99,14 +101,14 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
     }
 
-    public ClientProjection findByNameClient(String nameClient) {
-        return clientRepository.findClientByNameClient(nameClient)
-                .orElseThrow(() -> new ClientNotFoundException("Client " + nameClient + " was not found"));
-    }
-
     public ClientProjection findByCpf(String cpf) {
         return clientRepository.findClientByCpf(cpf)
                 .orElseThrow(() -> new ClientNotFoundException("Client " + cpf + " was not found"));
+    }
+
+    public ClientProjection findByNameClient(String nameClient) {
+        return clientRepository.findClientByNameClient(nameClient)
+                .orElseThrow(() -> new ClientNotFoundException("Client " + nameClient + " was not found"));
     }
 
     public ClientProjection findByContactPhoneNumber(String phoneNumber) {
@@ -114,22 +116,10 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + phoneNumber + " was not found"));
     }
 
-    public ClientWithAddressAndContactProjection findWithAddressAndContactById(Long id) {
-        return clientRepository.findClientWithAddressAndContactById(id).orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
-    }
-
-    public ClientWithItemProjection findWithItemById(Long id) {
-        return clientRepository.findClientWithItemById(id).orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
-    }
-
-    public ClientWithAllProjection findWithAddressAndContactAndItemById(Long id) {
-        return clientRepository.findClientWithAddressAndContactAndItemById(id).orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
-    }
-
     public ClientProfileEditDTO findProfileEditById(Long id) {
-        ClientProfileEditProjection woodwork = clientRepository.findClientProfileEditById(id)
+        ClientProfileEditProjection client = clientRepository.findClientProfileEditById(id)
                 .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
-        return clientMapper.toDTO(woodwork);
+        return clientMapper.toDTO(client);
     }
 
     public ClientProfileFullEditDTO findProfileFullEditById(Long id) {

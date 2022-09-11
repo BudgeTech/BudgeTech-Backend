@@ -1,9 +1,6 @@
 package br.sc.senac.budgetech.backend.service.woodwork;
 
-import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkDTO;
-import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileDTO;
-import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileEditDTO;
-import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkProfileFullEditDTO;
+import br.sc.senac.budgetech.backend.dto.woodwork.*;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
 import br.sc.senac.budgetech.backend.exception.client.ClientLoginRegisteredException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
@@ -20,6 +17,9 @@ import br.sc.senac.budgetech.backend.repository.ContactRepository;
 import br.sc.senac.budgetech.backend.repository.WoodworkRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Service
@@ -74,8 +74,8 @@ public class WoodworkServiceImpl implements WoodworkService {
         woodwork.setContact(contact);
         woodwork.setAddress(address);
 
-        var existsCnpj = woodworkRepository.findWoodworkByCnpj(woodworkDTO.cnpj());
-        var existsLogin = woodworkRepository.findWoodworkByLogin(woodworkDTO.login());
+        Optional<WoodworkProjection> existsCnpj = woodworkRepository.findWoodworkByCnpj(woodworkDTO.cnpj());
+        Optional<WoodworkProjection> existsLogin = woodworkRepository.findWoodworkByLogin(woodworkDTO.login());
 
         if (existsCnpj.isPresent() && (existsCnpj.get().getId().equals(id)))
             throw new WoodworkCnpjRegisteredException("Cnpj " + woodworkDTO.cnpj() + " is already registered");
@@ -107,23 +107,14 @@ public class WoodworkServiceImpl implements WoodworkService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + companyName + " was not found"));
     }
 
-    public WoodworkProjection findByLogin(String login) {
-        return woodworkRepository.findWoodworkByLogin(login)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + login + " was not found"));
-    }
-
-    public WoodworkProjection findByAddressNeighbor(String neighbor) {
-        return woodworkRepository.findWoodworkByAddressNeighbor(neighbor)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + neighbor + " was not found"));
+    public WoodworkProjection findByAddressNeighborhood(String neighborhood) {
+        return woodworkRepository.findWoodworkByAddressNeighborhood(neighborhood)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + neighborhood + " was not found"));
     }
 
     public WoodworkProjection findByContactPhoneNumber(String phoneNumber) {
         return woodworkRepository.findWoodworkByContactPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + phoneNumber + " was not found"));
-    }
-
-    public WoodworkWithAddressAndContactProjection findWithAddressAndContactById(Long id) {
-        return woodworkRepository.findWoodworkWithAddressAndContactById(id).orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
     }
 
     public WoodworkProfileDTO findProfileById(Long id) {
@@ -141,6 +132,13 @@ public class WoodworkServiceImpl implements WoodworkService {
     public WoodworkProfileFullEditDTO findProfileFullEditById(Long id) {
         WoodworkProfileFullEditProjection woodwork = woodworkRepository.findWoodworkProfileFullEditById(id)
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+        return woodworkMapper.toDTO(woodwork);
+    }
+
+    public WoodworkSearchDTO findSearchById(Long id) {
+        List<WoodworkSearchProjection> woodwork = woodworkRepository.findWoodworkSearchById(id);
+        if(woodwork.isEmpty())
+            throw new WoodworkNotFoundException("Woodwork " + id + " was not found");
         return woodworkMapper.toDTO(woodwork);
     }
 }

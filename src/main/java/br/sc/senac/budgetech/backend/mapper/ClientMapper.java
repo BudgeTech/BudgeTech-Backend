@@ -24,6 +24,6 @@ public class ClientMapper {
     }
 
     public ClientProfileFullEditDTO toDTO(ClientProfileFullEditProjection client) {
-        return new ClientProfileFullEditDTO(client.getNameClient(), client.getLastName(), client.getCpf(), client.getImage(), client.getAddress().getStreet(), client.getAddress().getNumber(), client.getAddress().getComplement(), client.getAddress().getNeighbor(), client.getAddress().getCity(), client.getAddress().getCep(), client.getContact().getPhoneNumber(), client.getContact().getEmail(), client.getContact().getSocialNetwork());
+        return new ClientProfileFullEditDTO(client.getNameClient(), client.getLastName(), client.getCpf(), client.getImage(), client.getAddress().getStreet(), client.getAddress().getNumber(), client.getAddress().getComplement(), client.getAddress().getNeighborhood(), client.getAddress().getCity(), client.getAddress().getCep(), client.getContact().getPhoneNumber(), client.getContact().getEmail(), client.getContact().getSocialNetwork());
     }
 }

@@ -16,7 +16,7 @@ public interface ClientProjection {
 
     interface AddressProjection {
 
-        String getNeighbor();
+        String getNeighborhood();
 
         String getCity();
     }

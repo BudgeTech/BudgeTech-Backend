@@ -22,7 +22,5 @@ public interface AddressRepository extends JpaRepository<Address, Long> {
 
     Optional<AddressProjection> findAddressByNumber(int number);
 
-    Optional<AddressProjection> findAddressByCity(String city);
-
-    Optional<AddressProjection> findAddressByNeighbor(String neighbor);
+    Optional<AddressProjection> findAddressByNeighborhood(String neighbor);
 }

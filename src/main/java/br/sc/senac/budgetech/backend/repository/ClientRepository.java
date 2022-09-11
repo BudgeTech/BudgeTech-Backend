@@ -16,19 +16,13 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Optional<ClientProjection> findClientById(Long id);
 
-    Optional<ClientProjection> findClientByNameClient(String nameClient);
-
     Optional<ClientProjection> findClientByCpf(String cpf);
 
     Optional<ClientProjection> findClientByLogin(String login);
 
+    Optional<ClientProjection> findClientByNameClient(String nameClient);
+
     Optional<ClientProjection> findClientByContactPhoneNumber(String phoneNumber);
-
-    Optional<ClientWithAddressAndContactProjection> findClientWithAddressAndContactById(Long id);
-
-    Optional<ClientWithItemProjection> findClientWithItemById(Long id);
-
-    Optional<ClientWithAllProjection> findClientWithAddressAndContactAndItemById(Long id);
 
     //DTOS  ||
     //      ||

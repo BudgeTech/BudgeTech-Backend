@@ -30,7 +30,7 @@ public class Address {
     private String complement;
 
     @Column(name = "neighbor_address", length = 45, nullable = false)
-    private String neighbor;
+    private String neighborhood;
 
     @Column(name = "city_address", length = 45, nullable = false)
     private String city;
@@ -47,12 +47,12 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private Woodwork woodwork;
 
-    public Address(Long id, String street, int number, String complement, String neighbor, String city, String province, String cep) {
+    public Address(Long id, String street, int number, String complement, String neighborhood, String city, String province, String cep) {
         this.id = id;
         this.street = street;
         this.number = number;
         this.complement = complement;
-        this.neighbor = neighbor;
+        this.neighborhood = neighborhood;
         this.city = city;
         this.province = province;
         this.cep = cep;

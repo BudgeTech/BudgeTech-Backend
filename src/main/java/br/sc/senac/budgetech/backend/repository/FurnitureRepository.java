@@ -14,7 +14,7 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
 
     boolean existsByNameFurniture(String nameFurniture);
 
-    //É tanto uma consulta quanto um DTO
+    //É tanto usado pela consulta quanto o DTO
     Optional<FurnitureProjection> findFurnitureById(Long id);
 
     Optional<FurnitureProjection> findFurnitureByNameFurniture(String nameFurniture);

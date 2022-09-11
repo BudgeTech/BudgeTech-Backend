@@ -25,7 +25,7 @@ public interface RequestService {
 
     RequestProfileDTO findRequestProfileById(Long id);
 
-    RequestList2DTO findRequestListById(Long id);
+    RequestListDTO findRequestListById(Long id);
 
     RequestWithFurnituresDTO findRequestWithFurnituresById(Long id);
 }

@@ -46,28 +46,13 @@ public class ClientController {
     }
 
     @GetMapping("name/{nameClient}")
-    public ResponseEntity<ClientProjection> getProjectionByName(@PathVariable(value = "nameClient") String nameClient) {
+    public ResponseEntity<ClientProjection> getProjectionByNameClient(@PathVariable(value = "nameClient") String nameClient) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findByNameClient(nameClient));
     }
 
     @GetMapping("phoneNumber/{phoneNumber}")
     public ResponseEntity<ClientProjection> getProjectionByContactPhoneNumber(@PathVariable(value = "phoneNumber") String phoneNumber) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findByContactPhoneNumber(phoneNumber));
-    }
-
-    @GetMapping("/{id}/address/contact")
-    public ResponseEntity<ClientWithAddressAndContactProjection> getProjectionWithAddressAndContact(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithAddressAndContactById(id));
-    }
-
-    @GetMapping("/{id}/items")
-    public ResponseEntity<ClientWithItemProjection> getProjectionWithItem(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithItemById(id));
-    }
-
-    @GetMapping("/{id}/all")
-    public ResponseEntity<ClientWithAllProjection> getProjectionWithAll(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithAddressAndContactAndItemById(id));
     }
 
     @GetMapping("clientProfileEditDTO/{id}")

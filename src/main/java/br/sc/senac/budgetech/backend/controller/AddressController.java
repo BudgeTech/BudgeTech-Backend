@@ -38,13 +38,8 @@ public class AddressController {
         return ResponseEntity.status(HttpStatus.OK).body(addressService.findById(id));
     }
 
-    @GetMapping("neighbor/{neighbor}")
-    public ResponseEntity<AddressProjection> getProjectionByNeighbor(@PathVariable(value = "neighbor") String neighbor) {
-        return ResponseEntity.status(HttpStatus.OK).body(addressService.findByNeighbor(neighbor));
-    }
-
-    @GetMapping("city/{city}")
-    public ResponseEntity<AddressProjection> getProjectionByCity(@PathVariable(value = "city") String city) {
-        return ResponseEntity.status(HttpStatus.OK).body(addressService.findByCity(city));
+    @GetMapping("neighborhood/{neighborhood}")
+    public ResponseEntity<AddressProjection> getProjectionByNeighborhood(@PathVariable(value = "neighborhood") String neighborhood) {
+        return ResponseEntity.status(HttpStatus.OK).body(addressService.findByNeighborhood(neighborhood));
     }
 }

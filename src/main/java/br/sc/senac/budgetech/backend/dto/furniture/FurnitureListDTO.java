@@ -4,5 +4,4 @@ import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjectio
 
 import java.util.List;
 
-public record FurnitureListDTO(List<FurnitureListProjection> furnitureList) {
-}
+public record FurnitureListDTO(List<FurnitureListProjection> furnitures) {}

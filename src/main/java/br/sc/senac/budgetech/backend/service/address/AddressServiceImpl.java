@@ -11,6 +11,8 @@ import br.sc.senac.budgetech.backend.repository.AddressRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
 public class AddressServiceImpl implements AddressService {
@@ -32,26 +34,26 @@ public class AddressServiceImpl implements AddressService {
 
     public void update(AddressDTO addressDTO, Long id) {
 
+        Address address = addressRepository.findById(id)
+                .orElseThrow(() -> new AddressNotFoundException("Address " + id + " was not found"));
+
         if (addressRepository.existsByStreetAndNumber(addressDTO.street(), addressDTO.number()))
             throw new AddressStreetAndNumberRegisteredException
                     ("Road " + addressDTO.street() + " and Number " + addressDTO.number() + " are already registered");
-
-        Address address = addressRepository.findById(id)
-                .orElseThrow(() -> new AddressNotFoundException("Address " + id + " was not found"));
 
         if (addressDTO.number() <= 0)
             throw new AddressInvalidException("Number " + addressDTO.number() + " is invalid");
 
         address.setNumber(addressDTO.number());
-        address.setProvince((addressDTO.province() != null && !addressDTO.province().isBlank()) ? addressDTO.province() : address.getProvince());
-        address.setStreet((addressDTO.street() != null && !addressDTO.street().isBlank()) ? addressDTO.street() : address.getStreet());
-        address.setNeighbor((addressDTO.neighbor() != null && !addressDTO.neighbor().isBlank()) ? addressDTO.neighbor() : address.getNeighbor());
-        address.setCity((addressDTO.city() != null && !addressDTO.city().isBlank()) ? addressDTO.city() : address.getCity());
         address.setCep((addressDTO.cep() != null && !addressDTO.cep().isBlank()) ? addressDTO.cep() : address.getCep());
+        address.setCity((addressDTO.city() != null && !addressDTO.city().isBlank()) ? addressDTO.city() : address.getCity());
+        address.setStreet((addressDTO.street() != null && !addressDTO.street().isBlank()) ? addressDTO.street() : address.getStreet());
+        address.setProvince((addressDTO.province() != null && !addressDTO.province().isBlank()) ? addressDTO.province() : address.getProvince());
         address.setComplement((addressDTO.complement() != null && !addressDTO.complement().isBlank()) ? addressDTO.complement() : address.getComplement());
+        address.setNeighborhood((addressDTO.neighborhood() != null && !addressDTO.neighborhood().isBlank()) ? addressDTO.neighborhood() : address.getNeighborhood());
 
-        var existsNumber = addressRepository.findAddressByStreet(addressDTO.street());
-        var existsStreet = addressRepository.findAddressByNumber(addressDTO.number());
+        Optional<AddressProjection> existsNumber = addressRepository.findAddressByStreet(addressDTO.street());
+        Optional<AddressProjection> existsStreet = addressRepository.findAddressByNumber(addressDTO.number());
 
         if (existsNumber.isPresent() && existsStreet.isPresent() && (existsNumber.get().getId().equals(id)))
             throw new AddressStreetAndNumberRegisteredException
@@ -71,13 +73,8 @@ public class AddressServiceImpl implements AddressService {
                 .orElseThrow(() -> new AddressNotFoundException("Address " + id + " was not found"));
     }
 
-    public AddressProjection findByNeighbor(String neighbor) {
-        return addressRepository.findAddressByNeighbor(neighbor)
-                .orElseThrow(() -> new AddressNotFoundException("Address " + neighbor + " was not found"));
-    }
-
-    public AddressProjection findByCity(String city) {
-        return addressRepository.findAddressByCity(city)
-                .orElseThrow(() -> new AddressNotFoundException("Address " + city + " was not found"));
+    public AddressProjection findByNeighborhood(String neighborhood) {
+        return addressRepository.findAddressByNeighborhood(neighborhood)
+                .orElseThrow(() -> new AddressNotFoundException("Address " + neighborhood + " was not found"));
     }
 }

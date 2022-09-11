@@ -10,7 +10,7 @@ public interface AddressProjection {
 
     String getComplement();
 
-    String getNeighbor();
+    String getNeighborhood();
 
     String getCity();
 

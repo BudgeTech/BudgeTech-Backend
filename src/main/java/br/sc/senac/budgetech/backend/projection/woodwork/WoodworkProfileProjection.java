@@ -14,9 +14,11 @@ public interface WoodworkProfileProjection {
 
     interface AddressProjection {
 
+        String getCity();
+
         String getProvince();
 
-        String getNeighbor();
+        String getNeighborhood();
     }
 
     interface ContactProjection {

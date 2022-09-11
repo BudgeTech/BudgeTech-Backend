@@ -18,7 +18,7 @@ public interface WoodworkProfileFullEditProjection {
 
         String getComplement();
 
-        String getNeighbor();
+        String getNeighborhood();
 
         String getCity();
 

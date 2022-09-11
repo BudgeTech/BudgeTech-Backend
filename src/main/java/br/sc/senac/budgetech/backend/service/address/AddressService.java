@@ -14,7 +14,5 @@ public interface AddressService {
 
     AddressProjection findById(Long id);
 
-    AddressProjection findByCity(String city);
-
-    AddressProjection findByNeighbor(String neighbor);
+    AddressProjection findByNeighborhood(String neighborhood);
 }
