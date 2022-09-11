@@ -15,6 +15,8 @@ import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.repository.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.LivingAreaRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -102,4 +104,9 @@ public class FurnitureServiceImpl implements FurnitureService {
             throw new FurnitureNotFoundException("Furniture " + id + " was not found");
         return furnitureMapper.toDTO(furniture);
     }
+
+//    public FurnitureListDTO findAll(Pageable pageable) {
+//        Page<FurnitureListProjection> furniture = furnitureRepository.findTestFurniture(pageable);
+//        return furnitureMapper.toDTO(furniture);
+//    }
 }

@@ -6,6 +6,7 @@ import br.sc.senac.budgetech.backend.dto.furniture.FurnitureTelaDTO;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.service.furniture.FurnitureService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -59,4 +60,9 @@ public class FurnitureController {
     public ResponseEntity<FurnitureListDTO> getProjectionDTOById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureListById(id));
     }
+
+//    @GetMapping
+//    public ResponseEntity<FurnitureListDTO> getProjectionByIDTO(Pageable pageable) {
+//        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findAll(pageable));
+//    }
 }

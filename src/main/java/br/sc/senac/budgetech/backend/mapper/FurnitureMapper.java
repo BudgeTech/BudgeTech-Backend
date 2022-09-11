@@ -6,6 +6,7 @@ import br.sc.senac.budgetech.backend.dto.furniture.FurnitureTelaDTO;
 import br.sc.senac.budgetech.backend.model.Furniture;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -27,5 +28,9 @@ public class FurnitureMapper {
 
     public FurnitureListDTO toDTO(List<FurnitureListProjection> furniture) {
         return new FurnitureListDTO(furniture);
+    }
+
+    public FurnitureListDTO toDTO(Page<FurnitureListProjection> furniture) {
+        return new FurnitureListDTO(furniture.toList());
     }
 }
