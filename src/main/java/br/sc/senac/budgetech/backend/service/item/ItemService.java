@@ -15,5 +15,5 @@ public interface ItemService {
 
     ItemProjection findById(Long id);
 
-    ItemProjection findByPrice(double totalPrice);
+    ItemProjection findByPrice(Double totalPrice);
 }

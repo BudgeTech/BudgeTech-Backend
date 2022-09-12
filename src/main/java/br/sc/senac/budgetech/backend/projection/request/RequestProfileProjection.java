@@ -7,7 +7,7 @@ public interface RequestProfileProjection {
 
     Long getId();
 
-    double getPriceRequest();
+    Double getPriceRequest();
 
     ItemProjection getItem();
 
@@ -53,6 +53,6 @@ public interface RequestProfileProjection {
 
         String getNameFurniture();
 
-        double getPriceFurniture();
+        Double getPriceFurniture();
     }
 }

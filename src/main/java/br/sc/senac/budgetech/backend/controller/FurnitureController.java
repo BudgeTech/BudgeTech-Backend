@@ -3,9 +3,11 @@ package br.sc.senac.budgetech.backend.controller;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureListDTO;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureTelaDTO;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.service.furniture.FurnitureService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -61,8 +63,8 @@ public class FurnitureController {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureListById(id));
     }
 
-//    @GetMapping
-//    public ResponseEntity<FurnitureListDTO> getProjectionByIDTO(Pageable pageable) {
-//        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findAll(pageable));
-//    }
+    @GetMapping("page/{page}")
+    public ResponseEntity<Page<FurnitureListProjection>> getProjectionByIDTO(Pageable pageable, @PathVariable(value = "page") Integer page) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureOrderByAscName(pageable, page));
+    }
 }

@@ -25,7 +25,7 @@ public class Request {
     private Long id;
 
     @Column(name = "request_price")
-    private double priceRequest;
+    private Double priceRequest;
 
     @Enumerated(EnumType.ORDINAL)
     @Column(name = "request_status", nullable = false)

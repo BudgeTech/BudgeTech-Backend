@@ -81,7 +81,7 @@ public class ItemServiceImpl implements ItemService {
                 .orElseThrow(() -> new ItemNotFoundException("Item " + id + " was not found"));
     }
 
-    public ItemProjection findByPrice(double totalPrice) {
+    public ItemProjection findByPrice(Double totalPrice) {
         return itemRepository.findItemByTotalPrice(totalPrice)
                 .orElseThrow(() -> new ItemNotFoundException("Item " + totalPrice + " was not found"));
     }

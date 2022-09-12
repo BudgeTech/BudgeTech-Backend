@@ -12,5 +12,5 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     Optional<ItemProjection> findItemById(Long id);
 
-    Optional<ItemProjection> findItemByTotalPrice(double totalPrice);
+    Optional<ItemProjection> findItemByTotalPrice(Double totalPrice);
 }

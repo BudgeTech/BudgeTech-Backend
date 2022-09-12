@@ -11,7 +11,7 @@ public interface RequestWithFurnituresProjection {
 
         String getNameFurniture();
 
-        double getPriceFurniture();
+        Double getPriceFurniture();
 
         Long getId();
 

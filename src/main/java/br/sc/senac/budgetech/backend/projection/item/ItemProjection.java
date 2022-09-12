@@ -6,5 +6,5 @@ public interface ItemProjection {
 
     int getQuantity();
 
-    double getTotalPrice();
+    Double getTotalPrice();
 }

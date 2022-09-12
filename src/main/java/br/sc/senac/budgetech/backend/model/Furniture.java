@@ -35,7 +35,7 @@ public class Furniture {
 	private double furnitureSize;
 
 	@Column(name = "furniture_price", length = 20, nullable = false)
-	private double priceFurniture;
+	private Double priceFurniture;
 
 	@ManyToOne
 	@JoinColumn(name = "id_living_area")

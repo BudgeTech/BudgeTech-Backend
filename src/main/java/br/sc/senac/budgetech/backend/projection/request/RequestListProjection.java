@@ -10,7 +10,7 @@ public interface RequestListProjection {
 
     LocalDate initialDate();
 
-    double getPriceRequest();
+    Double getPriceRequest();
 
     Status getStatus();
 }

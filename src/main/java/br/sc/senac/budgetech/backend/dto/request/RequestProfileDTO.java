@@ -6,7 +6,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public record RequestProfileDTO(Long id,
-                                double priceRequest,
+                                Double priceRequest,
                                 LocalDate initialDate,
                                 List<RequestProfileProjection.FurnitureProjection> furnitures,
                                 String nameClient,

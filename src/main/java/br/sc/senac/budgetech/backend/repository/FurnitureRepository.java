@@ -22,7 +22,7 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
 
     Optional<FurnitureProjection> findFurnitureByNameFurniture(String nameFurniture);
 
-    Optional<FurnitureProjection> findFurnitureByPriceFurniture(double priceFurniture);
+    Optional<FurnitureProjection> findFurnitureByPriceFurniture(Double priceFurniture);
 
     //DTOS  ||
     //      ||
@@ -30,6 +30,6 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
 
     List<FurnitureListProjection> findFurnitureListById(Long id);
 
-//    @Query(value = "SELECT f.furniture_name AS NameFurniture, f.furniture_price AS PriceFurniture FROM Furniture f")
-//    Page<FurnitureListProjection> findTestFurniture(Pageable pageable);
+    @Query(value = "SELECT f.nameFurniture as name, f.image as image, f.priceFurniture as price FROM Furniture f")
+    Page<FurnitureListProjection> findFurniture(Pageable pageable);
 }

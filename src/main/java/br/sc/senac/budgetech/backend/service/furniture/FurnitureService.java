@@ -3,7 +3,9 @@ package br.sc.senac.budgetech.backend.service.furniture;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureListDTO;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureTelaDTO;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
@@ -21,11 +23,11 @@ public interface FurnitureService {
 
     FurnitureProjection findByNameFurniture(String nameFurniture);
 
-    FurnitureProjection findByPriceFurniture(double priceFurniture);
+    FurnitureProjection findByPriceFurniture(Double priceFurniture);
 
     FurnitureTelaDTO findByIdDTO(Long id);
 
     FurnitureListDTO findFurnitureListById(Long id);
 
-//    FurnitureListDTO findAll(Pageable pageable);
+    Page<FurnitureListProjection> findFurnitureOrderByAscName(Pageable pageable, Integer page);
 }

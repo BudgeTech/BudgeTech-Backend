@@ -24,7 +24,7 @@ public class Item {
     private int quantity;
 
     @Column(name = "item_total_price", length = 250, nullable = false)
-    private double totalPrice;
+    private Double totalPrice;
 
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "request_id")
