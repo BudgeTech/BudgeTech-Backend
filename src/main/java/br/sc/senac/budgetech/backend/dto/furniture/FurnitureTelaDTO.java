@@ -4,4 +4,4 @@ import java.sql.Blob;
 
 public record FurnitureTelaDTO(String nameFurniture,
                                Blob image,
-                               Double priceFurniture) {}
+                               double priceFurniture) {}

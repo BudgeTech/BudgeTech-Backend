@@ -6,7 +6,7 @@ import br.sc.senac.budgetech.backend.enumeration.Status;
 import java.time.LocalDate;
 
 public record RequestDTO(Long id,
-                         Double priceRequest,
+                         double priceRequest,
                          Status status,
                          Payment payment,
                          LocalDate initialDate,

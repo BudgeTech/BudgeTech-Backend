@@ -20,7 +20,7 @@ public class ClientMapper {
     }
 
     public ClientProfileEditDTO toDTO(ClientProfileEditProjection client) {
-        return new ClientProfileEditDTO(client.getNameClient(), client.getLastName(), client.getCpf());
+        return new ClientProfileEditDTO(client.getNameClient(), client.getLastName(), client.getCpf(), client.getImage());
     }
 
     public ClientProfileFullEditDTO toDTO(ClientProfileFullEditProjection client) {

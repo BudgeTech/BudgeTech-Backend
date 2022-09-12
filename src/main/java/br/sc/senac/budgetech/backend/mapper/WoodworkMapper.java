@@ -22,15 +22,15 @@ public class WoodworkMapper {
     }
 
     public WoodworkProfileDTO toDTO(WoodworkProfileProjection woodwork) {
-        return new WoodworkProfileDTO(woodwork.getCompanyName(), woodwork.getDescription(), woodwork.getAddress().getCity() ,woodwork.getAddress().getProvince(), woodwork.getAddress().getNeighborhood(), woodwork.getContact().getPhoneNumber(), woodwork.getCnpj(), woodwork.getContact().getEmail(), woodwork.getContact().getSocialNetwork());
+        return new WoodworkProfileDTO(woodwork.getCompanyName(), woodwork.getDescription(), woodwork.getCnpj(), woodwork.getImage(), woodwork.getAddress().getCity() ,woodwork.getAddress().getProvince(), woodwork.getAddress().getNeighborhood(), woodwork.getContact().getPhoneNumber(), woodwork.getContact().getEmail(), woodwork.getContact().getSocialNetwork());
     }
 
     public WoodworkProfileEditDTO toDTO(WoodworkProfileEditProjection woodwork) {
-        return new WoodworkProfileEditDTO(woodwork.getCompanyName(), woodwork.getCnpj());
+        return new WoodworkProfileEditDTO(woodwork.getCompanyName(), woodwork.getCnpj(), woodwork.getImage());
     }
 
     public WoodworkProfileFullEditDTO toDTO(WoodworkProfileFullEditProjection woodwork) {
-        return new WoodworkProfileFullEditDTO(woodwork.getCompanyName(), woodwork.getCnpj(), woodwork.getAddress().getStreet(), woodwork.getAddress().getNumber(), woodwork.getAddress().getComplement(), woodwork.getAddress().getNeighborhood(), woodwork.getAddress().getCity(), woodwork.getAddress().getCep(), woodwork.getContact().getPhoneNumber(), woodwork.getContact().getEmail(), woodwork.getContact().getSocialNetwork());
+        return new WoodworkProfileFullEditDTO(woodwork.getCompanyName(), woodwork.getCnpj(), woodwork.getImage(), woodwork.getAddress().getStreet(), woodwork.getAddress().getNumber(), woodwork.getAddress().getComplement(), woodwork.getAddress().getNeighborhood(), woodwork.getAddress().getCity(), woodwork.getAddress().getCep(), woodwork.getContact().getPhoneNumber(), woodwork.getContact().getEmail(), woodwork.getContact().getSocialNetwork());
     }
 
     public WoodworkSearchDTO toDTO(List<WoodworkSearchProjection> woodwork) {

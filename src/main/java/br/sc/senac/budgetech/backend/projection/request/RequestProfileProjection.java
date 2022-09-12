@@ -1,5 +1,6 @@
 package br.sc.senac.budgetech.backend.projection.request;
 
+import java.sql.Blob;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -7,13 +8,15 @@ public interface RequestProfileProjection {
 
     Long getId();
 
-    Double getPriceRequest();
+    double getPriceRequest();
 
     ItemProjection getItem();
 
     LocalDate getInitialDate();
 
     List<FurnitureProjection> getFurniture();
+
+    WoodworkProjection getWoodwork();
 
     interface ItemProjection {
 
@@ -53,6 +56,10 @@ public interface RequestProfileProjection {
 
         String getNameFurniture();
 
-        Double getPriceFurniture();
+        double getPriceFurniture();
+    }
+
+    interface WoodworkProjection{
+        Blob getImage();
     }
 }

@@ -4,4 +4,6 @@ import br.sc.senac.budgetech.backend.projection.request.RequestWithFurnituresPro
 
 import java.util.List;
 
-public record RequestWithFurnituresDTO(List<RequestWithFurnituresProjection.FurnitureProjection> furnitures) {}
+import static br.sc.senac.budgetech.backend.projection.request.RequestWithFurnituresProjection.*;
+
+public record RequestWithFurnituresDTO(List<FurnitureProjection> furnitures) {}

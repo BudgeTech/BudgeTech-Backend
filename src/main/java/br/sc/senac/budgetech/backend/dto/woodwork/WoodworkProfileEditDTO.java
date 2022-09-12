@@ -1,3 +1,5 @@
 package br.sc.senac.budgetech.backend.dto.woodwork;
 
-public record WoodworkProfileEditDTO(String companyName, String cnpj) {}
+import java.sql.Blob;
+
+public record WoodworkProfileEditDTO(String companyName, String cnpj, Blob image) {}

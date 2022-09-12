@@ -1,10 +1,14 @@
 package br.sc.senac.budgetech.backend.projection.woodwork;
 
+import java.sql.Blob;
+
 public interface WoodworkProfileFullEditProjection {
 
     String getCompanyName();
 
     String getCnpj();
+
+    Blob getImage();
 
     AddressProjection getAddress();
 

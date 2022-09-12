@@ -1,5 +1,7 @@
 package br.sc.senac.budgetech.backend.projection.client;
 
+import java.sql.Blob;
+
 public interface ClientProfileEditProjection {
 
     String getNameClient();
@@ -7,4 +9,6 @@ public interface ClientProfileEditProjection {
     String getLastName();
 
     String getCpf();
+
+    Blob getImage();
 }
