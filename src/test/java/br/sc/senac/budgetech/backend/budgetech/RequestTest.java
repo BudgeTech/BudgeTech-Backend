@@ -11,9 +11,9 @@ class RequestTest {
 
     @Test
     void TestOfCalculating() {
-        var fun1 = new Furniture(1L, "nome", "descrição", 15.50, 2);
-        var fun2 = new Furniture(1L, "nome", "descrição", 15.50, 2);
-        var fun3 = new Furniture(1L, "nome", "descrição", 15.50, 2);
+        var fun1 = new Furniture(1L, "nome", "descrição", 15.50, 2D);
+        var fun2 = new Furniture(1L, "nome", "descrição", 15.50, 2D);
+        var fun3 = new Furniture(1L, "nome", "descrição", 15.50, 2D);
 
         var request = new Request();
         request.addFurniture(fun1);
@@ -25,9 +25,9 @@ class RequestTest {
 
     @Test
     void TestOfCalculating2() {
-        var fun1 = new Furniture(1L, "nome", "descrição", 15.50, 18);
-        var fun2 = new Furniture(1L, "nome", "descrição", 15.50, 2);
-        var fun3 = new Furniture(1L, "nome", "descrição", 15.50, 15);
+        var fun1 = new Furniture(1L, "nome", "descrição", 15.50, 18D);
+        var fun2 = new Furniture(1L, "nome", "descrição", 15.50, 2D);
+        var fun3 = new Furniture(1L, "nome", "descrição", 15.50, 15D);
 
         var request = new Request();
         request.addFurniture(fun1);

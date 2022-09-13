@@ -2,13 +2,12 @@ package br.sc.senac.budgetech.backend.controller;
 
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureListDTO;
-import br.sc.senac.budgetech.backend.dto.furniture.FurnitureTelaDTO;
+import br.sc.senac.budgetech.backend.dto.furniture.FurnitureScreenDTO;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.service.furniture.FurnitureService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -54,7 +53,7 @@ public class FurnitureController {
     }
 
     @GetMapping("furnitureDTO/{id}")
-    public ResponseEntity<FurnitureTelaDTO> getProjectionByIDTO(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<FurnitureScreenDTO> getProjectionByIDTO(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findByIdDTO(id));
     }
 
@@ -64,7 +63,12 @@ public class FurnitureController {
     }
 
     @GetMapping("page/{page}")
-    public ResponseEntity<Page<FurnitureListProjection>> getProjectionByIDTO(Pageable pageable, @PathVariable(value = "page") Integer page) {
-        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureOrderByAscName(pageable, page));
+    public ResponseEntity<Page<FurnitureListProjection>> getProjectionPageOrderByName(@PathVariable(value = "page") Integer page) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureOrderByAscName(page));
+    }
+
+    @GetMapping("page1/{page}")
+    public ResponseEntity<FurnitureListDTO> getFurnitureDTOOrderByNameAsc(@PathVariable(value = "page") Integer page) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureDTOOrderByAscName(page));
     }
 }

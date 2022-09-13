@@ -52,7 +52,7 @@ public class Request {
         furnitures = new ArrayList<>();
     }
 
-    public Request(Long id, double priceRequest, Status status, Payment payment, LocalDate initialDate, LocalDate finalDate) {
+    public Request(Long id, Double priceRequest, Status status, Payment payment, LocalDate initialDate, LocalDate finalDate) {
         this.id = id;
         this.priceRequest = priceRequest;
         this.status = status;

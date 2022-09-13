@@ -10,9 +10,9 @@ public interface FurnitureProjection {
 
     String getDescription();
 
-    double getFurnitureSize();
+    Double getFurnitureSize();
 
-    double getPriceFurniture();
+    Double getPriceFurniture();
 
     Blob getImage();
 }

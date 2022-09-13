@@ -7,7 +7,7 @@ import java.time.LocalDate;
 import java.util.List;
 
 public record RequestCreateDTO(Long id,
-                               double priceRequest,
+                               Double priceRequest,
                                Status status,
                                Payment payment,
                                LocalDate initialDate,

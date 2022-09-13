@@ -38,7 +38,7 @@ public class Item {
     @JoinColumn(name = "woodwork_id")
     private Woodwork woodwork;
 
-    public Item(Long id, int quantity, double totalPrice) {
+    public Item(Long id, int quantity, Double totalPrice) {
         this.id = id;
         this.quantity = quantity;
         this.totalPrice = totalPrice;

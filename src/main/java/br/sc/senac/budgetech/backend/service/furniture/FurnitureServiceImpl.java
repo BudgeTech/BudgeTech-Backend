@@ -2,7 +2,7 @@ package br.sc.senac.budgetech.backend.service.furniture;
 
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureListDTO;
-import br.sc.senac.budgetech.backend.dto.furniture.FurnitureTelaDTO;
+import br.sc.senac.budgetech.backend.dto.furniture.FurnitureScreenDTO;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureInvalidException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNameRegisteredException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundException;
@@ -16,8 +16,8 @@ import br.sc.senac.budgetech.backend.repository.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.LivingAreaRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
@@ -94,7 +94,7 @@ public class FurnitureServiceImpl implements FurnitureService {
                 .orElseThrow(() -> new FurnitureNotFoundException("Price " + priceFurniture + " was not found"));
     }
 
-    public FurnitureTelaDTO findByIdDTO(Long id) {
+    public FurnitureScreenDTO findByIdDTO(Long id) {
         FurnitureProjection furniture = furnitureRepository.findFurnitureById(id)
                 .orElseThrow(() -> new FurnitureNotFoundException("Furniture " + id + " was not found"));
         return furnitureMapper.toDTO(furniture);
@@ -107,13 +107,12 @@ public class FurnitureServiceImpl implements FurnitureService {
         return furnitureMapper.toDTO(furniture);
     }
 
-//    public Page<FurnitureListProjection> findFurnitureOrderByAscName(Pageable pageable, Integer page) {
-//        pageable = PageRequest.of(page, 3, Sort.by("name").ascending());
-//       return furnitureRepository.findFurniture(pageable);
-//    }
+    public Page<FurnitureListProjection> findFurnitureOrderByAscName(Integer page) {
+        return new PageImpl<>(furnitureRepository.findAllProjectedFurnitureBy(), PageRequest.of(page, 3, Sort.Direction.ASC,("name")), 3);
+    }
 
-    public Page<FurnitureListProjection> findFurnitureOrderByAscName(Pageable pageable, Integer page) {
-        pageable = PageRequest.of(page, 3, Sort.Direction.ASC,("name"));
-        return furnitureRepository.findFurniture(pageable);
+    public FurnitureListDTO findFurnitureDTOOrderByAscName(Integer page) {
+        var a = new PageImpl<>(furnitureRepository.findAllProjectedFurnitureBy(), PageRequest.of(page, 3, Sort.Direction.ASC,("name")), 3);
+        return furnitureMapper.toDTO(a);
     }
 }

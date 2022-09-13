@@ -32,7 +32,7 @@ public class Furniture {
 	private String description;
 
 	@Column(name = "furniture_size", length = 45, nullable = false)
-	private double furnitureSize;
+	private Double furnitureSize;
 
 	@Column(name = "furniture_price", length = 20, nullable = false)
 	private Double priceFurniture;
@@ -49,7 +49,7 @@ public class Furniture {
 		requests = new ArrayList<>();
 	}
 
-	public Furniture(Long id, String nameFurniture, String description, double furnitureSize, double priceFurniture) {
+	public Furniture(Long id, String nameFurniture, String description, Double furnitureSize, Double priceFurniture) {
 		this.id = id;
 		this.nameFurniture = nameFurniture;
 		this.description = description;

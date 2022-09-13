@@ -6,7 +6,7 @@ public interface FurnitureListProjection {
 
     String getNameFurniture();
 
-    double getPriceFurniture();
+    Double getPriceFurniture();
 
     Blob getImage();
 }
