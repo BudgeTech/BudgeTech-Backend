@@ -7,6 +7,7 @@ import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -28,9 +29,17 @@ public interface FurnitureService {
 
     FurnitureListDTO findFurnitureDTO(Integer page);
 
+    Page<FurnitureListProjection> findFurnitureProjection(Pageable pageable, Integer page);
+
     FurnitureScreenDTO findByIdDTO(Long id);
 
     FurnitureListDTO findFurnitureListById(Long id);
 
     Page<Furniture> findFurnitureWithPaginationAndSorting(int offset, int pageSize, String field);
+
+    //Page<FurnitureListProjection> findFurnitureProjectionWithPaginationAndSorting(Pageable pageable, Integer page);
+
+    //Page<FurnitureListProjection> findFurnitureProjection(Integer page);
+
+    //Page<FurnitureListDTO> findFurnitureDTOProjection(Pageable pageable, Integer page);
 }

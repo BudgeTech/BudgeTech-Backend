@@ -15,10 +15,8 @@ import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.repository.furniture.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.livingArea.LivingAreaRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
+import net.bytebuddy.TypeCache;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -116,8 +114,20 @@ public class FurnitureServiceImpl implements FurnitureService {
         return furnitureMapper.toDTO(a);
     }
 
+
     public Page<Furniture> findFurnitureWithPaginationAndSorting(int offset, int pageSize, String field) {
         Page<Furniture> furnitures = furnitureRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
         return furnitures;
     }
+
+    //Native Query
+    public Page<FurnitureListProjection> findFurnitureProjection(Pageable pageable, Integer page) {
+        pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "nameFurniture");
+        return furnitureRepository.findAllFurnitureBy(pageable);
+    }
+
+//    public Page<FurnitureListDTO> findFurnitureDTOProjection(Pageable pageable, Integer page) {
+//        pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "nameFurniture");
+//        return furnitureRepository.findAllFurnitureDTO(pageable);
+//    }
 }

@@ -9,6 +9,7 @@ import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.service.furniture.FurnitureService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -77,4 +78,19 @@ public class FurnitureController {
     public ResponseEntity<Page<Furniture>> getTest(@PathVariable(value = "offset") int offset, @PathVariable(value = "pageSize") int pageSize, @PathVariable(value = "field") String field) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureWithPaginationAndSorting(offset, pageSize, field));
     }
+
+//    @GetMapping("test/{page}")
+//    public ResponseEntity<Page<FurnitureListProjection>> test(@PathVariable(value = "page") Integer page) {
+//        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureProjection(page));
+//    }
+
+    @GetMapping("test2/{page}")
+    public ResponseEntity<Page<FurnitureListProjection>> test(@PathVariable(value = "page") Integer page, Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureProjection(pageable, page));
+    }
+
+//    @GetMapping("test3/{page}")
+//    public ResponseEntity<Page<FurnitureListDTO>> test2(@PathVariable(value = "page") Integer page, Pageable pageable) {
+//        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureDTOProjection(pageable, page));
+//    }
 }
