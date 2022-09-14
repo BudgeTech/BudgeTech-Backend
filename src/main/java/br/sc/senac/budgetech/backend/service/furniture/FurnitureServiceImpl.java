@@ -107,12 +107,17 @@ public class FurnitureServiceImpl implements FurnitureService {
         return furnitureMapper.toDTO(furniture);
     }
 
-    public Page<FurnitureListProjection> findFurnitureOrderByAscName(Integer page) {
+    public Page<FurnitureListProjection> findFurniture(Integer page) {
         return new PageImpl<>(furnitureRepository.findAllProjectedFurnitureBy(), PageRequest.of(page, 3, Sort.Direction.ASC,("name")), 3);
     }
 
-    public FurnitureListDTO findFurnitureDTOOrderByAscName(Integer page) {
+    public FurnitureListDTO findFurnitureDTO(Integer page) {
         var a = new PageImpl<>(furnitureRepository.findAllProjectedFurnitureBy(), PageRequest.of(page, 3, Sort.Direction.ASC,("name")), 3);
         return furnitureMapper.toDTO(a);
+    }
+
+    public Page<Furniture> findFurnitureWithPaginationAndSorting(int offset, int pageSize, String field) {
+        Page<Furniture> furnitures = furnitureRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
+        return furnitures;
     }
 }

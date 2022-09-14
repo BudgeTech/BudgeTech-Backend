@@ -3,6 +3,7 @@ package br.sc.senac.budgetech.backend.controller;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureListDTO;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureScreenDTO;
+import br.sc.senac.budgetech.backend.model.Furniture;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.service.furniture.FurnitureService;
@@ -53,22 +54,27 @@ public class FurnitureController {
     }
 
     @GetMapping("furnitureDTO/{id}")
-    public ResponseEntity<FurnitureScreenDTO> getProjectionByIDTO(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<FurnitureScreenDTO> getDtoById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findByIdDTO(id));
     }
 
     @GetMapping("furnitureListDTO/{id}")
-    public ResponseEntity<FurnitureListDTO> getProjectionDTOById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<FurnitureListDTO> getListDtoById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureListById(id));
     }
 
     @GetMapping("page/{page}")
-    public ResponseEntity<Page<FurnitureListProjection>> getProjectionPageOrderByName(@PathVariable(value = "page") Integer page) {
-        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureOrderByAscName(page));
+    public ResponseEntity<Page<FurnitureListProjection>> getProjectionPage(@PathVariable(value = "page") Integer page) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurniture(page));
     }
 
     @GetMapping("page1/{page}")
-    public ResponseEntity<FurnitureListDTO> getFurnitureDTOOrderByNameAsc(@PathVariable(value = "page") Integer page) {
-        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureDTOOrderByAscName(page));
+    public ResponseEntity<FurnitureListDTO> getFurnitureDTO(@PathVariable(value = "page") Integer page) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureDTO(page));
+    }
+
+    @GetMapping("test/{offset}/{pageSize}/{field}")
+    public ResponseEntity<Page<Furniture>> getTest(@PathVariable(value = "offset") int offset, @PathVariable(value = "pageSize") int pageSize, @PathVariable(value = "field") String field) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureWithPaginationAndSorting(offset, pageSize, field));
     }
 }

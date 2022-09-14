@@ -27,4 +27,6 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
     List<FurnitureListProjection> findFurnitureListById(Long id);
 
     List<FurnitureListProjection> findAllProjectedFurnitureBy();
+
+    List<Furniture> findAll();
 }
