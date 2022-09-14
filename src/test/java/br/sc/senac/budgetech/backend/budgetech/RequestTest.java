@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.budgetech;
 
-import br.sc.senac.budgetech.backend.model.Furniture;
-import br.sc.senac.budgetech.backend.model.Request;
+import br.sc.senac.budgetech.backend.model.furniture.Furniture;
+import br.sc.senac.budgetech.backend.model.request.Request;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

@@ -9,15 +9,15 @@ import br.sc.senac.budgetech.backend.exception.client.ClientCpfRegisteredExcepti
 import br.sc.senac.budgetech.backend.exception.client.ClientLoginRegisteredException;
 import br.sc.senac.budgetech.backend.exception.client.ClientNotFoundException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
-import br.sc.senac.budgetech.backend.mapper.ClientMapper;
-import br.sc.senac.budgetech.backend.model.Address;
-import br.sc.senac.budgetech.backend.model.Client;
-import br.sc.senac.budgetech.backend.model.Contact;
+import br.sc.senac.budgetech.backend.mapper.client.ClientMapper;
+import br.sc.senac.budgetech.backend.model.address.Address;
+import br.sc.senac.budgetech.backend.model.client.Client;
+import br.sc.senac.budgetech.backend.model.contact.Contact;
 import br.sc.senac.budgetech.backend.projection.client.*;
-import br.sc.senac.budgetech.backend.repository.AddressRepository;
-import br.sc.senac.budgetech.backend.repository.ClientRepository;
-import br.sc.senac.budgetech.backend.repository.ContactRepository;
-import br.sc.senac.budgetech.backend.utils.ValidateCPF;
+import br.sc.senac.budgetech.backend.repository.address.AddressRepository;
+import br.sc.senac.budgetech.backend.repository.client.ClientRepository;
+import br.sc.senac.budgetech.backend.repository.contact.ContactRepository;
+import br.sc.senac.budgetech.backend.util.CPFValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +40,7 @@ public class ClientServiceImpl implements ClientService {
         if (clientRepository.existsByLogin(clientDTO.login()))
             throw new ClientLoginRegisteredException("Login " + clientDTO.login() + " is already registered");
 
-        if (ValidateCPF.isCPF(clientDTO.cpf()))
+        if (CPFValidator.isCPF(clientDTO.cpf()))
             throw new ClientCpfInvalidException("Cpf " + clientDTO.cpf() + " is invalid");
 
         Contact contact = contactRepository.findById(clientDTO.idContact())
@@ -85,7 +85,7 @@ public class ClientServiceImpl implements ClientService {
         if (existsLogin.isPresent() && (existsLogin.get().getId().equals(id)))
             throw new ClientLoginRegisteredException("Login " + clientDTO.login() + " is already registered");
 
-        if (ValidateCPF.isCPF(client.getCpf()))
+        if (CPFValidator.isCPF(client.getCpf()))
             throw new ClientCpfInvalidException("Cpf " + clientDTO.cpf() + " is invalid");
 
         clientRepository.save(client);

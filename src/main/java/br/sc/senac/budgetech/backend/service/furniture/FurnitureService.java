@@ -3,7 +3,7 @@ package br.sc.senac.budgetech.backend.service.furniture;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureListDTO;
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureScreenDTO;
-import br.sc.senac.budgetech.backend.model.Furniture;
+import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import org.springframework.data.domain.Page;

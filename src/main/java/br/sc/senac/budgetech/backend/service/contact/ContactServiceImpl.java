@@ -3,10 +3,10 @@ package br.sc.senac.budgetech.backend.service.contact;
 import br.sc.senac.budgetech.backend.dto.contact.ContactDTO;
 import br.sc.senac.budgetech.backend.exception.client.ClientCpfRegisteredException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
-import br.sc.senac.budgetech.backend.mapper.ContactMapper;
-import br.sc.senac.budgetech.backend.model.Contact;
+import br.sc.senac.budgetech.backend.mapper.contact.ContactMapper;
+import br.sc.senac.budgetech.backend.model.contact.Contact;
 import br.sc.senac.budgetech.backend.projection.contact.ContactProjection;
-import br.sc.senac.budgetech.backend.repository.ContactRepository;
+import br.sc.senac.budgetech.backend.repository.contact.ContactRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

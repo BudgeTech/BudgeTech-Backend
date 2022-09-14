@@ -4,12 +4,12 @@ import br.sc.senac.budgetech.backend.dto.livingArea.LivingAreaDTO;
 import br.sc.senac.budgetech.backend.dto.livingArea.LivingAreaTelaDTO;
 import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkNotFoundException;
-import br.sc.senac.budgetech.backend.mapper.LivingAreaMapper;
-import br.sc.senac.budgetech.backend.model.LivingArea;
-import br.sc.senac.budgetech.backend.model.Woodwork;
+import br.sc.senac.budgetech.backend.mapper.livingArea.LivingAreaMapper;
+import br.sc.senac.budgetech.backend.model.livingArea.LivingArea;
+import br.sc.senac.budgetech.backend.model.woodwork.Woodwork;
 import br.sc.senac.budgetech.backend.projection.livingArea.LivingAreaProjection;
-import br.sc.senac.budgetech.backend.repository.LivingAreaRepository;
-import br.sc.senac.budgetech.backend.repository.WoodworkRepository;
+import br.sc.senac.budgetech.backend.repository.livingArea.LivingAreaRepository;
+import br.sc.senac.budgetech.backend.repository.woodwork.WoodworkRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
