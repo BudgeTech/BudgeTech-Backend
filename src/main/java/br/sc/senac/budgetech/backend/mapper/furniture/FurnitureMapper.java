@@ -1,8 +1,6 @@
 package br.sc.senac.budgetech.backend.mapper.furniture;
 
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
-import br.sc.senac.budgetech.backend.dto.furniture.FurnitureListDTO;
-import br.sc.senac.budgetech.backend.dto.furniture.FurnitureScreenDTO;
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
@@ -20,17 +18,5 @@ public class FurnitureMapper {
 
     public Furniture toEntity(FurnitureDTO dto) {
         return new Furniture(dto.id(), dto.nameFurniture(), dto.description(), dto.furnitureSize(), dto.priceFurniture());
-    }
-
-    public FurnitureScreenDTO toDTO(FurnitureProjection furniture) {
-        return new FurnitureScreenDTO(furniture.getNameFurniture(), furniture.getImage(), furniture.getPriceFurniture());
-    }
-
-    public FurnitureListDTO toDTO(List<FurnitureListProjection> furniture) {
-        return new FurnitureListDTO(furniture);
-    }
-
-    public FurnitureListDTO toDTO(Page<FurnitureListProjection> furniture) {
-        return new FurnitureListDTO(furniture.toList());
     }
 }

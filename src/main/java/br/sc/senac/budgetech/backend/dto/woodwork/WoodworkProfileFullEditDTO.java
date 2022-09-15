@@ -1,8 +1,0 @@
-package br.sc.senac.budgetech.backend.dto.woodwork;
-
-import java.sql.Blob;
-
-public record WoodworkProfileFullEditDTO(String companyName, String cnpj, Blob image, String street, int number, String complement,
-                                         String neighborhood, String city, String cep, String phoneNumber, String email,
-                                         String socialNetwork) {
-}

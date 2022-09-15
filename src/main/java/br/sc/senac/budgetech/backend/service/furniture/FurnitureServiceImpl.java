@@ -137,8 +137,7 @@ public class FurnitureServiceImpl implements FurnitureService {
     }
 
     public Page<Furniture> findWithPaginationAndSorting(int offset, int pageSize, String field) {
-        Page<Furniture> furnitures = furnitureRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
-        return furnitures;
+        return furnitureRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
     }
 
     public Page<FurnitureListProjection> findWithPaginationAndSortingByPriceFurniture(Pageable pageable, Integer page) {
