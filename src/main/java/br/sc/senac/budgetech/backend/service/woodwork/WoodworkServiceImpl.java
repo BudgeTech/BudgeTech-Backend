@@ -1,6 +1,6 @@
 package br.sc.senac.budgetech.backend.service.woodwork;
 
-import br.sc.senac.budgetech.backend.dto.woodwork.*;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkDTO;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
 import br.sc.senac.budgetech.backend.exception.client.ClientLoginRegisteredException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
@@ -102,11 +102,6 @@ public class WoodworkServiceImpl implements WoodworkService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + cnpj + " was not found"));
     }
 
-    public WoodworkProjection findByCompanyName(String companyName) {
-        return woodworkRepository.findWoodworkByCompanyName(companyName)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + companyName + " was not found"));
-    }
-
     public WoodworkProjection findByAddressNeighborhood(String neighborhood) {
         return woodworkRepository.findWoodworkByAddressNeighborhood(neighborhood)
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + neighborhood + " was not found"));
@@ -117,28 +112,30 @@ public class WoodworkServiceImpl implements WoodworkService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + phoneNumber + " was not found"));
     }
 
-    public WoodworkProfileDTO findProfileById(Long id) {
-        WoodworkProfileProjection woodwork = woodworkRepository.findWoodworkProfileById(id)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
-        return woodworkMapper.toDTO(woodwork);
+    public WoodworkProjection findByCompanyName(String companyName) {
+        return woodworkRepository.findWoodworkByCompanyName(companyName)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + companyName + " was not found"));
     }
 
-    public WoodworkProfileEditDTO findProfileEditById(Long id) {
-        WoodworkProfileEditProjection woodwork = woodworkRepository.findWoodworkProfileEditById(id)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
-        return woodworkMapper.toDTO(woodwork);
-    }
-
-    public WoodworkProfileFullEditDTO findProfileFullEditById(Long id) {
-        WoodworkProfileFullEditProjection woodwork = woodworkRepository.findWoodworkProfileFullEditById(id)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
-        return woodworkMapper.toDTO(woodwork);
-    }
-
-    public WoodworkSearchDTO findSearchById(Long id) {
+    public List<WoodworkSearchProjection> findSearchById(Long id) {
         List<WoodworkSearchProjection> woodwork = woodworkRepository.findWoodworkSearchById(id);
-        if(woodwork.isEmpty())
+        if (woodwork.isEmpty())
             throw new WoodworkNotFoundException("Woodwork " + id + " was not found");
-        return woodworkMapper.toDTO(woodwork);
+        return woodwork;
+    }
+
+    public WoodworkProfileProjection findProfileById(Long id) {
+        return woodworkRepository.findWoodworkProfileById(id)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+    }
+
+    public WoodworkProfileEditProjection findProfileEditById(Long id) {
+        return woodworkRepository.findWoodworkProfileEditById(id)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+    }
+
+    public WoodworkProfileFullEditProjection findProfileFullEditById(Long id) {
+        return woodworkRepository.findWoodworkProfileFullEditById(id)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
     }
 }

@@ -1,9 +1,9 @@
 package br.sc.senac.budgetech.backend.controller.client;
 
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
-import br.sc.senac.budgetech.backend.dto.client.ClientProfileEditDTO;
-import br.sc.senac.budgetech.backend.dto.client.ClientProfileFullEditDTO;
-import br.sc.senac.budgetech.backend.projection.client.*;
+import br.sc.senac.budgetech.backend.projection.client.ClientProfileEditProjection;
+import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjection;
+import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
 import br.sc.senac.budgetech.backend.service.client.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -46,22 +46,22 @@ public class ClientController {
     }
 
     @GetMapping("name/{nameClient}")
-    public ResponseEntity<ClientProjection> getProjectionByNameClient(@PathVariable(value = "nameClient") String nameClient) {
+    public ResponseEntity<ClientProjection> getProjectionByName(@PathVariable(value = "nameClient") String nameClient) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findByNameClient(nameClient));
     }
 
-    @GetMapping("phoneNumber/{phoneNumber}")
-    public ResponseEntity<ClientProjection> getProjectionByContactPhoneNumber(@PathVariable(value = "phoneNumber") String phoneNumber) {
-        return ResponseEntity.status(HttpStatus.OK).body(clientService.findByContactPhoneNumber(phoneNumber));
-    }
-
     @GetMapping("clientProfileEditDTO/{id}")
-    public ResponseEntity<ClientProfileEditDTO> getProjectionClientProfileEditDTO(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<ClientProfileEditProjection> getProjectionClientProfileEditById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileEditById(id));
     }
 
+    @GetMapping("phoneNumber/{phoneNumber}")
+    public ResponseEntity<ClientProjection> getProjectionByPhoneNumber(@PathVariable(value = "phoneNumber") String phoneNumber) {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findByContactPhoneNumber(phoneNumber));
+    }
+
     @GetMapping("clientProfileFullEditDTO/{id}")
-    public ResponseEntity<ClientProfileFullEditDTO> getProjectionClientProfileFullEditDTO(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<ClientProfileFullEditProjection> getProjectionClientProfileFullEditById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileFullEditById(id));
     }
 }

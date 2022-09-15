@@ -111,20 +111,18 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + nameClient + " was not found"));
     }
 
+    public ClientProfileEditProjection findProfileEditById(Long id) {
+        return clientRepository.findClientProfileEditById(id)
+                .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
+    }
+
     public ClientProjection findByContactPhoneNumber(String phoneNumber) {
         return clientRepository.findClientByContactPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new ClientNotFoundException("Client " + phoneNumber + " was not found"));
     }
 
-    public ClientProfileEditDTO findProfileEditById(Long id) {
-        ClientProfileEditProjection client = clientRepository.findClientProfileEditById(id)
+    public ClientProfileFullEditProjection findProfileFullEditById(Long id) {
+        return clientRepository.findClientProfileFullEditById(id)
                 .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
-        return clientMapper.toDTO(client);
-    }
-
-    public ClientProfileFullEditDTO findProfileFullEditById(Long id) {
-        ClientProfileFullEditProjection client = clientRepository.findClientProfileFullEditById(id)
-                .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
-        return clientMapper.toDTO(client);
     }
 }

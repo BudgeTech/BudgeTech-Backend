@@ -1,15 +1,19 @@
 package br.sc.senac.budgetech.backend.controller.request;
 
-import br.sc.senac.budgetech.backend.dto.request.*;
+import br.sc.senac.budgetech.backend.dto.request.RequestCreateDTO;
+import br.sc.senac.budgetech.backend.dto.request.RequestDTO;
+import br.sc.senac.budgetech.backend.projection.request.RequestListProjection;
+import br.sc.senac.budgetech.backend.projection.request.RequestProfileProjection;
 import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
+import br.sc.senac.budgetech.backend.projection.request.RequestWithFurnituresProjection;
 import br.sc.senac.budgetech.backend.service.request.RequestService;
 import lombok.AllArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -43,22 +47,22 @@ public class RequestController {
 
     @GetMapping("initialDate/{initialDate}")
     public ResponseEntity<RequestProjection> getProjectionByInitialDate(@PathVariable(value = "initialDate") String initialDate) {
-        var data = LocalDate.parse(initialDate);
+        LocalDate data = LocalDate.parse(initialDate);
         return ResponseEntity.status(HttpStatus.OK).body(requestService.findByInitialDate(data));
     }
 
-    @GetMapping("request-profile/{id}")
-    public ResponseEntity<RequestProfileDTO> getProjectionDTOById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(requestService.findRequestProfileById(id));
+    @GetMapping("requestProfile/{id}")
+    public ResponseEntity<RequestProfileProjection> getProjectionRequestProfileById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(requestService.findProfileById(id));
     }
 
-    @GetMapping("request-list/{id}")
-    public ResponseEntity<RequestListDTO> getProjectionRequestListDTOById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(requestService.findRequestListById(id));
+    @GetMapping("requestList/{id}")
+    public ResponseEntity<List<RequestListProjection>> getProjectionRequestListById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(requestService.findListById(id));
     }
 
-    @GetMapping("request-with-furnitures/{id}")
-    public ResponseEntity<RequestWithFurnituresDTO> getProjectionRequestWithFurnituresById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(requestService.findRequestWithFurnituresById(id));
+    @GetMapping("requestFurniture/{id}")
+    public ResponseEntity<RequestWithFurnituresProjection> getProjectionRequestWithFurnitureById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(requestService.findFurnitureById(id));
     }
 }

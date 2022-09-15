@@ -57,10 +57,4 @@ public class LivingAreaServiceImpl implements LivingAreaService {
         return livingAreaRepository.findLivingAreaByNameLivingArea(nameLivingArea)
                 .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + nameLivingArea + " was not found"));
     }
-
-    public LivingAreaTelaDTO findByIdDTO(Long id) {
-        LivingAreaProjection livingArea = livingAreaRepository.findLivingAreaById(id)
-                .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + id + " was not found"));
-        return livingAreaMapper.toDTO(livingArea);
-    }
 }

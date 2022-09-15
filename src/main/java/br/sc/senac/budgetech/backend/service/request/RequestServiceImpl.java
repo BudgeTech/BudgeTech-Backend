@@ -87,22 +87,20 @@ public class RequestServiceImpl implements RequestService {
                 .orElseThrow(() -> new RequestNotFoundException("Request " + initialDate + " was not found"));
     }
 
-    public RequestProfileDTO findRequestProfileById(Long id) {
-        RequestProfileProjection request = requestRepository.findRequestProfileById(id)
+    public RequestProfileProjection findProfileById(Long id) {
+        return requestRepository.findRequestProfileById(id)
                 .orElseThrow(() -> new RequestNotFoundException("Request " + id + " was not found"));
-        return requestMapper.toDTO(request);
     }
 
-    public RequestListDTO findRequestListById(Long id) {
+    public List<RequestListProjection> findListById(Long id) {
         List<RequestListProjection> request = requestRepository.findRequestListById(id);
         if(request.isEmpty())
             throw new RequestNotFoundException("Request " + id + " was not found");
-        return requestMapper.toDTO(request);
+        return request;
     }
 
-    public RequestWithFurnituresDTO findRequestWithFurnituresById(Long id) {
-        RequestWithFurnituresProjection request = requestRepository.findRequestWithFurnituresById(id)
+    public RequestWithFurnituresProjection findFurnitureById(Long id) {
+        return requestRepository.findRequestWithFurnituresById(id)
                 .orElseThrow(() -> new RequestNotFoundException("Request " + id + " was not found"));
-        return requestMapper.toDTO(request);
     }
 }

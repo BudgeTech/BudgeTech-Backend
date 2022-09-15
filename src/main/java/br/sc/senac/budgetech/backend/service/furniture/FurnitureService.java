@@ -1,14 +1,14 @@
 package br.sc.senac.budgetech.backend.service.furniture;
 
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
-import br.sc.senac.budgetech.backend.dto.furniture.FurnitureListDTO;
-import br.sc.senac.budgetech.backend.dto.furniture.FurnitureScreenDTO;
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public interface FurnitureService {
@@ -25,21 +25,13 @@ public interface FurnitureService {
 
     FurnitureProjection findByPriceFurniture(Double priceFurniture);
 
-    Page<FurnitureListProjection> findFurniture(Integer page);
+    List<FurnitureProjection> findListByPriceFurniture(Double priceFurniture);
 
-    FurnitureListDTO findFurnitureDTO(Integer page);
+    List<FurnitureListProjection> findListById(Long id);
 
-    Page<FurnitureListProjection> findFurnitureProjection(Pageable pageable, Integer page);
+    Page<Furniture> findWithPaginationAndSorting(int offset, int pageSize, String field);
 
-    FurnitureScreenDTO findByIdDTO(Long id);
+    Page<FurnitureListProjection> findWithPaginationAndSortingByPriceFurniture(Pageable pageable, Integer page);
 
-    FurnitureListDTO findFurnitureListById(Long id);
-
-    Page<Furniture> findFurnitureWithPaginationAndSorting(int offset, int pageSize, String field);
-
-    //Page<FurnitureListProjection> findFurnitureProjectionWithPaginationAndSorting(Pageable pageable, Integer page);
-
-    //Page<FurnitureListProjection> findFurnitureProjection(Integer page);
-
-    //Page<FurnitureListDTO> findFurnitureDTOProjection(Pageable pageable, Integer page);
+    Page<FurnitureListProjection> findWithPaginationAndSortingByNameFurniture(Pageable pageable, Integer page);
 }

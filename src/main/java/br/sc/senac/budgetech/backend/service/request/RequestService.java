@@ -1,10 +1,14 @@
 package br.sc.senac.budgetech.backend.service.request;
 
 import br.sc.senac.budgetech.backend.dto.request.*;
+import br.sc.senac.budgetech.backend.projection.request.RequestListProjection;
+import br.sc.senac.budgetech.backend.projection.request.RequestProfileProjection;
 import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
+import br.sc.senac.budgetech.backend.projection.request.RequestWithFurnituresProjection;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Service
 public interface RequestService {
@@ -15,17 +19,13 @@ public interface RequestService {
 
     void delete(Long id);
 
-    RequestProjection findByInitialDate(LocalDate initialDate);
-
     RequestProjection findById(Long id);
 
-    //DTOS  ||
-    //      ||
-    //      vv
+    RequestProjection findByInitialDate(LocalDate initialDate);
 
-    RequestProfileDTO findRequestProfileById(Long id);
+    RequestProfileProjection findProfileById(Long id);
 
-    RequestListDTO findRequestListById(Long id);
+    List<RequestListProjection> findListById(Long id);
 
-    RequestWithFurnituresDTO findRequestWithFurnituresById(Long id);
+    RequestWithFurnituresProjection findFurnitureById(Long id);
 }

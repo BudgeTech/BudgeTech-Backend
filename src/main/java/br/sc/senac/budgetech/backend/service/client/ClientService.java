@@ -1,8 +1,8 @@
 package br.sc.senac.budgetech.backend.service.client;
 
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
-import br.sc.senac.budgetech.backend.dto.client.ClientProfileEditDTO;
-import br.sc.senac.budgetech.backend.dto.client.ClientProfileFullEditDTO;
+import br.sc.senac.budgetech.backend.projection.client.ClientProfileEditProjection;
+import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjection;
 import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
 import org.springframework.stereotype.Service;
 
@@ -21,9 +21,9 @@ public interface ClientService {
 
     ClientProjection findByNameClient(String nameClient);
 
+    ClientProfileEditProjection findProfileEditById(Long id);
+
     ClientProjection findByContactPhoneNumber(String phoneNumber);
 
-    ClientProfileEditDTO findProfileEditById(Long id);
-
-    ClientProfileFullEditDTO findProfileFullEditById(Long id);
+    ClientProfileFullEditProjection findProfileFullEditById(Long id);
 }

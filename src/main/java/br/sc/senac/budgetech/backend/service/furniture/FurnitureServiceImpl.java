@@ -92,42 +92,32 @@ public class FurnitureServiceImpl implements FurnitureService {
                 .orElseThrow(() -> new FurnitureNotFoundException("Price " + priceFurniture + " was not found"));
     }
 
-    public FurnitureScreenDTO findByIdDTO(Long id) {
-        FurnitureProjection furniture = furnitureRepository.findFurnitureById(id)
-                .orElseThrow(() -> new FurnitureNotFoundException("Furniture " + id + " was not found"));
-        return furnitureMapper.toDTO(furniture);
+    public List<FurnitureProjection> findListByPriceFurniture(Double priceFurniture) {
+        List<FurnitureProjection> furniture = furnitureRepository.findFurnitureListByPriceFurniture(priceFurniture);
+        if(furniture.isEmpty())
+            throw new FurnitureNotFoundException("Furniture " + priceFurniture + " was not found");
+        return furniture;
     }
 
-    public FurnitureListDTO findFurnitureListById(Long id) {
+    public List<FurnitureListProjection> findListById(Long id) {
         List<FurnitureListProjection> furniture = furnitureRepository.findFurnitureListById(id);
         if(furniture.isEmpty())
             throw new FurnitureNotFoundException("Furniture " + id + " was not found");
-        return furnitureMapper.toDTO(furniture);
+        return furniture;
     }
 
-    public Page<FurnitureListProjection> findFurniture(Integer page) {
-        return new PageImpl<>(furnitureRepository.findAllProjectedFurnitureBy(), PageRequest.of(page, 3, Sort.Direction.ASC,("name")), 3);
-    }
-
-    public FurnitureListDTO findFurnitureDTO(Integer page) {
-        var a = new PageImpl<>(furnitureRepository.findAllProjectedFurnitureBy(), PageRequest.of(page, 3, Sort.Direction.ASC,("name")), 3);
-        return furnitureMapper.toDTO(a);
-    }
-
-
-    public Page<Furniture> findFurnitureWithPaginationAndSorting(int offset, int pageSize, String field) {
+    public Page<Furniture> findWithPaginationAndSorting(int offset, int pageSize, String field) {
         Page<Furniture> furnitures = furnitureRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
         return furnitures;
     }
 
-    //Native Query
-    public Page<FurnitureListProjection> findFurnitureProjection(Pageable pageable, Integer page) {
-        pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "nameFurniture");
+    public Page<FurnitureListProjection> findWithPaginationAndSortingByPriceFurniture(Pageable pageable, Integer page) {
+        pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "priceFurniture");
         return furnitureRepository.findAllFurnitureBy(pageable);
     }
 
-//    public Page<FurnitureListDTO> findFurnitureDTOProjection(Pageable pageable, Integer page) {
-//        pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "nameFurniture");
-//        return furnitureRepository.findAllFurnitureDTO(pageable);
-//    }
+    public Page<FurnitureListProjection> findWithPaginationAndSortingByNameFurniture(Pageable pageable, Integer page) {
+        pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "nameFurniture");
+        return furnitureRepository.findAllFurnitureBy(pageable);
+    }
 }

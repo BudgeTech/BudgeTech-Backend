@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.backend.controller.livingArea;
 
 import br.sc.senac.budgetech.backend.dto.livingArea.LivingAreaDTO;
-import br.sc.senac.budgetech.backend.dto.livingArea.LivingAreaTelaDTO;
 import br.sc.senac.budgetech.backend.projection.livingArea.LivingAreaProjection;
 import br.sc.senac.budgetech.backend.service.living_area.LivingAreaService;
 import lombok.AllArgsConstructor;
@@ -42,10 +41,5 @@ public class LivingAreaController {
     @GetMapping("name/{nameLivingArea}")
     public ResponseEntity<LivingAreaProjection> getProjectionByName(@PathVariable(value = "nameLivingArea") String nameLivingArea) {
         return ResponseEntity.status(HttpStatus.OK).body(livingAreaService.findByNameLivingArea(nameLivingArea));
-    }
-
-    @GetMapping("livingAreaDTO/{id}")
-    public ResponseEntity<LivingAreaTelaDTO> getProjectionByIdDTO(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(livingAreaService.findByIdDTO(id));
     }
 }

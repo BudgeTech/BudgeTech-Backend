@@ -39,7 +39,7 @@ public class ColorController {
     }
 
     @GetMapping("name/{nameColor}")
-    public ResponseEntity<ColorProjection> getProjectionByNameColor(@PathVariable(value = "nameColor") String nameColor) {
+    public ResponseEntity<ColorProjection> getProjectionByName(@PathVariable(value = "nameColor") String nameColor) {
         return ResponseEntity.status(HttpStatus.OK).body(colorService.findByNameColor(nameColor));
     }
 

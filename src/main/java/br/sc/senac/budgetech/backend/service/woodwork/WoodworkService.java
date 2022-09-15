@@ -1,8 +1,10 @@
 package br.sc.senac.budgetech.backend.service.woodwork;
 
 import br.sc.senac.budgetech.backend.dto.woodwork.*;
-import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkProjection;
+import br.sc.senac.budgetech.backend.projection.woodwork.*;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public interface WoodworkService {
@@ -23,12 +25,12 @@ public interface WoodworkService {
 
     WoodworkProjection findByCompanyName(String companyName);
 
-    WoodworkSearchDTO findSearchById(Long id);
+    List<WoodworkSearchProjection> findSearchById(Long id);
 
-    WoodworkProfileDTO findProfileById(Long id);
+    WoodworkProfileProjection findProfileById(Long id);
 
-    WoodworkProfileEditDTO findProfileEditById(Long id);
+    WoodworkProfileEditProjection findProfileEditById(Long id);
 
-    WoodworkProfileFullEditDTO findProfileFullEditById(Long id);
+    WoodworkProfileFullEditProjection findProfileFullEditById(Long id);
 
 }

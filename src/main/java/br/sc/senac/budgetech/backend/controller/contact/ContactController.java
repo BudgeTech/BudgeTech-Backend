@@ -34,7 +34,7 @@ public class ContactController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<ContactProjection> getProjectionByPhoneNumber(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<ContactProjection> getProjectionById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(contactService.findById(id));
     }
 
