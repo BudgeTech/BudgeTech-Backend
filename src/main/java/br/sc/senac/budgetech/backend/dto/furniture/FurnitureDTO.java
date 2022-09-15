@@ -5,4 +5,6 @@ public record FurnitureDTO(Long id,
                            String description,
                            Double furnitureSize,
                            Double priceFurniture,
+
+                           byte[] image,
                            Long idLivingArea) {}

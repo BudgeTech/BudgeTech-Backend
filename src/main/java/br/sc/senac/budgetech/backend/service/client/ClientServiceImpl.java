@@ -1,8 +1,6 @@
 package br.sc.senac.budgetech.backend.service.client;
 
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
-import br.sc.senac.budgetech.backend.dto.client.ClientProfileEditDTO;
-import br.sc.senac.budgetech.backend.dto.client.ClientProfileFullEditDTO;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
 import br.sc.senac.budgetech.backend.exception.client.ClientCpfInvalidException;
 import br.sc.senac.budgetech.backend.exception.client.ClientCpfRegisteredException;
@@ -13,7 +11,9 @@ import br.sc.senac.budgetech.backend.mapper.client.ClientMapper;
 import br.sc.senac.budgetech.backend.model.address.Address;
 import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.model.contact.Contact;
-import br.sc.senac.budgetech.backend.projection.client.*;
+import br.sc.senac.budgetech.backend.projection.client.ClientProfileEditProjection;
+import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjection;
+import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
 import br.sc.senac.budgetech.backend.repository.address.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.client.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.contact.ContactRepository;

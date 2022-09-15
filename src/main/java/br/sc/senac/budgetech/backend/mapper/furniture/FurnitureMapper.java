@@ -15,7 +15,7 @@ import java.util.List;
 public class FurnitureMapper {
 
     public FurnitureDTO toDTO(Furniture furniture) {
-        return new FurnitureDTO(furniture.getId(), furniture.getNameFurniture(), furniture.getDescription(), furniture.getFurnitureSize(), furniture.getPriceFurniture(), furniture.getLivingArea().getId());
+        return new FurnitureDTO(furniture.getId(), furniture.getNameFurniture(), furniture.getDescription(), furniture.getFurnitureSize(), furniture.getPriceFurniture(), furniture.getImage(),furniture.getLivingArea().getId());
     }
 
     public Furniture toEntity(FurnitureDTO dto) {

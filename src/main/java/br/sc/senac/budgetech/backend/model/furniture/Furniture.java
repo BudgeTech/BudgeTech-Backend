@@ -8,7 +8,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Blob;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +24,8 @@ public class Furniture {
 	private Long id;
 
 	@Column(name = "furniture_image")
-	private Blob image;
+	@Lob
+	private byte[] image;
 
 	@Column(name = "furniture_name", length = 35, nullable = false)
 	private String nameFurniture;

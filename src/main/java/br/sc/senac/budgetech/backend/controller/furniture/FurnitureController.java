@@ -6,17 +6,20 @@ import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjectio
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.service.furniture.FurnitureService;
 import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/furniture")
+@Slf4j
 @AllArgsConstructor
 public class FurnitureController {
 
@@ -26,6 +29,37 @@ public class FurnitureController {
     public ResponseEntity<FurnitureDTO> addFurniture(@RequestBody FurnitureDTO furnitureDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(furnitureService.save(furnitureDTO));
     }
+
+    @PostMapping(value = "/image")
+    public ResponseEntity<FurnitureDTO> testAddImage(FurnitureDTO furnitureDTO, @RequestParam(value = "image") MultipartFile file) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(furnitureService.save(furnitureDTO));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<FurnitureListProjection>> testShowImage(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findListById(id));
+    }
+
+//    @PostMapping("/arquivo")
+//    public ResponseEntity<FurnitureDTO> salvarArquivo(@RequestParam("file") MultipartFile file, FurnitureDTO furnitureDTO) {
+//        log.info("Recebendo o arquivo: ", file.getOriginalFilename());
+//        var caminho = UUID.randomUUID() + "." + extrairExtensao(file.getOriginalFilename());
+//
+//        log.info("Novo nome do arquivo: " + caminho);
+//
+//        try {
+//            Files.copy(file.getInputStream(), Path.of(caminho), StandardCopyOption.REPLACE_EXISTING);
+//            return ResponseEntity.status(HttpStatus.CREATED).body(furnitureService.save(furnitureDTO, file));
+//        } catch (Exception e) {
+//            log.error("Erro ao processar arquivo", e);
+//            return new ResponseEntity<>(HttpStatus.OK);
+//        }
+//    }
+//
+//    private String extrairExtensao(String nomeArquivo) {
+//        int i = nomeArquivo.lastIndexOf(".");
+//        return nomeArquivo.substring(i + 1);
+//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateFurniture(@RequestBody FurnitureDTO furnitureDTO, @PathVariable(value = "id") Long id) {

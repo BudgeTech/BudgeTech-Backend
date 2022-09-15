@@ -1,8 +1,6 @@
 package br.sc.senac.budgetech.backend.service.furniture;
 
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
-import br.sc.senac.budgetech.backend.dto.furniture.FurnitureListDTO;
-import br.sc.senac.budgetech.backend.dto.furniture.FurnitureScreenDTO;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureInvalidException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNameRegisteredException;
 import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundException;
@@ -15,10 +13,14 @@ import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.repository.furniture.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.livingArea.LivingAreaRepository;
 import lombok.AllArgsConstructor;
-import net.bytebuddy.TypeCache;
-import org.springframework.data.domain.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @AllArgsConstructor
@@ -45,6 +47,34 @@ public class FurnitureServiceImpl implements FurnitureService {
 
         Furniture furniture = furnitureMapper.toEntity(furnitureDTO);
         furniture.setLivingArea(livingArea);
+        Furniture furnitureSaved = furnitureRepository.save(furniture);
+
+        return furnitureMapper.toDTO(furnitureSaved);
+    }
+
+    public FurnitureDTO save(FurnitureDTO furnitureDTO, MultipartFile file) {
+
+        LivingArea livingArea = livingAreaRepository.findById(furnitureDTO.idLivingArea())
+                .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + furnitureDTO.idLivingArea() + " was not found"));
+
+        if (furnitureRepository.existsByNameFurniture(furnitureDTO.nameFurniture()))
+            throw new FurnitureNameRegisteredException("Furniture " + furnitureDTO.nameFurniture() + " is already registered");
+
+        if (furnitureDTO.furnitureSize() <= 0)
+            throw new FurnitureInvalidException("Furniture Size " + furnitureDTO.furnitureSize() + " is invalid");
+
+        if (furnitureDTO.priceFurniture() < 0)
+            throw new FurnitureInvalidException("Price " + furnitureDTO.priceFurniture() + " is invalid");
+
+        Furniture furniture = furnitureMapper.toEntity(furnitureDTO);
+        furniture.setLivingArea(livingArea);
+
+        try {
+            furniture.setImage(file.getBytes());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
         Furniture furnitureSaved = furnitureRepository.save(furniture);
 
         return furnitureMapper.toDTO(furnitureSaved);

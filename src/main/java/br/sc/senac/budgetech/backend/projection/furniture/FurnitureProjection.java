@@ -1,7 +1,5 @@
 package br.sc.senac.budgetech.backend.projection.furniture;
 
-import java.sql.Blob;
-
 public interface FurnitureProjection {
 
     Long getId();
@@ -14,5 +12,5 @@ public interface FurnitureProjection {
 
     Double getPriceFurniture();
 
-    Blob getImage();
+    byte[] getImage();
 }
