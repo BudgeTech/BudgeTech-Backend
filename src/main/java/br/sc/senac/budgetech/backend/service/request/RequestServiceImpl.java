@@ -45,6 +45,10 @@ public class RequestServiceImpl implements RequestService {
             throw new ItemInvalidException("Price " + requestCreateDTO.priceRequest() + " is invalid");
 
         request.setInitialDate(LocalDate.now());
+
+        if(!request.getInitialDate().isBefore(requestCreateDTO.finalDate())) throw new RequestNotFoundException("Invalid Date " + requestCreateDTO.finalDate());
+        //if(!request.getInitialDate().isBefore(requestCreateDTO.finalDate())) throw new RequestNotFoundException("Invalid Date " + request.getInitialDate());
+
         Request requestSaved = requestRepository.save(request);
         return requestMapper.toDTO(requestSaved);
     }
@@ -64,10 +68,13 @@ public class RequestServiceImpl implements RequestService {
             request.getFurnitures().add(furniture);
         }
 
+        if(!request.getInitialDate().isBefore(requestCreateDTO.finalDate())) throw new RequestNotFoundException("Invalid Date " + requestCreateDTO.finalDate());
+        //if(!request.getInitialDate().isBefore(requestCreateDTO.finalDate())) throw new RequestNotFoundException("Invalid Date " + request.getInitialDate());
+
         request.setPriceRequest(requestCreateDTO.priceRequest());
         request.setStatus(requestCreateDTO.status());
         request.setPayment(requestCreateDTO.payment());
-        request.setInitialDate(requestCreateDTO.initialDate());
+        //request.setInitialDate(requestCreateDTO.initialDate());
         request.setFinalDate(requestCreateDTO.finalDate());
         requestRepository.save(request);
     }
