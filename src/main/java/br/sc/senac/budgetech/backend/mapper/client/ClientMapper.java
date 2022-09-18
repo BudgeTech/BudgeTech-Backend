@@ -2,8 +2,6 @@ package br.sc.senac.budgetech.backend.mapper.client;
 
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
 import br.sc.senac.budgetech.backend.model.client.Client;
-import br.sc.senac.budgetech.backend.projection.client.ClientProfileEditProjection;
-import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjection;
 import org.springframework.stereotype.Service;
 
 @Service

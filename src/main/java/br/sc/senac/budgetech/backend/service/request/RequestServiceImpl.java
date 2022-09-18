@@ -6,6 +6,7 @@ import br.sc.senac.budgetech.backend.enumeration.Payment;
 import br.sc.senac.budgetech.backend.exception.request.RequestInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.request.RequestMapper;
+import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.model.request.Request;
 import br.sc.senac.budgetech.backend.projection.request.RequestListProjection;
@@ -31,21 +32,19 @@ public class RequestServiceImpl implements RequestService {
 
     public RequestDTO save(RequestCreateDTO requestCreateDTO) {
 
-        Request request = new Request(requestCreateDTO.id(), requestCreateDTO.priceRequest(),
-                requestCreateDTO.status(), requestCreateDTO.payment(),
-                requestCreateDTO.initialDate(), requestCreateDTO.finalDate());
-
-        for (Long idFurniture : requestCreateDTO.idFurnitures()) {
-            Furniture furniture = furnitureRepository.findById(idFurniture)
-                    .orElseThrow(() -> new RequestNotFoundException("Furniture " + idFurniture + " was not found"));
-            request.getFurnitures().add(furniture);
-        }
+        Request request = requestMapper.toEntity(requestCreateDTO);
 
         if (requestCreateDTO.priceRequest() < 0)
             throw new RequestInvalidException("Price " + requestCreateDTO.priceRequest() + " is invalid");
 
         request.setInitialDate(LocalDate.now());
         if(!request.getInitialDate().isBefore(requestCreateDTO.finalDate())) throw new RequestNotFoundException("Invalid Date " + requestCreateDTO.finalDate());
+
+        for (Long idFurniture : requestCreateDTO.idFurnitures()) {
+            Furniture furniture = furnitureRepository.findById(idFurniture)
+                    .orElseThrow(() -> new RequestNotFoundException("Furniture " + idFurniture + " was not found"));
+            request.getFurnitures().add(furniture);
+        }
 
         Request requestSaved = requestRepository.save(request);
         return requestMapper.toDTO(requestSaved);
