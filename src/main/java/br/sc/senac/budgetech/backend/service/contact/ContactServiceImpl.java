@@ -28,7 +28,6 @@ public class ContactServiceImpl implements ContactService {
         Contact contact = contactMapper.toEntity(contactDTO);
         Contact contactSaved = contactRepository.save(contact);
         return contactMapper.toDTO(contactSaved);
-
     }
 
     public void update(ContactDTO contactDTO, Long id) {

@@ -19,6 +19,7 @@ import br.sc.senac.budgetech.backend.exception.item.ItemNotFoundException;
 import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundException;
 import br.sc.senac.budgetech.backend.exception.request.RequestInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
+import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkCnpjInvalidException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkCnpjRegisteredException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkLoginRegisteredException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkNotFoundException;
@@ -146,6 +147,13 @@ public class CustomControllerAdvice {
     public ResponseEntity<ErrorResponse> handleWoodworkCnpjRegisteredExceptions(Exception exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(new ErrorResponse(HttpStatus.CONFLICT, exception.getMessage()));
+    }
+
+
+    @ExceptionHandler(WoodworkCnpjInvalidException.class)
+    public ResponseEntity<ErrorResponse> handleWoodworkCnpjInvalidExceptions(Exception exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage()));
     }
 
     @ExceptionHandler(WoodworkLoginRegisteredException.class)

@@ -2,7 +2,6 @@ package br.sc.senac.budgetech.backend.service.request;
 
 import br.sc.senac.budgetech.backend.dto.request.RequestCreateDTO;
 import br.sc.senac.budgetech.backend.dto.request.RequestDTO;
-import br.sc.senac.budgetech.backend.exception.item.ItemInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.request.RequestMapper;
@@ -42,12 +41,10 @@ public class RequestServiceImpl implements RequestService {
         }
 
         if (requestCreateDTO.priceRequest() < 0)
-            throw new ItemInvalidException("Price " + requestCreateDTO.priceRequest() + " is invalid");
+            throw new RequestInvalidException("Price " + requestCreateDTO.priceRequest() + " is invalid");
 
         request.setInitialDate(LocalDate.now());
-
         if(!request.getInitialDate().isBefore(requestCreateDTO.finalDate())) throw new RequestNotFoundException("Invalid Date " + requestCreateDTO.finalDate());
-        //if(!request.getInitialDate().isBefore(requestCreateDTO.finalDate())) throw new RequestNotFoundException("Invalid Date " + request.getInitialDate());
 
         Request requestSaved = requestRepository.save(request);
         return requestMapper.toDTO(requestSaved);
@@ -69,12 +66,10 @@ public class RequestServiceImpl implements RequestService {
         }
 
         if(!request.getInitialDate().isBefore(requestCreateDTO.finalDate())) throw new RequestNotFoundException("Invalid Date " + requestCreateDTO.finalDate());
-        //if(!request.getInitialDate().isBefore(requestCreateDTO.finalDate())) throw new RequestNotFoundException("Invalid Date " + request.getInitialDate());
 
         request.setPriceRequest(requestCreateDTO.priceRequest());
         request.setStatus(requestCreateDTO.status());
         request.setPayment(requestCreateDTO.payment());
-        //request.setInitialDate(requestCreateDTO.initialDate());
         request.setFinalDate(requestCreateDTO.finalDate());
         requestRepository.save(request);
     }

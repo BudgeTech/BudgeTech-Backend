@@ -40,7 +40,7 @@ public class Furniture {
 	private Double priceFurniture;
 
 	@ManyToOne
-	@JoinColumn(name = "id_living_area")
+	@JoinColumn(name = "living_area_id")
 	private LivingArea livingArea;
 
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
@@ -58,14 +58,6 @@ public class Furniture {
 		this.furnitureSize = furnitureSize;
 		this.priceFurniture = priceFurniture;
 		requests = new ArrayList<>();
-	}
-
-	public void addColor(Request request) {
-		this.requests.add(request);
-	}
-
-	public void removeColor(Request request) {
-		this.requests.remove(request);
 	}
 
 	@JsonBackReference

@@ -52,8 +52,8 @@ public class AddressServiceImpl implements AddressService {
         address.setComplement((addressDTO.complement() != null && !addressDTO.complement().isBlank()) ? addressDTO.complement() : address.getComplement());
         address.setNeighborhood((addressDTO.neighborhood() != null && !addressDTO.neighborhood().isBlank()) ? addressDTO.neighborhood() : address.getNeighborhood());
 
-        Optional<AddressProjection> existsNumber = addressRepository.findAddressByStreet(addressDTO.street());
-        Optional<AddressProjection> existsStreet = addressRepository.findAddressByNumber(addressDTO.number());
+        Optional<AddressProjection> existsStreet = addressRepository.findAddressByStreet(addressDTO.street());
+        Optional<AddressProjection> existsNumber = addressRepository.findAddressByNumber(addressDTO.number());
 
         if (existsNumber.isPresent() && existsStreet.isPresent() && (existsNumber.get().getId().equals(id)))
             throw new AddressStreetAndNumberRegisteredException

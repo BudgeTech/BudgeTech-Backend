@@ -18,9 +18,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
 
 @AllArgsConstructor
@@ -47,34 +45,6 @@ public class FurnitureServiceImpl implements FurnitureService {
 
         Furniture furniture = furnitureMapper.toEntity(furnitureDTO);
         furniture.setLivingArea(livingArea);
-        Furniture furnitureSaved = furnitureRepository.save(furniture);
-
-        return furnitureMapper.toDTO(furnitureSaved);
-    }
-
-    public FurnitureDTO save(FurnitureDTO furnitureDTO, MultipartFile file) {
-
-        LivingArea livingArea = livingAreaRepository.findById(furnitureDTO.idLivingArea())
-                .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + furnitureDTO.idLivingArea() + " was not found"));
-
-        if (furnitureRepository.existsByNameFurniture(furnitureDTO.nameFurniture()))
-            throw new FurnitureNameRegisteredException("Furniture " + furnitureDTO.nameFurniture() + " is already registered");
-
-        if (furnitureDTO.furnitureSize() <= 0)
-            throw new FurnitureInvalidException("Furniture Size " + furnitureDTO.furnitureSize() + " is invalid");
-
-        if (furnitureDTO.priceFurniture() < 0)
-            throw new FurnitureInvalidException("Price " + furnitureDTO.priceFurniture() + " is invalid");
-
-        Furniture furniture = furnitureMapper.toEntity(furnitureDTO);
-        furniture.setLivingArea(livingArea);
-
-        try {
-            furniture.setImage(file.getBytes());
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
         Furniture furnitureSaved = furnitureRepository.save(furniture);
 
         return furnitureMapper.toDTO(furnitureSaved);
@@ -136,8 +106,8 @@ public class FurnitureServiceImpl implements FurnitureService {
         return furniture;
     }
 
-    public Page<Furniture> findWithPaginationAndSorting(int offset, int pageSize, String field) {
-        return furnitureRepository.findAll(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
+    public Page<FurnitureListProjection> findWithPaginationAndSorting(int offset, int pageSize, String field) {
+        return furnitureRepository.findAllFurnitureBy(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
     }
 
     public Page<FurnitureListProjection> findWithPaginationAndSortingByPriceFurniture(Pageable pageable, Integer page) {

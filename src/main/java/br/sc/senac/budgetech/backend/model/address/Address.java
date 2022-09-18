@@ -1,5 +1,7 @@
 package br.sc.senac.budgetech.backend.model.address;
 
+import br.sc.senac.budgetech.backend.model.client.Client;
+import br.sc.senac.budgetech.backend.model.woodwork.Woodwork;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -27,7 +29,7 @@ public class Address {
     @Column(name = "address_complement", length = 45, nullable = false)
     private String complement;
 
-    @Column(name = "address_neighbor", length = 45, nullable = false)
+    @Column(name = "address_neighborhood", length = 45, nullable = false)
     private String neighborhood;
 
     @Column(name = "address_city", length = 45, nullable = false)
@@ -38,6 +40,12 @@ public class Address {
 
     @Column(name = "address_cep", nullable = false)
     private String cep;
+
+    @OneToOne(mappedBy = "address")
+    private Client client;
+
+    @OneToOne(mappedBy = "address")
+    private Woodwork woodwork;
 
     public Address(Long id, String street, int number, String complement, String neighborhood, String city, String province, String cep) {
         this.id = id;

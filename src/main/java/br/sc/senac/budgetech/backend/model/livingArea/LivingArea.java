@@ -1,6 +1,9 @@
 package br.sc.senac.budgetech.backend.model.livingArea;
 
+import br.sc.senac.budgetech.backend.model.furniture.Furniture;
+import br.sc.senac.budgetech.backend.model.item.Item;
 import br.sc.senac.budgetech.backend.model.woodwork.Woodwork;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,6 +11,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Blob;
+import java.util.List;
 
 @Getter
 @Setter
@@ -32,9 +36,24 @@ public class LivingArea {
 	@JoinColumn(name = "woodwork_id")
 	private Woodwork woodwork;
 
+	@OneToMany(mappedBy = "livingArea")
+	private List<Furniture> furnitures;
+
 	public LivingArea(Long id, String nameLivingArea, Blob image) {
 		this.id = id;
 		this.nameLivingArea = nameLivingArea;
 		this.image = image;
+	}
+
+	public void addFurniture(Furniture furniture) {
+		this.furnitures.add(furniture);
+	}
+
+	public void removeFurniture(Furniture furniture) {
+		this.furnitures.remove(furniture);
+	}
+
+	public List<Furniture> getFurniture() {
+		return furnitures;
 	}
 }

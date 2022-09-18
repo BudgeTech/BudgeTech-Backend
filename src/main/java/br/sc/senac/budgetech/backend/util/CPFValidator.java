@@ -17,6 +17,7 @@ public final class CPFValidator {
 
         char dig10;
         char dig11;
+
         int sm;
         int i;
         int r;

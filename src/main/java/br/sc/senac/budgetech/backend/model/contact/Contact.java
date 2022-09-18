@@ -1,5 +1,7 @@
 package br.sc.senac.budgetech.backend.model.contact;
 
+import br.sc.senac.budgetech.backend.model.client.Client;
+import br.sc.senac.budgetech.backend.model.woodwork.Woodwork;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -26,6 +28,12 @@ public class Contact {
 
 	@Column(name = "contact_social_network", length = 45)
 	private String socialNetwork;
+
+	@OneToOne(mappedBy = "contact")
+	private Client client;
+
+	@OneToOne(mappedBy = "contact")
+	private Woodwork woodwork;
 
 	public Contact(Long id, String email, String phoneNumber, String socialNetwork) {
 		this.id = id;

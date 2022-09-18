@@ -25,20 +25,10 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
 
     List<FurnitureProjection> findFurnitureListByPriceFurniture(Double priceFurniture);
 
-    //DTOS  ||
-    //      ||
-    //      vv
-
     List<FurnitureListProjection> findFurnitureListById(Long id);
-
-
-    ///
 
     List<FurnitureListProjection> findAllProjectedFurnitureBy();
 
-    @Query(value = "SELECT furniture_name as nameFurniture, furniture_price as priceFurniture, furniture_image as image from Furniture", nativeQuery = true)
+    @Query(value = "SELECT furniture_name as nameFurniture, furniture_price as priceFurniture from Furniture", nativeQuery = true)
     Page<FurnitureListProjection> findAllFurnitureBy(Pageable pageable);
-
-//    @Query(value = "SELECT furniture_name as nameFurniture, furniture_price as priceFurniture, furniture_image as image from Furniture", nativeQuery = true)
-//    Page<FurnitureListDTO> findAllFurnitureDTO(Pageable pageable);
 }

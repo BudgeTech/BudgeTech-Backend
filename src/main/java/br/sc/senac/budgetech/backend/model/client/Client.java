@@ -2,6 +2,7 @@ package br.sc.senac.budgetech.backend.model.client;
 
 import br.sc.senac.budgetech.backend.model.address.Address;
 import br.sc.senac.budgetech.backend.model.contact.Contact;
+import br.sc.senac.budgetech.backend.model.item.Item;
 import br.sc.senac.budgetech.backend.model.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,6 +10,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.sql.Blob;
+import java.util.List;
 
 @AllArgsConstructor
 @Getter
@@ -39,6 +41,9 @@ public class Client extends User {
     @JoinColumn(name = "address_id")
     private Address address;
 
+    @OneToMany(mappedBy = "client")
+    private List<Item> items;
+
     public Client() {}
 
     public Client(String login, String password, Blob image, Long id, String nameClient, String lastName, String cpf) {
@@ -55,5 +60,17 @@ public class Client extends User {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+
+    public void addItem(Item item) {
+        this.items.add(item);
+    }
+
+    public void removeItem(Item item) {
+        this.items.remove(item);
     }
 }

@@ -1,13 +1,11 @@
 package br.sc.senac.budgetech.backend.service.furniture;
 
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
-import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -15,8 +13,6 @@ import java.util.List;
 public interface FurnitureService {
 
     FurnitureDTO save(FurnitureDTO furnitureDTO);
-
-    FurnitureDTO save(FurnitureDTO furnitureDTO, MultipartFile file);
 
     void update(FurnitureDTO furnitureDTO, Long id);
 
@@ -32,7 +28,7 @@ public interface FurnitureService {
 
     List<FurnitureListProjection> findListById(Long id);
 
-    Page<Furniture> findWithPaginationAndSorting(int offset, int pageSize, String field);
+    Page<FurnitureListProjection> findWithPaginationAndSorting(int offset, int pageSize, String field);
 
     Page<FurnitureListProjection> findWithPaginationAndSortingByPriceFurniture(Pageable pageable, Integer page);
 

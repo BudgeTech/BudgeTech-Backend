@@ -61,20 +61,12 @@ public class ClientServiceImpl implements ClientService {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
 
-        Contact contact = contactRepository.findById(clientDTO.idContact())
-                .orElseThrow(() -> new ContactNotFoundException("Contact " + clientDTO.idContact() + " was not found"));
-
-        Address address = addressRepository.findById(clientDTO.idAddress())
-                .orElseThrow(() -> new AddressNotFoundException("Address " + clientDTO.idAddress() + " was not found"));
-
         client.setNameClient((clientDTO.nameClient() != null && !clientDTO.nameClient().isBlank()) ? clientDTO.nameClient() : client.getNameClient());
         client.setCpf((clientDTO.cpf() != null && !clientDTO.cpf().isBlank()) ? clientDTO.cpf() : client.getCpf());
         client.setLogin((clientDTO.login() != null && !clientDTO.login().isBlank()) ? clientDTO.login() : client.getLogin());
         client.setPassword((clientDTO.password() != null && !clientDTO.password().isBlank()) ? clientDTO.password() : client.getPassword());
         client.setLastName((clientDTO.lastName() != null && !clientDTO.lastName().isBlank()) ? clientDTO.lastName() : client.getLastName());
         client.setImage(clientDTO.image());
-        client.setContact(contact);
-        client.setAddress(address);
 
         Optional<ClientProjection> existsCpf = clientRepository.findClientByCpf(clientDTO.cpf());
         Optional<ClientProjection> existsLogin = clientRepository.findClientByLogin(clientDTO.login());
@@ -85,7 +77,7 @@ public class ClientServiceImpl implements ClientService {
         if (existsLogin.isPresent() && (existsLogin.get().getId().equals(id)))
             throw new ClientLoginRegisteredException("Login " + clientDTO.login() + " is already registered");
 
-        if (CPFValidator.isCPF(client.getCpf()))
+        if (clientDTO.cpf() != null && CPFValidator.isCPF(clientDTO.cpf()))
             throw new ClientCpfInvalidException("Cpf " + clientDTO.cpf() + " is invalid");
 
         clientRepository.save(client);

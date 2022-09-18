@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.backend.controller.furniture;
 
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
-import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.service.furniture.FurnitureService;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -29,37 +27,6 @@ public class FurnitureController {
     public ResponseEntity<FurnitureDTO> addFurniture(@RequestBody FurnitureDTO furnitureDTO) {
         return ResponseEntity.status(HttpStatus.CREATED).body(furnitureService.save(furnitureDTO));
     }
-
-    @PostMapping(value = "/image")
-    public ResponseEntity<FurnitureDTO> testAddImage(FurnitureDTO furnitureDTO, @RequestParam(value = "image") MultipartFile file) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(furnitureService.save(furnitureDTO));
-    }
-
-    @GetMapping
-    public ResponseEntity<List<FurnitureListProjection>> testShowImage(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findListById(id));
-    }
-
-//    @PostMapping("/arquivo")
-//    public ResponseEntity<FurnitureDTO> salvarArquivo(@RequestParam("file") MultipartFile file, FurnitureDTO furnitureDTO) {
-//        log.info("Recebendo o arquivo: ", file.getOriginalFilename());
-//        var caminho = UUID.randomUUID() + "." + extrairExtensao(file.getOriginalFilename());
-//
-//        log.info("Novo nome do arquivo: " + caminho);
-//
-//        try {
-//            Files.copy(file.getInputStream(), Path.of(caminho), StandardCopyOption.REPLACE_EXISTING);
-//            return ResponseEntity.status(HttpStatus.CREATED).body(furnitureService.save(furnitureDTO, file));
-//        } catch (Exception e) {
-//            log.error("Erro ao processar arquivo", e);
-//            return new ResponseEntity<>(HttpStatus.OK);
-//        }
-//    }
-//
-//    private String extrairExtensao(String nomeArquivo) {
-//        int i = nomeArquivo.lastIndexOf(".");
-//        return nomeArquivo.substring(i + 1);
-//    }
 
     @PutMapping("/{id}")
     public ResponseEntity<String> updateFurniture(@RequestBody FurnitureDTO furnitureDTO, @PathVariable(value = "id") Long id) {
@@ -99,7 +66,7 @@ public class FurnitureController {
     }
 
     @GetMapping("paginationChosen/{offset}/{pageSize}/{field}")
-    public ResponseEntity<Page<Furniture>> getProjectionWithPaginationAndSortingChosen(@PathVariable(value = "offset") int offset, @PathVariable(value = "pageSize") int pageSize, @PathVariable(value = "field") String field) {
+    public ResponseEntity<Page<FurnitureListProjection>> getProjectionWithPaginationAndSortingChosen(@PathVariable(value = "offset") int offset, @PathVariable(value = "pageSize") int pageSize, @PathVariable(value = "field") String field) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findWithPaginationAndSorting(offset, pageSize, field));
     }
 
