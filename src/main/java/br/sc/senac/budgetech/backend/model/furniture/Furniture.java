@@ -1,5 +1,6 @@
 package br.sc.senac.budgetech.backend.model.furniture;
 
+import br.sc.senac.budgetech.backend.model.color.Color;
 import br.sc.senac.budgetech.backend.model.livingArea.LivingArea;
 import br.sc.senac.budgetech.backend.model.request.Request;
 import com.fasterxml.jackson.annotation.JsonBackReference;
@@ -43,6 +44,9 @@ public class Furniture {
 	@JoinColumn(name = "living_area_id")
 	private LivingArea livingArea;
 
+	@OneToMany(mappedBy = "furniture", cascade = CascadeType.ALL)
+	private List<Color> colors;
+
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "request_furniture", joinColumns = @JoinColumn(name = "furniture_id"), inverseJoinColumns = @JoinColumn(name = "request_id"))
 	private List<Request> requests;
@@ -63,5 +67,17 @@ public class Furniture {
 	@JsonBackReference
 	public List<Request> getRequests() {
 		return requests;
+	}
+
+	public void addColor(Color color) {
+		this.colors.add(color);
+	}
+
+	public void removeColor(Color color) {
+		this.colors.remove(color);
+	}
+
+	public List<Color> getColor() {
+		return colors;
 	}
 }

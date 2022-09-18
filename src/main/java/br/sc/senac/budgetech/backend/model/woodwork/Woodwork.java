@@ -44,10 +44,10 @@ public class Woodwork extends User {
 	@JoinColumn(name = "address_id")
 	private Address address;
 
-	@OneToMany(mappedBy = "client")
+	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Item> items;
 
-	@OneToMany(mappedBy = "woodwork")
+	@OneToMany(mappedBy = "woodwork", cascade = CascadeType.ALL)
 	private List<LivingArea> livingAreas;
 
 	public Woodwork(String login, String password, Blob image, Long id, String companyName, String cnpj, String description) {

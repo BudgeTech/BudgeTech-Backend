@@ -41,7 +41,7 @@ public class Client extends User {
     @JoinColumn(name = "address_id")
     private Address address;
 
-    @OneToMany(mappedBy = "client")
+    @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Item> items;
 
     public Client() {}

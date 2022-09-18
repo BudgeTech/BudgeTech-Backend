@@ -36,7 +36,7 @@ public class LivingArea {
 	@JoinColumn(name = "woodwork_id")
 	private Woodwork woodwork;
 
-	@OneToMany(mappedBy = "livingArea")
+	@OneToMany(mappedBy = "livingArea", cascade = CascadeType.ALL)
 	private List<Furniture> furnitures;
 
 	public LivingArea(Long id, String nameLivingArea, Blob image) {
