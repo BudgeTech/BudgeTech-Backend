@@ -17,7 +17,7 @@ import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
 import br.sc.senac.budgetech.backend.repository.address.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.client.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.contact.ContactRepository;
-import br.sc.senac.budgetech.backend.util.CPFValidator;
+import br.sc.senac.budgetech.backend.util.CPFValidatorFormat;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -40,7 +40,7 @@ public class ClientServiceImpl implements ClientService {
         if (clientRepository.existsByLogin(clientDTO.login()))
             throw new ClientLoginRegisteredException("Login " + clientDTO.login() + " is already registered");
 
-        if (CPFValidator.isCPF(clientDTO.cpf()))
+        if (CPFValidatorFormat.isCPF(clientDTO.cpf()))
             throw new ClientCpfInvalidException("Cpf " + clientDTO.cpf() + " is invalid");
 
         Contact contact = contactRepository.findById(clientDTO.idContact())
@@ -77,7 +77,7 @@ public class ClientServiceImpl implements ClientService {
         if (existsLogin.isPresent() && (existsLogin.get().getId().equals(id)))
             throw new ClientLoginRegisteredException("Login " + clientDTO.login() + " is already registered");
 
-        if (clientDTO.cpf() != null && CPFValidator.isCPF(clientDTO.cpf()))
+        if (clientDTO.cpf() != null && CPFValidatorFormat.isCPF(clientDTO.cpf()))
             throw new ClientCpfInvalidException("Cpf " + clientDTO.cpf() + " is invalid");
 
         clientRepository.save(client);

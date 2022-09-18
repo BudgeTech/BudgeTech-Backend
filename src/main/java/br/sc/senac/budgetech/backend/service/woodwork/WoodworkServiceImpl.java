@@ -2,7 +2,6 @@ package br.sc.senac.budgetech.backend.service.woodwork;
 
 import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkDTO;
 import br.sc.senac.budgetech.backend.exception.address.AddressNotFoundException;
-import br.sc.senac.budgetech.backend.exception.client.ClientCpfInvalidException;
 import br.sc.senac.budgetech.backend.exception.client.ClientLoginRegisteredException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkCnpjInvalidException;
@@ -17,8 +16,7 @@ import br.sc.senac.budgetech.backend.projection.woodwork.*;
 import br.sc.senac.budgetech.backend.repository.address.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.contact.ContactRepository;
 import br.sc.senac.budgetech.backend.repository.woodwork.WoodworkRepository;
-import br.sc.senac.budgetech.backend.util.CNPJValidator;
-import br.sc.senac.budgetech.backend.util.CPFValidator;
+import br.sc.senac.budgetech.backend.util.CNPJValidatorFormat;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -42,7 +40,7 @@ public class WoodworkServiceImpl implements WoodworkService {
         if (woodworkRepository.existsByLogin(woodworkDTO.login()))
             throw new ClientLoginRegisteredException("Login " + woodworkDTO.login() + " is already registered");
 
-        if (CNPJValidator.isCNPJ(woodworkDTO.cnpj()))
+        if (CNPJValidatorFormat.isCNPJ(woodworkDTO.cnpj()))
             throw new WoodworkCnpjInvalidException("Cnpj " + woodworkDTO.cnpj() + " is invalid");
 
         Contact contact = contactRepository.findById(woodworkDTO.idContact())
@@ -90,7 +88,7 @@ public class WoodworkServiceImpl implements WoodworkService {
         if (existsLogin.isPresent() && (existsLogin.get().getId().equals(id)))
             throw new WoodworkLoginRegisteredException("Login " + woodworkDTO.login() + " is already registered");
 
-        if (woodworkDTO.cnpj() != null && CNPJValidator.isCNPJ(woodworkDTO.cnpj()))
+        if (woodworkDTO.cnpj() != null && CNPJValidatorFormat.isCNPJ(woodworkDTO.cnpj()))
             throw new WoodworkCnpjInvalidException("Cnpj " + woodworkDTO.cnpj() + " is invalid");
 
         woodworkRepository.save(woodwork);
