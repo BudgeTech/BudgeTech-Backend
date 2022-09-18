@@ -2,6 +2,7 @@ package br.sc.senac.budgetech.backend.controller.request;
 
 import br.sc.senac.budgetech.backend.dto.request.RequestCreateDTO;
 import br.sc.senac.budgetech.backend.dto.request.RequestDTO;
+import br.sc.senac.budgetech.backend.enumeration.Payment;
 import br.sc.senac.budgetech.backend.projection.request.RequestListProjection;
 import br.sc.senac.budgetech.backend.projection.request.RequestProfileProjection;
 import br.sc.senac.budgetech.backend.projection.request.RequestProjection;

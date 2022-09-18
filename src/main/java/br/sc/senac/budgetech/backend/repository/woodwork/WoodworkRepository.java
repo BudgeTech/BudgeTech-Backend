@@ -27,10 +27,6 @@ public interface WoodworkRepository extends JpaRepository<Woodwork, Long> {
 
     Optional<WoodworkProjection> findWoodworkByLogin(String login);
 
-    //DTOS  ||
-    //      ||
-    //      vv
-
     List<WoodworkSearchProjection> findWoodworkSearchById(Long id);
 
     Optional<WoodworkProfileProjection> findWoodworkProfileById(Long id);

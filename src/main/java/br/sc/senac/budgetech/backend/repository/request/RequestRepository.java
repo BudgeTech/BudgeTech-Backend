@@ -19,10 +19,6 @@ public interface RequestRepository extends JpaRepository<Request, Long> {
 
     Optional<RequestProjection> findRequestById(Long id);
 
-    //DTOS  ||
-    //      ||
-    //      vv
-
     List<RequestListProjection> findRequestListById(Long id);
 
     Optional<RequestProfileProjection> findRequestProfileById(Long id);

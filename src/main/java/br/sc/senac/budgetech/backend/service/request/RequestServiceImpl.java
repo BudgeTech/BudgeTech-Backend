@@ -2,6 +2,7 @@ package br.sc.senac.budgetech.backend.service.request;
 
 import br.sc.senac.budgetech.backend.dto.request.RequestCreateDTO;
 import br.sc.senac.budgetech.backend.dto.request.RequestDTO;
+import br.sc.senac.budgetech.backend.enumeration.Payment;
 import br.sc.senac.budgetech.backend.exception.request.RequestInvalidException;
 import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.request.RequestMapper;

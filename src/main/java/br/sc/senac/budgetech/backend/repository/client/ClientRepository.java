@@ -24,10 +24,6 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Optional<ClientProjection> findClientByContactPhoneNumber(String phoneNumber);
 
-    //DTOS  ||
-    //      ||
-    //      vv
-
     Optional<ClientProfileEditProjection> findClientProfileEditById(Long id);
 
     Optional<ClientProfileFullEditProjection> findClientProfileFullEditById(Long id);

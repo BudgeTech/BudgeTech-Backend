@@ -27,8 +27,6 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
 
     List<FurnitureListProjection> findFurnitureListById(Long id);
 
-    List<FurnitureListProjection> findAllProjectedFurnitureBy();
-
     @Query(value = "SELECT furniture_name as nameFurniture, furniture_price as priceFurniture from Furniture", nativeQuery = true)
     Page<FurnitureListProjection> findAllFurnitureBy(Pageable pageable);
 }

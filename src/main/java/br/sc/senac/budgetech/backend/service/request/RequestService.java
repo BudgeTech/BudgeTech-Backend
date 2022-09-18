@@ -1,6 +1,7 @@
 package br.sc.senac.budgetech.backend.service.request;
 
 import br.sc.senac.budgetech.backend.dto.request.*;
+import br.sc.senac.budgetech.backend.enumeration.Payment;
 import br.sc.senac.budgetech.backend.projection.request.RequestListProjection;
 import br.sc.senac.budgetech.backend.projection.request.RequestProfileProjection;
 import br.sc.senac.budgetech.backend.projection.request.RequestProjection;
