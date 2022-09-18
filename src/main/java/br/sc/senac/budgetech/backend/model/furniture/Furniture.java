@@ -47,7 +47,7 @@ public class Furniture {
 	@OneToMany(mappedBy = "furniture", cascade = CascadeType.ALL)
 	private List<Color> colors;
 
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToMany
 	@JoinTable(name = "request_furniture", joinColumns = @JoinColumn(name = "furniture_id"), inverseJoinColumns = @JoinColumn(name = "request_id"))
 	private List<Request> requests;
 
