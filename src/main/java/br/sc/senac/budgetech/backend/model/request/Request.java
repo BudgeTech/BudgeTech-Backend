@@ -43,10 +43,10 @@ public class Request {
     @Column(name = "request_final_date")
     private LocalDate finalDate;
 
-    @OneToOne(mappedBy = "request")
+    @OneToOne(mappedBy = "request",cascade = CascadeType.ALL)
     private Item item;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "request_furniture", joinColumns = @JoinColumn(name = "request_id"), inverseJoinColumns = @JoinColumn(name = "furniture_id"))
     private List<Furniture> furnitures;
 

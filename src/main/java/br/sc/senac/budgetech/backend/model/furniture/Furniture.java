@@ -4,7 +4,6 @@ import br.sc.senac.budgetech.backend.model.color.Color;
 import br.sc.senac.budgetech.backend.model.livingArea.LivingArea;
 import br.sc.senac.budgetech.backend.model.request.Request;
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
