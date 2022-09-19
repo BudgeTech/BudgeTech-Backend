@@ -20,12 +20,13 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "woodwork")
+@PrimaryKeyJoinColumn(name="woodwork_id", referencedColumnName="user_id")
 public class Woodwork extends User {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	@Column(name = "woodwork_id")
-	private Long id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	@Column(name = "woodwork_id")
+//	private Long id;
 
 	@Column(name = "woodwork_company_name", nullable = false)
 	private String companyName;
@@ -36,13 +37,13 @@ public class Woodwork extends User {
 	@Column(name = "woodwork_description")
 	private String description;
 
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "contact_id")
-	private Contact contact;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "address_id")
-	private Address address;
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "contact_id")
+//	private Contact contact;
+//
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "address_id")
+//	private Address address;
 
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Item> items;
@@ -50,9 +51,9 @@ public class Woodwork extends User {
 	@OneToMany(mappedBy = "woodwork", cascade = CascadeType.ALL)
 	private List<LivingArea> livingAreas;
 
-	public Woodwork(String login, String password, Blob image, Long id, String companyName, String cnpj, String description) {
-		super(login, password, image);
-		this.id = id;
+	public Woodwork(Long id, String login, String password, Blob image,String companyName, String cnpj, String description) {
+		super(id, login, password, image);
+		//this.id = id;
 		this.companyName = companyName;
 		this.cnpj = cnpj;
 		this.description = description;

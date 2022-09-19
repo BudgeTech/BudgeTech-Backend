@@ -18,6 +18,6 @@ public class WoodworkMapper {
     }
 
     public Woodwork toEntity(WoodworkDTO dto) {
-        return new Woodwork(dto.login(), dto.password(), dto.image(), dto.id(), dto.companyName(), dto.cnpj(), dto.description());
+        return new Woodwork(dto.idUser(), dto.login(), dto.password(), dto.image(), dto.companyName(), dto.cnpj(), dto.description());
     }
 }

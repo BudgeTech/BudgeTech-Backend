@@ -17,12 +17,13 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "client")
+@PrimaryKeyJoinColumn(name="client_id", referencedColumnName="user_id")
 public class Client extends User {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "client_id")
-    private Long id;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.IDENTITY)
+//    @Column(name = "client_id")
+//    private Long id;
 
     @Column(name = "client_name", nullable = false)
     private String nameClient;
@@ -33,34 +34,34 @@ public class Client extends User {
     @Column(name = "client_cpf", length = 15, nullable = false, unique = true)
     private String cpf;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_id")
-    private Contact contact;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
-    private Address address;
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "contact_id")
+//    private Contact contact;
+//
+//    @OneToOne(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "address_id")
+//    private Address address;
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Item> items;
 
     public Client() {}
 
-    public Client(String login, String password, Blob image, Long id, String nameClient, String lastName, String cpf) {
-        super(login, password, image);
-        this.id = id;
+    public Client(Long id, String login, String password, Blob image,String nameClient, String lastName, String cpf) {
+        super(id, login, password, image);
+       // this.id = id;
         this.nameClient = nameClient;
         this.lastName = lastName;
         this.cpf = cpf;
     }
 
-    public Contact getContact() {
-        return contact;
-    }
-
-    public void setContact(Contact contact) {
-        this.contact = contact;
-    }
+//    public Contact getContact() {
+//        return contact;
+//    }
+//
+//    public void setContact(Contact contact) {
+//        this.contact = contact;
+//    }
 
     public List<Item> getItems() {
         return items;

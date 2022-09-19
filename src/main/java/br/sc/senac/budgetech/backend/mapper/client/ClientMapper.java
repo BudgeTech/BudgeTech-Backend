@@ -12,6 +12,6 @@ public class ClientMapper {
     }
 
     public Client toEntity(ClientDTO dto) {
-        return new Client(dto.login(), dto.password(), dto.image(), dto.id(), dto.nameClient(), dto.lastName(), dto.cpf());
+        return new Client(dto.id(), dto.login(), dto.password(), dto.image(), dto.nameClient(), dto.lastName(), dto.cpf());
     }
 }
