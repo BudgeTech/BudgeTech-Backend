@@ -4,6 +4,6 @@ import java.sql.Blob;
 
 public record LivingAreaDTO(Long id,
                             String nameLivingArea,
-                            Blob image,
+                            byte[] image,
 
                             Long idUser) {}

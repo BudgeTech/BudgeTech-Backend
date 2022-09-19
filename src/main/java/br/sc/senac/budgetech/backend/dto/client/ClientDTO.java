@@ -4,7 +4,7 @@ import java.sql.Blob;
 
 public record ClientDTO(String login,
                         String password,
-                        Blob image,
+                        byte[] image,
                         Long id,
                         String nameClient,
                         String lastName,

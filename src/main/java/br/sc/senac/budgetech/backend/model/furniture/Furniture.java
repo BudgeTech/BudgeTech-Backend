@@ -24,8 +24,8 @@ public class Furniture {
 	@Column(name = "furniture_id")
 	private Long id;
 
-	@Column(name = "furniture_image")
 	@Lob
+	@Column(name = "furniture_image")
 	private byte[] image;
 
 	@Column(name = "furniture_name", length = 35, nullable = false)

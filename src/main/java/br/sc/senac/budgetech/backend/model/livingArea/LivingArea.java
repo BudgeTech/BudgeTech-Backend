@@ -26,9 +26,9 @@ public class LivingArea {
 	@Column(name = "living_area_id")
 	private Long id;
 
+	@Lob
 	@Column(name = "living_area_image")
-	private Blob image;
-
+	private byte[] image;
 	@Column(name = "living_area_name", length = 45, nullable = false)
 	private String nameLivingArea;
 
@@ -39,7 +39,7 @@ public class LivingArea {
 	@OneToMany(mappedBy = "livingArea", cascade = CascadeType.ALL)
 	private List<Furniture> furnitures;
 
-	public LivingArea(Long id, String nameLivingArea, Blob image) {
+	public LivingArea(Long id, String nameLivingArea, byte[] image) {
 		this.id = id;
 		this.nameLivingArea = nameLivingArea;
 		this.image = image;

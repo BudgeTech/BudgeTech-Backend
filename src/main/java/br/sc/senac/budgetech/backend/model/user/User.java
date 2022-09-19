@@ -27,9 +27,9 @@ public class User {
     @Column(name = "user_password", length = 45, nullable = false)
     private String password;
 
+    @Lob
     @Column(name = "user_image")
-    private Blob image;
-
+    private byte[] image;
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
@@ -38,7 +38,7 @@ public class User {
     @JoinColumn(name = "contact_id")
     private Contact contact;
 
-    public User(Long id, String login, String password, Blob image) {
+    public User(Long id, String login, String password, byte[] image) {
         this.id = id;
         this.login = login;
         this.password = password;

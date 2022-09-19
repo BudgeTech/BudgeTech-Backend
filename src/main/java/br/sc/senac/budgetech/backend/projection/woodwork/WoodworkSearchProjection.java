@@ -4,5 +4,5 @@ import java.sql.Blob;
 
 public interface WoodworkSearchProjection {
 
-    Blob getImage();
+    byte[] getImage();
 }

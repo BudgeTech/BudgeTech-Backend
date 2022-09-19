@@ -15,6 +15,6 @@ public interface OrderWithFurnituresProjection {
 
         Long getId();
 
-        Blob getImage();
+        byte[] getImage();
     }
 }

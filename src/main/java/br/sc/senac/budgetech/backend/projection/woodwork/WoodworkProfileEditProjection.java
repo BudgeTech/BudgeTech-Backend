@@ -8,5 +8,5 @@ public interface WoodworkProfileEditProjection {
 
     String getCnpj();
 
-    Blob getImage();
+    byte[] getImage();
 }

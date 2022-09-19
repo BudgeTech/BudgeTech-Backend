@@ -47,7 +47,7 @@ public class Client extends User {
 
     public Client() {}
 
-    public Client(Long id, String login, String password, Blob image,String nameClient, String lastName, String cpf) {
+    public Client(Long id, String login, String password, byte[] image,String nameClient, String lastName, String cpf) {
         super(id, login, password, image);
         this.nameClient = nameClient;
         this.lastName = lastName;

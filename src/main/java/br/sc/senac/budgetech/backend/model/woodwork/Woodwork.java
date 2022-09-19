@@ -51,7 +51,7 @@ public class Woodwork extends User {
 	@OneToMany(mappedBy = "woodwork", cascade = CascadeType.ALL)
 	private List<LivingArea> livingAreas;
 
-	public Woodwork(Long id, String login, String password, Blob image,String companyName, String cnpj, String description) {
+	public Woodwork(Long id, String login, String password, byte[] image, String companyName, String cnpj, String description) {
 		super(id, login, password, image);
 		this.companyName = companyName;
 		this.cnpj = cnpj;

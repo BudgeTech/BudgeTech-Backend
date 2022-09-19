@@ -8,6 +8,6 @@ public interface LivingAreaProjection {
 
 	String getNameLivingArea();
 
-	Blob getImage();
+	byte[] getImage();
 
 }
