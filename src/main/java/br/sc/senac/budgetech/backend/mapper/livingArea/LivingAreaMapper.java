@@ -2,7 +2,6 @@ package br.sc.senac.budgetech.backend.mapper.livingArea;
 
 import br.sc.senac.budgetech.backend.dto.livingArea.LivingAreaDTO;
 import br.sc.senac.budgetech.backend.model.livingArea.LivingArea;
-import br.sc.senac.budgetech.backend.projection.livingArea.LivingAreaProjection;
 import org.springframework.stereotype.Service;
 
 @Service

@@ -5,6 +5,7 @@ import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundExce
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.livingArea.LivingAreaMapper;
 import br.sc.senac.budgetech.backend.model.livingArea.LivingArea;
+import br.sc.senac.budgetech.backend.model.user.User;
 import br.sc.senac.budgetech.backend.model.woodwork.Woodwork;
 import br.sc.senac.budgetech.backend.projection.livingArea.LivingAreaProjection;
 import br.sc.senac.budgetech.backend.repository.livingArea.LivingAreaRepository;
@@ -22,8 +23,8 @@ public class LivingAreaServiceImpl implements LivingAreaService {
 
     public LivingAreaDTO save(LivingAreaDTO livingAreaDTO) {
 
-        Woodwork woodwork = woodworkRepository.findById(livingAreaDTO.idWoodwork())
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + livingAreaDTO.idWoodwork() + " was not found"));
+        Woodwork woodwork = woodworkRepository.findById(livingAreaDTO.idUser())
+                .orElseThrow(() -> new WoodworkNotFoundException("User " + livingAreaDTO.idUser() + " was not found"));
 
         LivingArea livingArea = livingAreaMapper.toEntity(livingAreaDTO);
         livingArea.setWoodwork(woodwork);

@@ -53,7 +53,6 @@ public class Woodwork extends User {
 
 	public Woodwork(Long id, String login, String password, Blob image,String companyName, String cnpj, String description) {
 		super(id, login, password, image);
-		//this.id = id;
 		this.companyName = companyName;
 		this.cnpj = cnpj;
 		this.description = description;

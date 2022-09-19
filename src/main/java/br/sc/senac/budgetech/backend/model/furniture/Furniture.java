@@ -47,7 +47,7 @@ public class Furniture {
 	@OneToMany(mappedBy = "furniture", cascade = CascadeType.ALL)
 	private List<Color> colors;
 
-	@ManyToMany(mappedBy = "furnitures")
+	@ManyToMany(mappedBy = "furnitures", cascade = CascadeType.ALL)
 	private List<Request> requests;
 
 	public Furniture() {
