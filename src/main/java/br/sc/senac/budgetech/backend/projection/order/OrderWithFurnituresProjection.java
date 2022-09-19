@@ -1,9 +1,9 @@
-package br.sc.senac.budgetech.backend.projection.request;
+package br.sc.senac.budgetech.backend.projection.order;
 
 import java.sql.Blob;
 import java.util.List;
 
-public interface RequestWithFurnituresProjection {
+public interface OrderWithFurnituresProjection {
 
     List<FurnitureProjection> getFurniture();
 

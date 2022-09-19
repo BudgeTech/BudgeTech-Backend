@@ -1,4 +1,4 @@
-package br.sc.senac.budgetech.backend.model.request;
+package br.sc.senac.budgetech.backend.model.order;
 
 import br.sc.senac.budgetech.backend.enumeration.Payment;
 import br.sc.senac.budgetech.backend.enumeration.Status;
@@ -18,45 +18,45 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @Entity
-@Table(name = "request")
-public class Request {
+@Table(name = "orderClass")
+public class Order {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "request_id")
+    @Column(name = "orderClass_id")
     private Long id;
 
-    @Column(name = "request_price")
-    private Double priceRequest;
+    @Column(name = "order_price")
+    private Double priceOrder;
 
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "request_status", nullable = false)
+    @Column(name = "order_status", nullable = false)
     private Status status;
 
     @Enumerated(EnumType.ORDINAL)
-    @Column(name = "request_payment", nullable = false)
+    @Column(name = "order_payment", nullable = false)
     private Payment payment;
 
-    @Column(name = "request_initial_date", nullable = false)
+    @Column(name = "order_initial_date", nullable = false)
     private LocalDate initialDate;
 
-    @Column(name = "request_final_date")
+    @Column(name = "order_final_date")
     private LocalDate finalDate;
 
-    @OneToOne(mappedBy = "request",cascade = CascadeType.ALL)
+    @OneToOne(mappedBy = "order",cascade = CascadeType.ALL)
     private Item item;
 
     @ManyToMany
-    @JoinTable(name = "request_furniture", joinColumns = @JoinColumn(name = "request_id"), inverseJoinColumns = @JoinColumn(name = "furniture_id"))
+    @JoinTable(name = "order_furniture", joinColumns = @JoinColumn(name = "orderClass_id"), inverseJoinColumns = @JoinColumn(name = "furniture_id"))
     private List<Furniture> furnitures;
 
-    public Request() {
+    public Order() {
         furnitures = new ArrayList<>();
     }
 
-    public Request(Long id, Double priceRequest, Status status, Payment payment, LocalDate initialDate, LocalDate finalDate) {
+    public Order(Long id, Double priceOrder, Status status, Payment payment, LocalDate initialDate, LocalDate finalDate) {
         this.id = id;
-        this.priceRequest = priceRequest;
+        this.priceOrder = priceOrder;
         this.status = status;
         this.payment = payment;
         this.initialDate = initialDate;

@@ -2,7 +2,7 @@ package br.sc.senac.budgetech.backend.model.furniture;
 
 import br.sc.senac.budgetech.backend.model.color.Color;
 import br.sc.senac.budgetech.backend.model.livingArea.LivingArea;
-import br.sc.senac.budgetech.backend.model.request.Request;
+import br.sc.senac.budgetech.backend.model.order.Order;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -48,10 +48,10 @@ public class Furniture {
 	private List<Color> colors;
 
 	@ManyToMany(mappedBy = "furnitures", cascade = CascadeType.ALL)
-	private List<Request> requests;
+	private List<Order> orders;
 
 	public Furniture() {
-		requests = new ArrayList<>();
+		orders = new ArrayList<>();
 	}
 
 	public Furniture(Long id, String nameFurniture, String description, Double furnitureSize, Double priceFurniture) {
@@ -60,12 +60,12 @@ public class Furniture {
 		this.description = description;
 		this.furnitureSize = furnitureSize;
 		this.priceFurniture = priceFurniture;
-		requests = new ArrayList<>();
+		orders = new ArrayList<>();
 	}
 
 	@JsonBackReference
-	public List<Request> getRequests() {
-		return requests;
+	public List<Order> getOrders() {
+		return orders;
 	}
 
 	public void addColor(Color color) {

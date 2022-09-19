@@ -1,16 +1,14 @@
-package br.sc.senac.budgetech.backend.projection.request;
-
-import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkProjection;
+package br.sc.senac.budgetech.backend.projection.order;
 
 import java.sql.Blob;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface RequestProfileProjection {
+public interface OrderProfileProjection {
 
     Long getId();
 
-    double getPriceRequest();
+    double getPriceOrder();
 
     ItemProjection getItem();
 

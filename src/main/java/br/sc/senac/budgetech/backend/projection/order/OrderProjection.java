@@ -1,15 +1,15 @@
-package br.sc.senac.budgetech.backend.projection.request;
+package br.sc.senac.budgetech.backend.projection.order;
 
 import br.sc.senac.budgetech.backend.enumeration.Payment;
 import br.sc.senac.budgetech.backend.enumeration.Status;
 
 import java.time.LocalDate;
 
-public interface RequestProjection {
+public interface OrderProjection {
 
     Long getId();
 
-    double getPriceRequest();
+    double getPriceOrder();
 
     Status getStatus();
 

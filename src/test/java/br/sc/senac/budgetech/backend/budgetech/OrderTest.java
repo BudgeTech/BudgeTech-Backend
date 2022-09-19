@@ -1,12 +1,12 @@
 package br.sc.senac.budgetech.backend.budgetech;
 
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
-import br.sc.senac.budgetech.backend.model.request.Request;
+import br.sc.senac.budgetech.backend.model.order.Order;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-class RequestTest {
+class OrderTest {
 
 
     @Test
@@ -15,7 +15,7 @@ class RequestTest {
         var fun2 = new Furniture(1L, "nome", "descrição", 15.50, 2D);
         var fun3 = new Furniture(1L, "nome", "descrição", 15.50, 2D);
 
-        var request = new Request();
+        var request = new Order();
         request.addFurniture(fun1);
         request.addFurniture(fun2);
         request.addFurniture(fun3);
@@ -29,7 +29,7 @@ class RequestTest {
         var fun2 = new Furniture(1L, "nome", "descrição", 15.50, 2D);
         var fun3 = new Furniture(1L, "nome", "descrição", 15.50, 15D);
 
-        var request = new Request();
+        var request = new Order();
         request.addFurniture(fun1);
         request.addFurniture(fun2);
         request.addFurniture(fun3);

@@ -1,7 +1,7 @@
 package br.sc.senac.budgetech.backend.model.item;
 
 import br.sc.senac.budgetech.backend.model.client.Client;
-import br.sc.senac.budgetech.backend.model.request.Request;
+import br.sc.senac.budgetech.backend.model.order.Order;
 import br.sc.senac.budgetech.backend.model.woodwork.Woodwork;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -30,8 +30,8 @@ public class Item {
     private Double totalPrice;
 
     @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "request_id")
-    private Request request;
+    @JoinColumn(name = "orderClass_id")
+    private Order order;
 
     @ManyToOne
     @JoinColumn(name = "client_id")

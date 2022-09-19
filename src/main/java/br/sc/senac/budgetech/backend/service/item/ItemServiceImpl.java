@@ -4,17 +4,17 @@ import br.sc.senac.budgetech.backend.dto.item.ItemDTO;
 import br.sc.senac.budgetech.backend.exception.client.ClientNotFoundException;
 import br.sc.senac.budgetech.backend.exception.item.ItemInvalidException;
 import br.sc.senac.budgetech.backend.exception.item.ItemNotFoundException;
-import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
+import br.sc.senac.budgetech.backend.exception.order.OrderNotFoundException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.item.ItemMapper;
 import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.model.item.Item;
-import br.sc.senac.budgetech.backend.model.request.Request;
+import br.sc.senac.budgetech.backend.model.order.Order;
 import br.sc.senac.budgetech.backend.model.woodwork.Woodwork;
 import br.sc.senac.budgetech.backend.projection.item.ItemProjection;
 import br.sc.senac.budgetech.backend.repository.client.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.item.ItemRepository;
-import br.sc.senac.budgetech.backend.repository.request.RequestRepository;
+import br.sc.senac.budgetech.backend.repository.order.OrderRepository;
 import br.sc.senac.budgetech.backend.repository.woodwork.WoodworkRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,14 +25,14 @@ public class ItemServiceImpl implements ItemService {
 
     private ItemRepository itemRepository;
     private ItemMapper itemMapper;
-    private RequestRepository requestRepository;
+    private OrderRepository orderRepository;
     private ClientRepository clientRepository;
     private WoodworkRepository woodworkRepository;
 
     public ItemDTO save(ItemDTO itemDTO) {
 
-        Request request = requestRepository.findById(itemDTO.idRequest())
-                .orElseThrow(() -> new RequestNotFoundException("Request " + itemDTO.idRequest() + " was not found"));
+        Order order = orderRepository.findById(itemDTO.idOrder())
+                .orElseThrow(() -> new OrderNotFoundException("Order " + itemDTO.idOrder() + " was not found"));
 
         Client client = clientRepository.findById(itemDTO.idClient())
                 .orElseThrow(() -> new ClientNotFoundException("Client " + itemDTO.idClient() + " was not found"));
@@ -47,7 +47,7 @@ public class ItemServiceImpl implements ItemService {
             throw new ItemInvalidException("Quantity " + itemDTO.quantity() + " is invalid");
 
         Item item = itemMapper.toEntity(itemDTO);
-        item.setRequest(request);
+        item.setOrder(order);
         item.setClient(client);
         item.setWoodwork(woodwork);
         Item itemSaved = itemRepository.save(item);

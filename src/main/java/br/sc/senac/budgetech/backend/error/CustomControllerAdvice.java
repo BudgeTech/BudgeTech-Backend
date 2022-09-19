@@ -17,8 +17,8 @@ import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundExcept
 import br.sc.senac.budgetech.backend.exception.item.ItemInvalidException;
 import br.sc.senac.budgetech.backend.exception.item.ItemNotFoundException;
 import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundException;
-import br.sc.senac.budgetech.backend.exception.request.RequestInvalidException;
-import br.sc.senac.budgetech.backend.exception.request.RequestNotFoundException;
+import br.sc.senac.budgetech.backend.exception.order.OrderInvalidException;
+import br.sc.senac.budgetech.backend.exception.order.OrderNotFoundException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkCnpjInvalidException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkCnpjRegisteredException;
 import br.sc.senac.budgetech.backend.exception.woodwork.WoodworkLoginRegisteredException;
@@ -131,14 +131,14 @@ public class CustomControllerAdvice {
                 .body(new ErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage()));
     }
 
-    @ExceptionHandler(RequestNotFoundException.class)
-    public ResponseEntity<ErrorResponse> handleRequestNotFoundExceptions(Exception exception) {
+    @ExceptionHandler(OrderNotFoundException.class)
+    public ResponseEntity<ErrorResponse> handleOrderNotFoundExceptions(Exception exception) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(new ErrorResponse(HttpStatus.NOT_FOUND, exception.getMessage()));
     }
 
-    @ExceptionHandler(RequestInvalidException.class)
-    public ResponseEntity<ErrorResponse> handleRequestInvalidExceptions(Exception exception) {
+    @ExceptionHandler(OrderInvalidException.class)
+    public ResponseEntity<ErrorResponse> handleOrderInvalidExceptions(Exception exception) {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(new ErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage()));
     }
