@@ -33,4 +33,5 @@ public interface WoodworkService {
 
     WoodworkProfileFullEditProjection findProfileFullEditById(Long id);
 
+    WoodworkFulProjection21 findProjection21ById(Long id);
 }

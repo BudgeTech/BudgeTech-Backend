@@ -79,4 +79,9 @@ public class WoodworkController {
     public ResponseEntity<WoodworkProfileFullEditProjection> getWoodworkProfileFullEditById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileFullEditById(id));
     }
+
+    @GetMapping("woodwork21/{id}")
+    public ResponseEntity<WoodworkFulProjection21> getWoodworkProjection21ById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProjection21ById(id));
+    }
 }

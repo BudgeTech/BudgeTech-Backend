@@ -146,4 +146,9 @@ public class WoodworkServiceImpl implements WoodworkService {
         return woodworkRepository.findWoodworkProfileFullEditById(id)
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
     }
+
+    public WoodworkFulProjection21 findProjection21ById(Long id) {
+        return woodworkRepository.findWoodworkFull21ById(id)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+    }
 }

@@ -34,4 +34,6 @@ public interface WoodworkRepository extends JpaRepository<Woodwork, Long> {
     Optional<WoodworkProfileEditProjection> findWoodworkProfileEditById(Long id);
 
     Optional<WoodworkProfileFullEditProjection> findWoodworkProfileFullEditById(Long id);
+
+    Optional<WoodworkFulProjection21> findWoodworkFull21ById(Long id);
 }
