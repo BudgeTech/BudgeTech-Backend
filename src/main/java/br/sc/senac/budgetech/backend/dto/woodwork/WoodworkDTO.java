@@ -8,5 +8,4 @@ public record WoodworkDTO(String login,
                           String cnpj,
                           String description,
                           Long idContact,
-                          Long idAddress) {
-}
+                          Long idAddress) {}

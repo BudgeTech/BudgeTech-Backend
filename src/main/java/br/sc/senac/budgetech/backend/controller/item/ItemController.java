@@ -39,7 +39,7 @@ public class ItemController {
     }
 
     @GetMapping("totalPrice/{totalPrice}")
-    public ResponseEntity<ItemProjection> getProjectionByPrice(@PathVariable(value = "totalPrice") double totalPrice) {
+    public ResponseEntity<ItemProjection> getProjectionByPrice(@PathVariable(value = "totalPrice") Double totalPrice) {
         return ResponseEntity.status(HttpStatus.OK).body(itemService.findByPrice(totalPrice));
     }
 }

@@ -13,8 +13,6 @@ public class OrderMapper {
     }
 
     public Order toEntity(OrderCreateDTO dto) {
-        return new Order(dto.id(), dto.priceOrder(),
-                dto.status(), dto.payment(),
-                dto.initialDate(), dto.finalDate());
+        return new Order(dto.id(), dto.priceOrder(), dto.status(), dto.payment(), dto.initialDate(), dto.finalDate());
     }
 }

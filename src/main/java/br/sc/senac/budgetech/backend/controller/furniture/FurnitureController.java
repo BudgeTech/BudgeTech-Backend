@@ -1,6 +1,7 @@
 package br.sc.senac.budgetech.backend.controller.furniture;
 
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureFullProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.service.furniture.FurnitureService;
@@ -78,5 +79,10 @@ public class FurnitureController {
     @GetMapping("paginationName/{page}")
     public ResponseEntity<Page<FurnitureListProjection>> getProjectionWithPaginationAndSortingByName(@PathVariable(value = "page") Integer page, Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findWithPaginationAndSortingByNameFurniture(pageable, page));
+    }
+
+    @GetMapping("furnitureFull/{id}")
+    public ResponseEntity<FurnitureFullProjection> getProjectionByPrice(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureById(id));
     }
 }

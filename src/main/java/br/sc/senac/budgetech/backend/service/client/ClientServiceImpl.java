@@ -11,14 +11,20 @@ import br.sc.senac.budgetech.backend.mapper.client.ClientMapper;
 import br.sc.senac.budgetech.backend.model.address.Address;
 import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.model.contact.Contact;
+import br.sc.senac.budgetech.backend.projection.client.ClientListProjection;
 import br.sc.senac.budgetech.backend.projection.client.ClientProfileEditProjection;
 import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjection;
 import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.repository.address.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.client.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.contact.ContactRepository;
 import br.sc.senac.budgetech.backend.util.CPFValidatorFormat;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -116,5 +122,9 @@ public class ClientServiceImpl implements ClientService {
     public ClientProfileFullEditProjection findProfileFullEditById(Long id) {
         return clientRepository.findClientProfileFullEditById(id)
                 .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
+    }
+    public Page<ClientListProjection> findWithPaginationAndSortingByClientId(Pageable pageable, Integer page) {
+        pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "client_name");
+        return clientRepository.findAllClientBy(pageable);
     }
 }

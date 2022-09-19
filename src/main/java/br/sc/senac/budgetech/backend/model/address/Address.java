@@ -1,8 +1,6 @@
 package br.sc.senac.budgetech.backend.model.address;
 
-import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.model.user.User;
-import br.sc.senac.budgetech.backend.model.woodwork.Woodwork;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

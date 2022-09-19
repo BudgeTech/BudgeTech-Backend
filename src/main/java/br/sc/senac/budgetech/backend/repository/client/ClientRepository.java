@@ -2,7 +2,10 @@ package br.sc.senac.budgetech.backend.repository.client;
 
 import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.projection.client.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -27,4 +30,7 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     Optional<ClientProfileEditProjection> findClientProfileEditById(Long id);
 
     Optional<ClientProfileFullEditProjection> findClientProfileFullEditById(Long id);
+
+    @Query(value = "SELECT client_name as name, client_last_name as lastName from Client", nativeQuery = true)
+    Page<ClientListProjection> findAllClientBy(Pageable pageable);
 }

@@ -1,7 +1,5 @@
 package br.sc.senac.budgetech.backend.model.woodwork;
 
-import br.sc.senac.budgetech.backend.model.address.Address;
-import br.sc.senac.budgetech.backend.model.contact.Contact;
 import br.sc.senac.budgetech.backend.model.item.Item;
 import br.sc.senac.budgetech.backend.model.livingArea.LivingArea;
 import br.sc.senac.budgetech.backend.model.user.User;
@@ -11,7 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.sql.Blob;
 import java.util.List;
 
 @AllArgsConstructor
@@ -23,11 +20,6 @@ import java.util.List;
 @PrimaryKeyJoinColumn(name="woodwork_id", referencedColumnName="user_id")
 public class Woodwork extends User {
 
-//	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-//	@Column(name = "woodwork_id")
-//	private Long id;
-
 	@Column(name = "woodwork_company_name", nullable = false)
 	private String companyName;
 	
@@ -36,14 +28,6 @@ public class Woodwork extends User {
 
 	@Column(name = "woodwork_description")
 	private String description;
-
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "contact_id")
-//	private Contact contact;
-//
-//	@OneToOne(cascade = CascadeType.ALL)
-//	@JoinColumn(name = "address_id")
-//	private Address address;
 
 	@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
 	private List<Item> items;

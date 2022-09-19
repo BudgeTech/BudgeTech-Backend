@@ -8,6 +8,7 @@ import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundExce
 import br.sc.senac.budgetech.backend.mapper.furniture.FurnitureMapper;
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.model.livingArea.LivingArea;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureFullProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.repository.furniture.FurnitureRepository;
@@ -118,5 +119,10 @@ public class FurnitureServiceImpl implements FurnitureService {
     public Page<FurnitureListProjection> findWithPaginationAndSortingByNameFurniture(Pageable pageable, Integer page) {
         pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "nameFurniture");
         return furnitureRepository.findAllFurnitureBy(pageable);
+    }
+
+    public FurnitureFullProjection findFurnitureById(Long id) {
+        return furnitureRepository.findFurnitureProjectionById(id)
+                .orElseThrow(() -> new FurnitureNotFoundException("Id " + id + " was not found"));
     }
 }

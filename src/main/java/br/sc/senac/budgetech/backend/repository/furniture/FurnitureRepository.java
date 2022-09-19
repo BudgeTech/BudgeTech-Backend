@@ -1,6 +1,7 @@
 package br.sc.senac.budgetech.backend.repository.furniture;
 
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureFullProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import org.springframework.data.domain.Page;
@@ -24,6 +25,8 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
     Optional<FurnitureProjection> findFurnitureByPriceFurniture(Double priceFurniture);
 
     List<FurnitureProjection> findFurnitureListByPriceFurniture(Double priceFurniture);
+
+    Optional<FurnitureFullProjection> findFurnitureProjectionById(Long id);
 
     List<FurnitureListProjection> findFurnitureListById(Long id);
 
