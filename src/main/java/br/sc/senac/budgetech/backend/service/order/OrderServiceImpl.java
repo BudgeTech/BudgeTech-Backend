@@ -51,7 +51,7 @@ public class OrderServiceImpl implements OrderService {
     public void update(OrderCreateDTO orderCreateDTO, Long id) {
 
         Order order = orderRepository.findById(id)
-                .orElseThrow(() -> new OrderNotFoundException("Request " + id + " was not found"));
+                .orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
 
         if (orderCreateDTO.priceOrder() < 0)
             throw new OrderInvalidException("Price " + orderCreateDTO.priceOrder() + " is invalid");
@@ -59,7 +59,7 @@ public class OrderServiceImpl implements OrderService {
         for (Long idFurniture : orderCreateDTO.idFurnitures()) {
             order.setFurnitures(new ArrayList<>());
             Furniture furniture = furnitureRepository.findById(idFurniture)
-                    .orElseThrow(() -> new OrderNotFoundException("Request " + idFurniture + " was not found"));
+                    .orElseThrow(() -> new OrderNotFoundException("Order " + idFurniture + " was not found"));
             order.getFurnitures().add(furniture);
         }
 
@@ -74,34 +74,34 @@ public class OrderServiceImpl implements OrderService {
 
     public void delete(Long id) {
         if (!orderRepository.existsById(id))
-            throw new OrderNotFoundException("Request " + id + " was not found");
+            throw new OrderNotFoundException("Order " + id + " was not found");
         orderRepository.deleteById(id);
     }
 
     public OrderProjection findById(Long id) {
         return orderRepository.findOrderById(id)
-                .orElseThrow(() -> new OrderNotFoundException("Request " + id + " was not found"));
+                .orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
     }
 
     public OrderProjection findByInitialDate(LocalDate initialDate) {
         return orderRepository.findOrderByInitialDate(initialDate)
-                .orElseThrow(() -> new OrderNotFoundException("Request " + initialDate + " was not found"));
+                .orElseThrow(() -> new OrderNotFoundException("Order " + initialDate + " was not found"));
     }
 
     public OrderProfileProjection findProfileById(Long id) {
         return orderRepository.findOrderProfileById(id)
-                .orElseThrow(() -> new OrderNotFoundException("Request " + id + " was not found"));
+                .orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
     }
 
     public List<OrderListProjection> findListById(Long id) {
-        List<OrderListProjection> request = orderRepository.findOrderListById(id);
-        if(request.isEmpty())
-            throw new OrderNotFoundException("Request " + id + " was not found");
-        return request;
+        List<OrderListProjection> order = orderRepository.findOrderListById(id);
+        if(order.isEmpty())
+            throw new OrderNotFoundException("Order " + id + " was not found");
+        return order;
     }
 
     public OrderWithFurnituresProjection findFurnitureById(Long id) {
         return orderRepository.findOrderWithFurnituresById(id)
-                .orElseThrow(() -> new OrderNotFoundException("Request " + id + " was not found"));
+                .orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
     }
 }

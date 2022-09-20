@@ -8,6 +8,7 @@ import br.sc.senac.budgetech.backend.exception.client.ClientCpfRegisteredExcepti
 import br.sc.senac.budgetech.backend.exception.client.ClientLoginRegisteredException;
 import br.sc.senac.budgetech.backend.exception.client.ClientNotFoundException;
 import br.sc.senac.budgetech.backend.exception.color.ColorNotFoundException;
+import br.sc.senac.budgetech.backend.exception.contact.ContactEmailInvalidException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactEmailRegisteredException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactPhoneNumberRegisteredException;
@@ -81,6 +82,12 @@ public class CustomControllerAdvice {
     public ResponseEntity<ErrorResponse> handleContactEmailRegisteredExceptions(Exception exception) {
         return ResponseEntity.status(HttpStatus.CONFLICT)
                 .body(new ErrorResponse(HttpStatus.CONFLICT, exception.getMessage()));
+    }
+
+    @ExceptionHandler(ContactEmailInvalidException.class)
+    public ResponseEntity<ErrorResponse> handleContactEmailInvalidExceptions(Exception exception) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(new ErrorResponse(HttpStatus.BAD_REQUEST, exception.getMessage()));
     }
 
     @ExceptionHandler(ContactNotFoundException.class)
