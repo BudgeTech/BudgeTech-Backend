@@ -29,7 +29,7 @@ public class ContactServiceImpl implements ContactService {
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(contactDTO.email());
 
-        if (!matcher.matches()) throw new ContactEmailRegisteredException("email invalid");
+        if (!matcher.matches()) throw new ContactEmailRegisteredException("Email " + contactDTO.email() + " invalid");
 
         if (contactRepository.existsByEmail(contactDTO.email()))
             throw new ContactEmailRegisteredException("Email " + contactDTO.email() + " is already registered");
