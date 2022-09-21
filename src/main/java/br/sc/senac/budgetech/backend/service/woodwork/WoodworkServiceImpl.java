@@ -125,8 +125,8 @@ public class WoodworkServiceImpl implements WoodworkService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + companyName + " was not found"));
     }
 
-    public List<WoodworkSearchProjection> findSearchById(Long id) {
-        List<WoodworkSearchProjection> woodwork = woodworkRepository.findWoodworkSearchById(id);
+    public List<WoodworkSearchProjection20> findSearchById(Long id) {
+        List<WoodworkSearchProjection20> woodwork = woodworkRepository.findWoodworkSearchById(id);
         if (woodwork.isEmpty())
             throw new WoodworkNotFoundException("Woodwork " + id + " was not found");
         return woodwork;

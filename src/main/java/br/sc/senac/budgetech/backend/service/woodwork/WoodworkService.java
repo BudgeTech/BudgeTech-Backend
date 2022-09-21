@@ -25,7 +25,7 @@ public interface WoodworkService {
 
     WoodworkProjection findByCompanyName(String companyName);
 
-    List<WoodworkSearchProjection> findSearchById(Long id);
+    List<WoodworkSearchProjection20> findSearchById(Long id);
 
     WoodworkProfileProjection findProfileById(Long id);
 

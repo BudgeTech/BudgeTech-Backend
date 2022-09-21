@@ -43,12 +43,6 @@ public class Address {
     @OneToOne(mappedBy = "address")
     private User user;
 
-//    @OneToOne(mappedBy = "address")
-//    private Client client;
-//
-//    @OneToOne(mappedBy = "address")
-//    private Woodwork woodwork;
-
     public Address(Long id, String street, int number, String complement, String neighborhood, String city, String province, String cep) {
         this.id = id;
         this.street = street;

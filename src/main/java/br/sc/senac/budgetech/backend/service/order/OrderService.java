@@ -1,10 +1,7 @@
 package br.sc.senac.budgetech.backend.service.order;
 
 import br.sc.senac.budgetech.backend.dto.order.*;
-import br.sc.senac.budgetech.backend.projection.order.OrderListProjection;
-import br.sc.senac.budgetech.backend.projection.order.OrderProfileProjection;
-import br.sc.senac.budgetech.backend.projection.order.OrderProjection;
-import br.sc.senac.budgetech.backend.projection.order.OrderWithFurnituresProjection;
+import br.sc.senac.budgetech.backend.projection.order.*;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -28,4 +25,6 @@ public interface OrderService {
     List<OrderListProjection> findListById(Long id);
 
     OrderWithFurnituresProjection findFurnitureById(Long id);
+
+    OrderWithTwoFurnitureProjection18 findOrderWithTwoFurniture18ById(Long id);
 }

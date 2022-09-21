@@ -23,8 +23,8 @@ public class LivingAreaServiceImpl implements LivingAreaService {
 
     public LivingAreaDTO save(LivingAreaDTO livingAreaDTO) {
 
-        Woodwork woodwork = woodworkRepository.findById(livingAreaDTO.idUser())
-                .orElseThrow(() -> new WoodworkNotFoundException("User " + livingAreaDTO.idUser() + " was not found"));
+        Woodwork woodwork = woodworkRepository.findById(livingAreaDTO.idWoodwork())
+                .orElseThrow(() -> new WoodworkNotFoundException("User " + livingAreaDTO.idWoodwork() + " was not found"));
 
         LivingArea livingArea = livingAreaMapper.toEntity(livingAreaDTO);
         livingArea.setWoodwork(woodwork);

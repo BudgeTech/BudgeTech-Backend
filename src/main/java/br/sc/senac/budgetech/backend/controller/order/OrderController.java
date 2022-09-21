@@ -2,10 +2,7 @@ package br.sc.senac.budgetech.backend.controller.order;
 
 import br.sc.senac.budgetech.backend.dto.order.OrderCreateDTO;
 import br.sc.senac.budgetech.backend.dto.order.OrderDTO;
-import br.sc.senac.budgetech.backend.projection.order.OrderListProjection;
-import br.sc.senac.budgetech.backend.projection.order.OrderProfileProjection;
-import br.sc.senac.budgetech.backend.projection.order.OrderProjection;
-import br.sc.senac.budgetech.backend.projection.order.OrderWithFurnituresProjection;
+import br.sc.senac.budgetech.backend.projection.order.*;
 import br.sc.senac.budgetech.backend.service.order.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -64,5 +61,10 @@ public class OrderController {
     @GetMapping("orderFurniture/{id}")
     public ResponseEntity<OrderWithFurnituresProjection> getProjectionOrderWithFurnitureById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.findFurnitureById(id));
+    }
+
+    @GetMapping("order/{id}")
+    public ResponseEntity<OrderWithTwoFurnitureProjection18> getProjection18ById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrderWithTwoFurniture18ById(id));
     }
 }

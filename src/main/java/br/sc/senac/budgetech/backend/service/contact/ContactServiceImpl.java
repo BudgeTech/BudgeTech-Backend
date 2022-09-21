@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.backend.service.contact;
 
 import br.sc.senac.budgetech.backend.dto.contact.ContactDTO;
-import br.sc.senac.budgetech.backend.exception.client.ClientCpfRegisteredException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactEmailInvalidException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactEmailRegisteredException;
 import br.sc.senac.budgetech.backend.exception.contact.ContactNotFoundException;
@@ -22,14 +21,14 @@ public class ContactServiceImpl implements ContactService {
 
     private ContactRepository contactRepository;
     private ContactMapper contactMapper;
-    private static final String regex = "^[a-zA-Z0-9_+&*-]+(?:\\\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\\\.)+[a-zA-Z]{2,7}$";
+    //private static final String regex = "^[a-zA-Z0-9_+&*-]+(?:\\\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\\\.)+[a-zA-Z]{2,7}$";
 
     public ContactDTO save(ContactDTO contactDTO) {
 
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(contactDTO.email());
-
-        if (!matcher.matches()) throw new ContactEmailRegisteredException("Email " + contactDTO.email() + " invalid");
+//        Pattern pattern = Pattern.compile(regex);
+//        Matcher matcher = pattern.matcher(contactDTO.email());
+//
+//        if (!matcher.matches()) throw new ContactEmailRegisteredException("Email " + contactDTO.email() + " invalid");
 
         if (contactRepository.existsByEmail(contactDTO.email()))
             throw new ContactEmailRegisteredException("Email " + contactDTO.email() + " is already registered");
@@ -57,11 +56,11 @@ public class ContactServiceImpl implements ContactService {
         contact.setPhoneNumber(contactDTO.phoneNumber());
         contact.setSocialNetwork(contactDTO.socialNetwork());
 
-        if (!contactDTO.email().isBlank()) {
-            Pattern pattern = Pattern.compile(regex);
-            Matcher matcher = pattern.matcher(contactDTO.email());
-            if (!matcher.matches()) throw new ContactEmailInvalidException("Email " + contactDTO.email() + " invalid");
-        }
+//        if (!contactDTO.email().isBlank()) {
+//            Pattern pattern = Pattern.compile(regex);
+//            Matcher matcher = pattern.matcher(contactDTO.email());
+//            if (!matcher.matches()) throw new ContactEmailInvalidException("Email " + contactDTO.email() + " invalid");
+//        }
         contactRepository.save(contact);
     }
 

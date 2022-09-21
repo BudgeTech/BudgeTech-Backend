@@ -7,10 +7,7 @@ import br.sc.senac.budgetech.backend.exception.order.OrderNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.order.OrderMapper;
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.model.order.Order;
-import br.sc.senac.budgetech.backend.projection.order.OrderListProjection;
-import br.sc.senac.budgetech.backend.projection.order.OrderProfileProjection;
-import br.sc.senac.budgetech.backend.projection.order.OrderProjection;
-import br.sc.senac.budgetech.backend.projection.order.OrderWithFurnituresProjection;
+import br.sc.senac.budgetech.backend.projection.order.*;
 import br.sc.senac.budgetech.backend.repository.furniture.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.order.OrderRepository;
 import lombok.AllArgsConstructor;
@@ -90,6 +87,11 @@ public class OrderServiceImpl implements OrderService {
 
     public OrderProfileProjection findProfileById(Long id) {
         return orderRepository.findOrderProfileById(id)
+                .orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
+    }
+
+    public OrderWithTwoFurnitureProjection18 findOrderWithTwoFurniture18ById(Long id) {
+        return orderRepository.findOrderProjection18ById(id)
                 .orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
     }
 

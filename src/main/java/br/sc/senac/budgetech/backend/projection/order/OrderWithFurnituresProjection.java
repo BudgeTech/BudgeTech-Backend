@@ -1,6 +1,5 @@
 package br.sc.senac.budgetech.backend.projection.order;
 
-import java.sql.Blob;
 import java.util.List;
 
 public interface OrderWithFurnituresProjection {

@@ -30,6 +30,7 @@ public class User {
     @Lob
     @Column(name = "user_image")
     private byte[] image;
+
     @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
