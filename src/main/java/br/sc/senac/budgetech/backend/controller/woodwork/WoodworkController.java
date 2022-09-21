@@ -60,7 +60,7 @@ public class WoodworkController {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findByCompanyName(companyName));
     }
 
-    @GetMapping("woodworkSearch/{id}")
+    @GetMapping("woodworkSearch20/{id}")
     public ResponseEntity<List<WoodworkSearchProjection20>> getWoodworkSearchById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findSearchById(id));
     }
