@@ -17,7 +17,7 @@ public interface OrderWithTwoFurnitureProjection18 {
 
     LocalDate getFinalDate();
 
-//    List<FurnitureProjection> getFurniture();
+    List<FurnitureProjection> getFurniture();
 //
 //    AddressProjection getAddress();
 //
@@ -52,14 +52,14 @@ public interface OrderWithTwoFurnitureProjection18 {
 //        String getPhonenumber();
 //    }
 //
-//    interface FurnitureProjection {
-//
-//        byte[] getImage();
-//
-//        String getNameFurniture();
-//
-//        Double getPriceFurniture();
-//
-//        Long getId();
-//    }
+    interface FurnitureProjection {
+
+        byte[] getImage();
+
+        String getNameFurniture();
+
+        Double getPriceFurniture();
+
+        Long getId();
+    }
 }
