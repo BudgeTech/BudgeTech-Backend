@@ -53,9 +53,9 @@ public class ContactServiceImpl implements ContactService {
         if (contactRepository.existsByPhoneNumber(contactDTO.phoneNumber()))
             throw new ContactPhoneNumberRegisteredException("Phone Number " + contactDTO.phoneNumber() + " is already registered");
 
-        contact.setPhoneNumber((contactDTO.phoneNumber() != null && !contactDTO.phoneNumber().isBlank()) ? contactDTO.phoneNumber() : contact.getPhoneNumber());
-        contact.setEmail((contactDTO.email() != null && !contactDTO.email().isBlank()) ? contactDTO.email() : contact.getEmail());
-        contact.setSocialNetwork((contactDTO.socialNetwork() != null && !contactDTO.socialNetwork().isBlank()) ? contactDTO.socialNetwork() : contact.getSocialNetwork());
+        contact.setEmail(contactDTO.email());
+        contact.setPhoneNumber(contactDTO.phoneNumber());
+        contact.setSocialNetwork(contactDTO.socialNetwork());
 
         if (!contactDTO.email().isBlank()) {
             Pattern pattern = Pattern.compile(regex);

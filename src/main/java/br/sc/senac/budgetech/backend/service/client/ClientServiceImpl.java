@@ -69,12 +69,12 @@ public class ClientServiceImpl implements ClientService {
         Client client = clientRepository.findById(id)
                 .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
 
-        client.setNameClient((clientDTO.nameClient() != null && !clientDTO.nameClient().isBlank()) ? clientDTO.nameClient() : client.getNameClient());
-        client.setCpf((clientDTO.cpf() != null && !clientDTO.cpf().isBlank()) ? clientDTO.cpf() : client.getCpf());
-        client.setLogin((clientDTO.login() != null && !clientDTO.login().isBlank()) ? clientDTO.login() : client.getLogin());
-        client.setPassword((clientDTO.password() != null && !clientDTO.password().isBlank()) ? clientDTO.password() : client.getPassword());
-        client.setLastName((clientDTO.lastName() != null && !clientDTO.lastName().isBlank()) ? clientDTO.lastName() : client.getLastName());
+        client.setCpf(clientDTO.cpf());
+        client.setLogin(clientDTO.login());
         client.setImage(clientDTO.image());
+        client.setPassword(clientDTO.password());
+        client.setLastName(clientDTO.lastName());
+        client.setNameClient(clientDTO.nameClient());
 
         Optional<ClientProjection> existsCpf = clientRepository.findClientByCpf(clientDTO.cpf());
         Optional<ClientProjection> existsLogin = clientRepository.findClientByLogin(clientDTO.login());

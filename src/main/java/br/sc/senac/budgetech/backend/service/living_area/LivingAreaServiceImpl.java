@@ -37,7 +37,7 @@ public class LivingAreaServiceImpl implements LivingAreaService {
         LivingArea livingArea = livingAreaRepository.findById(id)
                 .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + id + " was not found"));
 
-        livingArea.setNameLivingArea((livingAreaDTO.nameLivingArea() != null && !livingAreaDTO.nameLivingArea().isBlank()) ? livingAreaDTO.nameLivingArea() : livingArea.getNameLivingArea());
+        livingArea.setNameLivingArea(livingAreaDTO.nameLivingArea());
         livingAreaRepository.save(livingArea);
     }
 

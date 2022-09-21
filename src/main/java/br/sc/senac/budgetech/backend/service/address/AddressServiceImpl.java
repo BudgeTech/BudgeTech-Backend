@@ -44,13 +44,13 @@ public class AddressServiceImpl implements AddressService {
         if (addressDTO.number() <= 0)
             throw new AddressInvalidException("Number " + addressDTO.number() + " is invalid");
 
+        address.setCep(addressDTO.cep());
+        address.setCity(addressDTO.city());
         address.setNumber(addressDTO.number());
-        address.setCep((addressDTO.cep() != null && !addressDTO.cep().isBlank()) ? addressDTO.cep() : address.getCep());
-        address.setCity((addressDTO.city() != null && !addressDTO.city().isBlank()) ? addressDTO.city() : address.getCity());
-        address.setStreet((addressDTO.street() != null && !addressDTO.street().isBlank()) ? addressDTO.street() : address.getStreet());
-        address.setProvince((addressDTO.province() != null && !addressDTO.province().isBlank()) ? addressDTO.province() : address.getProvince());
-        address.setComplement((addressDTO.complement() != null && !addressDTO.complement().isBlank()) ? addressDTO.complement() : address.getComplement());
-        address.setNeighborhood((addressDTO.neighborhood() != null && !addressDTO.neighborhood().isBlank()) ? addressDTO.neighborhood() : address.getNeighborhood());
+        address.setStreet(addressDTO.street());
+        address.setProvince(addressDTO.province());
+        address.setComplement(addressDTO.complement());
+        address.setNeighborhood(addressDTO.neighborhood());
 
         Optional<AddressProjection> existsStreet = addressRepository.findAddressByStreet(addressDTO.street());
         Optional<AddressProjection> existsNumber = addressRepository.findAddressByNumber(addressDTO.number());

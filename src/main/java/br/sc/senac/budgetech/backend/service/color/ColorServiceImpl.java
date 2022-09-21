@@ -36,8 +36,8 @@ public class ColorServiceImpl implements ColorService {
         Color color = colorRepository.findById(id)
                 .orElseThrow(() -> new ColorNotFoundException("Color " + id + " was not found"));
 
-        color.setNameColor((colorDTO.nameColor() != null && !colorDTO.nameColor().isBlank()) ? colorDTO.nameColor() : color.getNameColor());
-        color.setBrand((colorDTO.brand() != null && !colorDTO.brand().isBlank()) ? colorDTO.brand() : color.getBrand());
+        color.setBrand(colorDTO.brand());
+        color.setNameColor(colorDTO.nameColor());
         colorRepository.save(color);
     }
 

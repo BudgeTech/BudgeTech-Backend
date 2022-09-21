@@ -65,8 +65,8 @@ public class FurnitureServiceImpl implements FurnitureService {
         if (furnitureDTO.priceFurniture() < 0)
             throw new FurnitureInvalidException("Price " + furnitureDTO.priceFurniture() + " is invalid");
 
-        furniture.setNameFurniture((furnitureDTO.nameFurniture() != null && !furnitureDTO.nameFurniture().isBlank()) ? furnitureDTO.nameFurniture() : furniture.getNameFurniture());
-        furniture.setDescription((furnitureDTO.description() != null && !furnitureDTO.description().isBlank()) ? furnitureDTO.description() : furniture.getDescription());
+        furniture.setDescription(furnitureDTO.description());
+        furniture.setNameFurniture(furnitureDTO.nameFurniture());
         furniture.setFurnitureSize(furnitureDTO.furnitureSize());
         furniture.setPriceFurniture(furnitureDTO.priceFurniture());
         furnitureRepository.save(furniture);

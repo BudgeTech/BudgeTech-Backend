@@ -70,11 +70,11 @@ public class WoodworkServiceImpl implements WoodworkService {
         if (woodworkRepository.existsByCnpj(woodworkDTO.cnpj()))
             throw new WoodworkCnpjRegisteredException("Cnpj " + woodworkDTO.cnpj() + " is already registered");
 
-        woodwork.setCompanyName((woodworkDTO.companyName() != null && !woodworkDTO.companyName().isBlank()) ? woodworkDTO.companyName() : woodwork.getCompanyName());
-        woodwork.setDescription((woodworkDTO.description() != null && !woodworkDTO.description().isBlank()) ? woodworkDTO.description() : woodwork.getDescription());
-        woodwork.setCnpj((woodworkDTO.cnpj() != null && !woodworkDTO.cnpj().isBlank()) ? woodworkDTO.cnpj() : woodwork.getCnpj());
-        woodwork.setLogin((woodworkDTO.login() != null && !woodworkDTO.login().isBlank()) ? woodworkDTO.login() : woodwork.getLogin());
-        woodwork.setPassword((woodworkDTO.password() != null && !woodworkDTO.password().isBlank()) ? woodworkDTO.password() : woodwork.getPassword());
+        woodwork.setCompanyName(woodworkDTO.companyName());
+        woodwork.setDescription(woodworkDTO.description());
+        woodwork.setCnpj(woodworkDTO.cnpj());
+        woodwork.setLogin(woodworkDTO.login());
+        woodwork.setPassword(woodworkDTO.password());
         woodwork.setImage(woodworkDTO.image());
         woodwork.setContact(contact);
         woodwork.setAddress(address);

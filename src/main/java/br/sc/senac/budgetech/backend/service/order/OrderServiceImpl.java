@@ -65,10 +65,10 @@ public class OrderServiceImpl implements OrderService {
 
         if(!order.getInitialDate().isBefore(orderCreateDTO.finalDate())) throw new OrderNotFoundException("Invalid Date " + orderCreateDTO.finalDate());
 
-        order.setPriceOrder(orderCreateDTO.priceOrder());
         order.setStatus(orderCreateDTO.status());
         order.setPayment(orderCreateDTO.payment());
         order.setFinalDate(orderCreateDTO.finalDate());
+        order.setPriceOrder(orderCreateDTO.priceOrder());
         orderRepository.save(order);
     }
 
