@@ -20,11 +20,11 @@ public interface OrderService {
 
     OrderProjection findByInitialDate(LocalDate initialDate);
 
-    OrderProfileProjection findProfileById(Long id);
+    OrderProfileProjection findProfileBy();
 
-    List<OrderListProjection> findListById(Long id);
+    List<OrderListProjection> findListBy();
 
-    OrderWithFurnituresProjection findFurnitureById(Long id);
+    OrderWithFurnituresProjection findFurnitureBy();
 
-    OrderWithTwoFurnitureProjection18 findOrderWithTwoFurniture18ById(Long id);
+    OrderWithTwoFurnitureProjection18 findOrderWithTwoFurniture18By();
 }

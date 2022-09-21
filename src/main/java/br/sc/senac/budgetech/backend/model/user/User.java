@@ -7,7 +7,6 @@ import lombok.*;
 import javax.persistence.*;
 import java.sql.Blob;
 
-@AllArgsConstructor
 @NoArgsConstructor
 @Setter
 @Getter
@@ -30,14 +29,6 @@ public class User {
     @Lob
     @Column(name = "user_image")
     private byte[] image;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "address_id")
-    private Address address;
-
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "contact_id")
-    private Contact contact;
 
     public User(Long id, String login, String password, byte[] image) {
         this.id = id;

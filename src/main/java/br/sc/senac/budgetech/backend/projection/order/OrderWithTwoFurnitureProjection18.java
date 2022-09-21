@@ -1,64 +1,65 @@
 package br.sc.senac.budgetech.backend.projection.order;
 
-import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
+import br.sc.senac.budgetech.backend.enumeration.Payment;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface OrderWithTwoFurnitureProjection18 {
 
-    List<FurnitureProjection> getFurniture();
+    Long getId();
 
-    ClientProjection getClient();
+    Double getPriceOrder();
 
+    Payment getPayment();
 
-    interface ClientProjection {
+    LocalDate getInitialDate();
 
-        String getNameClient();
-    }
+    LocalDate getFinalDate();
 
-//    ItemProjection.ClientProjection getClient();
+//    List<FurnitureProjection> getFurniture();
 //
-//    ItemProjection.ClientProjection.ContactProjection getContact();
+//    AddressProjection getAddress();
 //
-//    ItemProjection.ClientProjection.AddressProjection getAddress();
+//    ContactProjection getContact();
 //
-//    interface ItemProjection {
+//    ClientProjection getClient();
+//
 //    interface ClientProjection {
 //
-//        String getNameClient();
+//            String getNameClient();
 //
-//        String getCpf();
+//            String getCpf();
 //    }
-//}
 //
-//            interface ContactProjection {
+//    interface AddressProjection {
 //
-//                String getNumber();
+//        String getStreet();
 //
-//                String getEmail();
-//            }
+//        String getNeighborhood();
 //
-//            interface AddressProjection {
+//        String getCep();
 //
-//                String getStreet();
+//        String getCity();
 //
-//                String getNeighborhood();
+//        int getNumber();
+//    }
 //
-//                String getCep();
+//    interface ContactProjection {
 //
-//                String getCity();
-//            }
-//        }
+//        String getEmail();
+//
+//        String getPhonenumber();
 //    }
 //
 //    interface FurnitureProjection {
+//
+//        byte[] getImage();
 //
 //        String getNameFurniture();
 //
 //        Double getPriceFurniture();
 //
 //        Long getId();
-//
-//        byte[] getImage();
 //    }
 }

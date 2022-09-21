@@ -60,28 +60,28 @@ public class WoodworkController {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findByCompanyName(companyName));
     }
 
-    @GetMapping("woodworkSearch20/{id}")
-    public ResponseEntity<List<WoodworkSearchProjection20>> getWoodworkSearchById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findSearchById(id));
+    @GetMapping("woodworkSearch20")
+    public ResponseEntity<List<WoodworkSearchProjection20>> getWoodworkSearchById() {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findSearchBy());
     }
 
-    @GetMapping("woodworkProfile/{id}")
-    public ResponseEntity<WoodworkProfileProjection> getWoodworkProfileById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileById(id));
+    @GetMapping("woodworkProfile")
+    public ResponseEntity<WoodworkProfileProjection> getWoodworkProfileById() {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileBy());
     }
 
-    @GetMapping("woodworkProfileEdit/{id}")
-    public ResponseEntity<WoodworkProfileEditProjection> getWoodworkProfileEditById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileEditById(id));
+    @GetMapping("woodworkProfileEdit")
+    public ResponseEntity<WoodworkProfileEditProjection> getWoodworkProfileEditById() {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileEditBy());
     }
 
-    @GetMapping("woodworkProfileFullEdit/{id}")
-    public ResponseEntity<WoodworkProfileFullEditProjection> getWoodworkProfileFullEditById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileFullEditById(id));
+    @GetMapping("woodworkProfileFullEdit")
+    public ResponseEntity<WoodworkProfileFullEditProjection> getWoodworkProfileFullEditById() {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileFullEditBy());
     }
 
-    @GetMapping("woodwork21/{id}")
-    public ResponseEntity<WoodworkFulProjection21> getWoodworkProjection21ById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProjection21ById(id));
+    @GetMapping("woodwork21")
+    public ResponseEntity<WoodworkFulProjection21> getWoodworkProjection21ById() {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProjection21By());
     }
 }

@@ -1,6 +1,8 @@
 package br.sc.senac.budgetech.backend.model.address;
 
+import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.model.user.User;
+import br.sc.senac.budgetech.backend.model.woodwork.Woodwork;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -41,7 +43,10 @@ public class Address {
     private String cep;
 
     @OneToOne(mappedBy = "address")
-    private User user;
+    private Woodwork woodwork;
+
+    @OneToOne(mappedBy = "address")
+    private Client client;
 
     public Address(Long id, String street, int number, String complement, String neighborhood, String city, String province, String cep) {
         this.id = id;

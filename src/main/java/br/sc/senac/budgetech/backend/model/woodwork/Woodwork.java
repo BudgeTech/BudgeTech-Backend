@@ -1,5 +1,7 @@
 package br.sc.senac.budgetech.backend.model.woodwork;
 
+import br.sc.senac.budgetech.backend.model.address.Address;
+import br.sc.senac.budgetech.backend.model.contact.Contact;
 import br.sc.senac.budgetech.backend.model.item.Item;
 import br.sc.senac.budgetech.backend.model.livingArea.LivingArea;
 import br.sc.senac.budgetech.backend.model.user.User;
@@ -34,6 +36,14 @@ public class Woodwork extends User {
 
 	@OneToMany(mappedBy = "woodwork", cascade = CascadeType.ALL)
 	private List<LivingArea> livingAreas;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "address_id")
+	private Address address;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "contact_id")
+	private Contact contact;
 
 	public Woodwork(Long id, String login, String password, byte[] image, String companyName, String cnpj, String description) {
 		super(id, login, password, image);

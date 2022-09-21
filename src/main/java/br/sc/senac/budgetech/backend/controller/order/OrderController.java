@@ -48,23 +48,23 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.findByInitialDate(data));
     }
 
-    @GetMapping("orderProfile/{id}")
-    public ResponseEntity<OrderProfileProjection> getProjectionOrderProfileById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(orderService.findProfileById(id));
+    @GetMapping("orderProfile")
+    public ResponseEntity<OrderProfileProjection> getProjectionOrderProfileById() {
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.findProfileBy());
     }
 
-    @GetMapping("orderList/{id}")
-    public ResponseEntity<List<OrderListProjection>> getProjectionOrderListById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(orderService.findListById(id));
+    @GetMapping("orderList")
+    public ResponseEntity<List<OrderListProjection>> getProjectionOrderListById() {
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.findListBy());
     }
 
-    @GetMapping("orderFurniture/{id}")
-    public ResponseEntity<OrderWithFurnituresProjection> getProjectionOrderWithFurnitureById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(orderService.findFurnitureById(id));
+    @GetMapping("orderFurniture")
+    public ResponseEntity<OrderWithFurnituresProjection> getProjectionOrderWithFurnitureById() {
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.findFurnitureBy());
     }
 
-    @GetMapping("order18/{id}")
-    public ResponseEntity<OrderWithTwoFurnitureProjection18> getProjection18ById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrderWithTwoFurniture18ById(id));
+    @GetMapping("order18")
+    public ResponseEntity<OrderWithTwoFurnitureProjection18> getProjection18ById() {
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrderWithTwoFurniture18By());
     }
 }

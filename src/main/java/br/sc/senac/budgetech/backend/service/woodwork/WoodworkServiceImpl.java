@@ -125,30 +125,30 @@ public class WoodworkServiceImpl implements WoodworkService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + companyName + " was not found"));
     }
 
-    public List<WoodworkSearchProjection20> findSearchById(Long id) {
-        List<WoodworkSearchProjection20> woodwork = woodworkRepository.findWoodworkSearchById(id);
+    public List<WoodworkSearchProjection20> findSearchBy() {
+        List<WoodworkSearchProjection20> woodwork = woodworkRepository.findWoodworkSearchBy();
         if (woodwork.isEmpty())
-            throw new WoodworkNotFoundException("Woodwork " + id + " was not found");
+            throw new WoodworkNotFoundException("Woodwork was not found");
         return woodwork;
     }
 
-    public WoodworkProfileProjection findProfileById(Long id) {
-        return woodworkRepository.findWoodworkProfileById(id)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+    public WoodworkProfileProjection findProfileBy() {
+        return woodworkRepository.findWoodworkProfileBy()
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
     }
 
-    public WoodworkProfileEditProjection findProfileEditById(Long id) {
-        return woodworkRepository.findWoodworkProfileEditById(id)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+    public WoodworkProfileEditProjection findProfileEditBy() {
+        return woodworkRepository.findWoodworkProfileEditBy()
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
     }
 
-    public WoodworkProfileFullEditProjection findProfileFullEditById(Long id) {
-        return woodworkRepository.findWoodworkProfileFullEditById(id)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+    public WoodworkProfileFullEditProjection findProfileFullEditBy() {
+        return woodworkRepository.findWoodworkProfileFullEditBy()
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
     }
 
-    public WoodworkFulProjection21 findProjection21ById(Long id) {
-        return woodworkRepository.findWoodworkFull21ById(id)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+    public WoodworkFulProjection21 findProjection21By() {
+        return woodworkRepository.findWoodworkFull21By()
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
     }
 }

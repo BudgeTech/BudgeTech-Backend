@@ -1,5 +1,7 @@
 package br.sc.senac.budgetech.backend.model.client;
 
+import br.sc.senac.budgetech.backend.model.address.Address;
+import br.sc.senac.budgetech.backend.model.contact.Contact;
 import br.sc.senac.budgetech.backend.model.item.Item;
 import br.sc.senac.budgetech.backend.model.user.User;
 import lombok.AllArgsConstructor;
@@ -28,6 +30,14 @@ public class Client extends User {
 
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Item> items;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "address_id")
+    private Address address;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "contact_id")
+    private Contact contact;
 
     public Client() {}
 

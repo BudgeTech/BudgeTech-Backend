@@ -85,25 +85,25 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new OrderNotFoundException("Order " + initialDate + " was not found"));
     }
 
-    public OrderProfileProjection findProfileById(Long id) {
-        return orderRepository.findOrderProfileById(id)
-                .orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
+    public OrderProfileProjection findProfileBy() {
+        return orderRepository.findOrderProfileBy()
+                .orElseThrow(() -> new OrderNotFoundException("Order was not found"));
     }
 
-    public OrderWithTwoFurnitureProjection18 findOrderWithTwoFurniture18ById(Long id) {
-        return orderRepository.findOrderProjection18ById(id)
-                .orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
+    public OrderWithTwoFurnitureProjection18 findOrderWithTwoFurniture18By() {
+        return orderRepository.findOrderProjection18By()
+                .orElseThrow(() -> new OrderNotFoundException("Order was not found"));
     }
 
-    public List<OrderListProjection> findListById(Long id) {
-        List<OrderListProjection> order = orderRepository.findOrderListById(id);
+    public List<OrderListProjection> findListBy() {
+        List<OrderListProjection> order = orderRepository.findOrderListBy();
         if(order.isEmpty())
-            throw new OrderNotFoundException("Order " + id + " was not found");
+            throw new OrderNotFoundException("Order was not found");
         return order;
     }
 
-    public OrderWithFurnituresProjection findFurnitureById(Long id) {
-        return orderRepository.findOrderWithFurnituresById(id)
-                .orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
+    public OrderWithFurnituresProjection findFurnitureBy() {
+        return orderRepository.findOrderWithFurnituresBy()
+                .orElseThrow(() -> new OrderNotFoundException("Order was not found"));
     }
 }
