@@ -1,8 +1,8 @@
 package br.sc.senac.budgetech.backend.controller.furniture;
 
 import br.sc.senac.budgetech.backend.dto.furniture.FurnitureDTO;
-import br.sc.senac.budgetech.backend.projection.furniture.FurnitureFullProjection;
-import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureWithColorProjectionC14andW15andW18;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjectionC15andW17;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.service.furniture.FurnitureService;
 import lombok.AllArgsConstructor;
@@ -62,27 +62,32 @@ public class FurnitureController {
     }
 
     @GetMapping("furnitureList/{id}")
-    public ResponseEntity<List<FurnitureListProjection>> getProjectionListById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<List<FurnitureListProjectionC15andW17>> getProjectionListById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findListById(id));
     }
 
     @GetMapping("paginationChosen/{offset}/{pageSize}/{field}")
-    public ResponseEntity<Page<FurnitureListProjection>> getProjectionWithPaginationAndSortingChosen(@PathVariable(value = "offset") int offset, @PathVariable(value = "pageSize") int pageSize, @PathVariable(value = "field") String field) {
+    public ResponseEntity<Page<FurnitureListProjectionC15andW17>> getProjectionWithPaginationAndSortingChosen(@PathVariable(value = "offset") int offset, @PathVariable(value = "pageSize") int pageSize, @PathVariable(value = "field") String field) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findWithPaginationAndSorting(offset, pageSize, field));
     }
 
     @GetMapping("paginationPrice/{page}")
-    public ResponseEntity<Page<FurnitureListProjection>> getProjectionWithPaginationAndSortingByPrice(@PathVariable(value = "page") Integer page, Pageable pageable) {
+    public ResponseEntity<Page<FurnitureListProjectionC15andW17>> getProjectionWithPaginationAndSortingByPrice(@PathVariable(value = "page") Integer page, Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findWithPaginationAndSortingByPriceFurniture(pageable, page));
     }
 
     @GetMapping("paginationName/{page}")
-    public ResponseEntity<Page<FurnitureListProjection>> getProjectionWithPaginationAndSortingByName(@PathVariable(value = "page") Integer page, Pageable pageable) {
+    public ResponseEntity<Page<FurnitureListProjectionC15andW17>> getProjectionWithPaginationAndSortingByName(@PathVariable(value = "page") Integer page, Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findWithPaginationAndSortingByNameFurniture(pageable, page));
     }
 
+    @GetMapping("paginationName-Five/{page}")
+    public ResponseEntity<Page<FurnitureListProjectionC15andW17>> getProjectionWithPaginationAndSortingByNameW17(@PathVariable(value = "page") Integer page, Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findWithPaginationAndSortingByNameFurnitureW17(pageable, page));
+    }
+
     @GetMapping("furnitureFull/{id}")
-    public ResponseEntity<FurnitureFullProjection> getProjectionByPrice(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<FurnitureWithColorProjectionC14andW15andW18> getProjectionByPrice(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findFurnitureById(id));
     }
 }

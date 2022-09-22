@@ -27,13 +27,13 @@ public interface WoodworkRepository extends JpaRepository<Woodwork, Long> {
 
     Optional<WoodworkProjection> findWoodworkByLogin(String login);
 
-    List<WoodworkSearchProjection20> findWoodworkSearchBy();
+    List<WoodworkSearchProjectionC9> findWoodworkSearchBy();
 
-    Optional<WoodworkProfileProjection> findWoodworkProfileBy();
-
-    Optional<WoodworkProfileEditProjection> findWoodworkProfileEditBy();
-
-    Optional<WoodworkProfileFullEditProjection> findWoodworkProfileFullEditBy();
+    Optional<WoodworkProfileProjectionC8AndC10> findWoodworkProfileBy();
 
     Optional<WoodworkFulProjection21> findWoodworkFull21By();
+
+    //Optional<WoodworkProfileEditProjection> findWoodworkProfileEditBy();
+
+    //Optional<WoodworkProfileFullEditProjection> findWoodworkProfileFullEditBy();
 }

@@ -26,6 +26,7 @@ public class LivingArea {
 	@Lob
 	@Column(name = "living_area_image")
 	private byte[] image;
+
 	@Column(name = "living_area_name", length = 45, nullable = false)
 	private String nameLivingArea;
 

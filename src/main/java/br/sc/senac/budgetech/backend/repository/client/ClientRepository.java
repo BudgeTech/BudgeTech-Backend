@@ -1,7 +1,9 @@
 package br.sc.senac.budgetech.backend.repository.client;
 
 import br.sc.senac.budgetech.backend.model.client.Client;
-import br.sc.senac.budgetech.backend.projection.client.*;
+import br.sc.senac.budgetech.backend.projection.client.ClientListProjectionW9;
+import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjectionW10;
+import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -27,10 +29,15 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Optional<ClientProjection> findClientByContactPhoneNumber(String phoneNumber);
 
-    Optional<ClientProfileEditProjection> findClientProfileEditById(Long id);
-
-    Optional<ClientProfileFullEditProjection> findClientProfileFullEditById(Long id);
+    @Query(value = "select u.image as image, c.nameClient as nameClient, c.lastName as lastName, c.cpf as cpf, a.street as street, a.number as number, a.complement as complement, a.city as city, a.cep as cep, a.neighborhood as neighborhood, co.email as email, co.phoneNumber as phoneNumber, co.socialNetwork as socialNetwork, o.id as id, o.initialDate as initialDate, o.priceOrder as priceOrder from Client c inner join User u on c.id = u.id inner join Address a on c.id = a.id inner join Contact co on c.id = co.id right join Order o on c.id = o.id")
+    ClientProfileFullEditProjectionW10 findClientProfileFullEditBy();
 
     @Query(value = "SELECT client_name as name, client_last_name as lastName from Client", nativeQuery = true)
-    Page<ClientListProjection> findAllClientBy(Pageable pageable);
+    Page<ClientListProjectionW9> findAllClientBy(Pageable pageable);
+
+//    Optional<ClientProfileEditProjection> findClientProfileEditById(Long id);
+//
+//    @Query(value = "select u.image as image, c.nameClient as nameClient, c.lastName as lastName, c.cpf as cpf, a.street as street, a.number as number, a.complement as complement, a.city as city, a.cep as cep, co.email as email, co.phoneNumber as phoneNumber, co.socialNetwork as socialNetwork, o.id as id, o.initialDate as initialDate, o.priceOrder as priceOrder from Client c inner join User u on c.id = u.id inner join Address a on c.id = a.id inner join Contact co on c.id = co.id inner join Order o on c.id = o.id")
+//    Optional<ClientProfileFullEditProjectionW10> findClientProfileFullEditBy();
+
 }

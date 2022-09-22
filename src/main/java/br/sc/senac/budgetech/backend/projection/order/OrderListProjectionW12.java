@@ -4,13 +4,13 @@ import br.sc.senac.budgetech.backend.enumeration.Status;
 
 import java.time.LocalDate;
 
-public interface OrderListProjection {
+public interface OrderListProjectionW12 {
 
     Long getId();
 
     LocalDate initialDate();
 
-    double getPriceOrder();
+    Double getPriceOrder();
 
     Status getStatus();
 }

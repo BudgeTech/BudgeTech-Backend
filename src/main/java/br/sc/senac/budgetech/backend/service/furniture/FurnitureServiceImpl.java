@@ -8,8 +8,8 @@ import br.sc.senac.budgetech.backend.exception.livingarea.LivingAreaNotFoundExce
 import br.sc.senac.budgetech.backend.mapper.furniture.FurnitureMapper;
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.model.livingArea.LivingArea;
-import br.sc.senac.budgetech.backend.projection.furniture.FurnitureFullProjection;
-import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureWithColorProjectionC14andW15andW18;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjectionC15andW17;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.repository.furniture.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.livingArea.LivingAreaRepository;
@@ -100,28 +100,33 @@ public class FurnitureServiceImpl implements FurnitureService {
         return furniture;
     }
 
-    public List<FurnitureListProjection> findListById(Long id) {
-        List<FurnitureListProjection> furniture = furnitureRepository.findFurnitureListById(id);
+    public List<FurnitureListProjectionC15andW17> findListById(Long id) {
+        List<FurnitureListProjectionC15andW17> furniture = furnitureRepository.findFurnitureListById(id);
         if(furniture.isEmpty())
             throw new FurnitureNotFoundException("Furniture " + id + " was not found");
         return furniture;
     }
 
-    public Page<FurnitureListProjection> findWithPaginationAndSorting(int offset, int pageSize, String field) {
+    public Page<FurnitureListProjectionC15andW17> findWithPaginationAndSorting(int offset, int pageSize, String field) {
         return furnitureRepository.findAllFurnitureBy(PageRequest.of(offset, pageSize).withSort(Sort.by(field)));
     }
 
-    public Page<FurnitureListProjection> findWithPaginationAndSortingByPriceFurniture(Pageable pageable, Integer page) {
+    public Page<FurnitureListProjectionC15andW17> findWithPaginationAndSortingByPriceFurniture(Pageable pageable, Integer page) {
         pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "priceFurniture");
         return furnitureRepository.findAllFurnitureBy(pageable);
     }
 
-    public Page<FurnitureListProjection> findWithPaginationAndSortingByNameFurniture(Pageable pageable, Integer page) {
+    public Page<FurnitureListProjectionC15andW17> findWithPaginationAndSortingByNameFurniture(Pageable pageable, Integer page) {
         pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "nameFurniture");
         return furnitureRepository.findAllFurnitureBy(pageable);
     }
 
-    public FurnitureFullProjection findFurnitureById(Long id) {
+    public Page<FurnitureListProjectionC15andW17> findWithPaginationAndSortingByNameFurnitureW17(Pageable pageable, Integer page) {
+        pageable = PageRequest.of(page, 5, Sort.Direction.ASC, "nameFurniture");
+        return furnitureRepository.findAllFurnitureW17By(pageable);
+    }
+
+    public FurnitureWithColorProjectionC14andW15andW18 findFurnitureById(Long id) {
         return furnitureRepository.findFurnitureProjectionById(id)
                 .orElseThrow(() -> new FurnitureNotFoundException("Id " + id + " was not found"));
     }

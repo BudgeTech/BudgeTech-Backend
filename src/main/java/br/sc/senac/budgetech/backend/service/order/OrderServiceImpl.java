@@ -11,6 +11,10 @@ import br.sc.senac.budgetech.backend.projection.order.*;
 import br.sc.senac.budgetech.backend.repository.furniture.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.order.OrderRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -85,25 +89,30 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new OrderNotFoundException("Order " + initialDate + " was not found"));
     }
 
-    public OrderProfileProjection findProfileBy() {
-        return orderRepository.findOrderProfileBy()
-                .orElseThrow(() -> new OrderNotFoundException("Order was not found"));
-    }
-
-    public OrderWithTwoFurnitureProjection18 findOrderWithTwoFurniture18By() {
+    public OrderWithFurnitureProjectionC13andW13 findOrderWithTwoFurniture18By() {
         return orderRepository.findOrderProjection18By()
                 .orElseThrow(() -> new OrderNotFoundException("Order was not found"));
     }
 
-    public List<OrderListProjection> findListBy() {
-        List<OrderListProjection> order = orderRepository.findOrderListBy();
+    public List<OrderListProjectionW12> findListBy() {
+        List<OrderListProjectionW12> order = orderRepository.findOrderListBy();
         if(order.isEmpty())
             throw new OrderNotFoundException("Order was not found");
         return order;
     }
 
-    public OrderWithFurnituresProjection findFurnitureBy() {
-        return orderRepository.findOrderWithFurnituresBy()
-                .orElseThrow(() -> new OrderNotFoundException("Order was not found"));
+//    public OrderWithFurnituresProjection findFurnitureBy() {
+//        return orderRepository.findOrderWithFurnituresBy()
+//                .orElseThrow(() -> new OrderNotFoundException("Order was not found"));
+//    }
+
+    //    public OrderProfileProjection findProfileBy() {
+//        return orderRepository.findOrderProfileBy()
+//                .orElseThrow(() -> new OrderNotFoundException("Order was not found"));
+//    }
+
+    public Page<OrderListProjectionW12> findWithPaginationAndSortingById(Pageable pageable, Integer page) {
+        pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "id");
+        return orderRepository.findOrderListW12By(pageable);
     }
 }

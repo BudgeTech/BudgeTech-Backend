@@ -11,11 +11,9 @@ import br.sc.senac.budgetech.backend.mapper.client.ClientMapper;
 import br.sc.senac.budgetech.backend.model.address.Address;
 import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.model.contact.Contact;
-import br.sc.senac.budgetech.backend.projection.client.ClientListProjection;
-import br.sc.senac.budgetech.backend.projection.client.ClientProfileEditProjection;
-import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjection;
+import br.sc.senac.budgetech.backend.projection.client.ClientListProjectionW9;
+import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjectionW10;
 import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
-import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
 import br.sc.senac.budgetech.backend.repository.address.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.client.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.contact.ContactRepository;
@@ -28,8 +26,6 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 @AllArgsConstructor
 @Service
@@ -111,22 +107,23 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + nameClient + " was not found"));
     }
 
-    public ClientProfileEditProjection findProfileEditById(Long id) {
-        return clientRepository.findClientProfileEditById(id)
-                .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
-    }
-
     public ClientProjection findByContactPhoneNumber(String phoneNumber) {
         return clientRepository.findClientByContactPhoneNumber(phoneNumber)
                 .orElseThrow(() -> new ClientNotFoundException("Client " + phoneNumber + " was not found"));
     }
 
-    public ClientProfileFullEditProjection findProfileFullEditById(Long id) {
-        return clientRepository.findClientProfileFullEditById(id)
-                .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
+    public ClientProfileFullEditProjectionW10 findProfileFullEditBy() {
+        return clientRepository.findClientProfileFullEditBy();
+                //.orElseThrow(() -> new ClientNotFoundException("Client was not found"));
     }
-    public Page<ClientListProjection> findWithPaginationAndSortingByClientId(Pageable pageable, Integer page) {
+
+    public Page<ClientListProjectionW9> findWithPaginationAndSortingByClientId(Pageable pageable, Integer page) {
         pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "client_name");
         return clientRepository.findAllClientBy(pageable);
     }
+
+    //    public ClientProfileEditProjection findProfileEditById(Long id) {
+//        return clientRepository.findClientProfileEditById(id)
+//                .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
+//    }
 }

@@ -5,6 +5,8 @@ import br.sc.senac.budgetech.backend.dto.order.OrderDTO;
 import br.sc.senac.budgetech.backend.projection.order.*;
 import br.sc.senac.budgetech.backend.service.order.OrderService;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -48,23 +50,32 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.findByInitialDate(data));
     }
 
-    @GetMapping("orderProfile")
-    public ResponseEntity<OrderProfileProjection> getProjectionOrderProfileById() {
-        return ResponseEntity.status(HttpStatus.OK).body(orderService.findProfileBy());
-    }
-
     @GetMapping("orderList")
-    public ResponseEntity<List<OrderListProjection>> getProjectionOrderListById() {
+    public ResponseEntity<List<OrderListProjectionW12>> getProjectionOrderListById() {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.findListBy());
     }
 
-    @GetMapping("orderFurniture")
-    public ResponseEntity<OrderWithFurnituresProjection> getProjectionOrderWithFurnitureById() {
-        return ResponseEntity.status(HttpStatus.OK).body(orderService.findFurnitureBy());
-    }
-
+    //Arrumar Repository, outras classes retornando null
     @GetMapping("order18")
-    public ResponseEntity<OrderWithTwoFurnitureProjection18> getProjection18ById() {
+    public ResponseEntity<OrderWithFurnitureProjectionC13andW13> getProjection18ById() {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrderWithTwoFurniture18By());
     }
+
+    @GetMapping("paginationName/{page}")
+    public ResponseEntity<Page<OrderListProjectionW12>> getProjectionWithPaginationAndSortingById(@PathVariable(value = "page") Integer page, Pageable pageable) {
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.findWithPaginationAndSortingById(pageable, page));
+    }
+
+    //Ativar se fazer falta algum DTO
+
+//    @GetMapping("orderProfile")
+//    public ResponseEntity<OrderProfileProjection> getProjectionOrderProfileById() {
+//        return ResponseEntity.status(HttpStatus.OK).body(orderService.findProfileBy());
+//    }
+
+//    @GetMapping("orderFurniture")
+//    public ResponseEntity<OrderWithFurnituresProjection> getProjectionOrderWithFurnitureById() {
+//        return ResponseEntity.status(HttpStatus.OK).body(orderService.findFurnitureBy());
+//    }
+
 }

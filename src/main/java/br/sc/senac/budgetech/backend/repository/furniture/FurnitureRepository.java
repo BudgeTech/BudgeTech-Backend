@@ -1,8 +1,8 @@
 package br.sc.senac.budgetech.backend.repository.furniture;
 
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
-import br.sc.senac.budgetech.backend.projection.furniture.FurnitureFullProjection;
-import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjection;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureWithColorProjectionC14andW15andW18;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureListProjectionC15andW17;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -26,10 +26,13 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
 
     List<FurnitureProjection> findFurnitureListByPriceFurniture(Double priceFurniture);
 
-    Optional<FurnitureFullProjection> findFurnitureProjectionById(Long id);
+    Optional<FurnitureWithColorProjectionC14andW15andW18> findFurnitureProjectionById(Long id);
 
-    List<FurnitureListProjection> findFurnitureListById(Long id);
+    List<FurnitureListProjectionC15andW17> findFurnitureListById(Long id);
 
     @Query(value = "SELECT furniture_name as nameFurniture, furniture_price as priceFurniture from Furniture", nativeQuery = true)
-    Page<FurnitureListProjection> findAllFurnitureBy(Pageable pageable);
+    Page<FurnitureListProjectionC15andW17> findAllFurnitureBy(Pageable pageable);
+
+    @Query(value = "SELECT f.nameFurniture as nameFurniture, f.image as image, f.priceFurniture as priceFurniture from Furniture f")
+    Page<FurnitureListProjectionC15andW17> findAllFurnitureW17By(Pageable pageable);
 }

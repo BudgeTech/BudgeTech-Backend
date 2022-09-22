@@ -125,25 +125,15 @@ public class WoodworkServiceImpl implements WoodworkService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + companyName + " was not found"));
     }
 
-    public List<WoodworkSearchProjection20> findSearchBy() {
-        List<WoodworkSearchProjection20> woodwork = woodworkRepository.findWoodworkSearchBy();
+    public List<WoodworkSearchProjectionC9> findSearchBy() {
+        List<WoodworkSearchProjectionC9> woodwork = woodworkRepository.findWoodworkSearchBy();
         if (woodwork.isEmpty())
             throw new WoodworkNotFoundException("Woodwork was not found");
         return woodwork;
     }
 
-    public WoodworkProfileProjection findProfileBy() {
+    public WoodworkProfileProjectionC8AndC10 findProfileBy() {
         return woodworkRepository.findWoodworkProfileBy()
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
-    }
-
-    public WoodworkProfileEditProjection findProfileEditBy() {
-        return woodworkRepository.findWoodworkProfileEditBy()
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
-    }
-
-    public WoodworkProfileFullEditProjection findProfileFullEditBy() {
-        return woodworkRepository.findWoodworkProfileFullEditBy()
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
     }
 
@@ -151,4 +141,14 @@ public class WoodworkServiceImpl implements WoodworkService {
         return woodworkRepository.findWoodworkFull21By()
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
     }
+
+    //    public WoodworkProfileEditProjection findProfileEditBy() {
+//        return woodworkRepository.findWoodworkProfileEditBy()
+//                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
+//    }
+
+//    public WoodworkProfileFullEditProjection findProfileFullEditBy() {
+//        return woodworkRepository.findWoodworkProfileFullEditBy()
+//                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
+//    }
 }

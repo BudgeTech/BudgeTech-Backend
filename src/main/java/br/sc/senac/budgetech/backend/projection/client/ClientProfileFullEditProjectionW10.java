@@ -1,8 +1,11 @@
 package br.sc.senac.budgetech.backend.projection.client;
 
-import java.sql.Blob;
+import java.time.LocalDate;
+import java.util.List;
 
-public interface ClientProfileFullEditProjection {
+public interface ClientProfileFullEditProjectionW10 {
+
+    byte[] getImage();
 
     String getNameClient();
 
@@ -10,17 +13,13 @@ public interface ClientProfileFullEditProjection {
 
     String getCpf();
 
-    Blob getImage();
-
-    AddressProjection getAddress();
-
-    ContactProjection getContact();
+    List<OrderProjection> getOrder();
 
     interface AddressProjection {
 
         String getStreet();
 
-        int getNumber();
+        Integer getNumber();
 
         String getComplement();
 
@@ -33,10 +32,20 @@ public interface ClientProfileFullEditProjection {
 
     interface ContactProjection {
 
-        String getPhoneNumber();
-
         String getEmail();
 
+        String getPhoneNumber();
+
         String getSocialNetwork();
+
+    }
+
+    interface OrderProjection {
+
+        Long getId();
+
+        LocalDate getInitialDate();
+
+        Double getPriceOrder();
     }
 }

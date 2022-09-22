@@ -1,9 +1,8 @@
 package br.sc.senac.budgetech.backend.controller.client;
 
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
-import br.sc.senac.budgetech.backend.projection.client.ClientListProjection;
-import br.sc.senac.budgetech.backend.projection.client.ClientProfileEditProjection;
-import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjection;
+import br.sc.senac.budgetech.backend.projection.client.ClientListProjectionW9;
+import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjectionW10;
 import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
 import br.sc.senac.budgetech.backend.service.client.ClientService;
 import lombok.AllArgsConstructor;
@@ -12,6 +11,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -53,23 +54,27 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findByNameClient(nameClient));
     }
 
-    @GetMapping("clientProfileEditDTO/{id}")
-    public ResponseEntity<ClientProfileEditProjection> getProjectionClientProfileEditById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileEditById(id));
-    }
-
     @GetMapping("phoneNumber/{phoneNumber}")
     public ResponseEntity<ClientProjection> getProjectionByPhoneNumber(@PathVariable(value = "phoneNumber") String phoneNumber) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findByContactPhoneNumber(phoneNumber));
     }
 
-    @GetMapping("clientProfileFullEditDTO/{id}")
-    public ResponseEntity<ClientProfileFullEditProjection> getProjectionClientProfileFullEditById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileFullEditById(id));
+    //Arrumar Repository, outras classes retornando null
+    @GetMapping("clientProfileW10")
+    public ResponseEntity<ClientProfileFullEditProjectionW10> getProjectionClientProfileFullEditBy() {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileFullEditBy());
     }
 
+    //Arrumar Repository, outras classes retornando null
     @GetMapping("paginationName/{page}")
-    public ResponseEntity<Page<ClientListProjection>> getProjectionWithPaginationAndSortingById(@PathVariable(value = "page") Integer page, Pageable pageable) {
+    public ResponseEntity<Page<ClientListProjectionW9>> getProjectionWithPaginationAndSortingById(@PathVariable(value = "page") Integer page, Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithPaginationAndSortingByClientId(pageable, page));
     }
+
+    //Ativar se fazer falta algum DTO
+
+//    @GetMapping("clientProfileEditDTO/{id}")
+//    public ResponseEntity<ClientProfileEditProjection> getProjectionClientProfileEditById(@PathVariable(value = "id") Long id) {
+//        return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileEditById(id));
+//    }
 }

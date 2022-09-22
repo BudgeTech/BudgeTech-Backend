@@ -61,27 +61,29 @@ public class WoodworkController {
     }
 
     @GetMapping("woodworkSearch20")
-    public ResponseEntity<List<WoodworkSearchProjection20>> getWoodworkSearchById() {
+    public ResponseEntity<List<WoodworkSearchProjectionC9>> getWoodworkSearchById() {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findSearchBy());
     }
 
     @GetMapping("woodworkProfile")
-    public ResponseEntity<WoodworkProfileProjection> getWoodworkProfileById() {
+    public ResponseEntity<WoodworkProfileProjectionC8AndC10> getWoodworkProfileById() {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileBy());
-    }
-
-    @GetMapping("woodworkProfileEdit")
-    public ResponseEntity<WoodworkProfileEditProjection> getWoodworkProfileEditById() {
-        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileEditBy());
-    }
-
-    @GetMapping("woodworkProfileFullEdit")
-    public ResponseEntity<WoodworkProfileFullEditProjection> getWoodworkProfileFullEditById() {
-        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileFullEditBy());
     }
 
     @GetMapping("woodwork21")
     public ResponseEntity<WoodworkFulProjection21> getWoodworkProjection21ById() {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProjection21By());
     }
+
+    //Ativar se fazer falta algum DTO
+
+//    @GetMapping("woodworkProfileEdit")
+//    public ResponseEntity<WoodworkProfileEditProjection> getWoodworkProfileEditById() {
+//        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileEditBy());
+//    }
+
+//    @GetMapping("woodworkProfileFullEdit")
+//    public ResponseEntity<WoodworkProfileFullEditProjection> getWoodworkProfileFullEditById() {
+//        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileFullEditBy());
+//    }
 }

@@ -4,25 +4,13 @@ public interface ClientProjection {
 
     Long getId();
 
-    String getNameClient();
-
-    String getLastName();
-
     String getLogin();
 
-    AddressProjection getAddress();
+    byte[] getImage();
 
-    ContactProjection getContact();
+    String getNameClient();
 
-    interface AddressProjection {
+    String getCpf();
 
-        String getNeighborhood();
-
-        String getCity();
-    }
-
-    interface ContactProjection{
-
-        String getPhoneNumber();
-    }
+    String getLastName();
 }

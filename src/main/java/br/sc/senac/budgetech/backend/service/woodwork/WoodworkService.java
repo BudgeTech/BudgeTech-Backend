@@ -25,13 +25,13 @@ public interface WoodworkService {
 
     WoodworkProjection findByCompanyName(String companyName);
 
-    List<WoodworkSearchProjection20> findSearchBy();
+    List<WoodworkSearchProjectionC9> findSearchBy();
 
-    WoodworkProfileProjection findProfileBy();
-
-    WoodworkProfileEditProjection findProfileEditBy();
-
-    WoodworkProfileFullEditProjection findProfileFullEditBy();
+    WoodworkProfileProjectionC8AndC10 findProfileBy();
 
     WoodworkFulProjection21 findProjection21By();
+
+    //WoodworkProfileEditProjection findProfileEditBy();
+
+    //WoodworkProfileFullEditProjection findProfileFullEditBy();
 }

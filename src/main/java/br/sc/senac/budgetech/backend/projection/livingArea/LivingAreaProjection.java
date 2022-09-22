@@ -1,13 +1,10 @@
 package br.sc.senac.budgetech.backend.projection.livingArea;
 
-import java.sql.Blob;
-
 public interface LivingAreaProjection {
 
-	Long getId();
+    Long getId();
 
-	String getNameLivingArea();
+    String getNameLivingArea();
 
-	byte[] getImage();
-
+    byte[] getImage();
 }

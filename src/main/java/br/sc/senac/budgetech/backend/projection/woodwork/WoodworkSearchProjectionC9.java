@@ -1,6 +1,6 @@
 package br.sc.senac.budgetech.backend.projection.woodwork;
 
-public interface WoodworkSearchProjection20 {
+public interface WoodworkSearchProjectionC9 {
 
     byte[] getImage();
 }

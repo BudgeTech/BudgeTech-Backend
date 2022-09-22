@@ -6,19 +6,11 @@ public interface WoodworkProjection {
 
 	String getLogin();
 
+	String getCnpj();
+
+	byte[] getImage();
+
 	String getCompanyName();
 
-	AddressProjection getAddress();
-
-	ContactProjection getContact();
-
-	interface AddressProjection {
-
-		String getNeighborhood();
-	}
-
-	interface ContactProjection {
-
-		String getPhoneNumber();
-	}
+	String getDescription();
 }

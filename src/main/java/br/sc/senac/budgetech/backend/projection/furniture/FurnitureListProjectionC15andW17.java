@@ -1,6 +1,6 @@
 package br.sc.senac.budgetech.backend.projection.furniture;
 
-public interface FurnitureListProjection {
+public interface FurnitureListProjectionC15andW17 {
 
     String getNameFurniture();
 

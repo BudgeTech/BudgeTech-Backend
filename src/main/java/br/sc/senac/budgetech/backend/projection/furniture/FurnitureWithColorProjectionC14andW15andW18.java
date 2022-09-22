@@ -2,9 +2,7 @@ package br.sc.senac.budgetech.backend.projection.furniture;
 
 import java.util.List;
 
-public interface FurnitureFullProjection {
-
-    Long getId();
+public interface FurnitureWithColorProjectionC14andW15andW18 {
 
     byte[] getImage();
 

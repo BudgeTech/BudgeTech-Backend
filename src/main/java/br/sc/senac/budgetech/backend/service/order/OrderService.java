@@ -2,6 +2,8 @@ package br.sc.senac.budgetech.backend.service.order;
 
 import br.sc.senac.budgetech.backend.dto.order.*;
 import br.sc.senac.budgetech.backend.projection.order.*;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -20,11 +22,13 @@ public interface OrderService {
 
     OrderProjection findByInitialDate(LocalDate initialDate);
 
-    OrderProfileProjection findProfileBy();
+    List<OrderListProjectionW12> findListBy();
 
-    List<OrderListProjection> findListBy();
+    OrderWithFurnitureProjectionC13andW13 findOrderWithTwoFurniture18By();
 
-    OrderWithFurnituresProjection findFurnitureBy();
+    Page<OrderListProjectionW12> findWithPaginationAndSortingById(Pageable pageable, Integer page);
 
-    OrderWithTwoFurnitureProjection18 findOrderWithTwoFurniture18By();
+    //OrderProfileProjection findProfileBy();
+
+    //OrderWithFurnituresProjection findFurnitureBy();
 }
