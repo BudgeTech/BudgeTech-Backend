@@ -21,8 +21,6 @@ public class Furniture {
 	@Column(name = "id_furniture")
 	private Long id;
 
-	@Column
-	private Blob image;
 
 	@Column(name = "name_furniture", length = 35, nullable = false)
 	private String nameFurniture;
@@ -46,6 +44,10 @@ public class Furniture {
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	@JoinTable(name = "request_furniture", joinColumns = @JoinColumn(name = "id_furniture"), inverseJoinColumns = @JoinColumn(name = "id_request"))
 	private List<Request> requests;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_image")
+    private Image image;
 
 	public Furniture() {
 		colors = new ArrayList<>();

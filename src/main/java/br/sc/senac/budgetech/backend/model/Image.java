@@ -19,17 +19,17 @@ import lombok.NoArgsConstructor;
 public class Image {
 	
 	@Id
-	@Column(name = "id")
+	@Column(name = "id_image")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Column(name = "name")
+	@Column(name = "name_image")
 	private String name;
 	
-	@Column(name = "type")
+	@Column(name = "type_image")
 	private String type;
 	
-	@Column(name = "picByte", length = 1000)
+	@Column(name = "picByte_image", length = 1000)
 	private byte[] picByte;
 
 }

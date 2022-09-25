@@ -1,10 +1,15 @@
 package br.sc.senac.budgetech.backend.model;
 
-import lombok.*;
-
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.JoinColumn;
 import javax.persistence.MappedSuperclass;
-import java.sql.Blob;
+import javax.persistence.OneToOne;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,9 +23,10 @@ public abstract class User {
 
     @Column(name = "password_user", length = 45, nullable = false)
     private String password;
-
-    @Column(name = "image_user")
-    private Blob image;
+    
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_image")
+    private Image image;
 
     protected User(String password) {
         this.password =password;

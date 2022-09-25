@@ -16,13 +16,11 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
-import br.sc.senac.budgetech.backend.dto.address.AddressDTO;
 import br.sc.senac.budgetech.backend.model.Image;
 import br.sc.senac.budgetech.backend.projection.image.ImageProjection;
 import br.sc.senac.budgetech.backend.repository.ImageRepository;
@@ -36,17 +34,15 @@ public class ImageController {
 
 	@Autowired
 	ImageRepository imageRepository;
-	
-
 
 	@PostMapping("/upload")
 	public BodyBuilder uplaodImage(@RequestParam("imageFile") MultipartFile file) throws IOException {
 		System.out.println("Original Image Byte Size - " + file.getBytes().length);
-		Image img = new Image(null, file.getOriginalFilename(), file.getContentType(),
-				compressBytes(file.getBytes()));
+		Image img = new Image(null, file.getOriginalFilename(), file.getContentType(), compressBytes(file.getBytes()));
 		imageRepository.save(img);
 		return (BodyBuilder) ResponseEntity.status(HttpStatus.OK);
 	}
+
 	@GetMapping(path = { "/get/{imageName}" })
 	public Image getImage(@PathVariable("imageName") String imageName) throws IOException {
 		final Optional<ImageProjection> retrievedImage = imageRepository.findByName(imageName);
@@ -79,6 +75,7 @@ public class ImageController {
 				decompressBytes(retrievedImage.get().getPicByte()));
 		return img;
 	}
+
 	// compress the image bytes before storing it in the database
 	public static byte[] compressBytes(byte[] data) {
 		Deflater deflater = new Deflater();
@@ -97,6 +94,7 @@ public class ImageController {
 		System.out.println("Compressed Image Byte Size - " + outputStream.toByteArray().length);
 		return outputStream.toByteArray();
 	}
+
 	// uncompress the image bytes before returning it to the angular application
 	public static byte[] decompressBytes(byte[] data) {
 		Inflater inflater = new Inflater();
