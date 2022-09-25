@@ -2,7 +2,7 @@ package br.sc.senac.budgetech.backend.controller.client;
 
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
 import br.sc.senac.budgetech.backend.projection.client.ClientListProjectionW9;
-import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjectionW10;
+import br.sc.senac.budgetech.backend.projection.client.ClientListW10;
 import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
 import br.sc.senac.budgetech.backend.service.client.ClientService;
 import lombok.AllArgsConstructor;
@@ -11,8 +11,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
@@ -59,9 +57,8 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findByContactPhoneNumber(phoneNumber));
     }
 
-    //Arrumar Repository, outras classes retornando null
     @GetMapping("clientProfileW10")
-    public ResponseEntity<ClientProfileFullEditProjectionW10> getProjectionClientProfileFullEditBy() {
+    public ResponseEntity<ClientListW10> getProjectionClientProfileFullEditBy() {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileFullEditBy());
     }
 
@@ -70,11 +67,4 @@ public class ClientController {
     public ResponseEntity<Page<ClientListProjectionW9>> getProjectionWithPaginationAndSortingById(@PathVariable(value = "page") Integer page, Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithPaginationAndSortingByClientId(pageable, page));
     }
-
-    //Ativar se fazer falta algum DTO
-
-//    @GetMapping("clientProfileEditDTO/{id}")
-//    public ResponseEntity<ClientProfileEditProjection> getProjectionClientProfileEditById(@PathVariable(value = "id") Long id) {
-//        return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileEditById(id));
-//    }
 }

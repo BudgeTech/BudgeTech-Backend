@@ -12,11 +12,12 @@ import br.sc.senac.budgetech.backend.model.address.Address;
 import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.model.contact.Contact;
 import br.sc.senac.budgetech.backend.projection.client.ClientListProjectionW9;
-import br.sc.senac.budgetech.backend.projection.client.ClientProfileFullEditProjectionW10;
+import br.sc.senac.budgetech.backend.projection.client.ClientListW10;
 import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
 import br.sc.senac.budgetech.backend.repository.address.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.client.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.contact.ContactRepository;
+import br.sc.senac.budgetech.backend.repository.item.ItemRepository;
 import br.sc.senac.budgetech.backend.util.CPFValidatorFormat;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -32,6 +33,8 @@ import java.util.Optional;
 public class ClientServiceImpl implements ClientService {
 
     private final ClientRepository clientRepository;
+
+    private final ItemRepository itemRepository;
     private final ClientMapper clientMapper;
     private final ContactRepository contactRepository;
     private final AddressRepository addressRepository;
@@ -112,18 +115,14 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + phoneNumber + " was not found"));
     }
 
-    public ClientProfileFullEditProjectionW10 findProfileFullEditBy() {
-        return clientRepository.findClientProfileFullEditBy();
-                //.orElseThrow(() -> new ClientNotFoundException("Client was not found"));
+    public ClientListW10 findProfileFullEditBy() {
+        var client = new ClientListW10(clientRepository.findClientW10(1L));
+        client.setOrderProjections(itemRepository.findIdOrderByIdClient(client.getId()));
+        return client;
     }
 
     public Page<ClientListProjectionW9> findWithPaginationAndSortingByClientId(Pageable pageable, Integer page) {
         pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "client_name");
         return clientRepository.findAllClientBy(pageable);
     }
-
-    //    public ClientProfileEditProjection findProfileEditById(Long id) {
-//        return clientRepository.findClientProfileEditById(id)
-//                .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
-//    }
 }

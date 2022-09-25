@@ -7,7 +7,9 @@ import br.sc.senac.budgetech.backend.exception.order.OrderNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.order.OrderMapper;
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.model.order.Order;
-import br.sc.senac.budgetech.backend.projection.order.*;
+import br.sc.senac.budgetech.backend.projection.order.OrderListProjectionW12;
+import br.sc.senac.budgetech.backend.projection.order.OrderProjection;
+import br.sc.senac.budgetech.backend.projection.order.OrderWithFurnitureProjectionC13andW13;
 import br.sc.senac.budgetech.backend.repository.furniture.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.order.OrderRepository;
 import lombok.AllArgsConstructor;
@@ -37,7 +39,8 @@ public class OrderServiceImpl implements OrderService {
             throw new OrderInvalidException("Price " + orderCreateDTO.priceOrder() + " is invalid");
 
         order.setInitialDate(LocalDate.now());
-        if(!order.getInitialDate().isBefore(orderCreateDTO.finalDate())) throw new OrderNotFoundException("Invalid Date " + orderCreateDTO.finalDate());
+        if (!order.getInitialDate().isBefore(orderCreateDTO.finalDate()))
+            throw new OrderNotFoundException("Invalid Date " + orderCreateDTO.finalDate());
 
         for (Long idFurniture : orderCreateDTO.idFurnitures()) {
             Furniture furniture = furnitureRepository.findById(idFurniture)
@@ -64,7 +67,8 @@ public class OrderServiceImpl implements OrderService {
             order.getFurnitures().add(furniture);
         }
 
-        if(!order.getInitialDate().isBefore(orderCreateDTO.finalDate())) throw new OrderNotFoundException("Invalid Date " + orderCreateDTO.finalDate());
+        if (!order.getInitialDate().isBefore(orderCreateDTO.finalDate()))
+            throw new OrderNotFoundException("Invalid Date " + orderCreateDTO.finalDate());
 
         order.setStatus(orderCreateDTO.status());
         order.setPayment(orderCreateDTO.payment());
@@ -96,20 +100,10 @@ public class OrderServiceImpl implements OrderService {
 
     public List<OrderListProjectionW12> findListBy() {
         List<OrderListProjectionW12> order = orderRepository.findOrderListBy();
-        if(order.isEmpty())
+        if (order.isEmpty())
             throw new OrderNotFoundException("Order was not found");
         return order;
     }
-
-//    public OrderWithFurnituresProjection findFurnitureBy() {
-//        return orderRepository.findOrderWithFurnituresBy()
-//                .orElseThrow(() -> new OrderNotFoundException("Order was not found"));
-//    }
-
-    //    public OrderProfileProjection findProfileBy() {
-//        return orderRepository.findOrderProfileBy()
-//                .orElseThrow(() -> new OrderNotFoundException("Order was not found"));
-//    }
 
     public Page<OrderListProjectionW12> findWithPaginationAndSortingById(Pageable pageable, Integer page) {
         pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "id");

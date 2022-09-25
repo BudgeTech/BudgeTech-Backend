@@ -1,7 +1,10 @@
 package br.sc.senac.budgetech.backend.service.order;
 
-import br.sc.senac.budgetech.backend.dto.order.*;
-import br.sc.senac.budgetech.backend.projection.order.*;
+import br.sc.senac.budgetech.backend.dto.order.OrderCreateDTO;
+import br.sc.senac.budgetech.backend.dto.order.OrderDTO;
+import br.sc.senac.budgetech.backend.projection.order.OrderListProjectionW12;
+import br.sc.senac.budgetech.backend.projection.order.OrderProjection;
+import br.sc.senac.budgetech.backend.projection.order.OrderWithFurnitureProjectionC13andW13;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -27,8 +30,4 @@ public interface OrderService {
     OrderWithFurnitureProjectionC13andW13 findOrderWithTwoFurniture18By();
 
     Page<OrderListProjectionW12> findWithPaginationAndSortingById(Pageable pageable, Integer page);
-
-    //OrderProfileProjection findProfileBy();
-
-    //OrderWithFurnituresProjection findFurnitureBy();
 }

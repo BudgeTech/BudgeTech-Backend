@@ -1,7 +1,10 @@
 package br.sc.senac.budgetech.backend.controller.woodwork;
 
-import br.sc.senac.budgetech.backend.dto.woodwork.*;
-import br.sc.senac.budgetech.backend.projection.woodwork.*;
+import br.sc.senac.budgetech.backend.dto.woodwork.WoodworkDTO;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkFulProjection21;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkProfileProjectionC8AndC10;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkProjection;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkSearchProjectionC9;
 import br.sc.senac.budgetech.backend.service.woodwork.WoodworkService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -74,16 +77,4 @@ public class WoodworkController {
     public ResponseEntity<WoodworkFulProjection21> getWoodworkProjection21ById() {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProjection21By());
     }
-
-    //Ativar se fazer falta algum DTO
-
-//    @GetMapping("woodworkProfileEdit")
-//    public ResponseEntity<WoodworkProfileEditProjection> getWoodworkProfileEditById() {
-//        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileEditBy());
-//    }
-
-//    @GetMapping("woodworkProfileFullEdit")
-//    public ResponseEntity<WoodworkProfileFullEditProjection> getWoodworkProfileFullEditById() {
-//        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findProfileFullEditBy());
-//    }
 }

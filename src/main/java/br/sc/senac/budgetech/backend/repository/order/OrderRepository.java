@@ -26,11 +26,4 @@ public interface OrderRepository extends JpaRepository<Order, Long> {
 
     @Query(value = "select o.id as id, o.initialDate as initialDate, o.priceOrder as priceOrder, o.status as status from Order o")
     Page<OrderListProjectionW12> findOrderListW12By(Pageable pageable);
-
-//    Optional<OrderWithFurnituresProjection> findOrderWithFurnituresBy();
-//
-//    Optional<OrderProfileProjection> findOrderProfileBy();
-//
-//    @Query(value = "select o.id as id, o.finalDate as finalDate, o.initialDate as initialDate, o.priceOrder as priceOrder, o.payment as payment, c.cpf as cpf, c.nameClient as nameClient, a.street as street, a.neighborhood as neighborhood, a.cep as cep, a.city as city, a.number, co.email as email, co.phoneNumber as phoneNumber, f.image as image, f.nameFurniture as nameFurniture, f.priceFurniture as priceFurniture, f.id as id from Order o inner join client c on o.id = c.id inner join address a on o.id = a.id inner join contact co on o.id = co.id inner join furniture f on o.id = f.id", nativeQuery = false)
-//    Optional<OrderWithTwoFurnitureProjection18> findOrderProjection18By();
 }

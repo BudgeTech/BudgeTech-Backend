@@ -2,7 +2,9 @@ package br.sc.senac.budgetech.backend.controller.order;
 
 import br.sc.senac.budgetech.backend.dto.order.OrderCreateDTO;
 import br.sc.senac.budgetech.backend.dto.order.OrderDTO;
-import br.sc.senac.budgetech.backend.projection.order.*;
+import br.sc.senac.budgetech.backend.projection.order.OrderListProjectionW12;
+import br.sc.senac.budgetech.backend.projection.order.OrderProjection;
+import br.sc.senac.budgetech.backend.projection.order.OrderWithFurnitureProjectionC13andW13;
 import br.sc.senac.budgetech.backend.service.order.OrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -65,17 +67,4 @@ public class OrderController {
     public ResponseEntity<Page<OrderListProjectionW12>> getProjectionWithPaginationAndSortingById(@PathVariable(value = "page") Integer page, Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.findWithPaginationAndSortingById(pageable, page));
     }
-
-    //Ativar se fazer falta algum DTO
-
-//    @GetMapping("orderProfile")
-//    public ResponseEntity<OrderProfileProjection> getProjectionOrderProfileById() {
-//        return ResponseEntity.status(HttpStatus.OK).body(orderService.findProfileBy());
-//    }
-
-//    @GetMapping("orderFurniture")
-//    public ResponseEntity<OrderWithFurnituresProjection> getProjectionOrderWithFurnitureById() {
-//        return ResponseEntity.status(HttpStatus.OK).body(orderService.findFurnitureBy());
-//    }
-
 }

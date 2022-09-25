@@ -32,8 +32,4 @@ public interface WoodworkRepository extends JpaRepository<Woodwork, Long> {
     Optional<WoodworkProfileProjectionC8AndC10> findWoodworkProfileBy();
 
     Optional<WoodworkFulProjection21> findWoodworkFull21By();
-
-    //Optional<WoodworkProfileEditProjection> findWoodworkProfileEditBy();
-
-    //Optional<WoodworkProfileFullEditProjection> findWoodworkProfileFullEditBy();
 }

@@ -30,8 +30,4 @@ public interface WoodworkService {
     WoodworkProfileProjectionC8AndC10 findProfileBy();
 
     WoodworkFulProjection21 findProjection21By();
-
-    //WoodworkProfileEditProjection findProfileEditBy();
-
-    //WoodworkProfileFullEditProjection findProfileFullEditBy();
 }

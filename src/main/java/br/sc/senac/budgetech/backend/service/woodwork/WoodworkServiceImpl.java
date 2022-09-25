@@ -12,7 +12,10 @@ import br.sc.senac.budgetech.backend.mapper.woodwork.WoodworkMapper;
 import br.sc.senac.budgetech.backend.model.address.Address;
 import br.sc.senac.budgetech.backend.model.contact.Contact;
 import br.sc.senac.budgetech.backend.model.woodwork.Woodwork;
-import br.sc.senac.budgetech.backend.projection.woodwork.*;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkFulProjection21;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkProfileProjectionC8AndC10;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkProjection;
+import br.sc.senac.budgetech.backend.projection.woodwork.WoodworkSearchProjectionC9;
 import br.sc.senac.budgetech.backend.repository.address.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.contact.ContactRepository;
 import br.sc.senac.budgetech.backend.repository.woodwork.WoodworkRepository;
@@ -141,14 +144,4 @@ public class WoodworkServiceImpl implements WoodworkService {
         return woodworkRepository.findWoodworkFull21By()
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
     }
-
-    //    public WoodworkProfileEditProjection findProfileEditBy() {
-//        return woodworkRepository.findWoodworkProfileEditBy()
-//                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
-//    }
-
-//    public WoodworkProfileFullEditProjection findProfileFullEditBy() {
-//        return woodworkRepository.findWoodworkProfileFullEditBy()
-//                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork was not found"));
-//    }
 }
