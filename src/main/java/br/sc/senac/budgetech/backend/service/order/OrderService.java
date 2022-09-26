@@ -23,7 +23,7 @@ public interface OrderService {
 
     OrderProjection findById(Long id);
 
-    OrderProjection findByInitialDate(LocalDate initialDate);
+    List<OrderProjection> findByInitialDate(LocalDate initialDate);
 
     List<OrderListProjectionW12> findListBy();
 

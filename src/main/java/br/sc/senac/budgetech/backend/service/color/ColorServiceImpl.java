@@ -12,6 +12,8 @@ import br.sc.senac.budgetech.backend.repository.furniture.FurnitureRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class ColorServiceImpl implements ColorService {
@@ -52,13 +54,17 @@ public class ColorServiceImpl implements ColorService {
                 .orElseThrow(() -> new ColorNotFoundException("Color " + id + " was not found"));
     }
 
-    public ColorProjection findByNameColor(String nameColor) {
-        return colorRepository.findColorByNameColor(nameColor)
-                .orElseThrow(() -> new ColorNotFoundException("Name " + nameColor + " was not found"));
+    public List<ColorProjection> findByNameColor(String nameColor) {
+        List<ColorProjection> color = colorRepository.findColorByNameColor(nameColor);
+        if(color.isEmpty())
+            throw new ColorNotFoundException("Name " + nameColor + " was not found");
+        return color;
     }
 
-    public ColorProjection findByBrand(String brand) {
-        return colorRepository.findColorByBrand(brand)
-                .orElseThrow(() -> new ColorNotFoundException("Brand " + brand + " was not found"));
+    public List<ColorProjection>  findByBrand(String brand) {
+        List<ColorProjection> color = colorRepository.findColorByBrand(brand);
+        if(color.isEmpty())
+            throw new ColorNotFoundException("Brand " + brand + " was not found");
+        return color;
     }
 }

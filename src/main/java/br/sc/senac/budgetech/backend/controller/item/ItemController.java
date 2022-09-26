@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/item")
@@ -39,7 +41,7 @@ public class ItemController {
     }
 
     @GetMapping("totalPrice/{totalPrice}")
-    public ResponseEntity<ItemProjection> getProjectionByPrice(@PathVariable(value = "totalPrice") Double totalPrice) {
+    public ResponseEntity<List<ItemProjection>> getProjectionByPrice(@PathVariable(value = "totalPrice") Double totalPrice) {
         return ResponseEntity.status(HttpStatus.OK).body(itemService.findByPrice(totalPrice));
     }
 }

@@ -47,12 +47,12 @@ public class FurnitureController {
     }
 
     @GetMapping("name/{nameFurniture}")
-    public ResponseEntity<FurnitureProjection> getProjectionByName(@PathVariable(value = "nameFurniture") String nameFurniture) {
+    public ResponseEntity<List<FurnitureProjection>> getProjectionByName(@PathVariable(value = "nameFurniture") String nameFurniture) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findByNameFurniture(nameFurniture));
     }
 
     @GetMapping("price/{priceFurniture}")
-    public ResponseEntity<FurnitureProjection> getProjectionByPrice(@PathVariable(value = "priceFurniture") Double priceFurniture) {
+    public ResponseEntity<List<FurnitureProjection>> getProjectionByPrice(@PathVariable(value = "priceFurniture") Double priceFurniture) {
         return ResponseEntity.status(HttpStatus.OK).body(furnitureService.findByPriceFurniture(priceFurniture));
     }
 

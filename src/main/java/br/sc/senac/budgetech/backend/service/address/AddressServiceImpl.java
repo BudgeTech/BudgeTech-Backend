@@ -11,6 +11,7 @@ import br.sc.senac.budgetech.backend.repository.address.AddressRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -73,8 +74,10 @@ public class AddressServiceImpl implements AddressService {
                 .orElseThrow(() -> new AddressNotFoundException("Address " + id + " was not found"));
     }
 
-    public AddressProjection findByNeighborhood(String neighborhood) {
-        return addressRepository.findAddressByNeighborhood(neighborhood)
-                .orElseThrow(() -> new AddressNotFoundException("Address " + neighborhood + " was not found"));
+    public List<AddressProjection> findByNeighborhood(String neighborhood) {
+        List<AddressProjection> address = addressRepository.findAddressByNeighborhood(neighborhood);
+        if(address.isEmpty())
+            throw new AddressNotFoundException("Address " + neighborhood + " was not found");
+        return address;
     }
 }

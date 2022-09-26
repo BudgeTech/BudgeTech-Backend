@@ -21,9 +21,9 @@ public interface FurnitureService {
 
     FurnitureProjection findById(Long id);
 
-    FurnitureProjection findByNameFurniture(String nameFurniture);
+    List<FurnitureProjection> findByNameFurniture(String nameFurniture);
 
-    FurnitureProjection findByPriceFurniture(Double priceFurniture);
+    List<FurnitureProjection> findByPriceFurniture(Double priceFurniture);
 
     FurnitureWithColorProjectionC14andW15andW18 findFurnitureById(Long id);
 

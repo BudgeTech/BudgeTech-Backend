@@ -15,7 +15,7 @@ import java.util.Optional;
 @Repository
 public interface OrderRepository extends JpaRepository<Order, Long> {
 
-    Optional<OrderProjection> findOrderByInitialDate(LocalDate initialDate);
+    List<OrderProjection> findOrderByInitialDate(LocalDate initialDate);
 
     Optional<OrderProjection> findOrderById(Long id);
 

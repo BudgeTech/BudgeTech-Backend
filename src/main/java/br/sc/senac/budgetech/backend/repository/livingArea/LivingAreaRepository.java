@@ -5,6 +5,7 @@ import br.sc.senac.budgetech.backend.projection.livingArea.LivingAreaProjectionC
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -12,5 +13,5 @@ public interface LivingAreaRepository extends JpaRepository<LivingArea, Long> {
 
     Optional<LivingAreaProjectionC16andW16> findLivingAreaById(Long id);
 
-    Optional<LivingAreaProjectionC16andW16> findLivingAreaByNameLivingArea(String nameLivingArea);
+    List<LivingAreaProjectionC16andW16> findLivingAreaByNameLivingArea(String nameLivingArea);
 }

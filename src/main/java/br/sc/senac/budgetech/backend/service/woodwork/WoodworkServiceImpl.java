@@ -113,9 +113,11 @@ public class WoodworkServiceImpl implements WoodworkService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + cnpj + " was not found"));
     }
 
-    public WoodworkProjection findByAddressNeighborhood(String neighborhood) {
-        return woodworkRepository.findWoodworkByAddressNeighborhood(neighborhood)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + neighborhood + " was not found"));
+    public List<WoodworkProjection> findByAddressNeighborhood(String neighborhood) {
+        List<WoodworkProjection> woodwork = woodworkRepository.findWoodworkByAddressNeighborhood(neighborhood);
+        if(woodwork.isEmpty())
+            throw new WoodworkNotFoundException("Woodwork " + neighborhood + " was not found");
+        return woodwork;
     }
 
     public WoodworkProjection findByContactPhoneNumber(String phoneNumber) {
@@ -123,9 +125,11 @@ public class WoodworkServiceImpl implements WoodworkService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + phoneNumber + " was not found"));
     }
 
-    public WoodworkProjection findByCompanyName(String companyName) {
-        return woodworkRepository.findWoodworkByCompanyName(companyName)
-                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + companyName + " was not found"));
+    public List<WoodworkProjection> findByCompanyName(String companyName) {
+        List<WoodworkProjection> woodwork = woodworkRepository.findWoodworkByCompanyName(companyName);
+        if(woodwork.isEmpty())
+            throw new WoodworkNotFoundException("Woodwork " + companyName + " was not found");
+        return woodwork;
     }
 
     public List<WoodworkSearchProjectionC9> findSearchBy() {

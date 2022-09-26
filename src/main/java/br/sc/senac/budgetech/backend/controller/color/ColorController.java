@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/color")
@@ -39,12 +41,12 @@ public class ColorController {
     }
 
     @GetMapping("name/{nameColor}")
-    public ResponseEntity<ColorProjection> getProjectionByName(@PathVariable(value = "nameColor") String nameColor) {
+    public ResponseEntity<List<ColorProjection>> getProjectionByName(@PathVariable(value = "nameColor") String nameColor) {
         return ResponseEntity.status(HttpStatus.OK).body(colorService.findByNameColor(nameColor));
     }
 
     @GetMapping("brand/{brand}")
-    public ResponseEntity<ColorProjection> getProjectionByBrand(@PathVariable(value = "brand") String brand) {
+    public ResponseEntity<List<ColorProjection>> getProjectionByBrand(@PathVariable(value = "brand") String brand) {
         return ResponseEntity.status(HttpStatus.OK).body(colorService.findByBrand(brand));
     }
 }

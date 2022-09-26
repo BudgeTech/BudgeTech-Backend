@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/client")
@@ -48,7 +50,7 @@ public class ClientController {
     }
 
     @GetMapping("name/{nameClient}")
-    public ResponseEntity<ClientProjection> getProjectionByName(@PathVariable(value = "nameClient") String nameClient) {
+    public ResponseEntity<List<ClientProjection>> getProjectionByName(@PathVariable(value = "nameClient") String nameClient) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findByNameClient(nameClient));
     }
 

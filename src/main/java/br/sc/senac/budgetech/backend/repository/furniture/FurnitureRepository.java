@@ -20,9 +20,9 @@ public interface FurnitureRepository extends JpaRepository<Furniture, Long> {
 
     Optional<FurnitureProjection> findFurnitureById(Long id);
 
-    Optional<FurnitureProjection> findFurnitureByNameFurniture(String nameFurniture);
+    List<FurnitureProjection> findFurnitureByNameFurniture(String nameFurniture);
 
-    Optional<FurnitureProjection> findFurnitureByPriceFurniture(Double priceFurniture);
+    List<FurnitureProjection> findFurnitureByPriceFurniture(Double priceFurniture);
 
     List<FurnitureProjection> findFurnitureListByPriceFurniture(Double priceFurniture);
 

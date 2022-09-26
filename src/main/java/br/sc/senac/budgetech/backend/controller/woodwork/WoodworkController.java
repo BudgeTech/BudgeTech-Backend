@@ -49,7 +49,7 @@ public class WoodworkController {
     }
 
     @GetMapping("neighborhood/{neighborhood}")
-    public ResponseEntity<WoodworkProjection> getProjectionByNeighborhood(@PathVariable(value = "neighborhood") String neighborhood) {
+    public ResponseEntity<List<WoodworkProjection>> getProjectionByNeighborhood(@PathVariable(value = "neighborhood") String neighborhood) {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findByAddressNeighborhood(neighborhood));
     }
 
@@ -59,7 +59,7 @@ public class WoodworkController {
     }
 
     @GetMapping("companyName/{companyName}")
-    public ResponseEntity<WoodworkProjection> getProjectionByCompanyName(@PathVariable(value = "companyName") String companyName) {
+    public ResponseEntity<List<WoodworkProjection>> getProjectionByCompanyName(@PathVariable(value = "companyName") String companyName) {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findByCompanyName(companyName));
     }
 

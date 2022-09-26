@@ -4,6 +4,8 @@ import br.sc.senac.budgetech.backend.dto.item.ItemDTO;
 import br.sc.senac.budgetech.backend.projection.item.ItemProjection;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface ItemService {
 
@@ -15,5 +17,5 @@ public interface ItemService {
 
     ItemProjection findById(Long id);
 
-    ItemProjection findByPrice(Double totalPrice);
+    List<ItemProjection> findByPrice(Double totalPrice);
 }

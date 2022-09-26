@@ -3,6 +3,8 @@ package br.sc.senac.budgetech.backend.service.address;
 import br.sc.senac.budgetech.backend.dto.address.AddressDTO;
 import br.sc.senac.budgetech.backend.projection.address.AddressProjection;
 
+import java.util.List;
+
 
 public interface AddressService {
 
@@ -14,5 +16,5 @@ public interface AddressService {
 
     AddressProjection findById(Long id);
 
-    AddressProjection findByNeighborhood(String neighborhood);
+    List<AddressProjection> findByNeighborhood(String neighborhood);
 }

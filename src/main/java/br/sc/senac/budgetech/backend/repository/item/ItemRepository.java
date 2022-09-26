@@ -15,7 +15,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     Optional<ItemProjection> findItemById(Long id);
 
-    Optional<ItemProjection> findItemByTotalPrice(Double totalPrice);
+    List<ItemProjection> findItemByTotalPrice(Double totalPrice);
 
     @Query(value = """ 
             select o.id as id, o.initialDate as initialDate, o.priceOrder as priceOrder

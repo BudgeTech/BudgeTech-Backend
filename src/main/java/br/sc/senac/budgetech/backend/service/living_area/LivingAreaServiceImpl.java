@@ -12,6 +12,8 @@ import br.sc.senac.budgetech.backend.repository.woodwork.WoodworkRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class LivingAreaServiceImpl implements LivingAreaService {
@@ -52,8 +54,10 @@ public class LivingAreaServiceImpl implements LivingAreaService {
 
     }
 
-    public LivingAreaProjectionC16andW16 findByNameLivingArea(String nameLivingArea) {
-        return livingAreaRepository.findLivingAreaByNameLivingArea(nameLivingArea)
-                .orElseThrow(() -> new LivingAreaNotFoundException("Living Area " + nameLivingArea + " was not found"));
+    public List<LivingAreaProjectionC16andW16> findByNameLivingArea(String nameLivingArea) {
+        List<LivingAreaProjectionC16andW16> livingArea = livingAreaRepository.findLivingAreaByNameLivingArea(nameLivingArea);
+        if(livingArea.isEmpty())
+            throw new LivingAreaNotFoundException("Living Area " + nameLivingArea + " was not found");
+        return livingArea;
     }
 }

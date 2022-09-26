@@ -83,14 +83,18 @@ public class FurnitureServiceImpl implements FurnitureService {
                 .orElseThrow(() -> new FurnitureNotFoundException("Id " + id + " was not found"));
     }
 
-    public FurnitureProjection findByNameFurniture(String nameFurniture) {
-        return furnitureRepository.findFurnitureByNameFurniture(nameFurniture)
-                .orElseThrow(() -> new FurnitureNotFoundException("Name " + nameFurniture + " was not found"));
+    public List<FurnitureProjection> findByNameFurniture(String nameFurniture) {
+        List<FurnitureProjection> furniture = furnitureRepository.findFurnitureByNameFurniture(nameFurniture);
+        if(furniture.isEmpty())
+            throw new FurnitureNotFoundException("Name " + nameFurniture + " was not found");
+        return furniture;
     }
 
-    public FurnitureProjection findByPriceFurniture(Double priceFurniture) {
-        return furnitureRepository.findFurnitureByPriceFurniture(priceFurniture)
-                .orElseThrow(() -> new FurnitureNotFoundException("Price " + priceFurniture + " was not found"));
+    public List<FurnitureProjection> findByPriceFurniture(Double priceFurniture) {
+        List<FurnitureProjection> furniture = furnitureRepository.findFurnitureByPriceFurniture(priceFurniture);
+        if(furniture.isEmpty())
+            throw new FurnitureNotFoundException("Price " + priceFurniture + " was not found");
+        return furniture;
     }
 
     public List<FurnitureProjection> findListByPriceFurniture(Double priceFurniture) {

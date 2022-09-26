@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/livingArea")
@@ -39,7 +41,7 @@ public class LivingAreaController {
     }
 
     @GetMapping("name/{nameLivingArea}")
-    public ResponseEntity<LivingAreaProjectionC16andW16> getProjectionByName(@PathVariable(value = "nameLivingArea") String nameLivingArea) {
+    public ResponseEntity<List<LivingAreaProjectionC16andW16>> getProjectionByName(@PathVariable(value = "nameLivingArea") String nameLivingArea) {
         return ResponseEntity.status(HttpStatus.OK).body(livingAreaService.findByNameLivingArea(nameLivingArea));
     }
 }

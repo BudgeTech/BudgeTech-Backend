@@ -88,9 +88,11 @@ public class OrderServiceImpl implements OrderService {
                 .orElseThrow(() -> new OrderNotFoundException("Order " + id + " was not found"));
     }
 
-    public OrderProjection findByInitialDate(LocalDate initialDate) {
-        return orderRepository.findOrderByInitialDate(initialDate)
-                .orElseThrow(() -> new OrderNotFoundException("Order " + initialDate + " was not found"));
+    public List<OrderProjection> findByInitialDate(LocalDate initialDate) {
+        List<OrderProjection> order = orderRepository.findOrderByInitialDate(initialDate);
+        if(order.isEmpty())
+            throw new OrderNotFoundException("Order " + initialDate + " was not found");
+        return order;
     }
 
     public OrderWithFurnitureProjectionC13andW13 findOrderWithTwoFurniture18By() {

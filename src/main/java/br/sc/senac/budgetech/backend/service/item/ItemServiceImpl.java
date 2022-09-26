@@ -19,6 +19,8 @@ import br.sc.senac.budgetech.backend.repository.woodwork.WoodworkRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -81,8 +83,10 @@ public class ItemServiceImpl implements ItemService {
                 .orElseThrow(() -> new ItemNotFoundException("Item " + id + " was not found"));
     }
 
-    public ItemProjection findByPrice(Double totalPrice) {
-        return itemRepository.findItemByTotalPrice(totalPrice)
-                .orElseThrow(() -> new ItemNotFoundException("Item " + totalPrice + " was not found"));
+    public List<ItemProjection> findByPrice(Double totalPrice) {
+        List<ItemProjection> item = itemRepository.findItemByTotalPrice(totalPrice);
+        if(item.isEmpty())
+            throw new ItemNotFoundException("Item " + totalPrice + " was not found");
+        return item;
     }
 }

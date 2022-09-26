@@ -11,6 +11,7 @@ import br.sc.senac.budgetech.backend.mapper.client.ClientMapper;
 import br.sc.senac.budgetech.backend.model.address.Address;
 import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.model.contact.Contact;
+import br.sc.senac.budgetech.backend.projection.address.AddressProjection;
 import br.sc.senac.budgetech.backend.projection.client.ClientListProjectionW9;
 import br.sc.senac.budgetech.backend.projection.client.ClientListW10;
 import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
@@ -26,6 +27,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -105,9 +107,11 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + cpf + " was not found"));
     }
 
-    public ClientProjection findByNameClient(String nameClient) {
-        return clientRepository.findClientByNameClient(nameClient)
-                .orElseThrow(() -> new ClientNotFoundException("Client " + nameClient + " was not found"));
+    public List<ClientProjection> findByNameClient(String nameClient) {
+        List<ClientProjection> client = clientRepository.findClientByNameClient(nameClient);
+        if(client.isEmpty())
+            throw new ClientNotFoundException("Client " + nameClient + " was not found");
+        return client;
     }
 
     public ClientProjection findByContactPhoneNumber(String phoneNumber) {

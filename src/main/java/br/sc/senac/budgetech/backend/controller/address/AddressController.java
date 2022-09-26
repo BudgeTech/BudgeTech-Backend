@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RequestMapping("/address")
@@ -39,7 +41,7 @@ public class AddressController {
     }
 
     @GetMapping("neighborhood/{neighborhood}")
-    public ResponseEntity<AddressProjection> getProjectionByNeighborhood(@PathVariable(value = "neighborhood") String neighborhood) {
+    public ResponseEntity<List<AddressProjection>> getProjectionByNeighborhood(@PathVariable(value = "neighborhood") String neighborhood) {
         return ResponseEntity.status(HttpStatus.OK).body(addressService.findByNeighborhood(neighborhood));
     }
 }

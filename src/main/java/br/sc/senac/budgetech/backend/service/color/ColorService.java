@@ -4,6 +4,8 @@ import br.sc.senac.budgetech.backend.dto.color.ColorDTO;
 import br.sc.senac.budgetech.backend.projection.color.ColorProjection;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface ColorService {
 
@@ -15,7 +17,7 @@ public interface ColorService {
 
     ColorProjection findById(Long id);
 
-    ColorProjection findByNameColor(String nameColor);
+    List<ColorProjection> findByNameColor(String nameColor);
 
-    ColorProjection findByBrand(String brand);
+    List<ColorProjection> findByBrand(String brand);
 }

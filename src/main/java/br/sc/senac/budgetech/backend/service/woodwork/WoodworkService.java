@@ -19,11 +19,11 @@ public interface WoodworkService {
 
     WoodworkProjection findByCnpj(String cnpj);
 
-    WoodworkProjection findByAddressNeighborhood(String neighborhood);
+    List<WoodworkProjection> findByAddressNeighborhood(String neighborhood);
 
     WoodworkProjection findByContactPhoneNumber(String phoneNumber);
 
-    WoodworkProjection findByCompanyName(String companyName);
+    List<WoodworkProjection> findByCompanyName(String companyName);
 
     List<WoodworkSearchProjectionC9> findSearchBy();
 

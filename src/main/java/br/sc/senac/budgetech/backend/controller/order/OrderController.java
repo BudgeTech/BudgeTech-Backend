@@ -47,7 +47,7 @@ public class OrderController {
     }
 
     @GetMapping("initialDate/{initialDate}")
-    public ResponseEntity<OrderProjection> getProjectionByInitialDate(@PathVariable(value = "initialDate") String initialDate) {
+    public ResponseEntity<List<OrderProjection>> getProjectionByInitialDate(@PathVariable(value = "initialDate") String initialDate) {
         LocalDate data = LocalDate.parse(initialDate);
         return ResponseEntity.status(HttpStatus.OK).body(orderService.findByInitialDate(data));
     }

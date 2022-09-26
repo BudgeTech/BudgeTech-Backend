@@ -8,6 +8,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public interface ClientService {
 
@@ -21,7 +23,7 @@ public interface ClientService {
 
     ClientProjection findByCpf(String cpf);
 
-    ClientProjection findByNameClient(String nameClient);
+    List<ClientProjection> findByNameClient(String nameClient);
 
     ClientProjection findByContactPhoneNumber(String phoneNumber);
 
