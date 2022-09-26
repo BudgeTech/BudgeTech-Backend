@@ -2,7 +2,7 @@ package br.sc.senac.budgetech.backend.util;
 
 import java.util.InputMismatchException;
 
-public final class CPFValidatorFormat {
+public final class CPFValidator {
 
     public static boolean isCPF(String cpf) {
         // considera-se erro CPF's formados por uma sequencia de numeros iguais

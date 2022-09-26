@@ -59,7 +59,7 @@ public class OrderController {
 
     //Arrumar Repository, outras classes retornando null
     @GetMapping("order18")
-    public ResponseEntity<OrderWithFurnitureProjectionC13andW13> getProjection18ById() {
+    public ResponseEntity<List<OrderWithFurnitureProjectionC13andW13>> getProjection18ById() {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrderWithTwoFurniture18By());
     }
 

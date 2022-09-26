@@ -2,7 +2,7 @@ package br.sc.senac.budgetech.backend.util;
 
 import java.util.InputMismatchException;
 
-public class CNPJValidatorFormat {
+public class CNPJValidator {
 
     public static boolean isCNPJ(String cnpj) {
 // considera-se erro cnpj's formados por uma sequencia de numeros iguais

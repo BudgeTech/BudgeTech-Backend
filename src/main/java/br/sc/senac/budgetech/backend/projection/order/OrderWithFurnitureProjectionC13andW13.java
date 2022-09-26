@@ -17,43 +17,43 @@ public interface OrderWithFurnitureProjectionC13andW13 {
 
     Long getId();
 
-    List<FurnitureProjection> getFurniture();
+//    List<FurnitureProjection> getFurniture();
 
-    ItemProjection.ClientProjection.AddressProjection getAddress();
-
-    ItemProjection.ClientProjection.ContactProjection getContact();
-
-    ItemProjection.ClientProjection getClient();
-
-    interface ItemProjection {
-
-        interface ClientProjection {
-
-            String getNameClient();
-
-            String getCpf();
-
-            interface ContactProjection {
-
-                String getEmail();
-
-                String getPhoneNumber();
-            }
-
-            interface AddressProjection {
-
-                String getStreet();
-
-                String getNeighborhood();
-
-                String getCep();
-
-                int getNumber();
-
-                String getCity();
-            }
-        }
-    }
+//    ItemProjection.ClientProjection.AddressProjection getAddress();
+//
+//    ItemProjection.ClientProjection.ContactProjection getContact();
+//
+//    ItemProjection.ClientProjection getClient();
+//
+//    interface ItemProjection {
+//
+//        interface ClientProjection {
+//
+//            String getNameClient();
+//
+//            String getCpf();
+//
+//            interface ContactProjection {
+//
+//                String getEmail();
+//
+//                String getPhoneNumber();
+//            }
+//
+//            interface AddressProjection {
+//
+//                String getStreet();
+//
+//                String getNeighborhood();
+//
+//                String getCep();
+//
+//                int getNumber();
+//
+//                String getCity();
+//            }
+//        }
+//    }
 
     interface FurnitureProjection {
 

@@ -2,11 +2,13 @@ package br.sc.senac.budgetech.backend.service.order;
 
 import br.sc.senac.budgetech.backend.dto.order.OrderCreateDTO;
 import br.sc.senac.budgetech.backend.dto.order.OrderDTO;
+import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundException;
 import br.sc.senac.budgetech.backend.exception.order.OrderInvalidException;
 import br.sc.senac.budgetech.backend.exception.order.OrderNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.order.OrderMapper;
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.model.order.Order;
+import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
 import br.sc.senac.budgetech.backend.projection.order.OrderListProjectionW12;
 import br.sc.senac.budgetech.backend.projection.order.OrderProjection;
 import br.sc.senac.budgetech.backend.projection.order.OrderWithFurnitureProjectionC13andW13;
@@ -95,9 +97,18 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
-    public OrderWithFurnitureProjectionC13andW13 findOrderWithTwoFurniture18By() {
-        return orderRepository.findOrderProjection18By()
-                .orElseThrow(() -> new OrderNotFoundException("Order was not found"));
+    public List<OrderWithFurnitureProjectionC13andW13> findOrderWithTwoFurniture18By() {
+        List<OrderWithFurnitureProjectionC13andW13> order = orderRepository.findOrderProjection18By();
+        if(order.isEmpty())
+            throw new OrderNotFoundException("Order was not found");
+        return order;
+    }
+
+    public List<FurnitureProjection> findListByPriceFurniture(Double priceFurniture) {
+        List<FurnitureProjection> furniture = furnitureRepository.findFurnitureListByPriceFurniture(priceFurniture);
+        if(furniture.isEmpty())
+            throw new FurnitureNotFoundException("Furniture " + priceFurniture + " was not found");
+        return furniture;
     }
 
     public List<OrderListProjectionW12> findListBy() {

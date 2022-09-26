@@ -27,7 +27,7 @@ public interface ClientService {
 
     ClientProjection findByContactPhoneNumber(String phoneNumber);
 
-    ClientListW10 findProfileFullEditBy();
+    ClientListW10 findProfileFullEditBy(Long id);
 
     Page<ClientListProjectionW9> findWithPaginationAndSortingByClientId(Pageable pageable, Integer page);
 }

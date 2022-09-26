@@ -11,7 +11,6 @@ import br.sc.senac.budgetech.backend.mapper.client.ClientMapper;
 import br.sc.senac.budgetech.backend.model.address.Address;
 import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.model.contact.Contact;
-import br.sc.senac.budgetech.backend.projection.address.AddressProjection;
 import br.sc.senac.budgetech.backend.projection.client.ClientListProjectionW9;
 import br.sc.senac.budgetech.backend.projection.client.ClientListW10;
 import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
@@ -19,7 +18,7 @@ import br.sc.senac.budgetech.backend.repository.address.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.client.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.contact.ContactRepository;
 import br.sc.senac.budgetech.backend.repository.item.ItemRepository;
-import br.sc.senac.budgetech.backend.util.CPFValidatorFormat;
+import br.sc.senac.budgetech.backend.util.CPFValidator;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -49,7 +48,7 @@ public class ClientServiceImpl implements ClientService {
         if (clientRepository.existsByLogin(clientDTO.login()))
             throw new ClientLoginRegisteredException("Login " + clientDTO.login() + " is already registered");
 
-        if (CPFValidatorFormat.isCPF(clientDTO.cpf()))
+        if (CPFValidator.isCPF(clientDTO.cpf()))
             throw new ClientCpfInvalidException("Cpf " + clientDTO.cpf() + " is invalid");
 
         Contact contact = contactRepository.findById(clientDTO.idContact())
@@ -86,7 +85,7 @@ public class ClientServiceImpl implements ClientService {
         if (existsLogin.isPresent() && (existsLogin.get().getId().equals(id)))
             throw new ClientLoginRegisteredException("Login " + clientDTO.login() + " is already registered");
 
-        if (clientDTO.cpf() != null && CPFValidatorFormat.isCPF(clientDTO.cpf()))
+        if (clientDTO.cpf() != null && CPFValidator.isCPF(clientDTO.cpf()))
             throw new ClientCpfInvalidException("Cpf " + clientDTO.cpf() + " is invalid");
 
         clientRepository.save(client);
@@ -119,8 +118,8 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + phoneNumber + " was not found"));
     }
 
-    public ClientListW10 findProfileFullEditBy() {
-        var client = new ClientListW10(clientRepository.findClientW10(1L));
+    public ClientListW10 findProfileFullEditBy(Long id) {
+        var client = new ClientListW10(clientRepository.findClientW10(id));
         client.setOrderProjections(itemRepository.findIdOrderByIdClient(client.getId()));
         return client;
     }
