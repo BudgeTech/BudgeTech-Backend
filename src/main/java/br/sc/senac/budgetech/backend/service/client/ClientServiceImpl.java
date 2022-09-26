@@ -119,6 +119,9 @@ public class ClientServiceImpl implements ClientService {
     }
 
     public ClientListW10 findProfileFullEditBy(Long id) {
+
+        if (clientRepository.findClientW10(id) == null) throw new ClientNotFoundException("Id " + id + " was not found");
+
         var client = new ClientListW10(clientRepository.findClientW10(id));
         client.setOrderProjections(itemRepository.findIdOrderByIdClient(client.getId()));
         return client;
