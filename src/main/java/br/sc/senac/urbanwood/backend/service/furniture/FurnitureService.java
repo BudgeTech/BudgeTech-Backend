@@ -1,0 +1,28 @@
+package br.sc.senac.urbanwood.backend.service.furniture;
+
+import br.sc.senac.urbanwood.backend.dto.furniture.FurnitureDTO;
+import br.sc.senac.urbanwood.backend.dto.furniture.FurnitureListDTO;
+import br.sc.senac.urbanwood.backend.dto.furniture.FurnitureTelaDTO;
+import br.sc.senac.urbanwood.backend.projection.furniture.FurnitureProjection;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public interface FurnitureService {
+
+    FurnitureDTO save(FurnitureDTO furnitureDTO);
+
+    void update(FurnitureDTO furnitureDTO, Long id);
+
+    void delete(Long id);
+
+    FurnitureProjection findById(Long id);
+
+    FurnitureProjection findByNameFurniture(String nameFurniture);
+
+    FurnitureProjection findByPriceFurniture(double priceFurniture);
+
+    FurnitureTelaDTO findByIdDTO(Long id);
+
+    FurnitureListDTO findFurnitureListById(Long id);
+}
