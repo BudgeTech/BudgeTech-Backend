@@ -1,0 +1,23 @@
+package br.sc.senac.urbanwood.backend.service.living_area;
+
+import br.sc.senac.urbanwood.backend.dto.livingArea.LivingAreaDTO;
+import br.sc.senac.urbanwood.backend.dto.livingArea.LivingAreaTelaDTO;
+import br.sc.senac.urbanwood.backend.projection.livingArea.LivingAreaProjection;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public interface LivingAreaService {
+
+    LivingAreaDTO save(LivingAreaDTO livingAreaDTO);
+
+    void update(LivingAreaDTO livingAreaDTO, Long id);
+
+    void delete(Long id);
+
+    LivingAreaProjection findById(Long id);
+
+    LivingAreaTelaDTO findByIdDTO(Long id);
+
+    LivingAreaProjection findByNameLivingArea(String nameLivingArea);
+}
