@@ -2,6 +2,7 @@ package br.sc.senac.budgetech.backend.controller.order;
 
 import br.sc.senac.budgetech.backend.dto.order.OrderCreateDTO;
 import br.sc.senac.budgetech.backend.dto.order.OrderDTO;
+import br.sc.senac.budgetech.backend.projection.order.OrderC13andW13;
 import br.sc.senac.budgetech.backend.projection.order.OrderListProjectionW12;
 import br.sc.senac.budgetech.backend.projection.order.OrderProjection;
 import br.sc.senac.budgetech.backend.projection.order.OrderWithFurnitureProjectionC13andW13;
@@ -58,10 +59,10 @@ public class OrderController {
     }
 
     //Arrumar Repository, outras classes retornando null
-    @GetMapping("order18")
-    public ResponseEntity<List<OrderWithFurnitureProjectionC13andW13>> getProjection18ById() {
-        return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrderWithTwoFurniture18By());
-    }
+//    @GetMapping("order18/{id}")
+//    public ResponseEntity<List<OrderC13andW13>> getProjection18ById(@PathVariable(value = "id") Long id) {
+//        return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrderWithTwoFurniture18By(id));
+//    }
 
     @GetMapping("paginationName/{page}")
     public ResponseEntity<Page<OrderListProjectionW12>> getProjectionWithPaginationAndSortingById(@PathVariable(value = "page") Integer page, Pageable pageable) {

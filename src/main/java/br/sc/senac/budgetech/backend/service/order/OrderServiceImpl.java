@@ -9,6 +9,7 @@ import br.sc.senac.budgetech.backend.mapper.order.OrderMapper;
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.model.order.Order;
 import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
+import br.sc.senac.budgetech.backend.projection.order.OrderC13andW13;
 import br.sc.senac.budgetech.backend.projection.order.OrderListProjectionW12;
 import br.sc.senac.budgetech.backend.projection.order.OrderProjection;
 import br.sc.senac.budgetech.backend.projection.order.OrderWithFurnitureProjectionC13andW13;
@@ -97,19 +98,14 @@ public class OrderServiceImpl implements OrderService {
         return order;
     }
 
-    public List<OrderWithFurnitureProjectionC13andW13> findOrderWithTwoFurniture18By() {
-        List<OrderWithFurnitureProjectionC13andW13> order = orderRepository.findOrderProjection18By();
-        if(order.isEmpty())
-            throw new OrderNotFoundException("Order was not found");
-        return order;
-    }
-
-    public List<FurnitureProjection> findListByPriceFurniture(Double priceFurniture) {
-        List<FurnitureProjection> furniture = furnitureRepository.findFurnitureListByPriceFurniture(priceFurniture);
-        if(furniture.isEmpty())
-            throw new FurnitureNotFoundException("Furniture " + priceFurniture + " was not found");
-        return furniture;
-    }
+//    public List<OrderC13andW13> findOrderWithTwoFurniture18By(Long id) {
+//        //List<OrderWithFurnitureProjectionC13andW13> order = orderRepository.findOrderProjection18By();
+//        var order = new ArrayList<OrderC13andW13>(orderRepository.findOrderProjection18By(id));
+//        order.add(orderRepository.findOrderProjection18By(order.get(id)));
+//        if(order.isEmpty())
+//            throw new OrderNotFoundException("Order was not found");
+//        return order;
+//    }
 
     public List<OrderListProjectionW12> findListBy() {
         List<OrderListProjectionW12> order = orderRepository.findOrderListBy();

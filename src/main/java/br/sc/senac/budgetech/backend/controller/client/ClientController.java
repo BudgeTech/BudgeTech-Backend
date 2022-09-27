@@ -59,11 +59,6 @@ public class ClientController {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findByContactPhoneNumber(phoneNumber));
     }
 
-//    @GetMapping("clientProfileW10")
-//    public ResponseEntity<ClientListW10> getProjectionClientProfileFullEditBy() {
-//        return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileFullEditBy());
-//    }
-
     @GetMapping("clientProfileW10/{id}")
     public ResponseEntity<ClientListW10> getProjectionClientProfileFullEditBy(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findProfileFullEditBy(id));
