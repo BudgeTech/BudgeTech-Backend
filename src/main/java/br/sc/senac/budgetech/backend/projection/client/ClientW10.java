@@ -1,6 +1,5 @@
 package br.sc.senac.budgetech.backend.projection.client;
 
-
 public interface ClientW10 {
 
     Long getId();

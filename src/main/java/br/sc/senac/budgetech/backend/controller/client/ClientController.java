@@ -1,9 +1,7 @@
 package br.sc.senac.budgetech.backend.controller.client;
 
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
-import br.sc.senac.budgetech.backend.projection.client.ClientListProjectionW9;
-import br.sc.senac.budgetech.backend.projection.client.ClientListW10;
-import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
+import br.sc.senac.budgetech.backend.projection.client.*;
 import br.sc.senac.budgetech.backend.service.client.ClientService;
 import lombok.AllArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -68,5 +66,10 @@ public class ClientController {
     @GetMapping("paginationName/{page}")
     public ResponseEntity<Page<ClientListProjectionW9>> getProjectionWithPaginationAndSortingById(@PathVariable(value = "page") Integer page, Pageable pageable) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findWithPaginationAndSortingByClientId(pageable, page));
+    }
+
+    @GetMapping("test/{nameClient}")
+    public ResponseEntity<ClientTest> getProjectionTest(@PathVariable(value = "nameClient") String nameClient) {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findClientsTest(nameClient));
     }
 }

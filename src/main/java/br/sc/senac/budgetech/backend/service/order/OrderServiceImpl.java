@@ -2,17 +2,18 @@ package br.sc.senac.budgetech.backend.service.order;
 
 import br.sc.senac.budgetech.backend.dto.order.OrderCreateDTO;
 import br.sc.senac.budgetech.backend.dto.order.OrderDTO;
-import br.sc.senac.budgetech.backend.exception.furniture.FurnitureNotFoundException;
+import br.sc.senac.budgetech.backend.exception.client.ClientNotFoundException;
 import br.sc.senac.budgetech.backend.exception.order.OrderInvalidException;
 import br.sc.senac.budgetech.backend.exception.order.OrderNotFoundException;
 import br.sc.senac.budgetech.backend.mapper.order.OrderMapper;
 import br.sc.senac.budgetech.backend.model.furniture.Furniture;
 import br.sc.senac.budgetech.backend.model.order.Order;
-import br.sc.senac.budgetech.backend.projection.furniture.FurnitureProjection;
+import br.sc.senac.budgetech.backend.projection.client.ClientListW10;
 import br.sc.senac.budgetech.backend.projection.order.OrderC13andW13;
 import br.sc.senac.budgetech.backend.projection.order.OrderListProjectionW12;
 import br.sc.senac.budgetech.backend.projection.order.OrderProjection;
 import br.sc.senac.budgetech.backend.projection.order.OrderWithFurnitureProjectionC13andW13;
+import br.sc.senac.budgetech.backend.repository.client.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.furniture.FurnitureRepository;
 import br.sc.senac.budgetech.backend.repository.order.OrderRepository;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,7 @@ public class OrderServiceImpl implements OrderService {
     private OrderRepository orderRepository;
     private FurnitureRepository furnitureRepository;
     private OrderMapper orderMapper;
+    private ClientRepository clientRepository;
 
     public OrderDTO save(OrderCreateDTO orderCreateDTO) {
 
@@ -93,19 +95,17 @@ public class OrderServiceImpl implements OrderService {
 
     public List<OrderProjection> findByInitialDate(LocalDate initialDate) {
         List<OrderProjection> order = orderRepository.findOrderByInitialDate(initialDate);
-        if(order.isEmpty())
+        if (order.isEmpty())
             throw new OrderNotFoundException("Order " + initialDate + " was not found");
         return order;
     }
 
-//    public List<OrderC13andW13> findOrderWithTwoFurniture18By(Long id) {
-//        //List<OrderWithFurnitureProjectionC13andW13> order = orderRepository.findOrderProjection18By();
-//        var order = new ArrayList<OrderC13andW13>(orderRepository.findOrderProjection18By(id));
-//        order.add(orderRepository.findOrderProjection18By(order.get(id)));
-//        if(order.isEmpty())
-//            throw new OrderNotFoundException("Order was not found");
-//        return order;
-//    }
+    public OrderC13andW13 findOrderWithTwoFurniture18By(Long id) {
+
+        var order = new OrderC13andW13(orderRepository.findOrderProjection18By(id));
+//        order.setFurnitureProjections(clientRepository.findByTest(order.getId()));
+        return order;
+    }
 
     public List<OrderListProjectionW12> findListBy() {
         List<OrderListProjectionW12> order = orderRepository.findOrderListBy();

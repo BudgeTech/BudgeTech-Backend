@@ -58,11 +58,10 @@ public class OrderController {
         return ResponseEntity.status(HttpStatus.OK).body(orderService.findListBy());
     }
 
-    //Arrumar Repository, outras classes retornando null
-//    @GetMapping("order18/{id}")
-//    public ResponseEntity<List<OrderC13andW13>> getProjection18ById(@PathVariable(value = "id") Long id) {
-//        return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrderWithTwoFurniture18By(id));
-//    }
+    @GetMapping("order18/{id}")
+    public ResponseEntity<OrderC13andW13> getProjection18ById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(orderService.findOrderWithTwoFurniture18By(id));
+    }
 
     @GetMapping("paginationName/{page}")
     public ResponseEntity<Page<OrderListProjectionW12>> getProjectionWithPaginationAndSortingById(@PathVariable(value = "page") Integer page, Pageable pageable) {

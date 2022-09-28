@@ -36,20 +36,20 @@ public class OrderC13andW13 {
     private List<FurnitureProjection> furnitureProjections = new ArrayList<>();
 
     public OrderC13andW13(OrderWithFurnitureProjectionC13andW13 order) {
-        priceOrder = getPriceOrder();
-        payment = getPayment();
-        initialDate = getInitialDate();
-        finalDate = getFinalDate();
+        priceOrder = order.getPriceOrder();
+        payment = order.getPayment();
+        initialDate = order.getInitialDate();
+        finalDate = order.getFinalDate();
         id = order.getId();
-        nameClient = getNameClient();
-        cpf = getCpf();
-        email = getEmail();
-        phoneNumber = getPhoneNumber();
-        street = getStreet();
-        neighborhood = getNeighborhood();
-        cep = getCep();
-        number = getNumber();
-        city = getCity();
+        nameClient = order.getNameClient();
+        cpf = order.getCpf();
+        email = order.getEmail();
+        phoneNumber = order.getPhoneNumber();
+        street = order.getStreet();
+        neighborhood = order.getNeighborhood();
+        cep = order.getCep();
+        number = order.getNumber();
+        city = order.getCity();
     }
 
     public void addFurniture(FurnitureProjection furnitureProjections) {

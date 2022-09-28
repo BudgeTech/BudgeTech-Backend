@@ -11,9 +11,7 @@ import br.sc.senac.budgetech.backend.mapper.client.ClientMapper;
 import br.sc.senac.budgetech.backend.model.address.Address;
 import br.sc.senac.budgetech.backend.model.client.Client;
 import br.sc.senac.budgetech.backend.model.contact.Contact;
-import br.sc.senac.budgetech.backend.projection.client.ClientListProjectionW9;
-import br.sc.senac.budgetech.backend.projection.client.ClientListW10;
-import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
+import br.sc.senac.budgetech.backend.projection.client.*;
 import br.sc.senac.budgetech.backend.repository.address.AddressRepository;
 import br.sc.senac.budgetech.backend.repository.client.ClientRepository;
 import br.sc.senac.budgetech.backend.repository.contact.ContactRepository;
@@ -26,6 +24,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +38,9 @@ public class ClientServiceImpl implements ClientService {
     private final ClientMapper clientMapper;
     private final ContactRepository contactRepository;
     private final AddressRepository addressRepository;
+
+    @PersistenceContext
+    private EntityManager entityManager;
 
     public ClientDTO save(ClientDTO clientDTO) {
 
@@ -117,7 +120,16 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + phoneNumber + " was not found"));
     }
 
-    public ClientListW10 findProfileFullEditBy(Long id) {
+//    public ClientListW10 findProfileFullEditBy(Long id) {
+//        if (clientRepository.findClientW10(id) == null) throw new ClientNotFoundException("Id " + id + " was not found");
+//
+//        var client = new ClientListW10(clientRepository.findClientW10(id));
+//        client.setOrderProjections(itemRepository.findIdOrderByIdClient(client.getId()));
+//        return client;
+//    }
+
+
+        public ClientListW10 findProfileFullEditBy(Long id) {
         if (clientRepository.findClientW10(id) == null) throw new ClientNotFoundException("Id " + id + " was not found");
 
         var client = new ClientListW10(clientRepository.findClientW10(id));
@@ -128,5 +140,10 @@ public class ClientServiceImpl implements ClientService {
     public Page<ClientListProjectionW9> findWithPaginationAndSortingByClientId(Pageable pageable, Integer page) {
         pageable = PageRequest.of(page, 3, Sort.Direction.ASC, "client_name");
         return clientRepository.findAllClientBy(pageable);
+    }
+
+    public ClientTest findClientsTest(String nameClient) {
+        var client = clientRepository.customFindMethod(nameClient);
+        return client;
     }
 }

@@ -28,7 +28,7 @@ public interface OrderService {
 
     List<OrderListProjectionW12> findListBy();
 
-    //List<OrderC13andW13> findOrderWithTwoFurniture18By(Long id);
+    OrderC13andW13 findOrderWithTwoFurniture18By(Long id);
 
     Page<OrderListProjectionW12> findWithPaginationAndSortingById(Pageable pageable, Integer page);
 }

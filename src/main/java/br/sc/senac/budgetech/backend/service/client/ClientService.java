@@ -1,9 +1,7 @@
 package br.sc.senac.budgetech.backend.service.client;
 
 import br.sc.senac.budgetech.backend.dto.client.ClientDTO;
-import br.sc.senac.budgetech.backend.projection.client.ClientListProjectionW9;
-import br.sc.senac.budgetech.backend.projection.client.ClientListW10;
-import br.sc.senac.budgetech.backend.projection.client.ClientProjection;
+import br.sc.senac.budgetech.backend.projection.client.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -30,4 +28,6 @@ public interface ClientService {
     ClientListW10 findProfileFullEditBy(Long id);
 
     Page<ClientListProjectionW9> findWithPaginationAndSortingByClientId(Pageable pageable, Integer page);
+
+    ClientTest findClientsTest(String nameClient);
 }
