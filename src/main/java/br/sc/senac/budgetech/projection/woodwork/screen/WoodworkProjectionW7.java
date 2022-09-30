@@ -8,11 +8,31 @@ public interface WoodworkProjectionW7 {
 
     String getCnpj();
 
+    AddressProjection getAddress();
+
+    ContactProjection getContact();
+
     interface AddressProjection {
 
         String getStreet();
 
+        Integer getNumber();
 
+        String getComplement();
 
+        String getNeighborhood();
+
+        String getCity();
+
+        String getCep();
+    }
+
+    interface ContactProjection {
+
+        String getEmail();
+
+        String getPhoneNumber();
+
+        String getSocialNetwork();
     }
 }

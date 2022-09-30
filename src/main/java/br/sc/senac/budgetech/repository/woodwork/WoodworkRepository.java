@@ -4,6 +4,8 @@ import br.sc.senac.budgetech.model.woodwork.Woodwork;
 import br.sc.senac.budgetech.projection.woodwork.WoodworkProjection;
 import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionC8;
 import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionC9;
+import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionW6;
+import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionW7;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -29,6 +31,6 @@ public interface WoodworkRepository extends JpaRepository<Woodwork, Long> {
 
     List<WoodworkProjectionC9> findWoodworkC9ByCompanyName(String companyName);
 
-    Optional<WoodworkProjectionC8> findWoodworkW8ById(Long id);
-
+    Optional<WoodworkProjectionW6> findWoodworkW6ById(Long id);
+    Optional<WoodworkProjectionW7> findWoodworkW7ById(Long id);
 }

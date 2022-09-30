@@ -4,6 +4,8 @@ import br.sc.senac.budgetech.dto.woodwork.WoodworkDTO;
 import br.sc.senac.budgetech.projection.woodwork.WoodworkProjection;
 import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionC8;
 import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionC9;
+import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionW6;
+import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionW7;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -29,5 +31,7 @@ public interface WoodworkService {
 
     List<WoodworkProjectionC9> findC9ByName(String companyName);
 
-    WoodworkProjectionC8 findW8ById(Long id);
+    WoodworkProjectionW6 findW6ById(Long id);
+
+    WoodworkProjectionW7 findW7ById(Long id);
 }

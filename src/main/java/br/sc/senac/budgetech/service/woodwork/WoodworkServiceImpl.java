@@ -14,6 +14,8 @@ import br.sc.senac.budgetech.model.woodwork.Woodwork;
 import br.sc.senac.budgetech.projection.woodwork.WoodworkProjection;
 import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionC8;
 import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionC9;
+import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionW6;
+import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionW7;
 import br.sc.senac.budgetech.repository.address.AddressRepository;
 import br.sc.senac.budgetech.repository.contact.ContactRepository;
 import br.sc.senac.budgetech.repository.woodwork.WoodworkRepository;
@@ -133,8 +135,13 @@ public class WoodworkServiceImpl implements WoodworkService {
         return woodwork;
     }
 
-    public WoodworkProjectionC8 findW8ById(Long id) {
-        return woodworkRepository.findWoodworkC8ById(id)
+    public WoodworkProjectionW6 findW6ById(Long id) {
+        return woodworkRepository.findWoodworkW6ById(id)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+    }
+
+    public WoodworkProjectionW7 findW7ById(Long id) {
+        return woodworkRepository.findWoodworkW7ById(id)
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
     }
 }

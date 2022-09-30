@@ -4,6 +4,8 @@ import br.sc.senac.budgetech.dto.woodwork.WoodworkDTO;
 import br.sc.senac.budgetech.projection.woodwork.WoodworkProjection;
 import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionC8;
 import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionC9;
+import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionW6;
+import br.sc.senac.budgetech.projection.woodwork.screen.WoodworkProjectionW7;
 import br.sc.senac.budgetech.service.woodwork.WoodworkService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -73,8 +75,14 @@ public class WoodworkController {
     }
 
     //Approved
-    @GetMapping("w8/{id}")
-    public ResponseEntity<WoodworkProjectionC8> getProjectionW8ById(@PathVariable(value = "id") Long id) {
-        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findW8ById(id));
+    @GetMapping("w6/{id}")
+    public ResponseEntity<WoodworkProjectionW6> getProjectionW6ById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findW6ById(id));
+    }
+
+    //Approved
+    @GetMapping("w7/{id}")
+    public ResponseEntity<WoodworkProjectionW7> getProjectionW7ById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findW7ById(id));
     }
 }
