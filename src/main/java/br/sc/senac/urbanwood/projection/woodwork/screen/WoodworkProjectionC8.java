@@ -16,8 +16,6 @@ public interface WoodworkProjectionC8 {
 
     interface AddressProjection {
 
-        String getProvince();
-
         String getCity();
 
         String getNeighborhood();

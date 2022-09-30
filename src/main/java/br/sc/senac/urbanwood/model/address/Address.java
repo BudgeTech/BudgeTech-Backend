@@ -29,9 +29,6 @@ public class Address {
     @Column(name = "address_city", length = 45, nullable = false)
     private String city;
 
-    @Column(name = "address_province", length = 45, nullable = false)
-    private String province;
-
     @Column(name = "address_cep", nullable = false)
     private String cep;
 
@@ -43,14 +40,13 @@ public class Address {
 
     public Address() {}
 
-    public Address(Long id, String street, Integer number, String complement, String neighborhood, String city, String province, String cep) {
+    public Address(Long id, String street, Integer number, String complement, String neighborhood, String city, String cep) {
         this.id = id;
         this.street = street;
         this.number = number;
         this.complement = complement;
         this.neighborhood = neighborhood;
         this.city = city;
-        this.province = province;
         this.cep = cep;
     }
 
@@ -100,14 +96,6 @@ public class Address {
 
     public void setCity(String city) {
         this.city = city;
-    }
-
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
     }
 
     public String getCep() {

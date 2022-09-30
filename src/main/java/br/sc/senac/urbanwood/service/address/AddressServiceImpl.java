@@ -50,7 +50,6 @@ public class AddressServiceImpl implements AddressService {
             address.setCity(addressDTO.city());
             address.setNumber(addressDTO.number());
             address.setStreet(addressDTO.street());
-            address.setProvince(addressDTO.province());
             address.setComplement(addressDTO.complement());
             address.setNeighborhood(addressDTO.neighborhood());
             addressRepository.save(address);
@@ -65,7 +64,6 @@ public class AddressServiceImpl implements AddressService {
         address.setCity(addressDTO.city());
         address.setNumber(addressDTO.number());
         address.setStreet(addressDTO.street());
-        address.setProvince(addressDTO.province());
         address.setComplement(addressDTO.complement());
         address.setNeighborhood(addressDTO.neighborhood());
         addressRepository.save(address);

@@ -6,5 +6,5 @@ public record AddressDTO(Long id,
                          String complement,
                          String neighborhood,
                          String city,
-                         String province, String cep) {
+                         String cep) {
 }

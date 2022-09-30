@@ -12,8 +12,6 @@ public interface AddressProjection {
 
     String getNeighborhood();
 
-    String getProvince();
-
     String getCity();
 
     String getCep();
