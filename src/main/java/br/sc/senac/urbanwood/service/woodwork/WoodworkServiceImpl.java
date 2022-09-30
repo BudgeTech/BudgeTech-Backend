@@ -12,6 +12,7 @@ import br.sc.senac.urbanwood.model.address.Address;
 import br.sc.senac.urbanwood.model.contact.Contact;
 import br.sc.senac.urbanwood.model.woodwork.Woodwork;
 import br.sc.senac.urbanwood.projection.woodwork.WoodworkProjection;
+import br.sc.senac.urbanwood.projection.woodwork.filter.WoodworkProjectionFilter;
 import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionC8;
 import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionC9;
 import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionW6;
@@ -108,20 +109,36 @@ public class WoodworkServiceImpl implements WoodworkService {
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
     }
 
-    public WoodworkProjection findByCnpj(String cnpj) {
+    //Filters
+
+    public WoodworkProjectionFilter findByCnpj(String cnpj) {
         return woodworkRepository.findWoodworkByCnpj(cnpj)
                 .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + cnpj + " was not found"));
     }
 
-    public List<WoodworkProjection> findByCompanyName(String companyName) {
-        List<WoodworkProjection> woodwork = woodworkRepository.findWoodworkByCompanyName(companyName);
+    public List<WoodworkProjectionFilter> findByCompanyName(String companyName) {
+        List<WoodworkProjectionFilter> woodwork = woodworkRepository.findWoodworkByCompanyName(companyName);
 
         if(woodwork.isEmpty())
             throw new WoodworkNotFoundException("Woodwork " + companyName + " was not found");
         return woodwork;
     }
 
-    //Screen
+    public List<WoodworkProjectionFilter> findByNeighborhood(String neighborhood) {
+        List<WoodworkProjectionFilter> woodwork = woodworkRepository.findWoodworkByAddressNeighborhood(neighborhood);
+
+        if(woodwork.isEmpty())
+            throw new WoodworkNotFoundException("Woodwork " + neighborhood + " was not found");
+        return woodwork;
+    }
+
+
+    public WoodworkProjectionFilter findByPhoneNumber(String phoneNumber) {
+        return woodworkRepository.findWoodworkByContactPhoneNumber(phoneNumber)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + phoneNumber + " was not found"));
+    }
+
+    //Screens
 
     public WoodworkProjectionC8 findC8ById(Long id) {
         return woodworkRepository.findWoodworkC8ById(id)

@@ -2,6 +2,7 @@ package br.sc.senac.urbanwood.controller.woodwork;
 
 import br.sc.senac.urbanwood.dto.woodwork.WoodworkDTO;
 import br.sc.senac.urbanwood.projection.woodwork.WoodworkProjection;
+import br.sc.senac.urbanwood.projection.woodwork.filter.WoodworkProjectionFilter;
 import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionC8;
 import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionC9;
 import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionW6;
@@ -46,14 +47,32 @@ public class WoodworkController {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findById(id));
     }
 
+
+    /*           |||
+      Filters    |||
+      Filters    |||
+      Filters    vvv
+     */
+
     @GetMapping("cnpj/{cnpj}")
-    public ResponseEntity<WoodworkProjection> getProjectionByCnpj(@PathVariable(value = "cnpj") String cnpj) {
+    public ResponseEntity<WoodworkProjectionFilter> getProjectionByCnpj(@PathVariable(value = "cnpj") String cnpj) {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findByCnpj(cnpj));
     }
 
     @GetMapping("name/{companyName}")
-    public ResponseEntity<List<WoodworkProjection>> getProjectionByCompanyName(@PathVariable(value = "companyName") String companyName) {
+    public ResponseEntity<List<WoodworkProjectionFilter>> getProjectionByCompanyName(@PathVariable(value = "companyName") String companyName) {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findByCompanyName(companyName));
+    }
+
+    @GetMapping("neighborhood/{neighborhood}")
+    public ResponseEntity<List<WoodworkProjectionFilter>> getProjectionByNeighborhood(@PathVariable(value = "neighborhood") String neighborhood) {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findByNeighborhood(neighborhood));
+    }
+
+    //Funciona, MAS retorna ID
+    @GetMapping("phoneNumber/{phoneNumber}")
+    public ResponseEntity<WoodworkProjectionFilter> getProjectionByPhoneNumber(@PathVariable(value = "phoneNumber") String phoneNumber) {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findByPhoneNumber(phoneNumber));
     }
 
     /*          |||
