@@ -12,9 +12,7 @@ import br.sc.senac.budgetech.model.address.Address;
 import br.sc.senac.budgetech.model.client.Client;
 import br.sc.senac.budgetech.model.contact.Contact;
 import br.sc.senac.budgetech.projection.client.ClientProjection;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionC13;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionW10;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionW9;
+import br.sc.senac.budgetech.projection.client.screen.*;
 import br.sc.senac.budgetech.repository.address.AddressRepository;
 import br.sc.senac.budgetech.repository.client.ClientRepository;
 import br.sc.senac.budgetech.repository.contact.ContactRepository;
@@ -137,6 +135,16 @@ public class ClientServiceImpl implements ClientService {
 
     public ClientProjectionC13 findC13ById(Long id) {
         return clientRepository.findClientC13ById(id)
+                .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
+    }
+
+    public ClientProjectionC6 findC6ById(Long id) {
+        return clientRepository.findClientC6ById(id)
+                .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
+    }
+
+    public ClientProjectionC7 findC7ById(Long id) {
+        return clientRepository.findClientC7ById(id)
                 .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
     }
 }

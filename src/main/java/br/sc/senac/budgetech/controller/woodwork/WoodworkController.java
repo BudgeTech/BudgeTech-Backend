@@ -71,4 +71,10 @@ public class WoodworkController {
     public ResponseEntity<List<WoodworkProjectionC9>> getProjectionC9ByCompanyName(@PathVariable(value = "companyName") String companyName) {
         return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findC9ByName(companyName));
     }
+
+    //Approved
+    @GetMapping("w8/{id}")
+    public ResponseEntity<WoodworkProjectionC8> getProjectionW8ById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(woodworkService.findW8ById(id));
+    }
 }

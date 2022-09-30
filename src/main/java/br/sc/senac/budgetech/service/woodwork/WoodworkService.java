@@ -28,4 +28,6 @@ public interface WoodworkService {
     WoodworkProjectionC8 findC8ById(Long id);
 
     List<WoodworkProjectionC9> findC9ByName(String companyName);
+
+    WoodworkProjectionC8 findW8ById(Long id);
 }

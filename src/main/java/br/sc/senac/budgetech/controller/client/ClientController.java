@@ -2,9 +2,7 @@ package br.sc.senac.budgetech.controller.client;
 
 import br.sc.senac.budgetech.dto.client.ClientDTO;
 import br.sc.senac.budgetech.projection.client.ClientProjection;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionC13;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionW10;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionW9;
+import br.sc.senac.budgetech.projection.client.screen.*;
 import br.sc.senac.budgetech.service.client.ClientService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -80,5 +78,17 @@ public class ClientController {
     @GetMapping("c13/{id}")
     public ResponseEntity<ClientProjectionC13> getProjectionC13ById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findC13ById(id));
+    }
+
+    //Approved
+    @GetMapping("c6/{id}")
+    public ResponseEntity<ClientProjectionC6> getProjectionC6ById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findC6ById(id));
+    }
+
+    //Approved
+    @GetMapping("c7/{id}")
+    public ResponseEntity<ClientProjectionC7> getProjectionC7ById(@PathVariable(value = "id") Long id) {
+        return ResponseEntity.status(HttpStatus.OK).body(clientService.findC7ById(id));
     }
 }

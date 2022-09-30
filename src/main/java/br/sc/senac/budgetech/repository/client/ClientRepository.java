@@ -2,9 +2,7 @@ package br.sc.senac.budgetech.repository.client;
 
 import br.sc.senac.budgetech.model.client.Client;
 import br.sc.senac.budgetech.projection.client.ClientProjection;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionC13;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionW10;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionW9;
+import br.sc.senac.budgetech.projection.client.screen.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -42,4 +40,8 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     Optional<ClientProjectionW10> findClientW10ById(Long id);
 
     Optional<ClientProjectionC13> findClientC13ById(Long id);
+
+    Optional<ClientProjectionC6> findClientC6ById(Long id);
+
+    Optional<ClientProjectionC7> findClientC7ById(Long id);
 }

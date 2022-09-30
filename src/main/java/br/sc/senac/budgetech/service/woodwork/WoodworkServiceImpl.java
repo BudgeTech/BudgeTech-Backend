@@ -132,4 +132,9 @@ public class WoodworkServiceImpl implements WoodworkService {
         if (woodwork.isEmpty()) throw new WoodworkNotFoundException("Woodwork " + companyName + "was not found");
         return woodwork;
     }
+
+    public WoodworkProjectionC8 findW8ById(Long id) {
+        return woodworkRepository.findWoodworkC8ById(id)
+                .orElseThrow(() -> new WoodworkNotFoundException("Woodwork " + id + " was not found"));
+    }
 }

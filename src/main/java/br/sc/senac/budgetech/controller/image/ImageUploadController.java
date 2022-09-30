@@ -1,7 +1,6 @@
 package br.sc.senac.budgetech.controller.image;
 
 
-import br.sc.senac.budgetech.exception.image.ImageNotFoundException;
 import br.sc.senac.budgetech.model.image.ImageModel;
 import br.sc.senac.budgetech.repository.image.ImageRepository;
 import br.sc.senac.budgetech.util.ImageCompressAndDecompress;

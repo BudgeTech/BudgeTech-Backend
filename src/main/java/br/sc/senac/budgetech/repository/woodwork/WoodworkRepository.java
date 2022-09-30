@@ -28,4 +28,7 @@ public interface WoodworkRepository extends JpaRepository<Woodwork, Long> {
     Optional<WoodworkProjectionC8> findWoodworkC8ById(Long id);
 
     List<WoodworkProjectionC9> findWoodworkC9ByCompanyName(String companyName);
+
+    Optional<WoodworkProjectionC8> findWoodworkW8ById(Long id);
+
 }

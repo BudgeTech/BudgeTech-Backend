@@ -2,9 +2,7 @@ package br.sc.senac.budgetech.service.client;
 
 import br.sc.senac.budgetech.dto.client.ClientDTO;
 import br.sc.senac.budgetech.projection.client.ClientProjection;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionC13;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionW10;
-import br.sc.senac.budgetech.projection.client.screen.ClientProjectionW9;
+import br.sc.senac.budgetech.projection.client.screen.*;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -33,4 +31,8 @@ public interface ClientService {
     ClientProjectionW10 findW10ById(Long id);
 
     ClientProjectionC13 findC13ById(Long id);
+
+    ClientProjectionC6 findC6ById(Long id);
+
+    ClientProjectionC7 findC7ById(Long id);
 }
