@@ -1,5 +1,6 @@
 package br.sc.senac.urbanwood.service.client;
 
+import br.sc.senac.urbanwood.dto.client.ClientDTOC13;
 import br.sc.senac.urbanwood.dto.client.ClientDTO;
 import br.sc.senac.urbanwood.projection.client.ClientProjection;
 import br.sc.senac.urbanwood.projection.client.screen.*;
@@ -30,7 +31,7 @@ public interface ClientService {
 
     ClientProjectionW10 findW10ById(Long id);
 
-    ClientProjectionC13 findC13ById(Long id);
+    ClientDTOC13 findC13ById(Long id);
 
     ClientProjectionC6 findC6ById(Long id);
 

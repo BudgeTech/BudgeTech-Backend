@@ -1,5 +1,6 @@
 package br.sc.senac.urbanwood.controller.client;
 
+import br.sc.senac.urbanwood.dto.client.ClientDTOC13;
 import br.sc.senac.urbanwood.dto.client.ClientDTO;
 import br.sc.senac.urbanwood.projection.client.ClientProjection;
 import br.sc.senac.urbanwood.projection.client.screen.*;
@@ -76,7 +77,7 @@ public class ClientController {
 
     //Error
     @GetMapping("c13/{id}")
-    public ResponseEntity<ClientProjectionC13> getProjectionC13ById(@PathVariable(value = "id") Long id) {
+    public ResponseEntity<ClientDTOC13> getProjectionC13ById(@PathVariable(value = "id") Long id) {
         return ResponseEntity.status(HttpStatus.OK).body(clientService.findC13ById(id));
     }
 

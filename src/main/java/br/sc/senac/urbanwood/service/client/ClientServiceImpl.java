@@ -1,5 +1,6 @@
 package br.sc.senac.urbanwood.service.client;
 
+import br.sc.senac.urbanwood.dto.client.ClientDTOC13;
 import br.sc.senac.urbanwood.dto.client.ClientDTO;
 import br.sc.senac.urbanwood.exception.address.AddressNotFoundException;
 import br.sc.senac.urbanwood.exception.client.ClientCpfInvalidException;
@@ -139,9 +140,10 @@ public class ClientServiceImpl implements ClientService {
                 .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
     }
 
-    public ClientProjectionC13 findC13ById(Long id) {
-        return clientRepository.findClientC13ById(id)
-                .orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found"));
+    public ClientDTOC13 findC13ById(Long id) {
+        var testClass = new ClientDTOC13(clientRepository.findClientC13ById(id).orElseThrow(() -> new ClientNotFoundException("Client " + id + " was not found")));
+        testClass.setFurnitures(clientRepository.findClientC13ByIdPart2(id));
+        return testClass;
     }
 
     public ClientProjectionC6 findC6ById(Long id) {

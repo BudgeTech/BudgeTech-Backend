@@ -9,7 +9,7 @@ import java.util.zip.DataFormatException;
 import java.util.zip.Deflater;
 import java.util.zip.Inflater;
 
-public final class ImageUtils {
+public final class ImageUtil {
 
     public static byte[] compressBytes(byte[] data) {
         Deflater deflater = new Deflater();
@@ -48,7 +48,7 @@ public final class ImageUtils {
 
     public ImageModel createImageModel(MultipartFile file) throws IOException {
         ImageModel img = new ImageModel(file.getOriginalFilename(), file.getContentType(),
-                ImageUtils.compressBytes(file.getBytes()));
+                ImageUtil.compressBytes(file.getBytes()));
         return img;
     }
 }

@@ -1,5 +1,6 @@
 package br.sc.senac.urbanwood.repository.client;
 
+import br.sc.senac.urbanwood.projection.furniture.screen.FurnitureProjectionC13;
 import br.sc.senac.urbanwood.model.client.Client;
 import br.sc.senac.urbanwood.projection.client.ClientProjection;
 import br.sc.senac.urbanwood.projection.client.screen.*;
@@ -40,7 +41,26 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
 
     Optional<ClientProjectionW10> findClientW10ById(Long id);
 
+    @Query(value = """
+            select c.nameClient as nameClient, c.cpf as cpf,
+            co.email as email, co.phoneNumber as phoneNumber,
+            a.street as street, a.neighborhood as neighborhood, a.cep as cep, a.number as number, a.city as city,
+            i.quantity as quantity,
+            img.picByte as picByte
+            from Client c
+            join Contact co on c.id = co.id
+            join Address a on c.id = a.id
+            join Item i on c.id = i.id
+            join ImageModel img on c.id = img.id
+            """)
     Optional<ClientProjectionC13> findClientC13ById(Long id);
+
+    @Query(value = """
+            select f.nameFurniture as nameFurniture, f.id as id, f.priceFurniture as priceFurniture
+            from Furniture f
+            join Order o on f.id = o.id
+            """)
+    List<FurnitureProjectionC13> findClientC13ByIdPart2(Long id);
 
     Optional<ClientProjectionC6> findClientC6ById(Long id);
 
