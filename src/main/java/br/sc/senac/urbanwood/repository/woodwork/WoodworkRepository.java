@@ -10,6 +10,7 @@ import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionW6;
 import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionW7;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -35,9 +36,9 @@ public interface WoodworkRepository extends JpaRepository<Woodwork, Long> {
     @Query(value = """
             select w.image as image from Woodwork w
             join Contact co on w.id = co.id
-            where co.phoneNumber = :co.phoneNumber
+            where co.phoneNumber = :#{#phoneNumber}
             """)
-    Optional<WoodworkProjectionFilter> findWoodworkByContactPhoneNumber(String phoneNumber);
+    Optional<WoodworkProjectionFilter> findWoodworkByContactPhoneNumber(@Param("phoneNumber") String phoneNumber);
 
     //Screens
     Optional<WoodworkProjectionC8> findWoodworkC8ById(Long id);

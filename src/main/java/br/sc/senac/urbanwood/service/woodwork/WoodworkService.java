@@ -1,6 +1,7 @@
 package br.sc.senac.urbanwood.service.woodwork;
 
 import br.sc.senac.urbanwood.dto.woodwork.WoodworkDTO;
+import br.sc.senac.urbanwood.model.contact.Contact;
 import br.sc.senac.urbanwood.projection.woodwork.WoodworkProjection;
 import br.sc.senac.urbanwood.projection.woodwork.filter.WoodworkProjectionFilter;
 import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionC8;
@@ -25,6 +26,7 @@ public interface WoodworkService {
     //Filters
 
     List<WoodworkProjectionFilter> findByCompanyName(String companyName);
+
     List<WoodworkProjectionFilter> findByNeighborhood(String neighborhood);
 
     WoodworkProjectionFilter findByCnpj(String cnpj);

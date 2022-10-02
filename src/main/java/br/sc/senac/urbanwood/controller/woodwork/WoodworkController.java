@@ -1,6 +1,7 @@
 package br.sc.senac.urbanwood.controller.woodwork;
 
 import br.sc.senac.urbanwood.dto.woodwork.WoodworkDTO;
+import br.sc.senac.urbanwood.model.contact.Contact;
 import br.sc.senac.urbanwood.projection.woodwork.WoodworkProjection;
 import br.sc.senac.urbanwood.projection.woodwork.filter.WoodworkProjectionFilter;
 import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionC8;
