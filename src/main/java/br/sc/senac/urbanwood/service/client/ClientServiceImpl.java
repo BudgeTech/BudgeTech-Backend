@@ -11,11 +11,13 @@ import br.sc.senac.urbanwood.mapper.client.ClientMapper;
 import br.sc.senac.urbanwood.model.address.Address;
 import br.sc.senac.urbanwood.model.client.Client;
 import br.sc.senac.urbanwood.model.contact.Contact;
+import br.sc.senac.urbanwood.model.image.ImageModel;
 import br.sc.senac.urbanwood.projection.client.ClientProjection;
 import br.sc.senac.urbanwood.projection.client.screen.*;
 import br.sc.senac.urbanwood.repository.address.AddressRepository;
 import br.sc.senac.urbanwood.repository.client.ClientRepository;
 import br.sc.senac.urbanwood.repository.contact.ContactRepository;
+import br.sc.senac.urbanwood.repository.image.ImageRepository;
 import br.sc.senac.urbanwood.util.CPFValidator;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -32,12 +34,14 @@ public class ClientServiceImpl implements ClientService {
     private final ClientMapper clientMapper;
     private final ContactRepository contactRepository;
     private final AddressRepository addressRepository;
+    private final ImageRepository imageRepository;
 
-    public ClientServiceImpl(ClientRepository clientRepository, ClientMapper clientMapper, ContactRepository contactRepository, AddressRepository addressRepository) {
+    public ClientServiceImpl(ClientRepository clientRepository, ClientMapper clientMapper, ContactRepository contactRepository, AddressRepository addressRepository, ImageRepository imageRepository) {
         this.clientRepository = clientRepository;
         this.clientMapper = clientMapper;
         this.contactRepository = contactRepository;
         this.addressRepository = addressRepository;
+        this.imageRepository = imageRepository;
     }
 
     public ClientDTO save(ClientDTO clientDTO) {
@@ -47,6 +51,9 @@ public class ClientServiceImpl implements ClientService {
 
         Address address = addressRepository.findById(clientDTO.idAddress())
                 .orElseThrow(() -> new AddressNotFoundException("Address " + clientDTO.idAddress() + " was not found"));
+
+        ImageModel imageModel = imageRepository.findById(clientDTO.idImage())
+                .orElseThrow(() -> new AddressNotFoundException("Image " + clientDTO.idImage() + " was not found"));
 
         if (clientRepository.existsByCpf(clientDTO.cpf()))
             throw new ClientCpfRegisteredException("Cpf " + clientDTO.cpf() + " is already registered");
@@ -60,6 +67,7 @@ public class ClientServiceImpl implements ClientService {
         Client client = clientMapper.toEntity(clientDTO);
         client.setContact(contact);
         client.setAddress(address);
+        client.setImageModel(imageModel);
         Client clientSaved = clientRepository.save(client);
         return clientMapper.toDTO(clientSaved);
     }
@@ -75,7 +83,6 @@ public class ClientServiceImpl implements ClientService {
         if (clientDTO.cpf().equals(client.getCpf()) && clientDTO.login().equals(client.getLogin())) {
             client.setCpf(clientDTO.cpf());
             client.setLogin(clientDTO.login());
-            client.setImage(clientDTO.image());
             client.setPassword(clientDTO.password());
             client.setLastName(clientDTO.lastName());
             client.setNameClient(clientDTO.nameClient());
@@ -91,7 +98,6 @@ public class ClientServiceImpl implements ClientService {
 
         client.setCpf(clientDTO.cpf());
         client.setLogin(clientDTO.login());
-        client.setImage(clientDTO.image());
         client.setPassword(clientDTO.password());
         client.setLastName(clientDTO.lastName());
         client.setNameClient(clientDTO.nameClient());

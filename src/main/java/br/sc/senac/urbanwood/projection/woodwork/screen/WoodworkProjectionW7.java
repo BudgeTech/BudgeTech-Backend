@@ -1,8 +1,8 @@
 package br.sc.senac.urbanwood.projection.woodwork.screen;
 
-public interface WoodworkProjectionW7 {
+import br.sc.senac.urbanwood.projection.woodwork.WoodworkProjection;
 
-    byte[] getImage();
+public interface WoodworkProjectionW7 {
 
     String getCompanyName();
 
@@ -34,5 +34,11 @@ public interface WoodworkProjectionW7 {
         String getPhoneNumber();
 
         String getSocialNetwork();
+    }
+    ImageProjection getImageModel();
+
+    interface ImageProjection {
+
+        byte[] getPicByte();
     }
 }

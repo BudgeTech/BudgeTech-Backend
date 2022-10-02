@@ -5,13 +5,13 @@ import java.util.List;
 
 public interface ClientProjectionW10 {
 
-    byte[] getImage();
-
     String getNameClient();
 
     String getLastName();
 
     String getCpf();
+
+    ImageProjection getImageModel();
 
     AddressProjection getAddress();
 
@@ -55,5 +55,10 @@ public interface ClientProjectionW10 {
 
             Double getPriceOrder();
         }
+    }
+
+    interface ImageProjection {
+
+        byte[] getPicByte();
     }
 }

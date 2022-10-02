@@ -6,11 +6,16 @@ public interface WoodworkProjection {
 
 	String getLogin();
 
-	byte[] getImage();
-
 	String getCnpj();
 
 	String getCompanyName();
 
 	String getDescription();
+
+	ImageProjection getImageModel();
+
+	interface ImageProjection {
+
+		byte[] getPicByte();
+	}
 }

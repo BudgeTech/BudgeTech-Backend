@@ -35,7 +35,6 @@ public class ImageUploadController {
     @GetMapping("/{id}")
     public ImageModel getImageById(@PathVariable("id") Long id) {
         final Optional<ImageModel> retrievedImage = imageRepository.findImageById(id);
-
         ImageModel img = new ImageModel(retrievedImage.get().getId(), retrievedImage.get().getName(), retrievedImage.get().getType(),
                 ImageUtils.decompressBytes(retrievedImage.get().getPicByte()));
         return img;

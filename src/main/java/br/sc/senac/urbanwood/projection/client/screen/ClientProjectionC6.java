@@ -2,13 +2,13 @@ package br.sc.senac.urbanwood.projection.client.screen;
 
 public interface ClientProjectionC6 {
 
-    byte[] getImage();
-
     String getNameClient();
 
     String getLastName();
 
     String getCpf();
+
+    ImageProjection getImageModel();
 
     AddressProjection getAddress();
 
@@ -36,5 +36,10 @@ public interface ClientProjectionC6 {
         String getPhoneNumber();
 
         String getSocialNetwork();
+    }
+
+    interface ImageProjection {
+
+        byte[] getPicByte();
     }
 }

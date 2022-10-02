@@ -2,8 +2,10 @@ package br.sc.senac.urbanwood.model.client;
 
 import br.sc.senac.urbanwood.model.address.Address;
 import br.sc.senac.urbanwood.model.contact.Contact;
+import br.sc.senac.urbanwood.model.image.ImageModel;
 import br.sc.senac.urbanwood.model.item.Item;
 import br.sc.senac.urbanwood.model.user.User;
+import org.hibernate.mapping.Join;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -27,6 +29,10 @@ public class Client extends User {
     private List<Item> items;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
+    private ImageModel imageModel;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
 
@@ -38,8 +44,8 @@ public class Client extends User {
         items = new ArrayList<>();
     }
 
-    public Client(Long id, String login, String password, byte[] image, String nameClient, String lastName, String cpf) {
-        super(id, login, password, image);
+    public Client(Long id, String login, String password, String nameClient, String lastName, String cpf) {
+        super(id, login, password);
         this.nameClient = nameClient;
         this.lastName = lastName;
         this.cpf = cpf;
@@ -100,5 +106,13 @@ public class Client extends User {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public ImageModel getImageModel() {
+        return imageModel;
+    }
+
+    public void setImageModel(ImageModel imageModel) {
+        this.imageModel = imageModel;
     }
 }

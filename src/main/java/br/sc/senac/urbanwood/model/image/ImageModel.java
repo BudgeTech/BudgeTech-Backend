@@ -1,5 +1,8 @@
 package br.sc.senac.urbanwood.model.image;
 
+import br.sc.senac.urbanwood.model.client.Client;
+import br.sc.senac.urbanwood.model.woodwork.Woodwork;
+
 import javax.persistence.*;
 
 @Entity
@@ -21,6 +24,12 @@ public class ImageModel {
     //which is more than the default length for picByte column
     @Column(name = "image_picByte", length = 1000)
     private byte[] picByte;
+
+    @OneToOne(mappedBy = "imageModel")
+    private Client client;
+
+    @OneToOne(mappedBy = "imageModel")
+    private Woodwork woodwork;
 
     public ImageModel() {
     }

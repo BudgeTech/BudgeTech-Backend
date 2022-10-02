@@ -1,5 +1,7 @@
 package br.sc.senac.urbanwood.projection.woodwork.screen;
 
+import br.sc.senac.urbanwood.projection.woodwork.WoodworkProjection;
+
 public interface WoodworkProjectionC8 {
 
     String getCompanyName();
@@ -7,8 +9,6 @@ public interface WoodworkProjectionC8 {
     String getDescription();
 
     String getCnpj();
-
-    byte[] getImage();
 
     AddressProjection getAddress();
 
@@ -28,5 +28,12 @@ public interface WoodworkProjectionC8 {
         String getEmail();
 
         String getSocialNetwork();
+    }
+
+    ImageProjection getImageModel();
+
+    interface ImageProjection {
+
+        byte[] getPicByte();
     }
 }

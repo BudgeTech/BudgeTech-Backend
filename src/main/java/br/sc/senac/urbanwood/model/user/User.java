@@ -18,18 +18,13 @@ public class User {
     @Column(name = "user_password", length = 45, nullable = false)
     private String password;
 
-    @Lob
-    @Column(name = "user_image")
-    private byte[] image;
-
     public User() {
     }
 
-    public User(Long id, String login, String password, byte[] image) {
+    public User(Long id, String login, String password) {
         this.id = id;
         this.login = login;
         this.password = password;
-        this.image = image;
     }
 
     public Long getId() {
@@ -56,11 +51,4 @@ public class User {
         this.password = password;
     }
 
-    public byte[] getImage() {
-        return image;
-    }
-
-    public void setImage(byte[] image) {
-        this.image = image;
-    }
 }

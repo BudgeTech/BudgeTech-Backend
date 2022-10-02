@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 public class WoodworkMapper {
 
     public WoodworkDTO toDTO(Woodwork woodwork) {
-        return new WoodworkDTO(woodwork.getLogin(), woodwork.getPassword(), woodwork.getImage(), woodwork.getId(), woodwork.getCompanyName(), woodwork.getCnpj(), woodwork.getDescription(), woodwork.getContact().getId(), woodwork.getAddress().getId());
+        return new WoodworkDTO(woodwork.getLogin(), woodwork.getPassword(), woodwork.getId(), woodwork.getCompanyName(), woodwork.getCnpj(), woodwork.getDescription(), woodwork.getContact().getId(), woodwork.getAddress().getId(), woodwork.getImageModel().getId());
     }
 
     public Woodwork toEntity(WoodworkDTO dto) {
-        return new Woodwork(dto.idUser(), dto.login(), dto.password(), dto.image(), dto.companyName(), dto.cnpj(), dto.description());
+        return new Woodwork(dto.idUser(), dto.login(), dto.password(), dto.companyName(), dto.cnpj(), dto.description());
     }
 }

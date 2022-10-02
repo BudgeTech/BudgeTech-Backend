@@ -2,6 +2,7 @@ package br.sc.senac.urbanwood.model.woodwork;
 
 import br.sc.senac.urbanwood.model.address.Address;
 import br.sc.senac.urbanwood.model.contact.Contact;
+import br.sc.senac.urbanwood.model.image.ImageModel;
 import br.sc.senac.urbanwood.model.item.Item;
 import br.sc.senac.urbanwood.model.living_area.LivingArea;
 import br.sc.senac.urbanwood.model.user.User;
@@ -31,6 +32,10 @@ public class Woodwork extends User {
     private List<LivingArea> livingAreas;
 
     @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "image_id")
+    private ImageModel imageModel;
+
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "address_id")
     private Address address;
 
@@ -43,8 +48,8 @@ public class Woodwork extends User {
         items = new ArrayList<>();
     }
 
-    public Woodwork(Long id, String login, String password, byte[] image, String companyName, String cnpj, String description) {
-        super(id, login, password, image);
+    public Woodwork(Long id, String login, String password, String companyName, String cnpj, String description) {
+        super(id, login, password);
         this.companyName = companyName;
         this.cnpj = cnpj;
         this.description = description;
@@ -122,5 +127,13 @@ public class Woodwork extends User {
 
     public void setContact(Contact contact) {
         this.contact = contact;
+    }
+
+    public ImageModel getImageModel() {
+        return imageModel;
+    }
+
+    public void setImageModel(ImageModel imageModel) {
+        this.imageModel = imageModel;
     }
 }

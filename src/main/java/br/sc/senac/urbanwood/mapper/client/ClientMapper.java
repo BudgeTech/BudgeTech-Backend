@@ -9,10 +9,10 @@ import org.springframework.stereotype.Service;
 public class ClientMapper {
 
     public ClientDTO toDTO(Client client) {
-        return new ClientDTO(client.getLogin(), client.getPassword(), client.getImage(), client.getId(), client.getNameClient(), client.getLastName(), client.getCpf(), client.getContact().getId(), client.getAddress().getId());
+        return new ClientDTO(client.getLogin(), client.getPassword(), client.getId(), client.getNameClient(), client.getLastName(), client.getCpf(), client.getContact().getId(), client.getAddress().getId(), client.getImageModel().getId());
     }
 
     public Client toEntity(ClientDTO dto) {
-        return new Client(dto.id(), dto.login(), dto.password(), dto.image(), dto.nameClient(), dto.lastName(), dto.cpf());
+        return new Client(dto.id(), dto.login(), dto.password(), dto.nameClient(), dto.lastName(), dto.cpf());
     }
 }

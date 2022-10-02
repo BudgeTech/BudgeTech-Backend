@@ -10,6 +10,7 @@ import br.sc.senac.urbanwood.exception.woodwork.WoodworkNotFoundException;
 import br.sc.senac.urbanwood.mapper.woodwork.WoodworkMapper;
 import br.sc.senac.urbanwood.model.address.Address;
 import br.sc.senac.urbanwood.model.contact.Contact;
+import br.sc.senac.urbanwood.model.image.ImageModel;
 import br.sc.senac.urbanwood.model.woodwork.Woodwork;
 import br.sc.senac.urbanwood.projection.woodwork.WoodworkProjection;
 import br.sc.senac.urbanwood.projection.woodwork.filter.WoodworkProjectionFilter;
@@ -19,6 +20,7 @@ import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionW6;
 import br.sc.senac.urbanwood.projection.woodwork.screen.WoodworkProjectionW7;
 import br.sc.senac.urbanwood.repository.address.AddressRepository;
 import br.sc.senac.urbanwood.repository.contact.ContactRepository;
+import br.sc.senac.urbanwood.repository.image.ImageRepository;
 import br.sc.senac.urbanwood.repository.woodwork.WoodworkRepository;
 import br.sc.senac.urbanwood.util.CNPJValidator;
 import org.springframework.stereotype.Service;
@@ -32,12 +34,14 @@ public class WoodworkServiceImpl implements WoodworkService {
     private final WoodworkMapper woodworkMapper;
     private final AddressRepository addressRepository;
     private final ContactRepository contactRepository;
+    private final ImageRepository imageRepository;
 
-    public WoodworkServiceImpl(WoodworkRepository woodworkRepository, WoodworkMapper woodworkMapper, AddressRepository addressRepository, ContactRepository contactRepository) {
+    public WoodworkServiceImpl(WoodworkRepository woodworkRepository, WoodworkMapper woodworkMapper, AddressRepository addressRepository, ContactRepository contactRepository, ImageRepository imageRepository) {
         this.woodworkRepository = woodworkRepository;
         this.woodworkMapper = woodworkMapper;
         this.addressRepository = addressRepository;
         this.contactRepository = contactRepository;
+        this.imageRepository = imageRepository;
     }
 
     public WoodworkDTO save(WoodworkDTO woodworkDTO) {
@@ -47,6 +51,9 @@ public class WoodworkServiceImpl implements WoodworkService {
 
         Address address = addressRepository.findById(woodworkDTO.idAddress())
                 .orElseThrow(() -> new AddressNotFoundException("Address " + woodworkDTO.idAddress() + " was not found"));
+
+        ImageModel imageModel = imageRepository.findById(woodworkDTO.idImage())
+                .orElseThrow(() -> new AddressNotFoundException("Image " + woodworkDTO.idImage() + " was not found"));
 
         if (woodworkRepository.existsByCnpj(woodworkDTO.cnpj()))
             throw new WoodworkCnpjRegisteredException("Cnpj " + woodworkDTO.cnpj() + " is already registered");
@@ -60,6 +67,7 @@ public class WoodworkServiceImpl implements WoodworkService {
         Woodwork woodwork = woodworkMapper.toEntity(woodworkDTO);
         woodwork.setContact(contact);
         woodwork.setAddress(address);
+        woodwork.setImageModel(imageModel);
         Woodwork woodworkSaved = woodworkRepository.save(woodwork);
         return woodworkMapper.toDTO(woodworkSaved);
     }
@@ -78,7 +86,6 @@ public class WoodworkServiceImpl implements WoodworkService {
             woodwork.setCnpj(woodworkDTO.cnpj());
             woodwork.setLogin(woodworkDTO.login());
             woodwork.setPassword(woodworkDTO.password());
-            woodwork.setImage(woodworkDTO.image());
             woodworkRepository.save(woodwork);
             return;
         }
@@ -94,7 +101,6 @@ public class WoodworkServiceImpl implements WoodworkService {
         woodwork.setCnpj(woodworkDTO.cnpj());
         woodwork.setLogin(woodworkDTO.login());
         woodwork.setPassword(woodworkDTO.password());
-        woodwork.setImage(woodworkDTO.image());
         woodworkRepository.save(woodwork);
     }
 

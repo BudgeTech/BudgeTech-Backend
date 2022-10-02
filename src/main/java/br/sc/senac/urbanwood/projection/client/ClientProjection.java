@@ -6,11 +6,17 @@ public interface ClientProjection {
 
     String getLogin();
 
-    byte[] getImage();
-
     String getNameClient();
 
     String getLastName();
 
     String getCpf();
+
+    ImageProjection getImageModel();
+
+
+    interface ImageProjection {
+
+        byte[] getPicByte();
+    }
 }

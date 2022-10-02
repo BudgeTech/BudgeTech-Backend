@@ -1,6 +1,13 @@
 package br.sc.senac.urbanwood.projection.woodwork.filter;
 
+import br.sc.senac.urbanwood.projection.woodwork.WoodworkProjection;
+
 public interface WoodworkProjectionFilter {
 
-    byte[] getImage();
+    ImageProjection getImageModel();
+
+    interface ImageProjection {
+
+        byte[] getPicByte();
+    }
 }

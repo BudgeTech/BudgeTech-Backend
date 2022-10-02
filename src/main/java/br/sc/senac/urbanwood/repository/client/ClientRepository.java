@@ -28,12 +28,13 @@ public interface ClientRepository extends JpaRepository<Client, Long> {
     //Screen
 
     @Query(value = """
-            select c.id as id, c.image as image, c.nameClient as nameClient, c.lastName as lastName,
+            select c.id as id, i.picByte as picByte, c.nameClient as nameClient, c.lastName as lastName,
             a.neighborhood as neighborhood, a.city as city,
             co.phoneNumber as phoneNumber
             from Client c
             inner join Address a on c.id = a.id
             inner join Contact co on c.id = co.id
+            inner join ImageModel i on c.id = i.id
             """)
     Page<ClientProjectionW9> findClientW9ByNameClient(Pageable pageable);
 

@@ -34,8 +34,9 @@ public interface WoodworkRepository extends JpaRepository<Woodwork, Long> {
     Optional<WoodworkProjectionFilter> findWoodworkByCnpj(String cnpj);
 
     @Query(value = """
-            select w.image as image from Woodwork w
+            select i.picByte as picByte from Woodwork w
             join Contact co on w.id = co.id
+            join ImageModel i on w.id = i.id
             where co.phoneNumber = :#{#phoneNumber}
             """)
     Optional<WoodworkProjectionFilter> findWoodworkByContactPhoneNumber(@Param("phoneNumber") String phoneNumber);

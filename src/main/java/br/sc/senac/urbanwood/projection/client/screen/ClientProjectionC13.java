@@ -4,11 +4,11 @@ import java.util.List;
 
 public interface ClientProjectionC13 {
 
-    byte[] getImage();
-
     String getNameClient();
 
     String getCpf();
+
+    ImageProjection getImageModel();
 
     ContactProjection getContact();
 
@@ -57,5 +57,10 @@ public interface ClientProjectionC13 {
                 Double getPriceFurniture();
             }
         }
+    }
+
+    interface ImageProjection {
+
+        byte[] getPicByte();
     }
 }
